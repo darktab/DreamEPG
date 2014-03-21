@@ -6,7 +6,7 @@ uses
   System.SysUtils, System.Types, System.UITypes, System.Classes,
   System.Variants,
   FMX.Types, FMX.Graphics, FMX.Controls, FMX.Forms, FMX.Dialogs, FMX.StdCtrls,
-  UMainForm, FMX.TabControl;
+  UMainForm, FMX.TabControl, FMX.Layouts, FMX.Memo;
 
 type
   TMainTabbedForm = class(TMainForm)
@@ -31,9 +31,9 @@ implementation
 procedure TMainTabbedForm.FormShow(Sender: TObject);
 begin
   inherited;
-  //self.MainDataModule.DreamRESTRequestChannelList.Resource := 'about';
+  // self.MainDataModule.DreamRESTRequestChannelList.Resource := 'about';
   self.MainDataModule.DreamRESTRequestChannelList.Execute;
-  //ShowMessage(self.MainDataModule.DreamRESTResponseChannelList.JSONValue.Value);
+  //Writeln(self.MainDataModule.DreamRESTResponseChannelList.Content);
 end;
 
 end.
