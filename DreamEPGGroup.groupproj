@@ -1,0 +1,36 @@
+﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+    <PropertyGroup>
+        <ProjectGuid>{FD181C2B-27F3-470A-A548-E0EA30FD3158}</ProjectGuid>
+    </PropertyGroup>
+    <ItemGroup>
+        <Projects Include="DreamEPG.dproj">
+            <Dependencies/>
+        </Projects>
+    </ItemGroup>
+    <ProjectExtensions>
+        <Borland.Personality>Default.Personality.12</Borland.Personality>
+        <Borland.ProjectType/>
+        <BorlandProject>
+            <Default.Personality/>
+        </BorlandProject>
+    </ProjectExtensions>
+    <Target Name="DreamEPG">
+        <MSBuild Projects="DreamEPG.dproj"/>
+    </Target>
+    <Target Name="DreamEPG:Clean">
+        <MSBuild Projects="DreamEPG.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="DreamEPG:Make">
+        <MSBuild Projects="DreamEPG.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="Build">
+        <CallTarget Targets="DreamEPG"/>
+    </Target>
+    <Target Name="Clean">
+        <CallTarget Targets="DreamEPG:Clean"/>
+    </Target>
+    <Target Name="Make">
+        <CallTarget Targets="DreamEPG:Make"/>
+    </Target>
+    <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
+</Project>

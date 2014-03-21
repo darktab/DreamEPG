@@ -1,0 +1,51 @@
+inherited MainTabbedForm: TMainTabbedForm
+  Caption = 'MainForm1'
+  ClientHeight = 548
+  OnShow = FormShow
+  DesignerMobile = True
+  DesignerWidth = 320
+  DesignerHeight = 568
+  DesignerDeviceName = 'iPhone5'
+  DesignerOrientation = 0
+  DesignerOSVersion = '7'
+  object MainTabControl: TTabControl
+    Align = alClient
+    FullSize = True
+    Height = 548.000000000000000000
+    TabHeight = 49.000000000000000000
+    TabIndex = 0
+    TabOrder = 0
+    TabPosition = tpBottom
+    Width = 320.000000000000000000
+    object TabItem1: TTabItem
+      Align = alClient
+      WordWrap = False
+      Height = 49.000000000000000000
+      IsSelected = True
+      TabOrder = 0
+      Text = 'TabItem1'
+      Trimming = ttCharacter
+      Width = 107.000000000000000000
+    end
+    object TabItem2: TTabItem
+      Align = alClient
+      WordWrap = False
+      Height = 49.000000000000000000
+      IsSelected = False
+      TabOrder = 1
+      Text = 'TabItem2'
+      Trimming = ttCharacter
+      Width = 107.000000000000000000
+    end
+    object TabItem3: TTabItem
+      Align = alClient
+      WordWrap = False
+      Height = 49.000000000000000000
+      IsSelected = False
+      TabOrder = 2
+      Text = 'TabItem3'
+      Trimming = ttCharacter
+      Width = 106.000000000000000000
+    end
+  end
+end
