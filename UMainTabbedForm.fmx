@@ -26,6 +26,16 @@ inherited MainTabbedForm: TMainTabbedForm
       Text = 'TabItem1'
       Trimming = ttCharacter
       Width = 107.000000000000000000
+      object ChannelListView: TListView
+        ItemAppearanceClassName = 'TListItemAppearance'
+        ItemEditAppearanceClassName = 'TListItemShowCheckAppearance'
+        HeaderAppearanceClassName = 'TListHeaderObjects'
+        FooterAppearanceClassName = 'TListHeaderObjects'
+        Align = alClient
+        Height = 499.000000000000000000
+        TabOrder = 0
+        Width = 320.000000000000000000
+      end
     end
     object TabItem2: TTabItem
       Align = alClient

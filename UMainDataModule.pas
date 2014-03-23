@@ -5,7 +5,9 @@ interface
 uses
   System.SysUtils, System.Classes, IPPeerClient, REST.Response.Adapter,
   REST.Client, Data.Bind.Components, Data.Bind.ObjectScope,
-  REST.Authenticator.Basic;
+  REST.Authenticator.Basic, Data.DB, FireDAC.Stan.Intf, FireDAC.Stan.Option,
+  FireDAC.Stan.Param, FireDAC.Stan.Error, FireDAC.DatS, FireDAC.Phys.Intf,
+  FireDAC.DApt.Intf, FireDAC.Comp.DataSet, FireDAC.Comp.Client;
 
 type
   TMainDataModule = class(TDataModule)
@@ -14,19 +16,28 @@ type
     DreamRESTResponseChannelList: TRESTResponse;
     DreamRESTResponseDataSetAdapterChannelList: TRESTResponseDataSetAdapter;
     DreamHTTPBasicAuthenticator: THTTPBasicAuthenticator;
+    DreamFDMemTableChannelList: TFDMemTable;
+    procedure DreamRESTResponseDataSetAdapterChannelListBeforeOpenDataSet
+      (Sender: TObject);
   private
     { Private declarations }
   public
     { Public declarations }
   end;
 
-//var
-//  MainDataModule: TMainDataModule;
+  // var
+  // MainDataModule: TMainDataModule;
 
 implementation
 
-{%CLASSGROUP 'FMX.Controls.TControl'}
+{ %CLASSGROUP 'FMX.Controls.TControl' }
 
 {$R *.dfm}
+
+procedure TMainDataModule.
+  DreamRESTResponseDataSetAdapterChannelListBeforeOpenDataSet(Sender: TObject);
+begin
+  self.DreamFDMemTableChannelList.CreateDataSet;
+end;
 
 end.
