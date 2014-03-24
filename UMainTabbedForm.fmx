@@ -32,9 +32,17 @@ inherited MainTabbedForm: TMainTabbedForm
         HeaderAppearanceClassName = 'TListHeaderObjects'
         FooterAppearanceClassName = 'TListHeaderObjects'
         Align = alClient
-        Height = 499.000000000000000000
+        Height = 469.000000000000000000
         TabOrder = 0
         Width = 320.000000000000000000
+      end
+      object ComboBoxServiceList: TComboBox
+        Align = alTop
+        DisableFocusEffect = False
+        Height = 30.000000000000000000
+        TabOrder = 1
+        Width = 320.000000000000000000
+        OnChange = ComboBoxServiceListChange
       end
     end
     object TabItem2: TTabItem

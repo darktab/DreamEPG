@@ -17,7 +17,13 @@ type
     DreamRESTResponseDataSetAdapterChannelList: TRESTResponseDataSetAdapter;
     DreamHTTPBasicAuthenticator: THTTPBasicAuthenticator;
     DreamFDMemTableChannelList: TFDMemTable;
+    DreamRESTRequestServiceList: TRESTRequest;
+    DreamRESTResponseServiceList: TRESTResponse;
+    DreamRESTResponseDataSetAdapterServiceList: TRESTResponseDataSetAdapter;
+    DreamFDMemTableServiceList: TFDMemTable;
     procedure DreamRESTResponseDataSetAdapterChannelListBeforeOpenDataSet
+      (Sender: TObject);
+    procedure DreamRESTResponseDataSetAdapterServiceListBeforeOpenDataSet
       (Sender: TObject);
   private
     { Private declarations }
@@ -38,6 +44,12 @@ procedure TMainDataModule.
   DreamRESTResponseDataSetAdapterChannelListBeforeOpenDataSet(Sender: TObject);
 begin
   self.DreamFDMemTableChannelList.CreateDataSet;
+end;
+
+procedure TMainDataModule.
+  DreamRESTResponseDataSetAdapterServiceListBeforeOpenDataSet(Sender: TObject);
+begin
+  self.DreamFDMemTableServiceList.CreateDataSet;
 end;
 
 end.

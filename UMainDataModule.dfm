@@ -1,6 +1,6 @@
 object MainDataModule: TMainDataModule
   OldCreateOrder = False
-  Height = 290
+  Height = 435
   Width = 529
   object DreamRESTClient: TRESTClient
     Authenticator = DreamHTTPBasicAuthenticator
@@ -15,17 +15,21 @@ object MainDataModule: TMainDataModule
   end
   object DreamRESTRequestChannelList: TRESTRequest
     Client = DreamRESTClient
-    Params = <>
-    Resource = 
-      'getservices?sRef=1:7:1:0:0:0:0:0:0:0:FROM%20BOUQUET%20%22userbou' +
-      'quet.favourites.tv%22%20ORDER%20BY%20bouquet'
+    Params = <
+      item
+        name = 'sRef'
+        Value = 
+          '1:7:1:0:0:0:0:0:0:0:FROM%20BOUQUET%20%22userbouquet.favourites.t' +
+          'v%22%20ORDER%20BY%20bouquet'
+      end>
+    Resource = 'getservices'
     Response = DreamRESTResponseChannelList
-    Left = 128
-    Top = 96
+    Left = 368
+    Top = 112
   end
   object DreamRESTResponseChannelList: TRESTResponse
-    Left = 128
-    Top = 160
+    Left = 368
+    Top = 176
   end
   object DreamRESTResponseDataSetAdapterChannelList: TRESTResponseDataSetAdapter
     Active = True
@@ -34,8 +38,8 @@ object MainDataModule: TMainDataModule
     Response = DreamRESTResponseChannelList
     OnBeforeOpenDataSet = DreamRESTResponseDataSetAdapterChannelListBeforeOpenDataSet
     RootElement = 'services'
-    Left = 128
-    Top = 224
+    Left = 368
+    Top = 240
   end
   object DreamHTTPBasicAuthenticator: THTTPBasicAuthenticator
     Username = 'root'
@@ -64,7 +68,53 @@ object MainDataModule: TMainDataModule
     UpdateOptions.AssignedValues = [uvCheckRequired]
     UpdateOptions.CheckRequired = False
     StoreDefs = True
-    Left = 336
-    Top = 224
+    Left = 368
+    Top = 304
+  end
+  object DreamRESTRequestServiceList: TRESTRequest
+    Client = DreamRESTClient
+    Params = <>
+    Resource = 'getservices'
+    Response = DreamRESTResponseServiceList
+    Left = 88
+    Top = 104
+  end
+  object DreamRESTResponseServiceList: TRESTResponse
+    Left = 88
+    Top = 168
+  end
+  object DreamRESTResponseDataSetAdapterServiceList: TRESTResponseDataSetAdapter
+    Active = True
+    Dataset = DreamFDMemTableServiceList
+    FieldDefs = <>
+    Response = DreamRESTResponseServiceList
+    OnBeforeOpenDataSet = DreamRESTResponseDataSetAdapterServiceListBeforeOpenDataSet
+    RootElement = 'services'
+    Left = 88
+    Top = 232
+  end
+  object DreamFDMemTableServiceList: TFDMemTable
+    Active = True
+    FieldDefs = <
+      item
+        Name = 'servicereference'
+        DataType = ftString
+        Size = 255
+      end
+      item
+        Name = 'servicename'
+        DataType = ftString
+        Size = 255
+      end>
+    IndexDefs = <>
+    FetchOptions.AssignedValues = [evMode]
+    FetchOptions.Mode = fmAll
+    ResourceOptions.AssignedValues = [rvSilentMode]
+    ResourceOptions.SilentMode = True
+    UpdateOptions.AssignedValues = [uvCheckRequired]
+    UpdateOptions.CheckRequired = False
+    StoreDefs = True
+    Left = 88
+    Top = 296
   end
 end
