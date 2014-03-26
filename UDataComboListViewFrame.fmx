@@ -1,0 +1,45 @@
+object DataComboListViewFrame: TDataComboListViewFrame
+  Height = 432.000000000000000000
+  Width = 289.000000000000000000
+  object TopToolBar: TToolBar
+    Height = 40.000000000000000000
+    TabOrder = 0
+    Width = 289.000000000000000000
+    object TopPrevButton: TButton
+      Align = alLeft
+      Height = 40.000000000000000000
+      StyleLookup = 'priortoolbutton'
+      TabOrder = 0
+      Text = 'TopPrevButton'
+      Width = 80.000000000000000000
+      OnClick = TopPrevButtonClick
+    end
+    object TopNextButton: TButton
+      Align = alRight
+      Height = 40.000000000000000000
+      Position.X = 209.000000000000000000
+      StyleLookup = 'nexttoolbutton'
+      TabOrder = 1
+      Text = 'TopNextButton'
+      Width = 80.000000000000000000
+      OnClick = TopNextButtonClick
+    end
+    object TopDataComboBox: TDataComboBox
+      Align = alClient
+      DisableFocusEffect = False
+      Height = 40.000000000000000000
+      TabOrder = 2
+      Width = 129.000000000000000000
+    end
+  end
+  object DataListView: TDataListView
+    ItemAppearanceClassName = 'TListItemAppearance'
+    ItemEditAppearanceClassName = 'TListItemShowCheckAppearance'
+    HeaderAppearanceClassName = 'TListHeaderObjects'
+    FooterAppearanceClassName = 'TListHeaderObjects'
+    Align = alClient
+    Height = 392.000000000000000000
+    TabOrder = 1
+    Width = 289.000000000000000000
+  end
+end

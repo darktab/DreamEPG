@@ -7,7 +7,7 @@ uses
   System.Variants,
   FMX.Types, FMX.Graphics, FMX.Controls, FMX.Forms, FMX.Dialogs, FMX.StdCtrls,
   UMainForm, FMX.TabControl, FMX.Layouts, FMX.Memo, FMX.ListView.Types,
-  FMX.ListView, Data.DB, FMX.ListBox;
+  FMX.ListView, Data.DB, FMX.ListBox, UDataComboListViewFrame;
 
 type
   TMainTabbedForm = class(TMainForm)
@@ -15,8 +15,8 @@ type
     TabItem1: TTabItem;
     TabItem2: TTabItem;
     TabItem3: TTabItem;
-    ChannelListView: TListView;
-    ComboBoxServiceList: TComboBox;
+    TabItem4: TTabItem;
+    DataComboListViewFrameChannelList: TDataComboListViewFrame;
     procedure FormShow(Sender: TObject);
     procedure ComboBoxServiceListChange(Sender: TObject);
   private
@@ -59,28 +59,11 @@ begin
   self.MainDataModule.DreamRESTResponseDataSetAdapterServiceList.
     FieldDefs.Clear;
   self.MainDataModule.DreamRESTRequestServiceList.Execute;
-  ComboBoxServiceList.Clear;
-  if not self.MainDataModule.DreamFDMemTableServiceList.Active then
-    self.MainDataModule.DreamFDMemTableServiceList.Open;
-  self.MainDataModule.DreamFDMemTableServiceList.First;
-  while not self.MainDataModule.DreamFDMemTableServiceList.EOF do
-  begin
-    for Field in self.MainDataModule.DreamFDMemTableServiceList.Fields do
-    begin
-      if Field.FieldName = 'servicename' then
-      begin
-        ComboBoxServiceList.Items.Add
-          (self.MainDataModule.DreamFDMemTableServiceList.FieldByName
-          (Field.FieldName).AsString);
-      end;
-    end;
-    self.MainDataModule.DreamFDMemTableServiceList.Next;
-  end;
 
-  // on se positionne sur le premier bouquet
-  // et on retourne la référence
-  ComboBoxServiceList.ItemIndex := 0;
-  self.MainDataModule.DreamFDMemTableServiceList.First;
+  self.DataComboListViewFrameChannelList.TopDataComboBox.DataSet :=
+    self.MainDataModule.DreamFDMemTableServiceList;
+  self.DataComboListViewFrameChannelList.TopDataComboBox.init;
+
   for Field in self.MainDataModule.DreamFDMemTableServiceList.Fields do
   begin
     if Field.FieldName = 'servicereference' then
@@ -106,23 +89,10 @@ begin
 
   self.MainDataModule.DreamRESTRequestChannelList.Execute;
 
-  ChannelListView.ClearItems;
-  if not self.MainDataModule.DreamFDMemTableChannelList.Active then
-    self.MainDataModule.DreamFDMemTableChannelList.Open;
-  self.MainDataModule.DreamFDMemTableChannelList.First;
-  while not self.MainDataModule.DreamFDMemTableChannelList.EOF do
-  begin
-    for Field in self.MainDataModule.DreamFDMemTableChannelList.Fields do
-    begin
-      if Field.FieldName = 'servicename' then
-      begin
-        item := ChannelListView.Items.Add;
-        item.Text := self.MainDataModule.DreamFDMemTableChannelList.FieldByName
-          (Field.FieldName).AsString;
-      end;
-    end;
-    self.MainDataModule.DreamFDMemTableChannelList.Next;
-  end;
+  self.DataComboListViewFrameChannelList.DataListView.DataSet :=
+    self.MainDataModule.DreamFDMemTableChannelList;
+  self.DataComboListViewFrameChannelList.DataListView.init;
+
 end;
 
 end.

@@ -3,6 +3,9 @@
         <ProjectGuid>{FD181C2B-27F3-470A-A548-E0EA30FD3158}</ProjectGuid>
     </PropertyGroup>
     <ItemGroup>
+        <Projects Include="..\CommonVCL\CommonVCL.dproj">
+            <Dependencies/>
+        </Projects>
         <Projects Include="DreamEPG.dproj">
             <Dependencies/>
         </Projects>
@@ -14,6 +17,15 @@
             <Default.Personality/>
         </BorlandProject>
     </ProjectExtensions>
+    <Target Name="CommonVCL">
+        <MSBuild Projects="..\CommonVCL\CommonVCL.dproj"/>
+    </Target>
+    <Target Name="CommonVCL:Clean">
+        <MSBuild Projects="..\CommonVCL\CommonVCL.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="CommonVCL:Make">
+        <MSBuild Projects="..\CommonVCL\CommonVCL.dproj" Targets="Make"/>
+    </Target>
     <Target Name="DreamEPG">
         <MSBuild Projects="DreamEPG.dproj"/>
     </Target>
@@ -24,13 +36,13 @@
         <MSBuild Projects="DreamEPG.dproj" Targets="Make"/>
     </Target>
     <Target Name="Build">
-        <CallTarget Targets="DreamEPG"/>
+        <CallTarget Targets="CommonVCL;DreamEPG"/>
     </Target>
     <Target Name="Clean">
-        <CallTarget Targets="DreamEPG:Clean"/>
+        <CallTarget Targets="CommonVCL:Clean;DreamEPG:Clean"/>
     </Target>
     <Target Name="Make">
-        <CallTarget Targets="DreamEPG:Make"/>
+        <CallTarget Targets="CommonVCL:Make;DreamEPG:Make"/>
     </Target>
     <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
 </Project>

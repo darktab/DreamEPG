@@ -18,9 +18,6 @@ object MainDataModule: TMainDataModule
     Params = <
       item
         name = 'sRef'
-        Value = 
-          '1:7:1:0:0:0:0:0:0:0:FROM%20BOUQUET%20%22userbouquet.favourites.t' +
-          'v%22%20ORDER%20BY%20bouquet'
       end>
     Resource = 'getservices'
     Response = DreamRESTResponseChannelList

@@ -6,7 +6,8 @@ uses
   FMX.Forms,
   UMainForm in 'UMainForm.pas' {MainForm},
   UMainTabbedForm in 'UMainTabbedForm.pas' {MainTabbedForm},
-  UMainDataModule in 'UMainDataModule.pas' {MainDataModule: TDataModule};
+  UMainDataModule in 'UMainDataModule.pas' {MainDataModule: TDataModule},
+  UDataComboListViewFrame in 'UDataComboListViewFrame.pas' {DataComboListViewFrame: TFrame};
 
 {$R *.res}
 

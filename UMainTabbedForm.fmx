@@ -13,7 +13,7 @@ inherited MainTabbedForm: TMainTabbedForm
     FullSize = True
     Height = 548.000000000000000000
     TabHeight = 49.000000000000000000
-    TabIndex = 0
+    TabIndex = 1
     TabOrder = 0
     TabPosition = tpBottom
     Width = 320.000000000000000000
@@ -21,39 +21,50 @@ inherited MainTabbedForm: TMainTabbedForm
       Align = alClient
       WordWrap = False
       Height = 49.000000000000000000
-      IsSelected = True
+      IsSelected = False
       TabOrder = 0
       Text = 'TabItem1'
       Trimming = ttCharacter
-      Width = 107.000000000000000000
-      object ChannelListView: TListView
-        ItemAppearanceClassName = 'TListItemAppearance'
-        ItemEditAppearanceClassName = 'TListItemShowCheckAppearance'
-        HeaderAppearanceClassName = 'TListHeaderObjects'
-        FooterAppearanceClassName = 'TListHeaderObjects'
-        Align = alClient
-        Height = 469.000000000000000000
-        TabOrder = 0
-        Width = 320.000000000000000000
-      end
-      object ComboBoxServiceList: TComboBox
-        Align = alTop
-        DisableFocusEffect = False
-        Height = 30.000000000000000000
-        TabOrder = 1
-        Width = 320.000000000000000000
-        OnChange = ComboBoxServiceListChange
-      end
+      Width = 80.000000000000000000
     end
     object TabItem2: TTabItem
       Align = alClient
       WordWrap = False
       Height = 49.000000000000000000
-      IsSelected = False
+      IsSelected = True
       TabOrder = 1
       Text = 'TabItem2'
       Trimming = ttCharacter
-      Width = 107.000000000000000000
+      Width = 80.000000000000000000
+      inline DataComboListViewFrameChannelList: TDataComboListViewFrame
+        Align = alClient
+        Height = 499.000000000000000000
+        Width = 320.000000000000000000
+        inherited TopToolBar: TToolBar
+          Height = 44.000000000000000000
+          Width = 320.000000000000000000
+          inherited TopPrevButton: TButton
+            Height = 44.000000000000000000
+            Width = 44.000000000000000000
+          end
+          inherited TopNextButton: TButton
+            Height = 44.000000000000000000
+            Position.X = 276.000000000000000000
+            Width = 44.000000000000000000
+          end
+          inherited TopDataComboBox: TDataComboBox
+            Height = 30.000000000000000000
+            Width = 232.000000000000000000
+            DataFieldName = 'servicename'
+          end
+        end
+        inherited DataListView: TDataListView
+          DisableFocusEffect = False
+          Height = 455.000000000000000000
+          Width = 320.000000000000000000
+          DataFieldName = 'servicename'
+        end
+      end
     end
     object TabItem3: TTabItem
       Align = alClient
@@ -63,7 +74,17 @@ inherited MainTabbedForm: TMainTabbedForm
       TabOrder = 2
       Text = 'TabItem3'
       Trimming = ttCharacter
-      Width = 106.000000000000000000
+      Width = 80.000000000000000000
+    end
+    object TabItem4: TTabItem
+      WordWrap = False
+      Height = 49.000000000000000000
+      IsSelected = False
+      Position.X = 240.000000000000000000
+      TabOrder = 3
+      Text = 'TabItem4'
+      Trimming = ttCharacter
+      Width = 80.000000000000000000
     end
   end
 end

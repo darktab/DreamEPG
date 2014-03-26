@@ -11,9 +11,6 @@ Coordinates=209,10,69,36
 Coordinates=130,10,69,36
 
 []
-Coordinates=0,0,80,58
-Visible=True
-
-[ChannelListView]
 Coordinates=0,0,110,168
+Visible=True
 
