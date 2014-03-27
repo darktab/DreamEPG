@@ -1,6 +1,5 @@
 inherited MainTabbedForm: TMainTabbedForm
   Caption = 'MainForm1'
-  ClientHeight = 548
   OnShow = FormShow
   DesignerMobile = True
   DesignerWidth = 320
@@ -54,15 +53,15 @@ inherited MainTabbedForm: TMainTabbedForm
           end
           inherited TopDataComboBox: TDataComboBox
             Height = 30.000000000000000000
+            Padding.Top = 10.000000000000000000
+            Margins.Top = 6.000000000000000000
             Width = 232.000000000000000000
-            DataFieldName = 'servicename'
           end
         end
         inherited DataListView: TDataListView
           DisableFocusEffect = False
           Height = 455.000000000000000000
           Width = 320.000000000000000000
-          DataFieldName = 'servicename'
         end
       end
     end

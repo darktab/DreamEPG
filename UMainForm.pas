@@ -15,10 +15,12 @@ type
     fmainDataModule: TMainDataModule;
   public
     { Public declarations }
+    Constructor Create(AOwner: TComponent); override;
+
+  published
+    { Publihed declarations }
     Property MainDataModule: TMainDataModule read fmainDataModule
       write fmainDataModule;
-
-    Constructor Create(AOwner: TComponent); override;
   end;
 
 var
@@ -34,6 +36,7 @@ begin
   // Execute the parent (TObject) constructor first
   inherited; // Call the parent Create method
   fmainDataModule := TMainDataModule.Create(AOwner);
+
 end;
 
 end.

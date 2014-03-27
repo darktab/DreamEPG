@@ -8,7 +8,7 @@ object DataComboListViewFrame: TDataComboListViewFrame
     object TopPrevButton: TButton
       Align = alLeft
       Height = 40.000000000000000000
-      StyleLookup = 'priortoolbutton'
+      StyleLookup = 'arrowuptoolbutton'
       TabOrder = 0
       Text = 'TopPrevButton'
       Width = 80.000000000000000000
@@ -18,7 +18,7 @@ object DataComboListViewFrame: TDataComboListViewFrame
       Align = alRight
       Height = 40.000000000000000000
       Position.X = 209.000000000000000000
-      StyleLookup = 'nexttoolbutton'
+      StyleLookup = 'arrowdowntoolbutton'
       TabOrder = 1
       Text = 'TopNextButton'
       Width = 80.000000000000000000

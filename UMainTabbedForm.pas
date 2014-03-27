@@ -60,9 +60,8 @@ begin
     FieldDefs.Clear;
   self.MainDataModule.DreamRESTRequestServiceList.Execute;
 
-  self.DataComboListViewFrameChannelList.TopDataComboBox.DataSet :=
-    self.MainDataModule.DreamFDMemTableServiceList;
-  self.DataComboListViewFrameChannelList.TopDataComboBox.init;
+  self.DataComboListViewFrameChannelList.TopDataComboBox.init
+    (self.MainDataModule.DreamFDMemTableServiceList, 'servicename');
 
   for Field in self.MainDataModule.DreamFDMemTableServiceList.Fields do
   begin
@@ -89,9 +88,8 @@ begin
 
   self.MainDataModule.DreamRESTRequestChannelList.Execute;
 
-  self.DataComboListViewFrameChannelList.DataListView.DataSet :=
-    self.MainDataModule.DreamFDMemTableChannelList;
-  self.DataComboListViewFrameChannelList.DataListView.init;
+  self.DataComboListViewFrameChannelList.DataListView.init
+    (self.MainDataModule.DreamFDMemTableChannelList, 'servicename');
 
 end;
 
