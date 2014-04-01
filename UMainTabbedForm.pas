@@ -49,9 +49,10 @@ var
 begin
   inherited;
   // initialisation Comboboxservicelist
-  DefaultServiceReference := initComboBoxServiceList;
+  // DefaultServiceReference := initComboBoxServiceList;
   // initialisation channellistview
-  initChannelListView(DefaultServiceReference);
+  // initChannelListView(DefaultServiceReference);
+  self.DataComboListViewFrameChannelList.init('servicereference');
 end;
 
 function TMainTabbedForm.initComboBoxServiceList: String;

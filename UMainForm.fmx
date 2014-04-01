@@ -2,14 +2,14 @@ object MainForm: TMainForm
   Left = 0
   Top = 0
   Caption = 'Form1'
-  ClientHeight = 548
+  ClientHeight = 462
   ClientWidth = 320
   FormFactor.Width = 320
   FormFactor.Height = 480
   FormFactor.Devices = [dkDesktop]
   DesignerMobile = True
   DesignerWidth = 320
-  DesignerHeight = 568
+  DesignerHeight = 462
   DesignerDeviceName = 'iPhone5'
   DesignerOrientation = 0
   DesignerOSVersion = '7'

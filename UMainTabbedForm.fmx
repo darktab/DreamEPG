@@ -57,7 +57,6 @@ inherited MainTabbedForm: TMainTabbedForm
             Padding.Top = 10.000000000000000000
             Margins.Top = 6.000000000000000000
             Width = 232.000000000000000000
-            DataSet = MainDataModule.DreamFDMemTableServiceList
             DataFieldName = 'servicename'
           end
         end
@@ -65,7 +64,6 @@ inherited MainTabbedForm: TMainTabbedForm
           DisableFocusEffect = False
           Height = 455.000000000000000000
           Width = 320.000000000000000000
-          DataSet = MainDataModule.DreamFDMemTableChannelList
           DataFieldName = 'servicename'
         end
       end
