@@ -32,6 +32,9 @@ var
 
 implementation
 
+uses
+  UMainDataModule;
+
 {$R *.fmx}
 
 procedure TMainTabbedForm.ComboBoxServiceListChange(Sender: TObject);
@@ -56,18 +59,16 @@ var
   Field: TField;
 begin
   // fill the combobox with all the available services
-  self.MainDataModule.DreamRESTResponseDataSetAdapterServiceList.
-    FieldDefs.Clear;
-  self.MainDataModule.DreamRESTRequestServiceList.Execute;
+  MainDataModule.DreamRESTResponseDataSetAdapterServiceList.FieldDefs.Clear;
+  MainDataModule.DreamRESTRequestServiceList.Execute;
 
-  self.DataComboListViewFrameChannelList.TopDataComboBox.init
-    (self.MainDataModule.DreamFDMemTableServiceList, 'servicename');
+  self.DataComboListViewFrameChannelList.TopDataComboBox.init;
 
-  for Field in self.MainDataModule.DreamFDMemTableServiceList.Fields do
+  for Field in MainDataModule.DreamFDMemTableServiceList.Fields do
   begin
     if Field.FieldName = 'servicereference' then
     begin
-      Result := self.MainDataModule.DreamFDMemTableServiceList.FieldByName
+      Result := MainDataModule.DreamFDMemTableServiceList.FieldByName
         (Field.FieldName).AsString;
     end;
   end;
@@ -79,17 +80,15 @@ var
   Field: TField;
 begin
   // fill the list with all channel names
-  self.MainDataModule.DreamRESTResponseDataSetAdapterChannelList.
-    FieldDefs.Clear;
+  MainDataModule.DreamRESTResponseDataSetAdapterChannelList.FieldDefs.Clear;
 
   // sRef parameter
-  self.MainDataModule.DreamRESTRequestChannelList.Params[0].Value :=
+  MainDataModule.DreamRESTRequestChannelList.Params[0].Value :=
     DefaultServiceReference;
 
-  self.MainDataModule.DreamRESTRequestChannelList.Execute;
+  MainDataModule.DreamRESTRequestChannelList.Execute;
 
-  self.DataComboListViewFrameChannelList.DataListView.init
-    (self.MainDataModule.DreamFDMemTableChannelList, 'servicename');
+  self.DataComboListViewFrameChannelList.DataListView.init;
 
 end;
 

@@ -31,8 +31,8 @@ type
     { Public declarations }
   end;
 
-  // var
-  // MainDataModule: TMainDataModule;
+var
+  MainDataModule: TMainDataModule;
 
 implementation
 

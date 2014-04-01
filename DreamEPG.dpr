@@ -13,6 +13,7 @@ uses
 
 begin
   Application.Initialize;
+  Application.CreateForm(TMainDataModule, MainDataModule);
   Application.CreateForm(TMainTabbedForm, MainTabbedForm);
   Application.Run;
 end.

@@ -1,5 +1,6 @@
 inherited MainTabbedForm: TMainTabbedForm
   Caption = 'MainForm1'
+  ClientHeight = 548
   OnShow = FormShow
   DesignerMobile = True
   DesignerWidth = 320
@@ -56,12 +57,16 @@ inherited MainTabbedForm: TMainTabbedForm
             Padding.Top = 10.000000000000000000
             Margins.Top = 6.000000000000000000
             Width = 232.000000000000000000
+            DataSet = MainDataModule.DreamFDMemTableServiceList
+            DataFieldName = 'servicename'
           end
         end
         inherited DataListView: TDataListView
           DisableFocusEffect = False
           Height = 455.000000000000000000
           Width = 320.000000000000000000
+          DataSet = MainDataModule.DreamFDMemTableChannelList
+          DataFieldName = 'servicename'
         end
       end
     end
