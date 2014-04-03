@@ -7,7 +7,7 @@ uses
   System.Variants,
   FMX.Types, FMX.Graphics, FMX.Controls, FMX.Forms, FMX.Dialogs, FMX.StdCtrls,
   FMX.ListBox, UDataComboBox, FMX.ListView.Types, FMX.ListView, UDataListView,
-  Data.DB, FireDAC.Comp.DataSet;
+  Data.DB, FireDAC.Comp.DataSet, FireDAC.Comp.Client;
 
 type
   TDataComboListViewFrame = class(TFrame)
@@ -28,7 +28,10 @@ type
 
   public
     { Public declarations }
-    procedure init(lMasterDetailLinkFieldName: String);
+    procedure init(lMasterDataSet: TDataSet; lMasterDataFieldName: string;
+      lDetailDataSet: TDataSet; lDetailDataFieldName: string;
+      lMasterDetailLinkFieldName: String); overload;
+    procedure init(lMasterDetailLinkFieldName: String); overload;
     Constructor Create(AOwner: TComponent); override;
 
   published
@@ -45,48 +48,40 @@ constructor TDataComboListViewFrame.Create(AOwner: TComponent);
 begin
   // Execute the parent (TObject) constructor first
   inherited; // Call the parent Create method
-  fMasterDataSet := TopDataComboBox.DataSet;
-  fMasterDataFieldName := TopDataComboBox.DataFieldName;
-  fDetailDataSet := DataListView.DataSet;
-  fDetailDataFieldName := DataListView.DataFieldName;
+
+end;
+
+procedure TDataComboListViewFrame.init(lMasterDataSet: TDataSet;
+  lMasterDataFieldName: string; lDetailDataSet: TDataSet;
+  lDetailDataFieldName: string; lMasterDetailLinkFieldName: String);
+begin
+  fMasterDataSet := lMasterDataSet;
+  TopDataComboBox.DataSet := fMasterDataSet;
+  fMasterDataFieldName := lMasterDataFieldName;
+  fDetailDataSet := lDetailDataSet;
+  DataListView.DataSet := lDetailDataSet;
+  fDetailDataFieldName := lDetailDataFieldName;
+
+  init(lMasterDetailLinkFieldName);
 end;
 
 procedure TDataComboListViewFrame.init(lMasterDetailLinkFieldName: String);
 var
   Field: TField;
-  lDefaultServiceReference: String;
+  // lDefaultServiceReference: String;
 begin
-  fMasterDataSet := TopDataComboBox.DataSet;
-  fMasterDataFieldName := TopDataComboBox.DataFieldName;
-  fDetailDataSet := DataListView.DataSet;
-  fDetailDataFieldName := DataListView.DataFieldName;
 
-  fMasterDataFieldName := lMasterDetailLinkFieldName;
-
-  // clear the field definitions
-  fMasterDataSet.FieldDefs.Clear;
-  TFDDataSet(fMasterDataSet).Execute;
-
+  fMasterDetailLinkFieldName := lMasterDetailLinkFieldName;
   TopDataComboBox.init;
 
-  for Field in fMasterDataSet.Fields do
-  begin
-    if Field.FieldName = fMasterDataFieldName then
-    begin
-      lDefaultServiceReference := fMasterDataSet.FieldByName
-        (Field.FieldName).AsString;
-    end;
-  end;
-
-  fDetailDataSet.FieldDefs.Clear;
-
-  // sRef parameter
-  TFDDataSet(fDetailDataSet).ParamByName('sRef').AsString :=
-    lDefaultServiceReference;
-  // MainDataModule.DreamRESTRequestChannelList.Params[0].Value :=
-  // lDefaultServiceReference;
-
-  TFDDataSet(fDetailDataSet).Execute;
+  // for Field in fMasterDataSet.Fields do
+  // begin
+  // if Field.FieldName = fMasterDataFieldName then
+  // begin
+  // lDefaultServiceReference := fMasterDataSet.FieldByName
+  // (Field.FieldName).AsString;
+  // end;
+  /// end;
 
   DataListView.init;
 

@@ -20,8 +20,8 @@ type
     procedure FormShow(Sender: TObject);
     procedure ComboBoxServiceListChange(Sender: TObject);
   private
-    function initComboBoxServiceList: String;
-    procedure initChannelListView(DefaultServiceReference: String);
+    function initServiceList: String;
+    procedure initChannelList(DefaultServiceReference: String);
     { Private declarations }
   public
     { Public declarations }
@@ -45,25 +45,27 @@ end;
 
 procedure TMainTabbedForm.FormShow(Sender: TObject);
 var
-  DefaultServiceReference: String;
+  lDefaultServiceReference: string;
 begin
   inherited;
   // initialisation Comboboxservicelist
-  // DefaultServiceReference := initComboBoxServiceList;
+  lDefaultServiceReference := initServiceList;
   // initialisation channellistview
-  // initChannelListView(DefaultServiceReference);
-  self.DataComboListViewFrameChannelList.init('servicereference');
+  initChannelList(lDefaultServiceReference);
+
+  self.DataComboListViewFrameChannelList.init
+    (MainDataModule.DreamFDMemTableServiceList, 'servicename',
+    MainDataModule.DreamFDMemTableChannelList, 'servicename',
+    'servicereference');
 end;
 
-function TMainTabbedForm.initComboBoxServiceList: String;
+function TMainTabbedForm.initServiceList: String;
 var
   Field: TField;
 begin
   // fill the combobox with all the available services
   MainDataModule.DreamRESTResponseDataSetAdapterServiceList.FieldDefs.Clear;
   MainDataModule.DreamRESTRequestServiceList.Execute;
-
-  self.DataComboListViewFrameChannelList.TopDataComboBox.init;
 
   for Field in MainDataModule.DreamFDMemTableServiceList.Fields do
   begin
@@ -75,7 +77,7 @@ begin
   end;
 end;
 
-procedure TMainTabbedForm.initChannelListView(DefaultServiceReference: String);
+procedure TMainTabbedForm.initChannelList(DefaultServiceReference: String);
 var
   item: TListViewItem;
   Field: TField;
@@ -88,8 +90,6 @@ begin
     DefaultServiceReference;
 
   MainDataModule.DreamRESTRequestChannelList.Execute;
-
-  self.DataComboListViewFrameChannelList.DataListView.init;
 
 end;
 
