@@ -7,7 +7,8 @@ uses
   System.Variants,
   FMX.Types, FMX.Graphics, FMX.Controls, FMX.Forms, FMX.Dialogs, FMX.StdCtrls,
   FMX.ListBox, UDataComboBox, FMX.ListView.Types, FMX.ListView, UDataListView,
-  Data.DB, FireDAC.Comp.DataSet, FireDAC.Comp.Client;
+  Data.DB, FireDAC.Comp.DataSet, FireDAC.Comp.Client, REST.Response.Adapter,
+  REST.Client;
 
 type
   TDataComboListViewFrame = class(TFrame)
@@ -22,14 +23,24 @@ type
     { Private declarations }
     fMasterDataSet: TDataSet;
     fMasterDataFieldName: String;
+    fMasterRESTRequest: TRESTRequest;
+    fMasterRESTResponseDataSetAdapter: TRESTResponseDataSetAdapter;
+
     fDetailDataSet: TDataSet;
     fDetailDataFieldName: String;
+    fDetailRESTRequest: TRESTRequest;
+    fDetailRESTResponseDataSetAdapter: TRESTResponseDataSetAdapter;
+
     fMasterDetailLinkFieldName: String;
 
   public
     { Public declarations }
     procedure init(lMasterDataSet: TDataSet; lMasterDataFieldName: string;
+      lMasterRESTRequest: TRESTRequest;
+      lMasterRESTResponseDataSetAdapter: TRESTResponseDataSetAdapter;
       lDetailDataSet: TDataSet; lDetailDataFieldName: string;
+      lDetailRESTRequest: TRESTRequest;
+      lDetailRESTResponseDataSetAdapter: TRESTResponseDataSetAdapter;
       lMasterDetailLinkFieldName: String); overload;
     procedure init(lMasterDetailLinkFieldName: String); overload;
     Constructor Create(AOwner: TComponent); override;
@@ -52,15 +63,24 @@ begin
 end;
 
 procedure TDataComboListViewFrame.init(lMasterDataSet: TDataSet;
-  lMasterDataFieldName: string; lDetailDataSet: TDataSet;
-  lDetailDataFieldName: string; lMasterDetailLinkFieldName: String);
+  lMasterDataFieldName: string; lMasterRESTRequest: TRESTRequest;
+  lMasterRESTResponseDataSetAdapter: TRESTResponseDataSetAdapter;
+  lDetailDataSet: TDataSet; lDetailDataFieldName: string;
+  lDetailRESTRequest: TRESTRequest;
+  lDetailRESTResponseDataSetAdapter: TRESTResponseDataSetAdapter;
+  lMasterDetailLinkFieldName: String);
 begin
   fMasterDataSet := lMasterDataSet;
   TopDataComboBox.DataSet := fMasterDataSet;
   fMasterDataFieldName := lMasterDataFieldName;
+  fMasterRESTRequest := lMasterRESTRequest;
+  fMasterRESTResponseDataSetAdapter := lMasterRESTResponseDataSetAdapter;
+
   fDetailDataSet := lDetailDataSet;
   DataListView.DataSet := lDetailDataSet;
   fDetailDataFieldName := lDetailDataFieldName;
+  fDetailRESTRequest := lDetailRESTRequest;
+  fDetailRESTResponseDataSetAdapter := lDetailRESTResponseDataSetAdapter;
 
   init(lMasterDetailLinkFieldName);
 end;
@@ -68,20 +88,32 @@ end;
 procedure TDataComboListViewFrame.init(lMasterDetailLinkFieldName: String);
 var
   Field: TField;
-  // lDefaultServiceReference: String;
+  lDefaultServiceReference: String;
 begin
 
   fMasterDetailLinkFieldName := lMasterDetailLinkFieldName;
+
+  // fill the combobox with all the available services
+  fMasterRESTResponseDataSetAdapter.FieldDefs.Clear;
+  fMasterRESTRequest.Execute;
+
   TopDataComboBox.init;
 
-  // for Field in fMasterDataSet.Fields do
-  // begin
-  // if Field.FieldName = fMasterDataFieldName then
-  // begin
-  // lDefaultServiceReference := fMasterDataSet.FieldByName
-  // (Field.FieldName).AsString;
-  // end;
-  /// end;
+  for Field in fMasterDataSet.Fields do
+  begin
+    if Field.FieldName = fMasterDetailLinkFieldName then
+    begin
+      lDefaultServiceReference := fMasterDataSet.FieldByName
+        (Field.FieldName).AsString;
+    end;
+  end;
+
+  fDetailRESTResponseDataSetAdapter.FieldDefs.Clear;
+
+  // sRef parameter
+  fDetailRESTRequest.Params[0].Value := lDefaultServiceReference;
+
+  fDetailRESTRequest.Execute;
 
   DataListView.init;
 
