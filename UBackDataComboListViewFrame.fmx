@@ -1,0 +1,18 @@
+inherited BackDataComboListViewFrame: TBackDataComboListViewFrame
+  inherited TopToolBar: TToolBar
+    inherited TopPrevButton: TButton
+      Position.X = 80.000000000000000000
+    end
+    inherited TopDataComboBox: TDataComboBox
+      Width = 49.000000000000000000
+    end
+    object TopBackButton: TButton
+      Align = alMostLeft
+      Height = 40.000000000000000000
+      StyleLookup = 'backtoolbutton'
+      TabOrder = 3
+      Text = 'Back'
+      Width = 80.000000000000000000
+    end
+  end
+end

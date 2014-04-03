@@ -7,7 +7,8 @@ uses
   UMainForm in 'UMainForm.pas' {MainForm},
   UMainTabbedForm in 'UMainTabbedForm.pas' {MainTabbedForm},
   UMainDataModule in 'UMainDataModule.pas' {MainDataModule: TDataModule},
-  UDataComboListViewFrame in 'UDataComboListViewFrame.pas' {DataComboListViewFrame: TFrame};
+  UDataComboListViewFrame in 'UDataComboListViewFrame.pas' {DataComboListViewFrame: TFrame},
+  UBackDataComboListViewFrame in 'UBackDataComboListViewFrame.pas' {BackDataComboListViewFrame: TFrame};
 
 {$R *.res}
 
