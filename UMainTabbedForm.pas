@@ -7,18 +7,28 @@ uses
   System.Variants,
   FMX.Types, FMX.Graphics, FMX.Controls, FMX.Forms, FMX.Dialogs, FMX.StdCtrls,
   UMainForm, FMX.TabControl, FMX.Layouts, FMX.Memo, FMX.ListView.Types,
-  FMX.ListView, Data.DB, FMX.ListBox, UDataComboListViewFrame;
+  FMX.ListView, Data.DB, FMX.ListBox, UDataComboListViewFrame,
+  UBackDataComboListViewFrame, System.Actions, FMX.ActnList;
 
 type
   TMainTabbedForm = class(TMainForm)
     MainTabControl: TTabControl;
     TabItem1: TTabItem;
-    TabItem2: TTabItem;
+    TextEPGTabItem: TTabItem;
     TabItem3: TTabItem;
     TabItem4: TTabItem;
     DataComboListViewFrameChannelList: TDataComboListViewFrame;
+    TextEPGTabControl: TTabControl;
+    TextEPGMasterTabItem: TTabItem;
+    TextEPGDetailTabItem: TTabItem;
+    TextEPGBackDataComboListViewFrame: TBackDataComboListViewFrame;
+    TextEPGActionList: TActionList;
+    ToDetailChangeTabAction: TChangeTabAction;
+    ToMasterChangeTabAction: TChangeTabAction;
     procedure FormShow(Sender: TObject);
     procedure ComboBoxServiceListChange(Sender: TObject);
+    procedure DataComboListViewFrameChannelListDataListViewItemClick
+      (const Sender: TObject; const AItem: TListViewItem);
   private
     { Private declarations }
   public
@@ -54,6 +64,13 @@ begin
     MainDataModule.DreamRESTRequestChannelList,
     MainDataModule.DreamRESTResponseDataSetAdapterChannelList,
     'servicereference');
+end;
+
+procedure TMainTabbedForm.DataComboListViewFrameChannelListDataListViewItemClick
+  (const Sender: TObject; const AItem: TListViewItem);
+begin
+  inherited;
+  ToDetailChangeTabAction.ExecuteTarget(self);
 end;
 
 end.

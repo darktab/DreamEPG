@@ -22,49 +22,117 @@ inherited MainTabbedForm: TMainTabbedForm
       WordWrap = False
       Height = 49.000000000000000000
       IsSelected = False
+      StyleLookup = 'tabitembookmarks'
       TabOrder = 0
-      Text = 'TabItem1'
+      Text = 'Multi EPG'
       Trimming = ttCharacter
       Width = 80.000000000000000000
     end
-    object TabItem2: TTabItem
+    object TextEPGTabItem: TTabItem
       Align = alClient
       WordWrap = False
       Height = 49.000000000000000000
       IsSelected = True
+      StyleLookup = 'tabitemtoprated'
       TabOrder = 1
-      Text = 'TabItem2'
+      Text = 'Text EPG'
       Trimming = ttCharacter
       Width = 80.000000000000000000
-      inline DataComboListViewFrameChannelList: TDataComboListViewFrame
+      object TextEPGTabControl: TTabControl
         Align = alClient
+        FullSize = True
         Height = 499.000000000000000000
+        TabHeight = 49.000000000000000000
+        TabIndex = 0
+        TabOrder = 0
+        TabPosition = tpNone
         Width = 320.000000000000000000
-        inherited TopToolBar: TToolBar
-          Height = 44.000000000000000000
-          Width = 320.000000000000000000
-          inherited TopPrevButton: TButton
-            Height = 44.000000000000000000
-            Width = 44.000000000000000000
-          end
-          inherited TopNextButton: TButton
-            Height = 44.000000000000000000
-            Position.X = 276.000000000000000000
-            Width = 44.000000000000000000
-          end
-          inherited TopDataComboBox: TDataComboBox
-            Height = 30.000000000000000000
-            Padding.Top = 10.000000000000000000
-            Margins.Top = 6.000000000000000000
-            Width = 232.000000000000000000
-            DataFieldName = 'servicename'
+        object TextEPGMasterTabItem: TTabItem
+          WordWrap = False
+          Height = 8.000000000000000000
+          IsSelected = True
+          Position.X = 151.000000000000000000
+          Position.Y = 480.000000000000000000
+          TabOrder = 0
+          Text = 'TextEPGMasterTabItem'
+          Trimming = ttCharacter
+          Width = 8.000000000000000000
+          inline DataComboListViewFrameChannelList: TDataComboListViewFrame
+            Align = alClient
+            Height = 499.000000000000000000
+            Width = 320.000000000000000000
+            inherited TopToolBar: TToolBar
+              Height = 44.000000000000000000
+              Width = 320.000000000000000000
+              inherited TopPrevButton: TButton
+                Height = 44.000000000000000000
+                Width = 44.000000000000000000
+              end
+              inherited TopNextButton: TButton
+                Height = 44.000000000000000000
+                Position.X = 276.000000000000000000
+                Width = 44.000000000000000000
+              end
+              inherited TopDataComboBox: TDataComboBox
+                Height = 30.000000000000000000
+                Padding.Top = 10.000000000000000000
+                Margins.Top = 6.000000000000000000
+                Width = 232.000000000000000000
+                DataFieldName = 'servicename'
+              end
+            end
+            inherited DataListView: TDataListView
+              DisableFocusEffect = False
+              Height = 455.000000000000000000
+              Width = 320.000000000000000000
+              OnItemClick = DataComboListViewFrameChannelListDataListViewItemClick
+              DataFieldName = 'servicename'
+            end
           end
         end
-        inherited DataListView: TDataListView
-          DisableFocusEffect = False
-          Height = 455.000000000000000000
-          Width = 320.000000000000000000
-          DataFieldName = 'servicename'
+        object TextEPGDetailTabItem: TTabItem
+          WordWrap = False
+          Height = 8.000000000000000000
+          IsSelected = False
+          Position.X = 161.000000000000000000
+          Position.Y = 480.000000000000000000
+          TabOrder = 1
+          Text = 'TextEPGDetailTabItem'
+          Trimming = ttCharacter
+          Width = 8.000000000000000000
+          inline TextEPGBackDataComboListViewFrame: TBackDataComboListViewFrame
+            Align = alClient
+            Height = 499.000000000000000000
+            Width = 320.000000000000000000
+            inherited TopToolBar: TToolBar
+              Height = 44.000000000000000000
+              Width = 320.000000000000000000
+              inherited TopPrevButton: TButton
+                Height = 44.000000000000000000
+                Position.X = 44.000000000000000000
+                Width = 44.000000000000000000
+              end
+              inherited TopNextButton: TButton
+                Height = 44.000000000000000000
+                Position.X = 276.000000000000000000
+                Width = 44.000000000000000000
+              end
+              inherited TopDataComboBox: TDataComboBox
+                Height = 38.000000000000000000
+                Margins.Top = 6.000000000000000000
+                Width = 188.000000000000000000
+              end
+              inherited TopBackButton: TButton
+                Action = ToMasterChangeTabAction
+                Height = 44.000000000000000000
+                Width = 44.000000000000000000
+              end
+            end
+            inherited DataListView: TDataListView
+              Height = 455.000000000000000000
+              Width = 320.000000000000000000
+            end
+          end
         end
       end
     end
@@ -73,8 +141,9 @@ inherited MainTabbedForm: TMainTabbedForm
       WordWrap = False
       Height = 49.000000000000000000
       IsSelected = False
+      StyleLookup = 'tabitemrecent'
       TabOrder = 2
-      Text = 'TabItem3'
+      Text = 'Timers'
       Trimming = ttCharacter
       Width = 80.000000000000000000
     end
@@ -83,10 +152,25 @@ inherited MainTabbedForm: TMainTabbedForm
       Height = 49.000000000000000000
       IsSelected = False
       Position.X = 240.000000000000000000
+      StyleLookup = 'tabitemmostviewed'
       TabOrder = 3
-      Text = 'TabItem4'
+      Text = 'Settings'
       Trimming = ttCharacter
       Width = 80.000000000000000000
+    end
+  end
+  object TextEPGActionList: TActionList
+    Left = 55
+    Top = 72
+    object ToDetailChangeTabAction: TChangeTabAction
+      Category = 'Tab'
+      Tab = TextEPGDetailTabItem
+      Transition = ttSlide
+    end
+    object ToMasterChangeTabAction: TChangeTabAction
+      Category = 'Tab'
+      Tab = TextEPGMasterTabItem
+      Transition = ttSlide
     end
   end
 end

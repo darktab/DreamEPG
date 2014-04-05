@@ -9,9 +9,8 @@ inherited BackDataComboListViewFrame: TBackDataComboListViewFrame
     object TopBackButton: TButton
       Align = alMostLeft
       Height = 40.000000000000000000
-      StyleLookup = 'backtoolbutton'
+      StyleLookup = 'priortoolbutton'
       TabOrder = 3
-      Text = 'Back'
       Width = 80.000000000000000000
     end
   end
