@@ -71,6 +71,15 @@ procedure TMainTabbedForm.DataComboListViewFrameChannelListDataListViewItemClick
 begin
   inherited;
   ToDetailChangeTabAction.ExecuteTarget(self);
+
+  self.TextEPGBackDataComboListViewFrame.init
+    (MainDataModule.DreamFDMemTableChannelList, 'servicename',
+    MainDataModule.DreamRESTRequestChannelList,
+    MainDataModule.DreamRESTResponseDataSetAdapterChannelList,
+    MainDataModule.DreamFDMemTableTextEPG, 'title',
+    MainDataModule.DreamRESTRequestTextEPG,
+    MainDataModule.DreamRESTResponseDataSetAdapterTextEPG, 'servicereference');
+
 end;
 
 end.

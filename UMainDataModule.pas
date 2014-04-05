@@ -21,6 +21,10 @@ type
     DreamRESTResponseServiceList: TRESTResponse;
     DreamRESTResponseDataSetAdapterServiceList: TRESTResponseDataSetAdapter;
     DreamFDMemTableServiceList: TFDMemTable;
+    DreamRESTRequestTextEPG: TRESTRequest;
+    DreamRESTResponseTextEPG: TRESTResponse;
+    DreamRESTResponseDataSetAdapterTextEPG: TRESTResponseDataSetAdapter;
+    DreamFDMemTableTextEPG: TFDMemTable;
     procedure DreamRESTResponseDataSetAdapterChannelListBeforeOpenDataSet
       (Sender: TObject);
     procedure DreamRESTResponseDataSetAdapterServiceListBeforeOpenDataSet

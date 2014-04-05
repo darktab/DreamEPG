@@ -19,6 +19,9 @@ type
     DataListView: TDataListView;
     procedure TopPrevButtonClick(Sender: TObject);
     procedure TopNextButtonClick(Sender: TObject);
+    procedure DataListViewButtonClick(const Sender: TObject;
+      const AItem: TListViewItem; const AObject: TListItemSimpleControl);
+    procedure TopDataComboBoxChange(Sender: TObject);
   private
     { Private declarations }
     fMasterDataSet: TDataSet;
@@ -32,6 +35,7 @@ type
     fDetailRESTResponseDataSetAdapter: TRESTResponseDataSetAdapter;
 
     fMasterDetailLinkFieldName: String;
+    procedure initTopDataComboBox;
 
   public
     { Public declarations }
@@ -43,6 +47,7 @@ type
       lDetailRESTResponseDataSetAdapter: TRESTResponseDataSetAdapter;
       lMasterDetailLinkFieldName: String); overload;
     procedure init(lMasterDetailLinkFieldName: String); overload;
+    procedure initDataListView;
     Constructor Create(AOwner: TComponent); override;
 
   published
@@ -62,6 +67,13 @@ begin
 
 end;
 
+procedure TDataComboListViewFrame.initTopDataComboBox;
+begin
+  fMasterRESTResponseDataSetAdapter.FieldDefs.Clear;
+  fMasterRESTRequest.Execute;
+  TopDataComboBox.init;
+end;
+
 procedure TDataComboListViewFrame.init(lMasterDataSet: TDataSet;
   lMasterDataFieldName: string; lMasterRESTRequest: TRESTRequest;
   lMasterRESTResponseDataSetAdapter: TRESTResponseDataSetAdapter;
@@ -73,32 +85,34 @@ begin
   fMasterDataSet := lMasterDataSet;
   TopDataComboBox.DataSet := fMasterDataSet;
   fMasterDataFieldName := lMasterDataFieldName;
+  TopDataComboBox.DataFieldName := lMasterDataFieldName;
   fMasterRESTRequest := lMasterRESTRequest;
   fMasterRESTResponseDataSetAdapter := lMasterRESTResponseDataSetAdapter;
 
   fDetailDataSet := lDetailDataSet;
   DataListView.DataSet := lDetailDataSet;
   fDetailDataFieldName := lDetailDataFieldName;
+  DataListView.DataFieldName := lDetailDataFieldName;
   fDetailRESTRequest := lDetailRESTRequest;
   fDetailRESTResponseDataSetAdapter := lDetailRESTResponseDataSetAdapter;
 
   init(lMasterDetailLinkFieldName);
 end;
 
-procedure TDataComboListViewFrame.init(lMasterDetailLinkFieldName: String);
+// -----------------------------------
+// Sync Dataset with itemnumber
+// -----------------------------------
+procedure TDataComboListViewFrame.DataListViewButtonClick(const Sender: TObject;
+  const AItem: TListViewItem; const AObject: TListItemSimpleControl);
+begin
+  fDetailDataSet.RecNo := DataListView.ItemIndex;
+end;
+
+procedure TDataComboListViewFrame.initDataListView;
 var
   Field: TField;
   lDefaultServiceReference: String;
 begin
-
-  fMasterDetailLinkFieldName := lMasterDetailLinkFieldName;
-
-  // fill the combobox with all the available services
-  fMasterRESTResponseDataSetAdapter.FieldDefs.Clear;
-  fMasterRESTRequest.Execute;
-
-  TopDataComboBox.init;
-
   for Field in fMasterDataSet.Fields do
   begin
     if Field.FieldName = fMasterDetailLinkFieldName then
@@ -113,9 +127,33 @@ begin
   // sRef parameter
   fDetailRESTRequest.Params[0].Value := lDefaultServiceReference;
 
+  if fMasterDataSet.State = dsBrowse then
+  begin
+    fMasterDataSet.Close;
+  end;
+
   fDetailRESTRequest.Execute;
 
   DataListView.init;
+end;
+
+procedure TDataComboListViewFrame.init(lMasterDetailLinkFieldName: String);
+begin
+
+  fMasterDetailLinkFieldName := lMasterDetailLinkFieldName;
+
+  initTopDataComboBox;
+  initDataListView;
+end;
+
+procedure TDataComboListViewFrame.TopDataComboBoxChange(Sender: TObject);
+begin
+  fMasterDataSet.RecNo := TopDataComboBox.ItemIndex;
+  try
+    //initDataListView;
+  except
+
+  end;
 
 end;
 
@@ -126,7 +164,7 @@ begin
 
     try
       TopDataComboBox.ItemIndex := TopDataComboBox.ItemIndex + 1;
-    finally
+    except
 
     end;
 
@@ -140,7 +178,7 @@ begin
 
     try
       TopDataComboBox.ItemIndex := TopDataComboBox.ItemIndex - 1;
-    finally
+    except
 
     end;
 

@@ -1,0 +1,15 @@
+﻿[TopNextButton]
+Coordinates=10,188,100,58
+
+[TopPrevButton]
+Coordinates=264,10,100,58
+
+[TopDataComboBox]
+Coordinates=127,10,127,124
+
+[DataListView]
+Coordinates=10,10,107,168
+
+[TopToolBar]
+Coordinates=120,188,82,36
+

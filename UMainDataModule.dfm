@@ -1,7 +1,7 @@
 object MainDataModule: TMainDataModule
   OldCreateOrder = False
   Height = 435
-  Width = 529
+  Width = 749
   object DreamRESTClient: TRESTClient
     Authenticator = DreamHTTPBasicAuthenticator
     Accept = 'application/json, text/plain; q=0.9, text/html;q=0.8,'
@@ -21,12 +21,12 @@ object MainDataModule: TMainDataModule
       end>
     Resource = 'getservices'
     Response = DreamRESTResponseChannelList
-    Left = 368
-    Top = 112
+    Left = 344
+    Top = 104
   end
   object DreamRESTResponseChannelList: TRESTResponse
-    Left = 368
-    Top = 176
+    Left = 344
+    Top = 168
   end
   object DreamRESTResponseDataSetAdapterChannelList: TRESTResponseDataSetAdapter
     Active = True
@@ -35,8 +35,8 @@ object MainDataModule: TMainDataModule
     Response = DreamRESTResponseChannelList
     OnBeforeOpenDataSet = DreamRESTResponseDataSetAdapterChannelListBeforeOpenDataSet
     RootElement = 'services'
-    Left = 368
-    Top = 240
+    Left = 344
+    Top = 232
   end
   object DreamHTTPBasicAuthenticator: THTTPBasicAuthenticator
     Username = 'root'
@@ -65,8 +65,8 @@ object MainDataModule: TMainDataModule
     UpdateOptions.AssignedValues = [uvCheckRequired]
     UpdateOptions.CheckRequired = False
     StoreDefs = True
-    Left = 368
-    Top = 304
+    Left = 344
+    Top = 296
   end
   object DreamRESTRequestServiceList: TRESTRequest
     Client = DreamRESTClient
@@ -112,6 +112,43 @@ object MainDataModule: TMainDataModule
     UpdateOptions.CheckRequired = False
     StoreDefs = True
     Left = 88
+    Top = 296
+  end
+  object DreamRESTRequestTextEPG: TRESTRequest
+    Client = DreamRESTClient
+    Params = <
+      item
+        name = 'sRef'
+      end>
+    Resource = 'epgservice'
+    Response = DreamRESTResponseTextEPG
+    Left = 600
+    Top = 104
+  end
+  object DreamRESTResponseTextEPG: TRESTResponse
+    Left = 600
+    Top = 168
+  end
+  object DreamRESTResponseDataSetAdapterTextEPG: TRESTResponseDataSetAdapter
+    Dataset = DreamFDMemTableTextEPG
+    FieldDefs = <>
+    Response = DreamRESTResponseTextEPG
+    OnBeforeOpenDataSet = DreamRESTResponseDataSetAdapterChannelListBeforeOpenDataSet
+    RootElement = 'events'
+    Left = 600
+    Top = 232
+  end
+  object DreamFDMemTableTextEPG: TFDMemTable
+    FieldDefs = <>
+    IndexDefs = <>
+    FetchOptions.AssignedValues = [evMode]
+    FetchOptions.Mode = fmAll
+    ResourceOptions.AssignedValues = [rvSilentMode]
+    ResourceOptions.SilentMode = True
+    UpdateOptions.AssignedValues = [uvCheckRequired]
+    UpdateOptions.CheckRequired = False
+    StoreDefs = True
+    Left = 600
     Top = 296
   end
 end
