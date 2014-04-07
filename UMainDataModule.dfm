@@ -29,7 +29,6 @@ object MainDataModule: TMainDataModule
     Top = 168
   end
   object DreamRESTResponseDataSetAdapterChannelList: TRESTResponseDataSetAdapter
-    Active = True
     Dataset = DreamFDMemTableChannelList
     FieldDefs = <>
     Response = DreamRESTResponseChannelList
@@ -45,7 +44,6 @@ object MainDataModule: TMainDataModule
     Top = 24
   end
   object DreamFDMemTableChannelList: TFDMemTable
-    Active = True
     FieldDefs = <
       item
         Name = 'servicereference'
@@ -81,7 +79,6 @@ object MainDataModule: TMainDataModule
     Top = 168
   end
   object DreamRESTResponseDataSetAdapterServiceList: TRESTResponseDataSetAdapter
-    Active = True
     Dataset = DreamFDMemTableServiceList
     FieldDefs = <>
     Response = DreamRESTResponseServiceList
@@ -91,7 +88,6 @@ object MainDataModule: TMainDataModule
     Top = 232
   end
   object DreamFDMemTableServiceList: TFDMemTable
-    Active = True
     FieldDefs = <
       item
         Name = 'servicereference'
@@ -133,7 +129,7 @@ object MainDataModule: TMainDataModule
     Dataset = DreamFDMemTableTextEPG
     FieldDefs = <>
     Response = DreamRESTResponseTextEPG
-    OnBeforeOpenDataSet = DreamRESTResponseDataSetAdapterChannelListBeforeOpenDataSet
+    OnBeforeOpenDataSet = DreamRESTResponseDataSetAdapterTextEPGBeforeOpenDataSet
     RootElement = 'events'
     Left = 600
     Top = 232

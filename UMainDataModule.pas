@@ -29,6 +29,8 @@ type
       (Sender: TObject);
     procedure DreamRESTResponseDataSetAdapterServiceListBeforeOpenDataSet
       (Sender: TObject);
+    procedure DreamRESTResponseDataSetAdapterTextEPGBeforeOpenDataSet
+      (Sender: TObject);
   private
     { Private declarations }
   public
@@ -54,6 +56,12 @@ procedure TMainDataModule.
   DreamRESTResponseDataSetAdapterServiceListBeforeOpenDataSet(Sender: TObject);
 begin
   self.DreamFDMemTableServiceList.CreateDataSet;
+end;
+
+procedure TMainDataModule.
+  DreamRESTResponseDataSetAdapterTextEPGBeforeOpenDataSet(Sender: TObject);
+begin
+  self.DreamFDMemTableTextEPG.CreateDataSet;
 end;
 
 end.

@@ -67,13 +67,6 @@ begin
 
 end;
 
-procedure TDataComboListViewFrame.initTopDataComboBox;
-begin
-  fMasterRESTResponseDataSetAdapter.FieldDefs.Clear;
-  fMasterRESTRequest.Execute;
-  TopDataComboBox.init;
-end;
-
 procedure TDataComboListViewFrame.init(lMasterDataSet: TDataSet;
   lMasterDataFieldName: string; lMasterRESTRequest: TRESTRequest;
   lMasterRESTResponseDataSetAdapter: TRESTResponseDataSetAdapter;
@@ -108,6 +101,26 @@ begin
   fDetailDataSet.RecNo := DataListView.ItemIndex;
 end;
 
+procedure TDataComboListViewFrame.initTopDataComboBox;
+var
+  lidx: integer;
+begin
+  if not fMasterDataSet.Active then
+  begin
+    fMasterRESTResponseDataSetAdapter.FieldDefs.Clear;
+    fMasterRESTRequest.Execute;
+    TopDataComboBox.init;
+  end
+  else
+  begin
+    lidx := fMasterDataSet.RecNo;
+    TopDataComboBox.init;
+    fMasterDataSet.RecNo := lidx;
+    TopDataComboBox.ItemIndex := lidx;
+  end;
+
+end;
+
 procedure TDataComboListViewFrame.initDataListView;
 var
   Field: TField;
@@ -122,19 +135,30 @@ begin
     end;
   end;
 
+  if fDetailDataSet.Active then
+  begin
+    fDetailRESTResponseDataSetAdapter.ClearDataSet;
+    fDetailRESTResponseDataSetAdapter.Active := false;
+    fDetailDataSet.Close;
+  end;
+
   fDetailRESTResponseDataSetAdapter.FieldDefs.Clear;
 
   // sRef parameter
   fDetailRESTRequest.Params[0].Value := lDefaultServiceReference;
 
-  if fMasterDataSet.State = dsBrowse then
-  begin
-    fMasterDataSet.Close;
+  try
+    fDetailRESTRequest.Execute;
+  except
+    if fMasterDataSet.State = dsBrowse then
+    begin
+      fMasterDataSet.Close;
+    end;
+    fDetailRESTRequest.Execute;
   end;
 
-  fDetailRESTRequest.Execute;
-
   DataListView.init;
+
 end;
 
 procedure TDataComboListViewFrame.init(lMasterDetailLinkFieldName: String);
@@ -150,7 +174,7 @@ procedure TDataComboListViewFrame.TopDataComboBoxChange(Sender: TObject);
 begin
   fMasterDataSet.RecNo := TopDataComboBox.ItemIndex;
   try
-    //initDataListView;
+    initDataListView;
   except
 
   end;
