@@ -130,9 +130,13 @@ inherited MainTabbedForm: TMainTabbedForm
             end
             inherited DataListView: TDataListView
               ItemAppearanceClassName = 'TCustomizeItemObjects'
-              ItemEditAppearanceClassName = 'TListItemRightDetailShowCheckAppearance'
+              ItemEditAppearanceClassName = 'TCustomizeItemObjects'
+              HeaderAppearanceClassName = 'TCustomizeItemObjects'
+              FooterAppearanceClassName = 'TCustomizeItemObjects'
               Height = 455.000000000000000000
               Width = 320.000000000000000000
+              ItemAppearance.HeaderHeight = 1
+              ItemAppearance.FooterHeight = 1
               ItemAppearanceObjects.ItemObjects.Text.TextVertAlign = taLeading
               ItemAppearanceObjects.ItemObjects.Text.Width = 240.000000000000000000
               ItemAppearanceObjects.ItemObjects.Text.PlaceOffset.Y = 5.000000000000000000
@@ -141,9 +145,13 @@ inherited MainTabbedForm: TMainTabbedForm
               ItemAppearanceObjects.ItemObjects.Detail.VertAlign = Trailing
               ItemAppearanceObjects.ItemObjects.Detail.Visible = True
               ItemAppearanceObjects.ItemObjects.Detail.PlaceOffset.Y = -5.000000000000000000
-              ItemAppearanceObjects.ItemObjects.Accessory.AccessoryType = Checkmark
-              ItemAppearanceObjects.ItemObjects.TextButton.Visible = True
-              ItemAppearanceObjects.ItemObjects.TextButton.Text = 'Record'
+              ItemAppearanceObjects.ItemObjects.Image.Opacity = 0.000000000000000000
+              ItemAppearanceObjects.ItemObjects.TextButton.Enabled = False
+              ItemAppearanceObjects.ItemObjects.TextButton.Opacity = 0.000000000000000000
+              ItemAppearanceObjects.ItemObjects.GlyphButton.Enabled = False
+              ItemAppearanceObjects.ItemObjects.GlyphButton.Align = Trailing
+              ItemAppearanceObjects.ItemObjects.GlyphButton.Opacity = 0.000000000000000000
+              ItemAppearanceObjects.FooterObjects.Detail.Visible = True
               OnItemClick = TextEPGBackDataComboListViewFrameDataListViewItemClick
             end
           end
@@ -186,7 +194,7 @@ inherited MainTabbedForm: TMainTabbedForm
             Align = alTop
             Font.Style = [fsBold]
             StyledSettings = [ssFamily, ssSize, ssFontColor]
-            Height = 21.000000000000000000
+            Height = 53.000000000000000000
             Position.Y = 44.000000000000000000
             Text = 'TextEPGInfoLabel'
             Width = 320.000000000000000000
@@ -196,7 +204,7 @@ inherited MainTabbedForm: TMainTabbedForm
             Touch.InteractiveGestures = [igPan, igLongTap, igDoubleTap]
             Align = alTop
             Height = 224.000000000000000000
-            Position.Y = 65.000000000000000000
+            Position.Y = 118.000000000000000000
             TabOrder = 2
             Width = 320.000000000000000000
             WordWrap = True
@@ -204,12 +212,20 @@ inherited MainTabbedForm: TMainTabbedForm
           object TextEPGInfoRecordButton: TButton
             Align = alTop
             Height = 44.000000000000000000
-            Position.Y = 289.000000000000000000
+            Position.Y = 342.000000000000000000
             StyleLookup = 'listitemdeletebutton'
             TabOrder = 3
             Text = 'Record'
             Trimming = ttCharacter
             Width = 320.000000000000000000
+          end
+          object TextEPGDateTimeLabel: TLabel
+            Align = alTop
+            Height = 21.000000000000000000
+            Position.Y = 97.000000000000000000
+            Text = 'TextEPGDateTimeLabel'
+            Width = 320.000000000000000000
+            Trimming = ttCharacter
           end
         end
       end

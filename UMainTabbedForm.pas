@@ -33,6 +33,7 @@ type
     TextEPGInfoLabel: TLabel;
     TextEPGInfoMemo: TMemo;
     TextEPGInfoRecordButton: TButton;
+    TextEPGDateTimeLabel: TLabel;
     procedure FormShow(Sender: TObject);
     procedure ComboBoxServiceListChange(Sender: TObject);
     procedure DataComboListViewFrameChannelListDataListViewItemClick
@@ -86,6 +87,10 @@ begin
     ('sname').AsString;
   TextEPGInfoLabel.Text := MainDataModule.DreamFDMemTableTextEPG.FieldByName
     ('title').AsString;
+  TextEPGDateTimeLabel.Text := MainDataModule.DreamFDMemTableTextEPG.FieldByName
+    ('date').AsString + ': ' + MainDataModule.DreamFDMemTableTextEPG.FieldByName
+    ('begin').AsString + ' - ' + MainDataModule.DreamFDMemTableTextEPG.
+    FieldByName('end').AsString;;
   TextEPGInfoMemo.Text := MainDataModule.DreamFDMemTableTextEPG.FieldByName
     ('longdesc').AsString;
   ToInfoChangeTabAction.ExecuteTarget(self);

@@ -147,7 +147,11 @@ begin
   else
   begin
     lidx := fMasterDataSet.RecNo;
-    TopDataComboBox.init;
+    // speed optimisation
+    if TopDataComboBox.Items.Count = 0 then
+    begin
+      TopDataComboBox.init;
+    end;
     fMasterDataSet.RecNo := lidx;
     TopDataComboBox.ItemIndex := lidx - 1;
   end;
