@@ -25,10 +25,21 @@ type
     TextEPGActionList: TActionList;
     ToDetailChangeTabAction: TChangeTabAction;
     ToMasterChangeTabAction: TChangeTabAction;
+    TextEPGInfoTabItem: TTabItem;
+    TextEPGInfoToolBar: TToolBar;
+    TextEPGBackButton: TButton;
+    TextEPGTitleLabel: TLabel;
+    ToInfoChangeTabAction: TChangeTabAction;
+    TextEPGInfoLabel: TLabel;
+    TextEPGInfoMemo: TMemo;
+    TextEPGInfoRecordButton: TButton;
     procedure FormShow(Sender: TObject);
     procedure ComboBoxServiceListChange(Sender: TObject);
     procedure DataComboListViewFrameChannelListDataListViewItemClick
       (const Sender: TObject; const AItem: TListViewItem);
+    procedure TextEPGBackDataComboListViewFrameDataListViewItemClick
+      (const Sender: TObject; const AItem: TListViewItem);
+
   private
     { Private declarations }
   public
@@ -66,19 +77,43 @@ begin
     'servicereference');
 end;
 
-procedure TMainTabbedForm.DataComboListViewFrameChannelListDataListViewItemClick
+procedure TMainTabbedForm.TextEPGBackDataComboListViewFrameDataListViewItemClick
   (const Sender: TObject; const AItem: TListViewItem);
 begin
   inherited;
+  TextEPGBackDataComboListViewFrame.DataListViewItemClick(Sender, AItem);
+  TextEPGTitleLabel.Text := MainDataModule.DreamFDMemTableTextEPG.FieldByName
+    ('sname').AsString;
+  TextEPGInfoLabel.Text := MainDataModule.DreamFDMemTableTextEPG.FieldByName
+    ('title').AsString;
+  TextEPGInfoMemo.Text := MainDataModule.DreamFDMemTableTextEPG.FieldByName
+    ('longdesc').AsString;
+  ToInfoChangeTabAction.ExecuteTarget(self);
+end;
+
+procedure TMainTabbedForm.DataComboListViewFrameChannelListDataListViewItemClick
+  (const Sender: TObject; const AItem: TListViewItem);
+var
+  lDetailStringList: TStringList;
+begin
+  inherited;
   ToDetailChangeTabAction.ExecuteTarget(self);
+
+  lDetailStringList := TStringList.Create;
+
+  lDetailStringList.Add('date');
+  lDetailStringList.Add('begin');
+  lDetailStringList.Add('end');
 
   self.TextEPGBackDataComboListViewFrame.init
     (MainDataModule.DreamFDMemTableChannelList, 'servicename',
     MainDataModule.DreamRESTRequestChannelList,
     MainDataModule.DreamRESTResponseDataSetAdapterChannelList,
-    MainDataModule.DreamFDMemTableTextEPG, 'title',
+    MainDataModule.DreamFDMemTableTextEPG, 'title', lDetailStringList,
     MainDataModule.DreamRESTRequestTextEPG,
     MainDataModule.DreamRESTResponseDataSetAdapterTextEPG, 'servicereference');
+
+  FreeAndNil(lDetailStringList);
 
 end;
 

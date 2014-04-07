@@ -19,9 +19,11 @@ type
     DataListView: TDataListView;
     procedure TopPrevButtonClick(Sender: TObject);
     procedure TopNextButtonClick(Sender: TObject);
+    procedure TopDataComboBoxChange(Sender: TObject);
+    procedure DataListViewItemClick(const Sender: TObject;
+      const AItem: TListViewItem);
     procedure DataListViewButtonClick(const Sender: TObject;
       const AItem: TListViewItem; const AObject: TListItemSimpleControl);
-    procedure TopDataComboBoxChange(Sender: TObject);
   private
     { Private declarations }
     fMasterDataSet: TDataSet;
@@ -34,11 +36,20 @@ type
     fDetailRESTRequest: TRESTRequest;
     fDetailRESTResponseDataSetAdapter: TRESTResponseDataSetAdapter;
 
+    fDetailDataStringList: TStringList;
+
     fMasterDetailLinkFieldName: String;
     procedure initTopDataComboBox;
 
   public
     { Public declarations }
+    procedure init(lMasterDataSet: TDataSet; lMasterDataFieldName: string;
+      lMasterRESTRequest: TRESTRequest;
+      lMasterRESTResponseDataSetAdapter: TRESTResponseDataSetAdapter;
+      lDetailDataSet: TDataSet; lDetailDataFieldName: string;
+      lDetailDataStringList: TStringList; lDetailRESTRequest: TRESTRequest;
+      lDetailRESTResponseDataSetAdapter: TRESTResponseDataSetAdapter;
+      lMasterDetailLinkFieldName: String); overload;
     procedure init(lMasterDataSet: TDataSet; lMasterDataFieldName: string;
       lMasterRESTRequest: TRESTRequest;
       lMasterRESTResponseDataSetAdapter: TRESTResponseDataSetAdapter;
@@ -65,6 +76,22 @@ begin
   // Execute the parent (TObject) constructor first
   inherited; // Call the parent Create method
 
+end;
+
+procedure TDataComboListViewFrame.init(lMasterDataSet: TDataSet;
+  lMasterDataFieldName: string; lMasterRESTRequest: TRESTRequest;
+  lMasterRESTResponseDataSetAdapter: TRESTResponseDataSetAdapter;
+  lDetailDataSet: TDataSet; lDetailDataFieldName: string;
+  lDetailDataStringList: TStringList; lDetailRESTRequest: TRESTRequest;
+  lDetailRESTResponseDataSetAdapter: TRESTResponseDataSetAdapter;
+  lMasterDetailLinkFieldName: String);
+begin
+  fDetailDataStringList := lDetailDataStringList;
+
+  init(lMasterDataSet, lMasterDataFieldName, lMasterRESTRequest,
+    lMasterRESTResponseDataSetAdapter, lDetailDataSet, lDetailDataFieldName,
+    lDetailRESTRequest, lDetailRESTResponseDataSetAdapter,
+    lMasterDetailLinkFieldName);
 end;
 
 procedure TDataComboListViewFrame.init(lMasterDataSet: TDataSet;
@@ -98,7 +125,13 @@ end;
 procedure TDataComboListViewFrame.DataListViewButtonClick(const Sender: TObject;
   const AItem: TListViewItem; const AObject: TListItemSimpleControl);
 begin
-  fDetailDataSet.RecNo := DataListView.ItemIndex;
+  fDetailDataSet.RecNo := DataListView.ItemIndex + 1;
+end;
+
+procedure TDataComboListViewFrame.DataListViewItemClick(const Sender: TObject;
+  const AItem: TListViewItem);
+begin
+  fDetailDataSet.RecNo := DataListView.ItemIndex + 1;
 end;
 
 procedure TDataComboListViewFrame.initTopDataComboBox;
@@ -116,7 +149,7 @@ begin
     lidx := fMasterDataSet.RecNo;
     TopDataComboBox.init;
     fMasterDataSet.RecNo := lidx;
-    TopDataComboBox.ItemIndex := lidx;
+    TopDataComboBox.ItemIndex := lidx - 1;
   end;
 
 end;
@@ -157,7 +190,14 @@ begin
     fDetailRESTRequest.Execute;
   end;
 
-  DataListView.init;
+  if assigned(fDetailDataStringList) then
+  begin
+    DataListView.init(fDetailDataStringList);
+  end
+  else
+  begin
+    DataListView.init;
+  end;
 
 end;
 
@@ -172,7 +212,7 @@ end;
 
 procedure TDataComboListViewFrame.TopDataComboBoxChange(Sender: TObject);
 begin
-  fMasterDataSet.RecNo := TopDataComboBox.ItemIndex;
+  fMasterDataSet.RecNo := TopDataComboBox.ItemIndex + 1;
   try
     initDataListView;
   except

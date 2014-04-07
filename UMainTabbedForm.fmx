@@ -51,7 +51,7 @@ inherited MainTabbedForm: TMainTabbedForm
           WordWrap = False
           Height = 8.000000000000000000
           IsSelected = True
-          Position.X = 151.000000000000000000
+          Position.X = 146.000000000000000000
           Position.Y = 480.000000000000000000
           TabOrder = 0
           Text = 'TextEPGMasterTabItem'
@@ -94,7 +94,7 @@ inherited MainTabbedForm: TMainTabbedForm
           WordWrap = False
           Height = 8.000000000000000000
           IsSelected = False
-          Position.X = 161.000000000000000000
+          Position.X = 156.000000000000000000
           Position.Y = 480.000000000000000000
           TabOrder = 1
           Text = 'TextEPGDetailTabItem'
@@ -118,7 +118,7 @@ inherited MainTabbedForm: TMainTabbedForm
                 Width = 44.000000000000000000
               end
               inherited TopDataComboBox: TDataComboBox
-                Height = 38.000000000000000000
+                Height = 30.000000000000000000
                 Margins.Top = 6.000000000000000000
                 Width = 188.000000000000000000
               end
@@ -129,9 +129,87 @@ inherited MainTabbedForm: TMainTabbedForm
               end
             end
             inherited DataListView: TDataListView
+              ItemAppearanceClassName = 'TCustomizeItemObjects'
+              ItemEditAppearanceClassName = 'TListItemRightDetailShowCheckAppearance'
               Height = 455.000000000000000000
               Width = 320.000000000000000000
+              ItemAppearanceObjects.ItemObjects.Text.TextVertAlign = taLeading
+              ItemAppearanceObjects.ItemObjects.Text.Width = 240.000000000000000000
+              ItemAppearanceObjects.ItemObjects.Text.PlaceOffset.Y = 5.000000000000000000
+              ItemAppearanceObjects.ItemObjects.Detail.Font.Size = 10.000000000000000000
+              ItemAppearanceObjects.ItemObjects.Detail.TextVertAlign = taTrailing
+              ItemAppearanceObjects.ItemObjects.Detail.VertAlign = Trailing
+              ItemAppearanceObjects.ItemObjects.Detail.Visible = True
+              ItemAppearanceObjects.ItemObjects.Detail.PlaceOffset.Y = -5.000000000000000000
+              ItemAppearanceObjects.ItemObjects.Accessory.AccessoryType = Checkmark
+              ItemAppearanceObjects.ItemObjects.TextButton.Visible = True
+              ItemAppearanceObjects.ItemObjects.TextButton.Text = 'Record'
+              OnItemClick = TextEPGBackDataComboListViewFrameDataListViewItemClick
             end
+          end
+        end
+        object TextEPGInfoTabItem: TTabItem
+          WordWrap = False
+          Height = 8.000000000000000000
+          IsSelected = False
+          Position.X = 166.000000000000000000
+          Position.Y = 480.000000000000000000
+          TabOrder = 2
+          Trimming = ttCharacter
+          Width = 8.000000000000000000
+          object TextEPGInfoToolBar: TToolBar
+            Height = 44.000000000000000000
+            TabOrder = 0
+            Width = 320.000000000000000000
+            object TextEPGTitleLabel: TLabel
+              Align = alClient
+              Font.Style = [fsBold]
+              StyledSettings = [ssFamily, ssSize, ssFontColor]
+              Height = 44.000000000000000000
+              StyleLookup = 'toollabel'
+              Text = 'Info'
+              TextAlign = taCenter
+              Width = 320.000000000000000000
+              Trimming = ttCharacter
+              object TextEPGBackButton: TButton
+                Action = ToDetailChangeTabAction
+                Align = alLeft
+                Height = 44.000000000000000000
+                StyleLookup = 'priortoolbutton'
+                TabOrder = 0
+                Trimming = ttCharacter
+                Width = 44.000000000000000000
+              end
+            end
+          end
+          object TextEPGInfoLabel: TLabel
+            Align = alTop
+            Font.Style = [fsBold]
+            StyledSettings = [ssFamily, ssSize, ssFontColor]
+            Height = 21.000000000000000000
+            Position.Y = 44.000000000000000000
+            Text = 'TextEPGInfoLabel'
+            Width = 320.000000000000000000
+            Trimming = ttCharacter
+          end
+          object TextEPGInfoMemo: TMemo
+            Touch.InteractiveGestures = [igPan, igLongTap, igDoubleTap]
+            Align = alTop
+            Height = 224.000000000000000000
+            Position.Y = 65.000000000000000000
+            TabOrder = 2
+            Width = 320.000000000000000000
+            WordWrap = True
+          end
+          object TextEPGInfoRecordButton: TButton
+            Align = alTop
+            Height = 44.000000000000000000
+            Position.Y = 289.000000000000000000
+            StyleLookup = 'listitemdeletebutton'
+            TabOrder = 3
+            Text = 'Record'
+            Trimming = ttCharacter
+            Width = 320.000000000000000000
           end
         end
       end
@@ -160,8 +238,8 @@ inherited MainTabbedForm: TMainTabbedForm
     end
   end
   object TextEPGActionList: TActionList
-    Left = 55
-    Top = 72
+    Left = 271
+    Top = 384
     object ToDetailChangeTabAction: TChangeTabAction
       Category = 'Tab'
       Tab = TextEPGDetailTabItem
@@ -170,6 +248,11 @@ inherited MainTabbedForm: TMainTabbedForm
     object ToMasterChangeTabAction: TChangeTabAction
       Category = 'Tab'
       Tab = TextEPGMasterTabItem
+      Transition = ttSlide
+    end
+    object ToInfoChangeTabAction: TChangeTabAction
+      Category = 'Tab'
+      Tab = TextEPGInfoTabItem
       Transition = ttSlide
     end
   end

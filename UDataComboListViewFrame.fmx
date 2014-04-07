@@ -42,6 +42,7 @@ object DataComboListViewFrame: TDataComboListViewFrame
     Height = 392.000000000000000000
     TabOrder = 1
     Width = 289.000000000000000000
+    OnItemClick = DataListViewItemClick
     OnButtonClick = DataListViewButtonClick
   end
 end
