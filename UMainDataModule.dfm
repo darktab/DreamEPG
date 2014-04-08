@@ -1,6 +1,6 @@
 object MainDataModule: TMainDataModule
   OldCreateOrder = False
-  Height = 435
+  Height = 538
   Width = 749
   object DreamRESTClient: TRESTClient
     Authenticator = DreamHTTPBasicAuthenticator
@@ -10,8 +10,8 @@ object MainDataModule: TMainDataModule
     BaseURL = 'http://vuduo2.fritz.box/api'
     Params = <>
     HandleRedirects = True
-    Left = 128
-    Top = 24
+    Left = 176
+    Top = 40
   end
   object DreamRESTRequestChannelList: TRESTRequest
     Client = DreamRESTClient
@@ -21,11 +21,11 @@ object MainDataModule: TMainDataModule
       end>
     Resource = 'getservices'
     Response = DreamRESTResponseChannelList
-    Left = 344
+    Left = 328
     Top = 104
   end
   object DreamRESTResponseChannelList: TRESTResponse
-    Left = 344
+    Left = 328
     Top = 168
   end
   object DreamRESTResponseDataSetAdapterChannelList: TRESTResponseDataSetAdapter
@@ -34,14 +34,14 @@ object MainDataModule: TMainDataModule
     Response = DreamRESTResponseChannelList
     OnBeforeOpenDataSet = DreamRESTResponseDataSetAdapterChannelListBeforeOpenDataSet
     RootElement = 'services'
-    Left = 344
-    Top = 232
+    Left = 328
+    Top = 248
   end
   object DreamHTTPBasicAuthenticator: THTTPBasicAuthenticator
     Username = 'root'
     Password = 'tsukubakek'
     Left = 320
-    Top = 24
+    Top = 40
   end
   object DreamFDMemTableChannelList: TFDMemTable
     FieldDefs = <>
@@ -53,19 +53,19 @@ object MainDataModule: TMainDataModule
     UpdateOptions.AssignedValues = [uvCheckRequired]
     UpdateOptions.CheckRequired = False
     StoreDefs = True
-    Left = 344
-    Top = 296
+    Left = 328
+    Top = 320
   end
   object DreamRESTRequestServiceList: TRESTRequest
     Client = DreamRESTClient
     Params = <>
     Resource = 'getservices'
     Response = DreamRESTResponseServiceList
-    Left = 88
+    Left = 72
     Top = 104
   end
   object DreamRESTResponseServiceList: TRESTResponse
-    Left = 88
+    Left = 72
     Top = 168
   end
   object DreamRESTResponseDataSetAdapterServiceList: TRESTResponseDataSetAdapter
@@ -74,7 +74,7 @@ object MainDataModule: TMainDataModule
     Response = DreamRESTResponseServiceList
     OnBeforeOpenDataSet = DreamRESTResponseDataSetAdapterServiceListBeforeOpenDataSet
     RootElement = 'services'
-    Left = 88
+    Left = 72
     Top = 232
   end
   object DreamFDMemTableServiceList: TFDMemTable
@@ -97,7 +97,7 @@ object MainDataModule: TMainDataModule
     UpdateOptions.AssignedValues = [uvCheckRequired]
     UpdateOptions.CheckRequired = False
     StoreDefs = True
-    Left = 88
+    Left = 72
     Top = 296
   end
   object DreamRESTRequestTextEPG: TRESTRequest
@@ -108,11 +108,11 @@ object MainDataModule: TMainDataModule
       end>
     Resource = 'epgservice'
     Response = DreamRESTResponseTextEPG
-    Left = 600
+    Left = 608
     Top = 104
   end
   object DreamRESTResponseTextEPG: TRESTResponse
-    Left = 600
+    Left = 608
     Top = 168
   end
   object DreamRESTResponseDataSetAdapterTextEPG: TRESTResponseDataSetAdapter
@@ -121,7 +121,7 @@ object MainDataModule: TMainDataModule
     Response = DreamRESTResponseTextEPG
     OnBeforeOpenDataSet = DreamRESTResponseDataSetAdapterTextEPGBeforeOpenDataSet
     RootElement = 'events'
-    Left = 600
+    Left = 608
     Top = 232
   end
   object DreamFDMemTableTextEPG: TFDMemTable
@@ -134,7 +134,7 @@ object MainDataModule: TMainDataModule
     UpdateOptions.AssignedValues = [uvCheckRequired]
     UpdateOptions.CheckRequired = False
     StoreDefs = True
-    Left = 600
+    Left = 608
     Top = 296
   end
   object DreamRESTRequestAddTimer: TRESTRequest
@@ -157,6 +157,223 @@ object MainDataModule: TMainDataModule
   end
   object DreamRESTResponseAddTimer: TRESTResponse
     Left = 77
+    Top = 456
+  end
+  object DreamRESTRequestTimerList: TRESTRequest
+    Client = DreamRESTClient
+    Params = <>
+    Resource = 'timerlist'
+    Response = DreamRESTResponseTimerList
+    Left = 344
+    Top = 459
+  end
+  object DreamRESTResponseTimerList: TRESTResponse
+    Left = 336
+    Top = 404
+  end
+  object DreamRESTResponseDataSetAdapterTimerList: TRESTResponseDataSetAdapter
+    Active = True
+    Dataset = DreamFDMemTableTimerList
+    FieldDefs = <>
+    Response = DreamRESTResponseTimerList
+    OnBeforeOpenDataSet = DreamRESTResponseDataSetAdapterTimerListBeforeOpenDataSet
+    RootElement = 'timers'
+    Left = 496
+    Top = 396
+  end
+  object DreamFDMemTableTimerList: TFDMemTable
+    Active = True
+    FieldDefs = <
+      item
+        Name = 'begin'
+        DataType = ftString
+        Size = 255
+      end
+      item
+        Name = 'description'
+        DataType = ftString
+        Size = 255
+      end
+      item
+        Name = 'tags'
+        DataType = ftString
+        Size = 255
+      end
+      item
+        Name = 'firsttryprepare'
+        DataType = ftString
+        Size = 255
+      end
+      item
+        Name = 'toggledisabled'
+        DataType = ftString
+        Size = 255
+      end
+      item
+        Name = 'dontsave'
+        DataType = ftString
+        Size = 255
+      end
+      item
+        Name = 'backoff'
+        DataType = ftString
+        Size = 255
+      end
+      item
+        Name = 'disabled'
+        DataType = ftString
+        Size = 255
+      end
+      item
+        Name = 'asrefs'
+        DataType = ftString
+        Size = 255
+      end
+      item
+        Name = 'repeated'
+        DataType = ftString
+        Size = 255
+      end
+      item
+        Name = 'servicename'
+        DataType = ftString
+        Size = 255
+      end
+      item
+        Name = 'duration'
+        DataType = ftString
+        Size = 255
+      end
+      item
+        Name = 'dirname'
+        DataType = ftString
+        Size = 255
+      end
+      item
+        Name = 'realend'
+        DataType = ftString
+        Size = 255
+      end
+      item
+        Name = 'descriptionextended'
+        DataType = ftString
+        Size = 255
+      end
+      item
+        Name = 'name'
+        DataType = ftString
+        Size = 255
+      end
+      item
+        Name = 'startprepare'
+        DataType = ftString
+        Size = 255
+      end
+      item
+        Name = 'realbegin'
+        DataType = ftString
+        Size = 255
+      end
+      item
+        Name = 'end'
+        DataType = ftString
+        Size = 255
+      end
+      item
+        Name = 'eit'
+        DataType = ftString
+        Size = 255
+      end
+      item
+        Name = 'vpsplugin_overwrite'
+        DataType = ftString
+        Size = 255
+      end
+      item
+        Name = 'afterevent'
+        DataType = ftString
+        Size = 255
+      end
+      item
+        Name = 'justplay'
+        DataType = ftString
+        Size = 255
+      end
+      item
+        Name = 'serviceref'
+        DataType = ftString
+        Size = 255
+      end
+      item
+        Name = 'filename'
+        DataType = ftString
+        Size = 255
+      end
+      item
+        Name = 'toggledisabledimg'
+        DataType = ftString
+        Size = 255
+      end
+      item
+        Name = 'state'
+        DataType = ftString
+        Size = 255
+      end
+      item
+        Name = 'logentries'
+        DataType = ftString
+        Size = 255
+      end
+      item
+        Name = 'nextactivation'
+        DataType = ftString
+        Size = 255
+      end
+      item
+        Name = 'vpsplugin_time'
+        DataType = ftString
+        Size = 255
+      end
+      item
+        Name = 'cancelled'
+        DataType = ftString
+        Size = 255
+      end
+      item
+        Name = 'vpsplugin_enabled'
+        DataType = ftString
+        Size = 255
+      end>
+    IndexDefs = <>
+    FetchOptions.AssignedValues = [evMode]
+    FetchOptions.Mode = fmAll
+    ResourceOptions.AssignedValues = [rvSilentMode]
+    ResourceOptions.SilentMode = True
+    UpdateOptions.AssignedValues = [uvCheckRequired]
+    UpdateOptions.CheckRequired = False
+    StoreDefs = True
+    Left = 496
+    Top = 460
+  end
+  object DreamRESTRequestDeleteTimer: TRESTRequest
+    Client = DreamRESTClient
+    Params = <
+      item
+        name = 'sRef'
+      end
+      item
+        name = 'begin'
+      end
+      item
+        name = 'end'
+      end>
+    Resource = 'timerdelete'
+    Response = DreamRESTResponseDeleteTimer
+    Left = 197
+    Top = 392
+  end
+  object DreamRESTResponseDeleteTimer: TRESTResponse
+    Left = 197
     Top = 456
   end
 end

@@ -4,13 +4,13 @@ Coordinates=126,188,69,36
 [MainTabControl]
 Coordinates=10,188,106,36
 
-[TabItem3]
-Coordinates=130,10,69,36
-
 []
 Coordinates=0,0,110,168
 Visible=True
 
 [TextEPGTabItem]
 Coordinates=209,10,69,36
+
+[TimersTabItem]
+Coordinates=130,10,69,36
 

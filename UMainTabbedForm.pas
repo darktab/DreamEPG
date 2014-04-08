@@ -9,14 +9,14 @@ uses
   UMainForm, FMX.TabControl, FMX.Layouts, FMX.Memo, FMX.ListView.Types,
   FMX.ListView, Data.DB, FMX.ListBox, UDataComboListViewFrame,
   UBackDataComboListViewFrame, System.Actions, FMX.ActnList, FireDAC.UI.Intf,
-  FireDAC.FMXUI.Wait, FireDAC.Stan.Intf, FireDAC.Comp.UI;
+  FireDAC.FMXUI.Wait, FireDAC.Stan.Intf, FireDAC.Comp.UI, UDataListView;
 
 type
   TMainTabbedForm = class(TMainForm)
     MainTabControl: TTabControl;
     TabItem1: TTabItem;
     TextEPGTabItem: TTabItem;
-    TabItem3: TTabItem;
+    TimersTabItem: TTabItem;
     TabItem4: TTabItem;
     DataComboListViewFrameChannelList: TDataComboListViewFrame;
     TextEPGTabControl: TTabControl;
@@ -35,6 +35,9 @@ type
     TextEPGInfoMemo: TMemo;
     TextEPGInfoRecordButton: TButton;
     TextEPGDateTimeLabel: TLabel;
+    TimersTopToolBar: TToolBar;
+    Label1: TLabel;
+    TimersDataListView: TDataListView;
     procedure FormShow(Sender: TObject);
     procedure ComboBoxServiceListChange(Sender: TObject);
     procedure DataComboListViewFrameChannelListDataListViewItemClick
@@ -42,8 +45,11 @@ type
     procedure TextEPGBackDataComboListViewFrameDataListViewItemClick
       (const Sender: TObject; const AItem: TListViewItem);
     procedure TextEPGInfoRecordButtonClick(Sender: TObject);
+    procedure TimersDataListViewDeletingItem(Sender: TObject; AIndex: Integer;
+      var ACanDelete: Boolean);
 
   private
+    procedure initTimerDataListView;
     { Private declarations }
   public
     { Public declarations }
@@ -70,6 +76,8 @@ var
   lDefaultServiceReference: string;
 begin
   inherited;
+
+  // initialisation des channels
   self.DataComboListViewFrameChannelList.init
     (MainDataModule.DreamFDMemTableServiceList, 'servicename',
     MainDataModule.DreamRESTRequestServiceList,
@@ -78,6 +86,9 @@ begin
     MainDataModule.DreamRESTRequestChannelList,
     MainDataModule.DreamRESTResponseDataSetAdapterChannelList,
     'servicereference');
+
+  // initialisation des timers
+  initTimerDataListView;
 end;
 
 procedure TMainTabbedForm.TextEPGBackDataComboListViewFrameDataListViewItemClick
@@ -113,6 +124,7 @@ begin
   if MainDataModule.DreamRESTResponseAddTimer.StatusCode = 200 then
   begin
     ShowMessage('Timer successfully scheduled!');
+    initTimerDataListView;
   end
   else
   begin
@@ -121,6 +133,53 @@ begin
       System.UITypes.TMsgDlgType.mtError, [System.UITypes.TMsgDlgBtn.mbOK], 0);
   end;
 
+end;
+
+// ------------------------
+// delete a timer
+// ------------------------
+procedure TMainTabbedForm.TimersDataListViewDeletingItem(Sender: TObject;
+  AIndex: Integer; var ACanDelete: Boolean);
+begin
+  inherited;
+  MainDataModule.DreamRESTRequestDeleteTimer.Params[0].Value :=
+    MainDataModule.DreamFDMemTableTimerList.FieldByName('serviceref').AsString;
+  MainDataModule.DreamRESTRequestDeleteTimer.Params[1].Value :=
+    MainDataModule.DreamFDMemTableTimerList.FieldByName('begin').AsString;
+  MainDataModule.DreamRESTRequestDeleteTimer.Params[2].Value :=
+    MainDataModule.DreamFDMemTableTimerList.FieldByName('end').AsString;
+  MainDataModule.DreamRESTRequestDeleteTimer.Execute;
+
+  if MainDataModule.DreamRESTResponseDeleteTimer.StatusCode = 200 then
+  begin
+    ShowMessage('Timer successfully deleted!');
+    ACanDelete := true;
+  end
+  else
+  begin
+    MessageDlg('The following error occurred: ' +
+      MainDataModule.DreamRESTResponseAddTimer.StatusText,
+      System.UITypes.TMsgDlgType.mtError, [System.UITypes.TMsgDlgBtn.mbOK], 0);
+    ACanDelete := false;
+  end;
+end;
+
+procedure TMainTabbedForm.initTimerDataListView;
+var
+  lTimersDetailStringlist: TStringList;
+begin
+  // initialisation des timers
+  MainDataModule.DreamRESTRequestTimerList.Execute;
+  TimersDataListView.DataSet := MainDataModule.DreamFDMemTableTimerList;
+  TimersDataListView.DataFieldName := 'name';
+  lTimersDetailStringlist := TStringList.Create;
+  lTimersDetailStringlist.Add('servicename');
+  lTimersDetailStringlist.Add('realbegin');
+  try
+    TimersDataListView.init(lTimersDetailStringlist);
+  except
+  end;
+  FreeAndNil(lTimersDetailStringlist);
 end;
 
 procedure TMainTabbedForm.DataComboListViewFrameChannelListDataListViewItemClick

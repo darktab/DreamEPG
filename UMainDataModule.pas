@@ -28,11 +28,19 @@ type
     DreamFDMemTableTextEPG: TFDMemTable;
     DreamRESTRequestAddTimer: TRESTRequest;
     DreamRESTResponseAddTimer: TRESTResponse;
+    DreamRESTRequestTimerList: TRESTRequest;
+    DreamRESTResponseTimerList: TRESTResponse;
+    DreamRESTResponseDataSetAdapterTimerList: TRESTResponseDataSetAdapter;
+    DreamFDMemTableTimerList: TFDMemTable;
+    DreamRESTRequestDeleteTimer: TRESTRequest;
+    DreamRESTResponseDeleteTimer: TRESTResponse;
     procedure DreamRESTResponseDataSetAdapterChannelListBeforeOpenDataSet
       (Sender: TObject);
     procedure DreamRESTResponseDataSetAdapterServiceListBeforeOpenDataSet
       (Sender: TObject);
     procedure DreamRESTResponseDataSetAdapterTextEPGBeforeOpenDataSet
+      (Sender: TObject);
+    procedure DreamRESTResponseDataSetAdapterTimerListBeforeOpenDataSet
       (Sender: TObject);
   private
     { Private declarations }
@@ -65,6 +73,12 @@ procedure TMainDataModule.
   DreamRESTResponseDataSetAdapterTextEPGBeforeOpenDataSet(Sender: TObject);
 begin
   self.DreamFDMemTableTextEPG.CreateDataSet;
+end;
+
+procedure TMainDataModule.
+  DreamRESTResponseDataSetAdapterTimerListBeforeOpenDataSet(Sender: TObject);
+begin
+  self.DreamFDMemTableTimerList.CreateDataSet;
 end;
 
 end.

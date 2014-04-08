@@ -231,7 +231,7 @@ inherited MainTabbedForm: TMainTabbedForm
         end
       end
     end
-    object TabItem3: TTabItem
+    object TimersTabItem: TTabItem
       Align = alClient
       WordWrap = False
       Height = 49.000000000000000000
@@ -241,6 +241,37 @@ inherited MainTabbedForm: TMainTabbedForm
       Text = 'Timers'
       Trimming = ttCharacter
       Width = 80.000000000000000000
+      object TimersTopToolBar: TToolBar
+        Height = 44.000000000000000000
+        TabOrder = 0
+        Width = 320.000000000000000000
+        object Label1: TLabel
+          Align = alClient
+          Height = 44.000000000000000000
+          StyleLookup = 'toollabel'
+          Text = 'Scheduled Timers'
+          TextAlign = taCenter
+          Width = 320.000000000000000000
+          Trimming = ttCharacter
+        end
+      end
+      object TimersDataListView: TDataListView
+        ItemAppearanceClassName = 'TCustomizeItemObjects'
+        ItemEditAppearanceClassName = 'TCustomizeItemObjects'
+        HeaderAppearanceClassName = 'TListHeaderObjects'
+        FooterAppearanceClassName = 'TListHeaderObjects'
+        Align = alClient
+        Height = 455.000000000000000000
+        TabOrder = 1
+        Width = 320.000000000000000000
+        ItemAppearanceObjects.ItemObjects.Text.TextVertAlign = taLeading
+        ItemAppearanceObjects.ItemObjects.Text.PlaceOffset.Y = 5.000000000000000000
+        ItemAppearanceObjects.ItemObjects.Detail.Font.Size = 10.000000000000000000
+        ItemAppearanceObjects.ItemObjects.Detail.TextVertAlign = taTrailing
+        ItemAppearanceObjects.ItemObjects.Detail.Visible = True
+        ItemAppearanceObjects.ItemObjects.Detail.PlaceOffset.Y = -5.000000000000000000
+        OnDeletingItem = TimersDataListViewDeletingItem
+      end
     end
     object TabItem4: TTabItem
       WordWrap = False
