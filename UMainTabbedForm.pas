@@ -142,6 +142,12 @@ procedure TMainTabbedForm.TimersDataListViewDeletingItem(Sender: TObject;
   AIndex: Integer; var ACanDelete: Boolean);
 begin
   inherited;
+  try
+    MainDataModule.DreamFDMemTableTimerList.RecNo :=
+      TimersDataListView.ItemIndex + 1;
+  except
+
+  end;
   MainDataModule.DreamRESTRequestDeleteTimer.Params[0].Value :=
     MainDataModule.DreamFDMemTableTimerList.FieldByName('serviceref').AsString;
   MainDataModule.DreamRESTRequestDeleteTimer.Params[1].Value :=
