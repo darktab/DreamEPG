@@ -135,8 +135,6 @@ inherited MainTabbedForm: TMainTabbedForm
               FooterAppearanceClassName = 'TCustomizeItemObjects'
               Height = 455.000000000000000000
               Width = 320.000000000000000000
-              ItemAppearance.HeaderHeight = 1
-              ItemAppearance.FooterHeight = 1
               ItemAppearanceObjects.ItemObjects.Text.TextVertAlign = taLeading
               ItemAppearanceObjects.ItemObjects.Text.Width = 240.000000000000000000
               ItemAppearanceObjects.ItemObjects.Text.PlaceOffset.Y = 5.000000000000000000
@@ -151,7 +149,9 @@ inherited MainTabbedForm: TMainTabbedForm
               ItemAppearanceObjects.ItemObjects.GlyphButton.Enabled = False
               ItemAppearanceObjects.ItemObjects.GlyphButton.Align = Trailing
               ItemAppearanceObjects.ItemObjects.GlyphButton.Opacity = 0.000000000000000000
+              ItemAppearanceObjects.HeaderObjects.Accessory.Visible = True
               ItemAppearanceObjects.FooterObjects.Detail.Visible = True
+              ItemAppearanceObjects.FooterObjects.Accessory.Visible = True
               OnItemClick = TextEPGBackDataComboListViewFrameDataListViewItemClick
             end
           end
@@ -218,6 +218,7 @@ inherited MainTabbedForm: TMainTabbedForm
             Text = 'Record'
             Trimming = ttCharacter
             Width = 320.000000000000000000
+            OnClick = TextEPGInfoRecordButtonClick
           end
           object TextEPGDateTimeLabel: TLabel
             Align = alTop

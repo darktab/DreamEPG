@@ -44,17 +44,7 @@ object MainDataModule: TMainDataModule
     Top = 24
   end
   object DreamFDMemTableChannelList: TFDMemTable
-    FieldDefs = <
-      item
-        Name = 'servicereference'
-        DataType = ftString
-        Size = 255
-      end
-      item
-        Name = 'servicename'
-        DataType = ftString
-        Size = 255
-      end>
+    FieldDefs = <>
     IndexDefs = <>
     FetchOptions.AssignedValues = [evMode]
     FetchOptions.Mode = fmAll
@@ -146,5 +136,27 @@ object MainDataModule: TMainDataModule
     StoreDefs = True
     Left = 600
     Top = 296
+  end
+  object DreamRESTRequestAddTimer: TRESTRequest
+    Client = DreamRESTClient
+    Params = <
+      item
+        name = 'sRef'
+      end
+      item
+        name = 'eventid'
+      end
+      item
+        name = 'dirname'
+        Value = '/hdd/movie/'
+      end>
+    Resource = 'timeraddbyeventid'
+    Response = DreamRESTResponseAddTimer
+    Left = 77
+    Top = 392
+  end
+  object DreamRESTResponseAddTimer: TRESTResponse
+    Left = 77
+    Top = 456
   end
 end

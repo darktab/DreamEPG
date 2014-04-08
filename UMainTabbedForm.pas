@@ -8,7 +8,8 @@ uses
   FMX.Types, FMX.Graphics, FMX.Controls, FMX.Forms, FMX.Dialogs, FMX.StdCtrls,
   UMainForm, FMX.TabControl, FMX.Layouts, FMX.Memo, FMX.ListView.Types,
   FMX.ListView, Data.DB, FMX.ListBox, UDataComboListViewFrame,
-  UBackDataComboListViewFrame, System.Actions, FMX.ActnList;
+  UBackDataComboListViewFrame, System.Actions, FMX.ActnList, FireDAC.UI.Intf,
+  FireDAC.FMXUI.Wait, FireDAC.Stan.Intf, FireDAC.Comp.UI;
 
 type
   TMainTabbedForm = class(TMainForm)
@@ -40,6 +41,7 @@ type
       (const Sender: TObject; const AItem: TListViewItem);
     procedure TextEPGBackDataComboListViewFrameDataListViewItemClick
       (const Sender: TObject; const AItem: TListViewItem);
+    procedure TextEPGInfoRecordButtonClick(Sender: TObject);
 
   private
     { Private declarations }
@@ -94,6 +96,31 @@ begin
   TextEPGInfoMemo.Text := MainDataModule.DreamFDMemTableTextEPG.FieldByName
     ('longdesc').AsString;
   ToInfoChangeTabAction.ExecuteTarget(self);
+end;
+
+// ------------------------
+// Schedule a recording
+// ------------------------
+procedure TMainTabbedForm.TextEPGInfoRecordButtonClick(Sender: TObject);
+begin
+  inherited;
+  MainDataModule.DreamRESTRequestAddTimer.Params[0].Value :=
+    MainDataModule.DreamFDMemTableTextEPG.FieldByName('sref').AsString;
+  MainDataModule.DreamRESTRequestAddTimer.Params[1].Value :=
+    MainDataModule.DreamFDMemTableTextEPG.FieldByName('id').AsString;
+
+  MainDataModule.DreamRESTRequestAddTimer.Execute;
+  if MainDataModule.DreamRESTResponseAddTimer.StatusCode = 200 then
+  begin
+    ShowMessage('Timer successfully scheduled!');
+  end
+  else
+  begin
+    MessageDlg('The following error occurred: ' +
+      MainDataModule.DreamRESTResponseAddTimer.StatusText,
+      System.UITypes.TMsgDlgType.mtError, [System.UITypes.TMsgDlgBtn.mbOK], 0);
+  end;
+
 end;
 
 procedure TMainTabbedForm.DataComboListViewFrameChannelListDataListViewItemClick

@@ -156,6 +156,17 @@ begin
     TopDataComboBox.ItemIndex := lidx - 1;
   end;
 
+  if TopDataComboBox.Items.Count > 1 then
+  begin
+    TopPrevButton.Visible := true;
+    TopNextButton.Visible := true;
+  end
+  else
+  begin
+    TopPrevButton.Visible := false;
+    TopNextButton.Visible := false;
+  end;
+
 end;
 
 procedure TDataComboListViewFrame.initDataListView;

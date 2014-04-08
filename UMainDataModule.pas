@@ -7,7 +7,8 @@ uses
   REST.Client, Data.Bind.Components, Data.Bind.ObjectScope,
   REST.Authenticator.Basic, Data.DB, FireDAC.Stan.Intf, FireDAC.Stan.Option,
   FireDAC.Stan.Param, FireDAC.Stan.Error, FireDAC.DatS, FireDAC.Phys.Intf,
-  FireDAC.DApt.Intf, FireDAC.Comp.DataSet, FireDAC.Comp.Client;
+  FireDAC.DApt.Intf, FireDAC.Comp.DataSet, FireDAC.Comp.Client, FireDAC.UI.Intf,
+  FireDAC.FMXUI.Wait, FireDAC.Comp.UI;
 
 type
   TMainDataModule = class(TDataModule)
@@ -25,6 +26,8 @@ type
     DreamRESTResponseTextEPG: TRESTResponse;
     DreamRESTResponseDataSetAdapterTextEPG: TRESTResponseDataSetAdapter;
     DreamFDMemTableTextEPG: TFDMemTable;
+    DreamRESTRequestAddTimer: TRESTRequest;
+    DreamRESTResponseAddTimer: TRESTResponse;
     procedure DreamRESTResponseDataSetAdapterChannelListBeforeOpenDataSet
       (Sender: TObject);
     procedure DreamRESTResponseDataSetAdapterServiceListBeforeOpenDataSet
