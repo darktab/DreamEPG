@@ -211,7 +211,7 @@ begin
   // Call the working spinner
   fWorkingForm.WorkingMsg('Loading ...', True);
 
-  //ceci doit être mis dans un Thread ...
+  // ceci doit être mis dans un Thread ...
   self.TextEPGBackDataComboListViewFrame.init
     (MainDataModule.DreamFDMemTableChannelList, 'servicename',
     MainDataModule.DreamRESTRequestChannelList,
