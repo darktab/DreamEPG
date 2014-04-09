@@ -9,7 +9,8 @@ uses
   UMainForm, FMX.TabControl, FMX.Layouts, FMX.Memo, FMX.ListView.Types,
   FMX.ListView, Data.DB, FMX.ListBox, UDataComboListViewFrame,
   UBackDataComboListViewFrame, System.Actions, FMX.ActnList, FireDAC.UI.Intf,
-  FireDAC.FMXUI.Wait, FireDAC.Stan.Intf, FireDAC.Comp.UI, UDataListView;
+  FireDAC.FMXUI.Wait, FireDAC.Stan.Intf, FireDAC.Comp.UI, UDataListView,
+  UWorking;
 
 type
   TMainTabbedForm = class(TMainForm)
@@ -49,6 +50,8 @@ type
       var ACanDelete: Boolean);
 
   private
+    fWorkingForm: TWorkingForm;
+
     procedure initTimerDataListView;
     { Private declarations }
   public
@@ -76,6 +79,9 @@ var
   lDefaultServiceReference: string;
 begin
   inherited;
+  // création du spinner
+  fWorkingForm := TWorkingForm.Create(self);
+  fWorkingForm.Parent := self;
 
   // initialisation des channels
   self.DataComboListViewFrameChannelList.init
@@ -159,14 +165,14 @@ begin
   if MainDataModule.DreamRESTResponseDeleteTimer.StatusCode = 200 then
   begin
     ShowMessage('Timer successfully deleted!');
-    ACanDelete := true;
+    ACanDelete := True;
   end
   else
   begin
     MessageDlg('The following error occurred: ' +
       MainDataModule.DreamRESTResponseAddTimer.StatusText,
       System.UITypes.TMsgDlgType.mtError, [System.UITypes.TMsgDlgBtn.mbOK], 0);
-    ACanDelete := false;
+    ACanDelete := False;
   end;
 end;
 
@@ -202,6 +208,10 @@ begin
   lDetailStringList.Add('begin');
   lDetailStringList.Add('end');
 
+  // Call the working spinner
+  fWorkingForm.WorkingMsg('Loading ...', True);
+
+  //ceci doit être mis dans un Thread ...
   self.TextEPGBackDataComboListViewFrame.init
     (MainDataModule.DreamFDMemTableChannelList, 'servicename',
     MainDataModule.DreamRESTRequestChannelList,
@@ -212,6 +222,7 @@ begin
 
   FreeAndNil(lDetailStringList);
 
+  fWorkingForm.WorkingMsg('', False);
 end;
 
 end.
