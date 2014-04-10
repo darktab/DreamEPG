@@ -8,7 +8,7 @@ uses
   FMX.Types, FMX.Graphics, FMX.Controls, FMX.Forms, FMX.Dialogs, FMX.StdCtrls,
   FMX.ListBox, UDataComboBox, FMX.ListView.Types, FMX.ListView, UDataListView,
   Data.DB, FireDAC.Comp.DataSet, FireDAC.Comp.Client, REST.Response.Adapter,
-  REST.Client;
+  REST.Client, UDetailInitThread, UWorking;
 
 type
   TDataComboListViewFrame = class(TFrame)
@@ -24,6 +24,7 @@ type
       const AItem: TListViewItem);
     procedure DataListViewButtonClick(const Sender: TObject;
       const AItem: TListViewItem; const AObject: TListItemSimpleControl);
+    procedure DoneInitDetail(Sender: TObject);
   private
     { Private declarations }
     fMasterDataSet: TDataSet;
@@ -39,6 +40,10 @@ type
     fDetailDataStringList: TStringList;
 
     fMasterDetailLinkFieldName: String;
+
+    fWorkingForm: TWorkingForm;
+    fDetailInitThread: TDetailInitThread;
+
     procedure initTopDataComboBox;
 
   public
@@ -75,7 +80,13 @@ constructor TDataComboListViewFrame.Create(AOwner: TComponent);
 begin
   // Execute the parent (TObject) constructor first
   inherited; // Call the parent Create method
+  fWorkingForm := TWorkingForm.Create(self);
+  fWorkingForm.Parent := self;
+end;
 
+procedure TDataComboListViewFrame.DoneInitDetail(Sender: TObject);
+begin
+  fWorkingForm.WorkingMsg('', false);
 end;
 
 procedure TDataComboListViewFrame.init(lMasterDataSet: TDataSet;
@@ -195,24 +206,29 @@ begin
   // sRef parameter
   fDetailRESTRequest.Params[0].Value := lDefaultServiceReference;
 
-  try
+  // Call the working spinner
+  fWorkingForm.WorkingMsg('Loading ...', true);
+  fDetailInitThread := TDetailInitThread.Create(fMasterDataSet,
+    fDetailDataStringList, fDetailRESTRequest, DataListView);
+  fDetailInitThread.OnTerminate := DoneInitDetail;
+  { try
     fDetailRESTRequest.Execute;
-  except
+    except
     if fMasterDataSet.State = dsBrowse then
     begin
-      fMasterDataSet.Close;
+    fMasterDataSet.Close;
     end;
     fDetailRESTRequest.Execute;
-  end;
+    end;
 
-  if assigned(fDetailDataStringList) then
-  begin
+    if assigned(fDetailDataStringList) then
+    begin
     DataListView.init(fDetailDataStringList);
-  end
-  else
-  begin
+    end
+    else
+    begin
     DataListView.init;
-  end;
+    end; }
 
 end;
 

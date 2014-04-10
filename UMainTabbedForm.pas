@@ -50,7 +50,6 @@ type
       var ACanDelete: Boolean);
 
   private
-    fWorkingForm: TWorkingForm;
 
     procedure initTimerDataListView;
     { Private declarations }
@@ -79,9 +78,6 @@ var
   lDefaultServiceReference: string;
 begin
   inherited;
-  // création du spinner
-  fWorkingForm := TWorkingForm.Create(self);
-  fWorkingForm.Parent := self;
 
   // initialisation des channels
   self.DataComboListViewFrameChannelList.init
@@ -208,9 +204,6 @@ begin
   lDetailStringList.Add('begin');
   lDetailStringList.Add('end');
 
-  // Call the working spinner
-  fWorkingForm.WorkingMsg('Loading ...', True);
-
   // ceci doit être mis dans un Thread ...
   self.TextEPGBackDataComboListViewFrame.init
     (MainDataModule.DreamFDMemTableChannelList, 'servicename',
@@ -222,7 +215,6 @@ begin
 
   FreeAndNil(lDetailStringList);
 
-  fWorkingForm.WorkingMsg('', False);
 end;
 
 end.

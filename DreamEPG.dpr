@@ -9,7 +9,7 @@ uses
   UMainDataModule in 'UMainDataModule.pas' {MainDataModule: TDataModule},
   UDataComboListViewFrame in 'UDataComboListViewFrame.pas' {DataComboListViewFrame: TFrame},
   UBackDataComboListViewFrame in 'UBackDataComboListViewFrame.pas' {BackDataComboListViewFrame: TFrame},
-  UThreadSpinner in 'UThreadSpinner.pas';
+  UDetailInitThread in 'UDetailInitThread.pas';
 
 {$R *.res}
 
