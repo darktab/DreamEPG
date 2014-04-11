@@ -1,5 +1,5 @@
-DreamEPG
-========
+simpleEPG
+=========
 
 Dreambox and Vu+ boxes EPG for iOS
 
