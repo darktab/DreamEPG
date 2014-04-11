@@ -21,7 +21,7 @@ type
   public
     constructor Create(lMasterDataSet: TDataSet;
       lDetailDataStringList: TStringList; lDetailRESTRequest: TRESTRequest;
-      lDetailDataListView: TDataListView);
+      lDetailDataListView: TDataListView; OnTerminate: TNotifyEvent);
     destructor Destroy; override;
     procedure ToSyncExecute;
   end;
@@ -37,7 +37,7 @@ end;
 
 constructor TDetailInitThread.Create(lMasterDataSet: TDataSet;
   lDetailDataStringList: TStringList; lDetailRESTRequest: TRESTRequest;
-  lDetailDataListView: TDataListView);
+  lDetailDataListView: TDataListView; OnTerminate: TNotifyEvent);
 begin
   inherited Create(false);
   fDetailRESTRequest := lDetailRESTRequest;
@@ -45,6 +45,8 @@ begin
   fDetailDataStringList := lDetailDataStringList;
   fDetailDataListView := lDetailDataListView;
 
+  // Save the termination event handler.
+  Self.OnTerminate := OnTerminate;
   // The thread will free itself when it terminates.
   FreeOnTerminate := True;
 end;

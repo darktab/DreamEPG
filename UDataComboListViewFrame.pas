@@ -209,8 +209,8 @@ begin
   // Call the working spinner
   fWorkingForm.WorkingMsg('Loading ...', true);
   fDetailInitThread := TDetailInitThread.Create(fMasterDataSet,
-    fDetailDataStringList, fDetailRESTRequest, DataListView);
-  fDetailInitThread.OnTerminate := DoneInitDetail;
+    fDetailDataStringList, fDetailRESTRequest, DataListView, DoneInitDetail);
+  // fDetailInitThread.OnTerminate := DoneInitDetail;
   { try
     fDetailRESTRequest.Execute;
     except
