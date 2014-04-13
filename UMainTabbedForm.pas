@@ -7,7 +7,7 @@ uses
   System.Variants,
   FMX.Types, FMX.Graphics, FMX.Controls, FMX.Forms, FMX.Dialogs, FMX.StdCtrls,
   UMainForm, FMX.TabControl, FMX.Layouts, FMX.Memo, FMX.ListView.Types,
-  FMX.ListView, Data.DB, FMX.ListBox, UDataComboListViewFrame,
+  FMX.ListView, FMX.Edit, Data.DB, FMX.ListBox, UDataComboListViewFrame,
   UBackDataComboListViewFrame, System.Actions, FMX.ActnList, FireDAC.UI.Intf,
   FireDAC.FMXUI.Wait, FireDAC.Stan.Intf, FireDAC.Comp.UI, UDataListView,
   UWorking;
@@ -39,6 +39,7 @@ type
     TimersTopToolBar: TToolBar;
     Label1: TLabel;
     TimersDataListView: TDataListView;
+    TextEPGDetailProgressBar: TProgressBar;
     procedure FormShow(Sender: TObject);
     procedure ComboBoxServiceListChange(Sender: TObject);
     procedure DataComboListViewFrameChannelListDataListViewItemClick
@@ -48,6 +49,10 @@ type
     procedure TextEPGInfoRecordButtonClick(Sender: TObject);
     procedure TimersDataListViewDeletingItem(Sender: TObject; AIndex: Integer;
       var ACanDelete: Boolean);
+    procedure TextEPGBackDataComboListViewFrameDataListViewSearchChange
+      (Sender: TObject);
+    procedure TextEPGBackDataComboListViewFrameDataListViewChange
+      (Sender: TObject);
 
   private
 
@@ -93,6 +98,20 @@ begin
   initTimerDataListView;
 end;
 
+procedure TMainTabbedForm.TextEPGBackDataComboListViewFrameDataListViewChange
+  (Sender: TObject);
+begin
+  inherited;
+  TextEPGDetailProgressBar.Min := MainDataModule.DreamFDMemTableTextEPG.
+    FieldByName('begin_timestamp').AsInteger;
+  TextEPGDetailProgressBar.Max := TextEPGDetailProgressBar.Min +
+    MainDataModule.DreamFDMemTableTextEPG.FieldByName('duration').AsInteger;
+  TextEPGDetailProgressBar.Value := MainDataModule.DreamFDMemTableTextEPG.
+    FieldByName('now_timestamp').AsInteger;
+  TextEPGDetailProgressBar.Visible := true;
+
+end;
+
 procedure TMainTabbedForm.TextEPGBackDataComboListViewFrameDataListViewItemClick
   (const Sender: TObject; const AItem: TListViewItem);
 begin
@@ -109,6 +128,26 @@ begin
   TextEPGInfoMemo.Text := MainDataModule.DreamFDMemTableTextEPG.FieldByName
     ('longdesc').AsString;
   ToInfoChangeTabAction.ExecuteTarget(self);
+end;
+
+// ------------------------
+// Access to Searchbox
+// ------------------------
+procedure TMainTabbedForm.
+  TextEPGBackDataComboListViewFrameDataListViewSearchChange(Sender: TObject);
+var
+  I: Integer;
+  SearchBox: TSearchBox;
+  List: TListView;
+begin
+  inherited;
+  List := Sender as TListView;
+  for I := 0 to List.Controls.Count - 1 do
+    if List.Controls[I].ClassType = TSearchBox then
+    begin
+      SearchBox := TSearchBox(List.Controls[I]);
+      Break;
+    end;
 end;
 
 // ------------------------
@@ -161,7 +200,7 @@ begin
   if MainDataModule.DreamRESTResponseDeleteTimer.StatusCode = 200 then
   begin
     ShowMessage('Timer successfully deleted!');
-    ACanDelete := True;
+    ACanDelete := true;
   end
   else
   begin
@@ -204,7 +243,6 @@ begin
   lDetailStringList.Add('begin');
   lDetailStringList.Add('end');
 
-  // ceci doit être mis dans un Thread ...
   self.TextEPGBackDataComboListViewFrame.init
     (MainDataModule.DreamFDMemTableChannelList, 'servicename',
     MainDataModule.DreamRESTRequestChannelList,

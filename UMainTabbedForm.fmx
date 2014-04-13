@@ -26,6 +26,7 @@ inherited MainTabbedForm: TMainTabbedForm
       TabOrder = 0
       Text = 'Multi EPG'
       Trimming = ttCharacter
+      Visible = False
       Width = 80.000000000000000000
     end
     object TextEPGTabItem: TTabItem
@@ -33,11 +34,11 @@ inherited MainTabbedForm: TMainTabbedForm
       WordWrap = False
       Height = 49.000000000000000000
       IsSelected = True
-      StyleLookup = 'tabitemtoprated'
+      StyleLookup = 'tabitembookmarks'
       TabOrder = 1
       Text = 'Text EPG'
       Trimming = ttCharacter
-      Width = 80.000000000000000000
+      Width = 107.000000000000000000
       object TextEPGTabControl: TTabControl
         Align = alClient
         FullSize = True
@@ -85,6 +86,7 @@ inherited MainTabbedForm: TMainTabbedForm
               DisableFocusEffect = False
               Height = 455.000000000000000000
               Width = 320.000000000000000000
+              CanSwipeDelete = False
               OnItemClick = DataComboListViewFrameChannelListDataListViewItemClick
               DataFieldName = 'servicename'
             end
@@ -152,8 +154,19 @@ inherited MainTabbedForm: TMainTabbedForm
               ItemAppearanceObjects.HeaderObjects.Accessory.Visible = True
               ItemAppearanceObjects.FooterObjects.Detail.Visible = True
               ItemAppearanceObjects.FooterObjects.Accessory.Visible = True
+              CanSwipeDelete = False
+              OnChange = TextEPGBackDataComboListViewFrameDataListViewChange
               OnItemClick = TextEPGBackDataComboListViewFrameDataListViewItemClick
+              OnSearchChange = TextEPGBackDataComboListViewFrameDataListViewSearchChange
             end
+          end
+          object TextEPGDetailProgressBar: TProgressBar
+            Height = 4.000000000000000000
+            Orientation = orHorizontal
+            Position.X = 144.000000000000000000
+            Position.Y = 76.000000000000000000
+            Visible = False
+            Width = 145.000000000000000000
           end
         end
         object TextEPGInfoTabItem: TTabItem
@@ -240,7 +253,7 @@ inherited MainTabbedForm: TMainTabbedForm
       TabOrder = 2
       Text = 'Timers'
       Trimming = ttCharacter
-      Width = 80.000000000000000000
+      Width = 107.000000000000000000
       object TimersTopToolBar: TToolBar
         Height = 44.000000000000000000
         TabOrder = 0
@@ -277,12 +290,12 @@ inherited MainTabbedForm: TMainTabbedForm
       WordWrap = False
       Height = 49.000000000000000000
       IsSelected = False
-      Position.X = 240.000000000000000000
+      Position.X = 214.000000000000000000
       StyleLookup = 'tabitemmostviewed'
       TabOrder = 3
       Text = 'Settings'
       Trimming = ttCharacter
-      Width = 80.000000000000000000
+      Width = 106.000000000000000000
     end
   end
   object TextEPGActionList: TActionList

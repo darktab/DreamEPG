@@ -76,7 +76,16 @@ end;
 procedure TDetailInitThread.Execute;
 begin
   { Place thread code here }
-  Synchronize(ToSyncExecute);
+  try
+    Synchronize(ToSyncExecute);
+  except
+    Synchronize(
+      procedure
+      begin
+        // a mieux implémenter!
+        ShowMessage('No EPG Data found ...');
+      end)
+  end;
 end;
 
 end.
