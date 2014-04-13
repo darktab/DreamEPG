@@ -147,8 +147,10 @@ inherited MainTabbedForm: TMainTabbedForm
               ItemAppearanceObjects.ItemObjects.Detail.Visible = True
               ItemAppearanceObjects.ItemObjects.Detail.PlaceOffset.Y = -5.000000000000000000
               ItemAppearanceObjects.ItemObjects.Image.Opacity = 0.000000000000000000
-              ItemAppearanceObjects.ItemObjects.TextButton.Enabled = False
-              ItemAppearanceObjects.ItemObjects.TextButton.Opacity = 0.000000000000000000
+              ItemAppearanceObjects.ItemObjects.TextButton.WordWrap = True
+              ItemAppearanceObjects.ItemObjects.TextButton.Width = 30.000000000000000000
+              ItemAppearanceObjects.ItemObjects.TextButton.Visible = True
+              ItemAppearanceObjects.ItemObjects.TextButton.Text = 'i / r'
               ItemAppearanceObjects.ItemObjects.GlyphButton.Enabled = False
               ItemAppearanceObjects.ItemObjects.GlyphButton.Align = Trailing
               ItemAppearanceObjects.ItemObjects.GlyphButton.Opacity = 0.000000000000000000
