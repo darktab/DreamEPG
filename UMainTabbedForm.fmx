@@ -44,14 +44,14 @@ inherited MainTabbedForm: TMainTabbedForm
         FullSize = True
         Height = 499.000000000000000000
         TabHeight = 49.000000000000000000
-        TabIndex = 0
+        TabIndex = 1
         TabOrder = 0
         TabPosition = tpNone
         Width = 320.000000000000000000
         object TextEPGMasterTabItem: TTabItem
           WordWrap = False
           Height = 8.000000000000000000
-          IsSelected = True
+          IsSelected = False
           Position.X = 146.000000000000000000
           Position.Y = 480.000000000000000000
           TabOrder = 0
@@ -75,7 +75,7 @@ inherited MainTabbedForm: TMainTabbedForm
                 Width = 44.000000000000000000
               end
               inherited TopDataComboBox: TDataComboBox
-                Height = 30.000000000000000000
+                Height = 38.000000000000000000
                 Padding.Top = 10.000000000000000000
                 Margins.Top = 6.000000000000000000
                 Width = 232.000000000000000000
@@ -95,7 +95,7 @@ inherited MainTabbedForm: TMainTabbedForm
         object TextEPGDetailTabItem: TTabItem
           WordWrap = False
           Height = 8.000000000000000000
-          IsSelected = False
+          IsSelected = True
           Position.X = 156.000000000000000000
           Position.Y = 480.000000000000000000
           TabOrder = 1
@@ -131,27 +131,22 @@ inherited MainTabbedForm: TMainTabbedForm
               end
             end
             inherited DataListView: TDataListView
-              ItemAppearanceClassName = 'TCustomizeItemObjects'
+              ItemAppearanceClassName = 'TListItemRightDetailAppearance'
               ItemEditAppearanceClassName = 'TCustomizeItemObjects'
               HeaderAppearanceClassName = 'TCustomizeItemObjects'
               FooterAppearanceClassName = 'TCustomizeItemObjects'
               Height = 455.000000000000000000
+              Opacity = 0.000000000000000000
               Width = 320.000000000000000000
               ItemAppearanceObjects.ItemObjects.Text.TextVertAlign = taLeading
               ItemAppearanceObjects.ItemObjects.Text.Width = 240.000000000000000000
-              ItemAppearanceObjects.ItemObjects.Text.PlaceOffset.Y = 5.000000000000000000
+              ItemAppearanceObjects.ItemObjects.Text.Height = 10.000000000000000000
+              ItemAppearanceObjects.ItemObjects.Text.PlaceOffset.X = 5.000000000000000000
+              ItemAppearanceObjects.ItemObjects.Accessory.AccessoryType = Detail
               ItemAppearanceObjects.ItemObjects.Detail.Font.Size = 10.000000000000000000
               ItemAppearanceObjects.ItemObjects.Detail.TextVertAlign = taTrailing
-              ItemAppearanceObjects.ItemObjects.Detail.Width = 240.000000000000000000
+              ItemAppearanceObjects.ItemObjects.Detail.Height = 10.000000000000000000
               ItemAppearanceObjects.ItemObjects.Detail.VertAlign = Trailing
-              ItemAppearanceObjects.ItemObjects.Detail.Visible = True
-              ItemAppearanceObjects.ItemObjects.Detail.PlaceOffset.Y = -5.000000000000000000
-              ItemAppearanceObjects.ItemObjects.Image.Opacity = 0.000000000000000000
-              ItemAppearanceObjects.ItemObjects.TextButton.Enabled = False
-              ItemAppearanceObjects.ItemObjects.TextButton.Opacity = 0.000000000000000000
-              ItemAppearanceObjects.ItemObjects.GlyphButton.Enabled = False
-              ItemAppearanceObjects.ItemObjects.GlyphButton.Align = Trailing
-              ItemAppearanceObjects.ItemObjects.GlyphButton.Opacity = 0.000000000000000000
               ItemAppearanceObjects.HeaderObjects.Accessory.Visible = True
               ItemAppearanceObjects.FooterObjects.Detail.Visible = True
               ItemAppearanceObjects.FooterObjects.Accessory.Visible = True
