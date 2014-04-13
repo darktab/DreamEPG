@@ -1,7 +1,4 @@
-﻿[TabItem1]
-Coordinates=126,188,69,36
-
-[MainTabControl]
+﻿[MainTabControl]
 Coordinates=10,188,106,36
 
 []
@@ -13,4 +10,7 @@ Coordinates=209,10,69,36
 
 [TimersTabItem]
 Coordinates=130,10,69,36
+
+[MultiEPGTabItem]
+Coordinates=126,188,69,36
 

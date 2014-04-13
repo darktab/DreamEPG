@@ -17,7 +17,7 @@ inherited MainTabbedForm: TMainTabbedForm
     TabOrder = 0
     TabPosition = tpBottom
     Width = 320.000000000000000000
-    object TabItem1: TTabItem
+    object MultiEPGTabItem: TTabItem
       Align = alClient
       WordWrap = False
       Height = 49.000000000000000000
@@ -120,7 +120,7 @@ inherited MainTabbedForm: TMainTabbedForm
                 Width = 44.000000000000000000
               end
               inherited TopDataComboBox: TDataComboBox
-                Height = 30.000000000000000000
+                Height = 38.000000000000000000
                 Margins.Top = 6.000000000000000000
                 Width = 188.000000000000000000
               end
@@ -252,7 +252,7 @@ inherited MainTabbedForm: TMainTabbedForm
         Height = 44.000000000000000000
         TabOrder = 0
         Width = 320.000000000000000000
-        object Label1: TLabel
+        object TimersTopToolBarLabel: TLabel
           Align = alClient
           Height = 44.000000000000000000
           StyleLookup = 'toollabel'
@@ -280,7 +280,7 @@ inherited MainTabbedForm: TMainTabbedForm
         OnDeletingItem = TimersDataListViewDeletingItem
       end
     end
-    object TabItem4: TTabItem
+    object SettingsTabItem: TTabItem
       WordWrap = False
       Height = 49.000000000000000000
       IsSelected = False
@@ -290,6 +290,70 @@ inherited MainTabbedForm: TMainTabbedForm
       Text = 'Settings'
       Trimming = ttCharacter
       Width = 106.000000000000000000
+      object SettingsListBox: TListBox
+        Align = alClient
+        Height = 455.000000000000000000
+        StyleLookup = 'transparentlistboxstyle'
+        TabOrder = 0
+        Width = 320.000000000000000000
+        DefaultItemStyles.ItemStyle = 'listboxitemnodetail'
+        DefaultItemStyles.GroupHeaderStyle = ''
+        DefaultItemStyles.GroupFooterStyle = ''
+        GroupingKind = gsGrouped
+        object ListBoxGroupHeader1: TListBoxGroupHeader
+          Height = 56.000000000000000000
+          StyleLookup = 'listboxgroupheader'
+          Text = 'Decoder Settings'
+          Width = 320.000000000000000000
+        end
+        object ListBoxItem1: TListBoxItem
+          Height = 44.000000000000000000
+          ItemData.Detail = 'dreambox.home.net'
+          Position.Y = 56.000000000000000000
+          StyleLookup = 'listboxitemrightdetail'
+          Text = 'Name'
+          Width = 320.000000000000000000
+          object Edit1: TEdit
+            Touch.InteractiveGestures = [igLongTap, igDoubleTap]
+            TabOrder = 0
+            Position.X = 136.000000000000000000
+            Position.Y = 8.000000000000000000
+            Width = 177.000000000000000000
+            Height = 30.000000000000000000
+            KillFocusByReturn = False
+          end
+        end
+        object ListBoxItem2: TListBoxItem
+          Height = 44.000000000000000000
+          ItemData.Detail = 'root'
+          Position.Y = 100.000000000000000000
+          StyleLookup = 'listboxitemrightdetail'
+          Text = 'User name'
+          Width = 320.000000000000000000
+        end
+        object ListBoxItem3: TListBoxItem
+          Height = 44.000000000000000000
+          ItemData.Detail = 'mypassword'
+          Position.Y = 144.000000000000000000
+          StyleLookup = 'listboxitemrightdetail'
+          Text = 'Password'
+          Width = 320.000000000000000000
+        end
+      end
+      object TopToolBar: TToolBar
+        Height = 44.000000000000000000
+        TabOrder = 1
+        Width = 320.000000000000000000
+        object SettingsTopToolBarLabel: TLabel
+          Align = alClient
+          Height = 44.000000000000000000
+          StyleLookup = 'toollabel'
+          Text = 'Settings'
+          TextAlign = taCenter
+          Width = 320.000000000000000000
+          Trimming = ttCharacter
+        end
+      end
     end
   end
   object TextEPGActionList: TActionList

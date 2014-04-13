@@ -15,10 +15,10 @@ uses
 type
   TMainTabbedForm = class(TMainForm)
     MainTabControl: TTabControl;
-    TabItem1: TTabItem;
+    MultiEPGTabItem: TTabItem;
     TextEPGTabItem: TTabItem;
     TimersTabItem: TTabItem;
-    TabItem4: TTabItem;
+    SettingsTabItem: TTabItem;
     DataComboListViewFrameChannelList: TDataComboListViewFrame;
     TextEPGTabControl: TTabControl;
     TextEPGMasterTabItem: TTabItem;
@@ -37,8 +37,16 @@ type
     TextEPGInfoRecordButton: TButton;
     TextEPGDateTimeLabel: TLabel;
     TimersTopToolBar: TToolBar;
-    Label1: TLabel;
+    TimersTopToolBarLabel: TLabel;
     TimersDataListView: TDataListView;
+    SettingsListBox: TListBox;
+    TopToolBar: TToolBar;
+    SettingsTopToolBarLabel: TLabel;
+    ListBoxGroupHeader1: TListBoxGroupHeader;
+    ListBoxItem1: TListBoxItem;
+    ListBoxItem2: TListBoxItem;
+    ListBoxItem3: TListBoxItem;
+    Edit1: TEdit;
     procedure FormShow(Sender: TObject);
     procedure ComboBoxServiceListChange(Sender: TObject);
     procedure DataComboListViewFrameChannelListDataListViewItemClick
