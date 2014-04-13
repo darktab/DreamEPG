@@ -39,7 +39,6 @@ type
     TimersTopToolBar: TToolBar;
     Label1: TLabel;
     TimersDataListView: TDataListView;
-    TextEPGDetailProgressBar: TProgressBar;
     procedure FormShow(Sender: TObject);
     procedure ComboBoxServiceListChange(Sender: TObject);
     procedure DataComboListViewFrameChannelListDataListViewItemClick
@@ -50,8 +49,6 @@ type
     procedure TimersDataListViewDeletingItem(Sender: TObject; AIndex: Integer;
       var ACanDelete: Boolean);
     procedure TextEPGBackDataComboListViewFrameDataListViewSearchChange
-      (Sender: TObject);
-    procedure TextEPGBackDataComboListViewFrameDataListViewChange
       (Sender: TObject);
 
   private
@@ -96,20 +93,6 @@ begin
 
   // initialisation des timers
   initTimerDataListView;
-end;
-
-procedure TMainTabbedForm.TextEPGBackDataComboListViewFrameDataListViewChange
-  (Sender: TObject);
-begin
-  inherited;
-  TextEPGDetailProgressBar.Min := MainDataModule.DreamFDMemTableTextEPG.
-    FieldByName('begin_timestamp').AsInteger;
-  TextEPGDetailProgressBar.Max := TextEPGDetailProgressBar.Min +
-    MainDataModule.DreamFDMemTableTextEPG.FieldByName('duration').AsInteger;
-  TextEPGDetailProgressBar.Value := MainDataModule.DreamFDMemTableTextEPG.
-    FieldByName('now_timestamp').AsInteger;
-  TextEPGDetailProgressBar.Visible := true;
-
 end;
 
 procedure TMainTabbedForm.TextEPGBackDataComboListViewFrameDataListViewItemClick

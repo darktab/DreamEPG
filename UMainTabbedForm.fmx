@@ -27,7 +27,7 @@ inherited MainTabbedForm: TMainTabbedForm
       Text = 'Multi EPG'
       Trimming = ttCharacter
       Visible = False
-      Width = 80.000000000000000000
+      Width = 51.000000000000000000
     end
     object TextEPGTabItem: TTabItem
       Align = alClient
@@ -142,6 +142,7 @@ inherited MainTabbedForm: TMainTabbedForm
               ItemAppearanceObjects.ItemObjects.Text.PlaceOffset.Y = 5.000000000000000000
               ItemAppearanceObjects.ItemObjects.Detail.Font.Size = 10.000000000000000000
               ItemAppearanceObjects.ItemObjects.Detail.TextVertAlign = taTrailing
+              ItemAppearanceObjects.ItemObjects.Detail.Width = 240.000000000000000000
               ItemAppearanceObjects.ItemObjects.Detail.VertAlign = Trailing
               ItemAppearanceObjects.ItemObjects.Detail.Visible = True
               ItemAppearanceObjects.ItemObjects.Detail.PlaceOffset.Y = -5.000000000000000000
@@ -155,18 +156,9 @@ inherited MainTabbedForm: TMainTabbedForm
               ItemAppearanceObjects.FooterObjects.Detail.Visible = True
               ItemAppearanceObjects.FooterObjects.Accessory.Visible = True
               CanSwipeDelete = False
-              OnChange = TextEPGBackDataComboListViewFrameDataListViewChange
               OnItemClick = TextEPGBackDataComboListViewFrameDataListViewItemClick
               OnSearchChange = TextEPGBackDataComboListViewFrameDataListViewSearchChange
             end
-          end
-          object TextEPGDetailProgressBar: TProgressBar
-            Height = 4.000000000000000000
-            Orientation = orHorizontal
-            Position.X = 144.000000000000000000
-            Position.Y = 76.000000000000000000
-            Visible = False
-            Width = 145.000000000000000000
           end
         end
         object TextEPGInfoTabItem: TTabItem
