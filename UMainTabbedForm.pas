@@ -9,8 +9,12 @@ uses
   UMainForm, FMX.TabControl, FMX.Layouts, FMX.Memo, FMX.ListView.Types,
   FMX.ListView, FMX.Edit, Data.DB, FMX.ListBox, UDataComboListViewFrame,
   UBackDataComboListViewFrame, System.Actions, FMX.ActnList, FireDAC.UI.Intf,
-  FireDAC.FMXUI.Wait, FireDAC.Stan.Intf, FireDAC.Comp.UI, UDataListView,
-  UWorking;
+  FireDAC.FMXUI.Wait, FireDAC.Stan.Intf, FireDAC.Comp.UI,
+  System.Bindings.Expression,
+  System.Bindings.Helper,
+  UDataListView,
+  UWorking,
+  USettings;
 
 type
   TMainTabbedForm = class(TMainForm)
@@ -46,9 +50,10 @@ type
     ListBoxItem1: TListBoxItem;
     ListBoxItem2: TListBoxItem;
     ListBoxItem3: TListBoxItem;
-    Edit1: TEdit;
-    Edit2: TEdit;
-    Edit3: TEdit;
+    BoxAdressEdit: TEdit;
+    UsernameEdit: TEdit;
+    PasswordEdit: TEdit;
+    Button1: TButton;
     procedure FormShow(Sender: TObject);
     procedure ComboBoxServiceListChange(Sender: TObject);
     procedure DataComboListViewFrameChannelListDataListViewItemClick
@@ -60,13 +65,20 @@ type
       var ACanDelete: Boolean);
     procedure TextEPGBackDataComboListViewFrameDataListViewSearchChange
       (Sender: TObject);
+    procedure BoxAddressEditChange(Sender: TObject);
+    procedure UsernameEditChange(Sender: TObject);
+    procedure PasswordEditChange(Sender: TObject);
+    procedure Button1Click(Sender: TObject);
 
   private
+    fSettings: TSettings;
 
     procedure initTimerDataListView;
     { Private declarations }
   public
     { Public declarations }
+    constructor Create(AOwner: TComponent);
+    destructor Destroy;
   end;
 
 var
@@ -79,6 +91,57 @@ uses
 
 {$R *.fmx}
 
+constructor TMainTabbedForm.Create(AOwner: TComponent);
+begin
+  inherited;
+  // fSettings := TSettings.Create;
+end;
+
+destructor TMainTabbedForm.Destroy;
+begin
+  inherited;
+  if Assigned(fSettings) then
+  begin
+    FreeAndNil(fSettings);
+  end;
+end;
+
+// -------------------------
+// BoxAddress change
+// -------------------------
+procedure TMainTabbedForm.BoxAddressEditChange(Sender: TObject);
+begin
+  inherited;
+  fSettings.BoxAddress := (Sender as TEdit).Text;
+end;
+
+// -------------------------
+// Username change
+// -------------------------
+procedure TMainTabbedForm.UsernameEditChange(Sender: TObject);
+begin
+  inherited;
+  fSettings.Username := (Sender as TEdit).Text;
+end;
+
+// -------------------------
+// Password change
+// -------------------------
+procedure TMainTabbedForm.PasswordEditChange(Sender: TObject);
+begin
+  inherited;
+  fSettings.Password := (Sender as TEdit).Text;
+end;
+
+// ----------------------
+// check settings
+// ----------------------
+procedure TMainTabbedForm.Button1Click(Sender: TObject);
+begin
+  inherited;
+  fSettings.write;
+end;
+
 procedure TMainTabbedForm.ComboBoxServiceListChange(Sender: TObject);
 begin
   inherited;
@@ -88,8 +151,11 @@ end;
 procedure TMainTabbedForm.FormShow(Sender: TObject);
 var
   lDefaultServiceReference: string;
+  lBindingExpression: TBindingExpression;
 begin
   inherited;
+  // initialisation des settings
+  fSettings := TSettings.Create;
 
   // initialisation des channels
   self.DataComboListViewFrameChannelList.init

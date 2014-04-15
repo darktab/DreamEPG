@@ -235,16 +235,16 @@
             <LocalCommand/>
             <RemoteCommand/>
         </DeployFile>
-        <DeployFile Include="C:\Users\cjacoby\Documents\GitHub\simpleEPG\icons\sEPG1_120x120.png" Condition="'$(Config)'=='Debug'">
+        <DeployFile Include="C:\Users\cjacoby\Documents\GitHub\simpleEPG\icons\sEPG1_72x72.png" Condition="'$(Config)'=='Debug'">
             <RemoteDir>simpleEPG.app\</RemoteDir>
-            <RemoteName>sEPG1_120x120.png</RemoteName>
+            <RemoteName>sEPG1_72x72.png</RemoteName>
             <Operation>0</Operation>
             <LocalCommand/>
             <RemoteCommand/>
         </DeployFile>
-        <DeployFile Include="C:\Users\cjacoby\Documents\GitHub\simpleEPG\icons\sEPG1_72x72.png" Condition="'$(Config)'=='Debug'">
+        <DeployFile Include="C:\Users\cjacoby\Documents\GitHub\simpleEPG\icons\sEPG1_100x100.png" Condition="'$(Config)'=='Debug'">
             <RemoteDir>simpleEPG.app\</RemoteDir>
-            <RemoteName>sEPG1_72x72.png</RemoteName>
+            <RemoteName>sEPG1_100x100.png</RemoteName>
             <Operation>0</Operation>
             <LocalCommand/>
             <RemoteCommand/>
@@ -256,9 +256,9 @@
             <LocalCommand/>
             <RemoteCommand/>
         </DeployFile>
-        <DeployFile Include="C:\Users\cjacoby\Documents\GitHub\simpleEPG\icons\sEPG1_100x100.png" Condition="'$(Config)'=='Debug'">
+        <DeployFile Include="C:\Users\cjacoby\Documents\GitHub\simpleEPG\icons\sEPG1_120x120.png" Condition="'$(Config)'=='Debug'">
             <RemoteDir>simpleEPG.app\</RemoteDir>
-            <RemoteName>sEPG1_100x100.png</RemoteName>
+            <RemoteName>sEPG1_120x120.png</RemoteName>
             <Operation>0</Operation>
             <LocalCommand/>
             <RemoteCommand/>
