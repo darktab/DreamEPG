@@ -2,7 +2,7 @@
 Coordinates=1085,592,92,33
 
 []
-Coordinates=308,224,82,33
+Coordinates=347,10,92,195
 Visible=True
 
 [TextEPGTabItem]
@@ -44,9 +44,6 @@ Coordinates=307,592,124,33
 [SettingsTopToolBarLabel]
 Coordinates=357,478,139,51
 
-[ListBoxGroupHeader1]
-Coordinates=155,592,123,33
-
 [TextEPGActionList]
 Coordinates=1036,559,123,36
 
@@ -58,9 +55,6 @@ Coordinates=464,10,112,177
 
 [TextEPGInfoTabItem]
 Coordinates=10,592,115,33
-
-[ListBoxItem1]
-Coordinates=1197,546,79,33
 
 [DataComboListViewFrameChannelList]
 Coordinates=951,546,203,33
@@ -83,14 +77,8 @@ Coordinates=10,478,289,51
 [TextEPGBackDataComboListViewFrame.TopToolBar]
 Coordinates=109,546,273,33
 
-[ListBoxItem2]
-Coordinates=10,546,79,33
-
 [ToDetailChangeTabAction]
 Coordinates=1457,276,165,36
-
-[ListBoxItem3]
-Coordinates=1115,478,79,33
 
 [DataComboListViewFrameChannelList.DataListView]
 Coordinates=603,10,270,141
@@ -103,9 +91,6 @@ Coordinates=850,410,105,51
 
 [TimersTopToolBar]
 Coordinates=984,478,105,33
-
-[SettingsListBox]
-Coordinates=347,10,92,195
 
 [TextEPGDateTimeLabel]
 Coordinates=426,276,130,51
@@ -184,14 +169,4 @@ Coordinates=1570,576,245,69
 
 [MainDataModule.DreamRESTResponseTimerList]
 Coordinates=1308,766,254,267
-
-[BoxAdressEdit]
-Coordinates=285,410,40,51
-Visible=True
-
-[UsernameEdit]
-Coordinates=590,276,40,51
-
-[PasswordEdit]
-Coordinates=372,276,40,51
 

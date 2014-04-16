@@ -43,18 +43,16 @@ type
     TimersTopToolBar: TToolBar;
     TimersTopToolBarLabel: TLabel;
     TimersDataListView: TDataListView;
-    SettingsListBox: TListBox;
     TopToolBar: TToolBar;
     SettingsTopToolBarLabel: TLabel;
+    SettingsListBox: TListBox;
     ListBoxGroupHeader1: TListBoxGroupHeader;
     ListBoxItem1: TListBoxItem;
-    ListBoxItem2: TListBoxItem;
-    ListBoxItem3: TListBoxItem;
     BoxAdressEdit: TEdit;
+    ListBoxItem2: TListBoxItem;
     UsernameEdit: TEdit;
+    ListBoxItem3: TListBoxItem;
     PasswordEdit: TEdit;
-    Button1: TButton;
-    Button2: TButton;
     procedure FormShow(Sender: TObject);
     procedure ComboBoxServiceListChange(Sender: TObject);
     procedure DataComboListViewFrameChannelListDataListViewItemClick
@@ -69,13 +67,14 @@ type
     procedure BoxAddressEditChange(Sender: TObject);
     procedure UsernameEditChange(Sender: TObject);
     procedure PasswordEditChange(Sender: TObject);
-    procedure Button1Click(Sender: TObject);
-    procedure Button2Click(Sender: TObject);
+    procedure MainTabControlChange(Sender: TObject);
 
   private
     fSettings: TSettings;
 
     procedure initTimerDataListView;
+    procedure initSettings;
+    procedure initChannelListView;
     { Private declarations }
   public
     { Public declarations }
@@ -108,6 +107,39 @@ begin
   end;
 end;
 
+procedure TMainTabbedForm.initChannelListView;
+begin
+  // initialisation des channels
+  self.DataComboListViewFrameChannelList.init
+    (MainDataModule.DreamFDMemTableServiceList, 'servicename',
+    MainDataModule.DreamRESTRequestServiceList,
+    MainDataModule.DreamRESTResponseDataSetAdapterServiceList,
+    MainDataModule.DreamFDMemTableChannelList, 'servicename',
+    MainDataModule.DreamRESTRequestChannelList,
+    MainDataModule.DreamRESTResponseDataSetAdapterChannelList,
+    'servicereference');
+end;
+
+// -------------------------------
+// Initialisation des settings
+// -------------------------------
+procedure TMainTabbedForm.initSettings;
+begin
+  try
+    fSettings.read;
+    BoxAdressEdit.Text := fSettings.BoxAddress;
+    UsernameEdit.Text := fSettings.Username;
+    PasswordEdit.Text := fSettings.Password;
+    MainDataModule.DreamRESTClient.BaseURL := 'http://' +
+      fSettings.BoxAddress + '/api';
+    MainDataModule.DreamHTTPBasicAuthenticator.Username := fSettings.Username;
+    MainDataModule.DreamHTTPBasicAuthenticator.Password := fSettings.Password;
+  except
+    self.MainTabControl.ActiveTab := SettingsTabItem;
+    raise;
+  end;
+end;
+
 // -------------------------
 // BoxAddress change
 // -------------------------
@@ -135,21 +167,6 @@ begin
   fSettings.Password := (Sender as TEdit).Text;
 end;
 
-// ----------------------
-// check settings
-// ----------------------
-procedure TMainTabbedForm.Button1Click(Sender: TObject);
-begin
-  inherited;
-  fSettings.write;
-end;
-
-procedure TMainTabbedForm.Button2Click(Sender: TObject);
-begin
-  inherited;
-  fSettings.read;
-end;
-
 procedure TMainTabbedForm.ComboBoxServiceListChange(Sender: TObject);
 begin
   inherited;
@@ -162,21 +179,21 @@ var
   lBindingExpression: TBindingExpression;
 begin
   inherited;
-  // initialisation des settings
+
   fSettings := TSettings.Create;
+  try
+    // initialisation des settings
+    initSettings;
+    // initialisation de la channel list
+    initChannelListView;
+    // initialisation des timers
+    initTimerDataListView;
+    // show du premier tab
+    MainTabControl.ActiveTab := TextEPGTabItem;
+  except
+    // ShowMessage('Please take a moment to fill in these settings!');
+  end;
 
-  // initialisation des channels
-  self.DataComboListViewFrameChannelList.init
-    (MainDataModule.DreamFDMemTableServiceList, 'servicename',
-    MainDataModule.DreamRESTRequestServiceList,
-    MainDataModule.DreamRESTResponseDataSetAdapterServiceList,
-    MainDataModule.DreamFDMemTableChannelList, 'servicename',
-    MainDataModule.DreamRESTRequestChannelList,
-    MainDataModule.DreamRESTResponseDataSetAdapterChannelList,
-    'servicereference');
-
-  // initialisation des timers
-  initTimerDataListView;
 end;
 
 procedure TMainTabbedForm.TextEPGBackDataComboListViewFrameDataListViewItemClick
@@ -294,6 +311,47 @@ begin
   except
   end;
   FreeAndNil(lTimersDetailStringlist);
+end;
+
+procedure TMainTabbedForm.MainTabControlChange(Sender: TObject);
+begin
+  inherited;
+  if Assigned(fSettings) then
+  begin
+    if (fSettings.BoxAddress = '') then
+    begin
+      // retry settings
+      try
+        // initialisation des settings
+        initSettings;
+        // initialisation de la channel list
+        initChannelListView;
+        // initialisation des timers
+        initTimerDataListView;
+      except
+        ShowMessage('Please take a moment to fill in these settings!');
+      end;
+    end
+    else
+    begin
+      // write settings file
+      fSettings.write;
+      // init Data components
+      if (DataComboListViewFrameChannelList.DataListView.ItemCount < 1) then
+      begin
+        MainDataModule.DreamRESTClient.BaseURL := 'http://' +
+          fSettings.BoxAddress + '/api';
+        MainDataModule.DreamHTTPBasicAuthenticator.Username :=
+          fSettings.Username;
+        MainDataModule.DreamHTTPBasicAuthenticator.Password :=
+          fSettings.Password;
+        // initialisation de la channel list
+        initChannelListView;
+        // initialisation des timers
+        initTimerDataListView;
+      end;
+    end;
+  end;
 end;
 
 procedure TMainTabbedForm.DataComboListViewFrameChannelListDataListViewItemClick

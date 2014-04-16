@@ -17,6 +17,7 @@ inherited MainTabbedForm: TMainTabbedForm
     TabOrder = 0
     TabPosition = tpBottom
     Width = 320.000000000000000000
+    OnChange = MainTabControlChange
     object MultiEPGTabItem: TTabItem
       Align = alClient
       WordWrap = False
@@ -290,11 +291,25 @@ inherited MainTabbedForm: TMainTabbedForm
       Text = 'Settings'
       Trimming = ttCharacter
       Width = 106.000000000000000000
+      object TopToolBar: TToolBar
+        Height = 44.000000000000000000
+        TabOrder = 0
+        Width = 320.000000000000000000
+        object SettingsTopToolBarLabel: TLabel
+          Align = alClient
+          Height = 44.000000000000000000
+          StyleLookup = 'toollabel'
+          Text = 'Settings'
+          TextAlign = taCenter
+          Width = 320.000000000000000000
+          Trimming = ttCharacter
+        end
+      end
       object SettingsListBox: TListBox
         Align = alClient
         Height = 455.000000000000000000
         StyleLookup = 'transparentlistboxstyle'
-        TabOrder = 0
+        TabOrder = 1
         Width = 320.000000000000000000
         DefaultItemStyles.ItemStyle = 'listboxitemnodetail'
         DefaultItemStyles.GroupHeaderStyle = ''
@@ -369,40 +384,6 @@ inherited MainTabbedForm: TMainTabbedForm
             KillFocusByReturn = False
             OnChange = PasswordEditChange
           end
-        end
-        object Button1: TButton
-          Height = 44.000000000000000000
-          Position.X = 128.000000000000000000
-          Position.Y = 208.000000000000000000
-          TabOrder = 0
-          Text = 'Write'
-          Trimming = ttCharacter
-          Width = 73.000000000000000000
-          OnClick = Button1Click
-        end
-        object Button2: TButton
-          Height = 44.000000000000000000
-          Position.X = 136.000000000000000000
-          Position.Y = 256.000000000000000000
-          TabOrder = 1
-          Text = 'Read'
-          Trimming = ttCharacter
-          Width = 73.000000000000000000
-          OnClick = Button2Click
-        end
-      end
-      object TopToolBar: TToolBar
-        Height = 44.000000000000000000
-        TabOrder = 1
-        Width = 320.000000000000000000
-        object SettingsTopToolBarLabel: TLabel
-          Align = alClient
-          Height = 44.000000000000000000
-          StyleLookup = 'toollabel'
-          Text = 'Settings'
-          TextAlign = taCenter
-          Width = 320.000000000000000000
-          Trimming = ttCharacter
         end
       end
     end
