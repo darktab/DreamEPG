@@ -54,6 +54,7 @@ type
     UsernameEdit: TEdit;
     PasswordEdit: TEdit;
     Button1: TButton;
+    Button2: TButton;
     procedure FormShow(Sender: TObject);
     procedure ComboBoxServiceListChange(Sender: TObject);
     procedure DataComboListViewFrameChannelListDataListViewItemClick
@@ -69,6 +70,7 @@ type
     procedure UsernameEditChange(Sender: TObject);
     procedure PasswordEditChange(Sender: TObject);
     procedure Button1Click(Sender: TObject);
+    procedure Button2Click(Sender: TObject);
 
   private
     fSettings: TSettings;
@@ -140,6 +142,12 @@ procedure TMainTabbedForm.Button1Click(Sender: TObject);
 begin
   inherited;
   fSettings.write;
+end;
+
+procedure TMainTabbedForm.Button2Click(Sender: TObject);
+begin
+  inherited;
+  fSettings.read;
 end;
 
 procedure TMainTabbedForm.ComboBoxServiceListChange(Sender: TObject);
