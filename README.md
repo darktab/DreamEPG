@@ -8,13 +8,17 @@ However it should run on Android devices too (not tested).
 
 CJ
 
-- NEW (HEAD):
+- NEW (HEAD, v0.8):
 
-* first implementation of simpleEPG design and name change
-* clean-ups
+* implement persistent settings
+* first feature complete version to head for v1.0
 
-- TO DO:
+- TO DO (for v1.0):
+
+* cleanups and bugfixes
+
+- TO DO (for v1.1):
 
 * implement progressbar for first EPG event
 * implement Searchbox for channels and EPG events
-* implement persistent settings
+
