@@ -190,6 +190,7 @@ begin
     initTimerDataListView;
     // show du premier tab
     MainTabControl.ActiveTab := TextEPGTabItem;
+
   except
     // ShowMessage('Please take a moment to fill in these settings!');
   end;
@@ -300,7 +301,11 @@ var
   lTimersDetailStringlist: TStringList;
 begin
   // initialisation des timers
-  MainDataModule.DreamRESTRequestTimerList.Execute;
+  try
+    MainDataModule.DreamRESTRequestTimerList.Execute;
+  except
+    exit;
+  end;
   TimersDataListView.DataSet := MainDataModule.DreamFDMemTableTimerList;
   TimersDataListView.DataFieldName := 'name';
   lTimersDetailStringlist := TStringList.Create;
@@ -345,10 +350,20 @@ begin
           fSettings.Username;
         MainDataModule.DreamHTTPBasicAuthenticator.Password :=
           fSettings.Password;
-        // initialisation de la channel list
-        initChannelListView;
-        // initialisation des timers
-        initTimerDataListView;
+        try
+          // initialisation de la channel list
+          initChannelListView;
+          // initialisation des timers
+          initTimerDataListView;
+        except
+          MainTabControl.OnChange := nil;
+          self.MainTabControl.ActiveTab := SettingsTabItem;
+          MainTabControl.OnChange := MainTabControlChange;
+          MessageDlg('Can''t find your decoder! Please check your settings!',
+            System.UITypes.TMsgDlgType.mtError,
+            [System.UITypes.TMsgDlgBtn.mbOK], 0);
+        end;
+
       end;
     end;
   end;
