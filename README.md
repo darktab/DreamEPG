@@ -8,10 +8,9 @@ However it should run on Android devices too (not tested).
 
 CJ
 
-- NEW (HEAD, v0.8):
+- NEW (HEAD, v0.8.1):
 
-* implement persistent settings
-* first feature complete version to head for v1.0
+* several robustness tests agains poor network conditions or wrong settings
 
 - TO DO (for v1.0):
 
