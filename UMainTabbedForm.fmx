@@ -330,10 +330,12 @@ inherited MainTabbedForm: TMainTabbedForm
           Width = 320.000000000000000000
           object BoxAdressEdit: TEdit
             Touch.InteractiveGestures = [igLongTap, igDoubleTap]
+            Align = alRight
             StyleLookup = 'transparentedit'
             TabOrder = 0
+            CanParentFocus = True
             TextAlign = taTrailing
-            Position.X = 112.000000000000000000
+            Position.X = 120.000000000000000000
             Position.Y = 8.000000000000000000
             Width = 200.000000000000000000
             Height = 29.000000000000000000
@@ -351,11 +353,13 @@ inherited MainTabbedForm: TMainTabbedForm
           Width = 320.000000000000000000
           object UsernameEdit: TEdit
             Touch.InteractiveGestures = [igLongTap, igDoubleTap]
+            Align = alRight
             StyleLookup = 'transparentedit'
             TabOrder = 0
+            CanParentFocus = True
             TextAlign = taTrailing
-            Position.X = 112.000000000000000000
-            Position.Y = 7.000000000000000000
+            Position.X = 120.000000000000000000
+            Position.Y = 8.000000000000000000
             Width = 200.000000000000000000
             Height = 29.000000000000000000
             TextPrompt = 'Enter username'
@@ -372,12 +376,14 @@ inherited MainTabbedForm: TMainTabbedForm
           Width = 320.000000000000000000
           object PasswordEdit: TEdit
             Touch.InteractiveGestures = [igLongTap, igDoubleTap]
+            Align = alRight
             StyleLookup = 'transparentedit'
             TabOrder = 0
+            CanParentFocus = True
             Password = True
             TextAlign = taTrailing
-            Position.X = 112.000000000000000000
-            Position.Y = 7.000000000000000000
+            Position.X = 120.000000000000000000
+            Position.Y = 8.000000000000000000
             Width = 200.000000000000000000
             Height = 29.000000000000000000
             TextPrompt = 'Enter password if needed'

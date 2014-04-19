@@ -135,7 +135,9 @@ begin
     MainDataModule.DreamHTTPBasicAuthenticator.Username := fSettings.Username;
     MainDataModule.DreamHTTPBasicAuthenticator.Password := fSettings.Password;
   except
+    MainTabControl.OnChange := nil;
     self.MainTabControl.ActiveTab := SettingsTabItem;
+    MainTabControl.OnChange := MainTabControlChange;
     raise;
   end;
 end;
@@ -249,7 +251,9 @@ begin
   MainDataModule.DreamRESTRequestAddTimer.Execute;
   if MainDataModule.DreamRESTResponseAddTimer.StatusCode = 200 then
   begin
-    ShowMessage('Timer successfully scheduled!');
+    MessageDlg('Timer successfully scheduled!',
+      System.UITypes.TMsgDlgType.mtInformation,
+      [System.UITypes.TMsgDlgBtn.mbOK], 0);
     initTimerDataListView;
   end
   else
@@ -284,7 +288,9 @@ begin
 
   if MainDataModule.DreamRESTResponseDeleteTimer.StatusCode = 200 then
   begin
-    ShowMessage('Timer successfully deleted!');
+    MessageDlg('Timer successfully deleted!',
+      System.UITypes.TMsgDlgType.mtInformation,
+      [System.UITypes.TMsgDlgBtn.mbOK], 0);
     ACanDelete := true;
   end
   else
@@ -334,7 +340,9 @@ begin
         // initialisation des timers
         initTimerDataListView;
       except
-        ShowMessage('Please take a moment to fill in these settings!');
+        MessageDlg('Please take a moment to fill in these settings!',
+          System.UITypes.TMsgDlgType.mtInformation,
+          [System.UITypes.TMsgDlgBtn.mbOK], 0);
       end;
     end
     else

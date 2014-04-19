@@ -20,6 +20,7 @@ object MainDataModule: TMainDataModule
       end>
     Resource = 'getservices'
     Response = DreamRESTResponseChannelList
+    Timeout = 5000
     Left = 328
     Top = 104
   end
@@ -60,6 +61,7 @@ object MainDataModule: TMainDataModule
     Params = <>
     Resource = 'getservices'
     Response = DreamRESTResponseServiceList
+    Timeout = 5000
     Left = 72
     Top = 104
   end
@@ -107,6 +109,7 @@ object MainDataModule: TMainDataModule
       end>
     Resource = 'epgservice'
     Response = DreamRESTResponseTextEPG
+    Timeout = 5000
     Left = 608
     Top = 104
   end
@@ -151,6 +154,7 @@ object MainDataModule: TMainDataModule
       end>
     Resource = 'timeraddbyeventid'
     Response = DreamRESTResponseAddTimer
+    Timeout = 5000
     Left = 77
     Top = 392
   end
@@ -368,6 +372,7 @@ object MainDataModule: TMainDataModule
       end>
     Resource = 'timerdelete'
     Response = DreamRESTResponseDeleteTimer
+    Timeout = 5000
     Left = 197
     Top = 392
   end
