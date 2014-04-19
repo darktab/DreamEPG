@@ -896,7 +896,7 @@
             </Deployment>
             <Platforms>
                 <Platform value="Android">True</Platform>
-                <Platform value="iOSDevice" ActiveMobileDevice="%iosdevice%f1e808e44e7b19d73a6f37a2086f5892c160f0a3">True</Platform>
+                <Platform value="iOSDevice" ActiveMobileDevice="%iosdevice%32052a07c521a35d1ad41780913f054a32db96a5">True</Platform>
                 <Platform value="iOSSimulator" ActiveMobileDevice="iPhone">True</Platform>
                 <Platform value="Win32">False</Platform>
             </Platforms>

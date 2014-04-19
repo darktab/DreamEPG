@@ -53,6 +53,7 @@ type
     UsernameEdit: TEdit;
     ListBoxItem3: TListBoxItem;
     PasswordEdit: TEdit;
+    VersionLabel: TLabel;
     procedure FormShow(Sender: TObject);
     procedure ComboBoxServiceListChange(Sender: TObject);
     procedure DataComboListViewFrameChannelListDataListViewItemClick
@@ -68,6 +69,9 @@ type
     procedure UsernameEditChange(Sender: TObject);
     procedure PasswordEditChange(Sender: TObject);
     procedure MainTabControlChange(Sender: TObject);
+    procedure ListBoxItem1Click(Sender: TObject);
+    procedure ListBoxItem2Click(Sender: TObject);
+    procedure ListBoxItem3Click(Sender: TObject);
 
   private
     fSettings: TSettings;
@@ -322,6 +326,27 @@ begin
   except
   end;
   FreeAndNil(lTimersDetailStringlist);
+end;
+
+// ------------------------------------
+// Set focus on edit box on item click
+// ------------------------------------
+procedure TMainTabbedForm.ListBoxItem1Click(Sender: TObject);
+begin
+  inherited;
+  BoxAdressEdit.SetFocus;
+end;
+
+procedure TMainTabbedForm.ListBoxItem2Click(Sender: TObject);
+begin
+  inherited;
+  UsernameEdit.SetFocus;
+end;
+
+procedure TMainTabbedForm.ListBoxItem3Click(Sender: TObject);
+begin
+  inherited;
+  PasswordEdit.SetFocus;
 end;
 
 procedure TMainTabbedForm.MainTabControlChange(Sender: TObject);
