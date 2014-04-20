@@ -13,7 +13,7 @@ inherited MainTabbedForm: TMainTabbedForm
     FullSize = True
     Height = 548.000000000000000000
     TabHeight = 49.000000000000000000
-    TabIndex = 1
+    TabIndex = 3
     TabOrder = 0
     TabPosition = tpBottom
     Width = 320.000000000000000000
@@ -34,7 +34,7 @@ inherited MainTabbedForm: TMainTabbedForm
       Align = alClient
       WordWrap = False
       Height = 49.000000000000000000
-      IsSelected = True
+      IsSelected = False
       StyleLookup = 'tabitembookmarks'
       TabOrder = 1
       Text = 'Text EPG'
@@ -291,7 +291,7 @@ inherited MainTabbedForm: TMainTabbedForm
     object SettingsTabItem: TTabItem
       WordWrap = False
       Height = 49.000000000000000000
-      IsSelected = False
+      IsSelected = True
       Position.X = 214.000000000000000000
       StyleLookup = 'tabitemmostviewed'
       TabOrder = 3
