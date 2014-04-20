@@ -13,7 +13,7 @@ inherited MainTabbedForm: TMainTabbedForm
     FullSize = True
     Height = 548.000000000000000000
     TabHeight = 49.000000000000000000
-    TabIndex = 3
+    TabIndex = 1
     TabOrder = 0
     TabPosition = tpBottom
     Width = 320.000000000000000000
@@ -34,7 +34,7 @@ inherited MainTabbedForm: TMainTabbedForm
       Align = alClient
       WordWrap = False
       Height = 49.000000000000000000
-      IsSelected = False
+      IsSelected = True
       StyleLookup = 'tabitembookmarks'
       TabOrder = 1
       Text = 'Text EPG'
@@ -76,7 +76,7 @@ inherited MainTabbedForm: TMainTabbedForm
                 Width = 44.000000000000000000
               end
               inherited TopDataComboBox: TDataComboBox
-                Height = 38.000000000000000000
+                Height = 30.000000000000000000
                 Padding.Top = 10.000000000000000000
                 Margins.Top = 6.000000000000000000
                 Width = 232.000000000000000000
@@ -173,6 +173,14 @@ inherited MainTabbedForm: TMainTabbedForm
           TabOrder = 2
           Trimming = ttCharacter
           Width = 8.000000000000000000
+          object TextEPGInfoBottomRectangle: TRectangle
+            Align = alBottom
+            Fill.Kind = bkNone
+            Height = 27.000000000000000000
+            Position.Y = 472.000000000000000000
+            Stroke.Kind = bkNone
+            Width = 320.000000000000000000
+          end
           object TextEPGInfoToolBar: TToolBar
             Height = 44.000000000000000000
             TabOrder = 0
@@ -210,17 +218,16 @@ inherited MainTabbedForm: TMainTabbedForm
           end
           object TextEPGInfoMemo: TMemo
             Touch.InteractiveGestures = [igPan, igLongTap, igDoubleTap]
-            Align = alTop
-            Height = 224.000000000000000000
-            Position.Y = 118.000000000000000000
+            Align = alClient
+            Height = 310.000000000000000000
             TabOrder = 2
             Width = 320.000000000000000000
             WordWrap = True
           end
           object TextEPGInfoRecordButton: TButton
-            Align = alTop
+            Align = alBottom
             Height = 44.000000000000000000
-            Position.Y = 342.000000000000000000
+            Position.Y = 428.000000000000000000
             StyleLookup = 'listitemdeletebutton'
             TabOrder = 3
             Text = 'Record'
@@ -284,7 +291,7 @@ inherited MainTabbedForm: TMainTabbedForm
     object SettingsTabItem: TTabItem
       WordWrap = False
       Height = 49.000000000000000000
-      IsSelected = True
+      IsSelected = False
       Position.X = 214.000000000000000000
       StyleLookup = 'tabitemmostviewed'
       TabOrder = 3

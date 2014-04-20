@@ -25,6 +25,7 @@ type
     procedure DataListViewButtonClick(const Sender: TObject;
       const AItem: TListViewItem; const AObject: TListItemSimpleControl);
     procedure DoneInitDetail(Sender: TObject);
+    procedure FrameResize(Sender: TObject);
   private
     { Private declarations }
     fNoDataFoundToggle: Boolean;
@@ -98,6 +99,19 @@ begin
   end;
   // fDetailInitThread := nil;
   fWorkingForm.WorkingMsg('', false);
+end;
+
+// --------------------------------------------------
+// To ensure the Working spinner is always centered
+// --------------------------------------------------
+procedure TDataComboListViewFrame.FrameResize(Sender: TObject);
+begin
+  if Assigned(fWorkingForm) then
+  begin
+    FreeAndNil(fWorkingForm);
+    fWorkingForm := TWorkingForm.Create(self);
+    fWorkingForm.Parent := self;
+  end;
 end;
 
 procedure TDataComboListViewFrame.init(lMasterDataSet: TDataSet;

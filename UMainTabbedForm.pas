@@ -15,7 +15,7 @@ uses
   UDataListView,
   UWorking,
   USettings,
-  FMX.StdActns;
+  FMX.StdActns, FMX.Objects;
 
 type
   TMainTabbedForm = class(TMainForm)
@@ -55,6 +55,7 @@ type
     ListBoxItem3: TListBoxItem;
     PasswordEdit: TEdit;
     VersionLabel: TLabel;
+    TextEPGInfoBottomRectangle: TRectangle;
     procedure FormShow(Sender: TObject);
     procedure ComboBoxServiceListChange(Sender: TObject);
     procedure DataComboListViewFrameChannelListDataListViewItemClick
