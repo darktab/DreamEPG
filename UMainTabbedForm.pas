@@ -338,9 +338,9 @@ var
   lkeyboard: TVirtualKeyboard;
 begin
   inherited;
-  lkeyboard := TVirtualKeyboard.Create(Sender as TComponent);
-  lkeyboard.Visible := true;
-  BoxAdressEdit.Caret.Visible := true;
+  lkeyboard := TVirtualKeyboard.Create(BoxAdressEdit);
+  lkeyboard.ExecuteTarget(BoxAdressEdit);
+  BoxAdressEdit.Typing := true;
 end;
 
 procedure TMainTabbedForm.ListBoxItem2Click(Sender: TObject);
