@@ -6,7 +6,7 @@
         <MainSource>simpleEPG.dpr</MainSource>
         <Base>True</Base>
         <Config Condition="'$(Config)'==''">Debug</Config>
-        <Platform Condition="'$(Platform)'==''">iOSDevice</Platform>
+        <Platform Condition="'$(Platform)'==''">iOSSimulator</Platform>
         <TargetedPlatforms>88</TargetedPlatforms>
         <AppType>Application</AppType>
     </PropertyGroup>
@@ -93,40 +93,40 @@
         <VerInfo_IncludeVerInfo>true</VerInfo_IncludeVerInfo>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Base_iOSDevice)'!=''">
-        <iPad_AppIcon144>$(BDS)\bin\Artwork\iOS\iPad\FM_ApplicationIcon_144x144.png</iPad_AppIcon144>
-        <iPhone_Spotlight58>$(BDS)\bin\Artwork\iOS\iPhone\FM_SpotlightSearchIcon_58x58.png</iPhone_Spotlight58>
-        <iPhone_Launch320>$(BDS)\bin\Artwork\iOS\iPhone\FM_LaunchImage_320x480.png</iPhone_Launch320>
-        <iPhone_Launch640>$(BDS)\bin\Artwork\iOS\iPhone\FM_LaunchImage_640x960.png</iPhone_Launch640>
+        <iPad_AppIcon144>C:\Users\cjacoby\Documents\GitHub\simpleEPG\icons\sEPG1_144x144.png</iPad_AppIcon144>
+        <iPhone_Spotlight58>C:\Users\cjacoby\Documents\GitHub\simpleEPG\icons\sEPG1_58x58.png</iPhone_Spotlight58>
+        <iPhone_Launch320>C:\Users\cjacoby\Documents\GitHub\simpleEPG\icons\simpleEPG1_320x480.png</iPhone_Launch320>
+        <iPhone_Launch640>C:\Users\cjacoby\Documents\GitHub\simpleEPG\icons\simpleEPG1_640x960.png</iPhone_Launch640>
         <VerInfo_BundleId>$(MSBuildProjectName)</VerInfo_BundleId>
-        <iPad_Launch1024>$(BDS)\bin\Artwork\iOS\iPad\FM_LaunchImageLandscape_1024x748.png</iPad_Launch1024>
-        <iPhone_Launch640x1136>$(BDS)\bin\Artwork\iOS\iPhone\FM_LaunchImage_640x1136.png</iPhone_Launch640x1136>
-        <iPad_SpotLight100>$(BDS)\bin\Artwork\iOS\iPad\FM_SpotlightSearchIcon_100x100.png</iPad_SpotLight100>
-        <iPhone_AppIcon114>$(BDS)\bin\Artwork\iOS\iPhone\FM_ApplicationIcon_114x114.png</iPhone_AppIcon114>
-        <iPad_Launch1536>$(BDS)\bin\Artwork\iOS\iPad\FM_LaunchImagePortrait_1536x2008.png</iPad_Launch1536>
-        <iPad_AppIcon152>$(BDS)\bin\Artwork\iOS\iPad\FM_ApplicationIcon_152x152.png</iPad_AppIcon152>
-        <iPad_Launch1024x768>$(BDS)\bin\Artwork\iOS\iPad\FM_LaunchImageLandscape_1024x768.png</iPad_Launch1024x768>
-        <iPhone_Spotlight40>$(BDS)\bin\Artwork\iOS\iPhone\FM_SpotlightSearchIcon_40x40.png</iPhone_Spotlight40>
-        <iPhone_AppIcon57>$(BDS)\bin\Artwork\iOS\iPhone\FM_ApplicationIcon_57x57.png</iPhone_AppIcon57>
-        <iPhone_AppIcon60>$(BDS)\bin\Artwork\iOS\iPhone\FM_ApplicationIcon_60x60.png</iPhone_AppIcon60>
+        <iPad_Launch1024>C:\Users\cjacoby\Documents\GitHub\simpleEPG\icons\simpleEPG1_1024_748.png</iPad_Launch1024>
+        <iPhone_Launch640x1136>C:\Users\cjacoby\Documents\GitHub\simpleEPG\icons\simpleEPG1_640x1136.png</iPhone_Launch640x1136>
+        <iPad_SpotLight100>C:\Users\cjacoby\Documents\GitHub\simpleEPG\icons\sEPG1_100x100.png</iPad_SpotLight100>
+        <iPhone_AppIcon114>C:\Users\cjacoby\Documents\GitHub\simpleEPG\icons\sEPG1_114x114.png</iPhone_AppIcon114>
+        <iPad_Launch1536>C:\Users\cjacoby\Documents\GitHub\simpleEPG\icons\simpleEPG1_1536x2008.png</iPad_Launch1536>
+        <iPad_AppIcon152>C:\Users\cjacoby\Documents\GitHub\simpleEPG\icons\sEPG1_152x152.png</iPad_AppIcon152>
+        <iPad_Launch1024x768>C:\Users\cjacoby\Documents\GitHub\simpleEPG\icons\simpleEPG1_1024_768.png</iPad_Launch1024x768>
+        <iPhone_Spotlight40>C:\Users\cjacoby\Documents\GitHub\simpleEPG\icons\sEPG1_40x40.png</iPhone_Spotlight40>
+        <iPhone_AppIcon57>C:\Users\cjacoby\Documents\GitHub\simpleEPG\icons\sEPG1_57x57.png</iPhone_AppIcon57>
+        <iPhone_AppIcon60>C:\Users\cjacoby\Documents\GitHub\simpleEPG\icons\sEPG1_60x60.png</iPhone_AppIcon60>
         <DCC_UsePackage>FireDACSqliteDriver;bindcompfmx;fmx;rtl;dbrtl;IndySystem;DbxClientDriver;FireDACCommon;bindcomp;DataSnapClient;xmlrtl;DbxCommonDriver;IndyProtocols;FireDACCommonDriver;bindengine;soaprtl;fmxFireDAC;CustomIPTransport;FireDAC;fmxase;IndyCore;IndyIPCommon;CloudService;FireDACIBDriver;inet;DataSnapFireDAC;RESTComponents;IndyIPClient;$(DCC_UsePackage)</DCC_UsePackage>
-        <iPad_Launch2048>$(BDS)\bin\Artwork\iOS\iPad\FM_LaunchImageLandscape_2048x1496.png</iPad_Launch2048>
+        <iPad_Launch2048>C:\Users\cjacoby\Documents\GitHub\simpleEPG\icons\simpleEPG1_2048x1496.png</iPad_Launch2048>
         <VerInfo_Keys>CFBundleName=$(MSBuildProjectName);CFBundleDevelopmentRegion=en;CFBundleDisplayName=$(MSBuildProjectName);CFBundleIdentifier=$(MSBuildProjectName);CFBundleInfoDictionaryVersion=6.0;CFBundleVersion=1.0.0.0;CFBundlePackageType=APPL;CFBundleSignature=????;LSRequiresIPhoneOS=true;CFBundleAllowMixedLocalizations=YES;CFBundleExecutable=$(MSBuildProjectName);UIDeviceFamily=iPhone &amp; iPad;CFBundleResourceSpecification=ResourceRules.plist</VerInfo_Keys>
-        <iPad_Launch2048x1536>$(BDS)\bin\Artwork\iOS\iPad\FM_LaunchImageLandscape_2048x1536.png</iPad_Launch2048x1536>
-        <iPad_Launch768x1024>$(BDS)\bin\Artwork\iOS\iPad\FM_LaunchImagePortrait_768x1024.png</iPad_Launch768x1024>
-        <iPad_Launch768>$(BDS)\bin\Artwork\iOS\iPad\FM_LaunchImagePortrait_768x1004.png</iPad_Launch768>
-        <iPad_Launch1536x2048>$(BDS)\bin\Artwork\iOS\iPad\FM_LaunchImagePortrait_1536x2048.png</iPad_Launch1536x2048>
-        <iPad_SpotLight80>$(BDS)\bin\Artwork\iOS\iPad\FM_SpotlightSearchIcon_80x80.png</iPad_SpotLight80>
-        <iPad_Setting29>$(BDS)\bin\Artwork\iOS\iPad\FM_SettingIcon_29x29.png</iPad_Setting29>
-        <iPad_SpotLight40>$(BDS)\bin\Artwork\iOS\iPad\FM_SpotlightSearchIcon_40x40.png</iPad_SpotLight40>
-        <iPad_SpotLight50>$(BDS)\bin\Artwork\iOS\iPad\FM_SpotlightSearchIcon_50x50.png</iPad_SpotLight50>
-        <iPhone_AppIcon120>$(BDS)\bin\Artwork\iOS\iPhone\FM_ApplicationIcon_120x120.png</iPhone_AppIcon120>
-        <iPad_AppIcon72>$(BDS)\bin\Artwork\iOS\iPad\FM_ApplicationIcon_72x72.png</iPad_AppIcon72>
-        <iPhone_Spotlight80>$(BDS)\bin\Artwork\iOS\iPhone\FM_SpotlightSearchIcon_80x80.png</iPhone_Spotlight80>
+        <iPad_Launch2048x1536>C:\Users\cjacoby\Documents\GitHub\simpleEPG\icons\simpleEPG1_2048_1536.png</iPad_Launch2048x1536>
+        <iPad_Launch768x1024>C:\Users\cjacoby\Documents\GitHub\simpleEPG\icons\simpleEPG1_768_1024.png</iPad_Launch768x1024>
+        <iPad_Launch768>C:\Users\cjacoby\Documents\GitHub\simpleEPG\icons\simpleEPG1_768_1004.png</iPad_Launch768>
+        <iPad_Launch1536x2048>C:\Users\cjacoby\Documents\GitHub\simpleEPG\icons\simpleEPG1_1536x2048.png</iPad_Launch1536x2048>
+        <iPad_SpotLight80>C:\Users\cjacoby\Documents\GitHub\simpleEPG\icons\sEPG1_80x80.png</iPad_SpotLight80>
+        <iPad_Setting29>C:\Users\cjacoby\Documents\GitHub\simpleEPG\icons\sEPG1_29x29.png</iPad_Setting29>
+        <iPad_SpotLight40>C:\Users\cjacoby\Documents\GitHub\simpleEPG\icons\sEPG1_40x40.png</iPad_SpotLight40>
+        <iPad_SpotLight50>C:\Users\cjacoby\Documents\GitHub\simpleEPG\icons\sEPG1_50x50.png</iPad_SpotLight50>
+        <iPhone_AppIcon120>C:\Users\cjacoby\Documents\GitHub\simpleEPG\icons\sEPG1_120x120.png</iPhone_AppIcon120>
+        <iPad_AppIcon72>C:\Users\cjacoby\Documents\GitHub\simpleEPG\icons\sEPG1_72x72.png</iPad_AppIcon72>
+        <iPhone_Spotlight80>C:\Users\cjacoby\Documents\GitHub\simpleEPG\icons\sEPG1_80x80.png</iPhone_Spotlight80>
         <BT_BuildType>Debug</BT_BuildType>
-        <iPhone_Spotlight29>$(BDS)\bin\Artwork\iOS\iPhone\FM_SpotlightSearchIcon_29x29.png</iPhone_Spotlight29>
-        <iPad_AppIcon76>$(BDS)\bin\Artwork\iOS\iPad\FM_ApplicationIcon_76x76.png</iPad_AppIcon76>
+        <iPhone_Spotlight29>C:\Users\cjacoby\Documents\GitHub\simpleEPG\icons\sEPG1_29x29.png</iPhone_Spotlight29>
+        <iPad_AppIcon76>C:\Users\cjacoby\Documents\GitHub\simpleEPG\icons\sEPG1_76x76.png</iPad_AppIcon76>
         <VerInfo_IncludeVerInfo>true</VerInfo_IncludeVerInfo>
-        <iPad_Setting58>$(BDS)\bin\Artwork\iOS\iPad\FM_SettingIcon_58x58.png</iPad_Setting58>
+        <iPad_Setting58>C:\Users\cjacoby\Documents\GitHub\simpleEPG\icons\sEPG1_58x58.png</iPad_Setting58>
         <VerInfo_UIDeviceFamily>iPhoneAndiPad</VerInfo_UIDeviceFamily>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Base_iOSSimulator)'!=''">

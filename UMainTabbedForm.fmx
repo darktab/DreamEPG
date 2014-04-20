@@ -341,7 +341,7 @@ inherited MainTabbedForm: TMainTabbedForm
             Width = 200.000000000000000000
             Height = 29.000000000000000000
             TextPrompt = 'Enter box name or IP address'
-            KillFocusByReturn = False
+            KillFocusByReturn = True
             OnChange = BoxAddressEditChange
           end
         end
@@ -365,7 +365,7 @@ inherited MainTabbedForm: TMainTabbedForm
             Width = 200.000000000000000000
             Height = 29.000000000000000000
             TextPrompt = 'Enter username'
-            KillFocusByReturn = False
+            KillFocusByReturn = True
             OnChange = UsernameEditChange
           end
         end
@@ -390,7 +390,7 @@ inherited MainTabbedForm: TMainTabbedForm
             Width = 200.000000000000000000
             Height = 29.000000000000000000
             TextPrompt = 'Enter password if needed'
-            KillFocusByReturn = False
+            KillFocusByReturn = True
             OnChange = PasswordEditChange
           end
         end

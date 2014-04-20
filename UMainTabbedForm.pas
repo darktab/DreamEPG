@@ -14,7 +14,8 @@ uses
   System.Bindings.Helper,
   UDataListView,
   UWorking,
-  USettings;
+  USettings,
+  FMX.StdActns;
 
 type
   TMainTabbedForm = class(TMainForm)
@@ -332,21 +333,25 @@ end;
 // Set focus on edit box on item click
 // ------------------------------------
 procedure TMainTabbedForm.ListBoxItem1Click(Sender: TObject);
+var
+  lkeyboard: TVirtualKeyboard;
 begin
   inherited;
-  BoxAdressEdit.SetFocus;
+  lkeyboard := TVirtualKeyboard.Create(Sender as TComponent);
+  lkeyboard.Visible := true;
+  BoxAdressEdit.Caret.Visible := true;
 end;
 
 procedure TMainTabbedForm.ListBoxItem2Click(Sender: TObject);
 begin
   inherited;
-  UsernameEdit.SetFocus;
+  UsernameEdit.Caret.Visible := true;
 end;
 
 procedure TMainTabbedForm.ListBoxItem3Click(Sender: TObject);
 begin
   inherited;
-  PasswordEdit.SetFocus;
+  PasswordEdit.Caret.Visible := true;
 end;
 
 procedure TMainTabbedForm.MainTabControlChange(Sender: TObject);

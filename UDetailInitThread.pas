@@ -5,12 +5,14 @@ interface
 uses
   System.Classes, UDataListView, Data.DB, FireDAC.Comp.DataSet,
   FireDAC.Comp.Client, REST.Response.Adapter,
-  REST.Client, FMX.Dialogs;
+  REST.Client, FMX.Dialogs, SysUtils;
 
 type
   TDetailInitThread = class(TThread)
   private
     { Private declarations }
+    fExceptionMessage: string;
+
     fDetailRESTRequest: TRESTRequest;
     fMasterDataSet: TDataSet;
     fDetailDataListView: TDataListView;
@@ -19,6 +21,8 @@ type
   protected
     procedure Execute; override;
   public
+    property ExceptionMessage: string read fExceptionMessage;
+
     constructor Create(lMasterDataSet: TDataSet;
       lDetailDataStringList: TStringList; lDetailRESTRequest: TRESTRequest;
       lDetailDataListView: TDataListView; OnTerminate: TNotifyEvent);
@@ -79,12 +83,12 @@ begin
   try
     Synchronize(ToSyncExecute);
   except
-    Synchronize(
-      procedure
-      begin
-        // a mieux implémenter!
-        ShowMessage('No EPG Data found ...');
-      end)
+    on Ex: Exception do
+    begin
+
+      fExceptionMessage := Ex.Message;
+
+    end;
   end;
 end;
 

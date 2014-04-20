@@ -27,6 +27,8 @@ type
     procedure DoneInitDetail(Sender: TObject);
   private
     { Private declarations }
+    fNoDataFoundToggle: Boolean;
+
     fMasterDataSet: TDataSet;
     fMasterDataFieldName: String;
     fMasterRESTRequest: TRESTRequest;
@@ -86,6 +88,15 @@ end;
 
 procedure TDataComboListViewFrame.DoneInitDetail(Sender: TObject);
 begin
+  // For some nebulous reason this is triggered twice
+  // which we do not want
+  fNoDataFoundToggle := not fNoDataFoundToggle;
+  if (fDetailInitThread.ExceptionMessage <> '') and fNoDataFoundToggle then
+  begin
+    MessageDlg('No Data found!', System.UITypes.TMsgDlgType.mtInformation,
+      [System.UITypes.TMsgDlgBtn.mbOK], 0);
+  end;
+  // fDetailInitThread := nil;
   fWorkingForm.WorkingMsg('', false);
 end;
 
