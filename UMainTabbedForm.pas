@@ -45,7 +45,6 @@ type
     TimersDataListView: TDataListView;
     TopToolBar: TToolBar;
     SettingsTopToolBarLabel: TLabel;
-    SettingsListBox: TListBox;
     ListBoxGroupHeader1: TListBoxGroupHeader;
     ListBoxItem1: TListBoxItem;
     BoxAdressEdit: TEdit;
@@ -55,6 +54,7 @@ type
     PasswordEdit: TEdit;
     VersionLabel: TLabel;
     TextEPGInfoBottomRectangle: TRectangle;
+    VertScrollBox: TVertScrollBox;
     procedure FormShow(Sender: TObject);
     procedure ComboBoxServiceListChange(Sender: TObject);
     procedure DataComboListViewFrameChannelListDataListViewItemClick

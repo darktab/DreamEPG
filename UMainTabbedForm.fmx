@@ -312,27 +312,36 @@ inherited MainTabbedForm: TMainTabbedForm
           Trimming = ttCharacter
         end
       end
-      object SettingsListBox: TListBox
-        Align = alClient
-        Height = 434.000000000000000000
-        StyleLookup = 'transparentlistboxstyle'
-        TabOrder = 1
+      object VersionLabel: TLabel
+        Align = alBottom
+        Height = 21.000000000000000000
+        Position.Y = 478.000000000000000000
+        Text = 'simpleEPG v0.8.2-beta'
+        TextAlign = taCenter
         Width = 320.000000000000000000
-        DefaultItemStyles.ItemStyle = 'listboxitemnodetail'
-        DefaultItemStyles.GroupHeaderStyle = ''
-        DefaultItemStyles.GroupFooterStyle = ''
-        GroupingKind = gsGrouped
+        Trimming = ttCharacter
+      end
+      object VertScrollBox: TVertScrollBox
+        Align = alClient
+        DragMode = dmAutomatic
+        Height = 434.000000000000000000
+        TabOrder = 2
+        Width = 320.000000000000000000
         object ListBoxGroupHeader1: TListBoxGroupHeader
+          Align = alMostTop
           Height = 56.000000000000000000
           StyleLookup = 'listboxgroupheader'
+          TabOrder = 0
           Text = 'Decoder Settings'
           Width = 320.000000000000000000
         end
         object ListBoxItem1: TListBoxItem
+          Align = alTop
           Selectable = False
           Height = 44.000000000000000000
           Position.Y = 56.000000000000000000
           StyleLookup = 'listboxitemrightdetail'
+          TabOrder = 1
           Text = 'Name'
           Width = 320.000000000000000000
           OnClick = ListBoxItem1Click
@@ -353,10 +362,12 @@ inherited MainTabbedForm: TMainTabbedForm
           end
         end
         object ListBoxItem2: TListBoxItem
+          Align = alTop
           Selectable = False
           Height = 44.000000000000000000
           Position.Y = 100.000000000000000000
           StyleLookup = 'listboxitemrightdetail'
+          TabOrder = 2
           Text = 'User name'
           Width = 320.000000000000000000
           OnClick = ListBoxItem2Click
@@ -377,10 +388,12 @@ inherited MainTabbedForm: TMainTabbedForm
           end
         end
         object ListBoxItem3: TListBoxItem
+          Align = alTop
           Selectable = False
           Height = 44.000000000000000000
           Position.Y = 144.000000000000000000
           StyleLookup = 'listboxitemrightdetail'
+          TabOrder = 3
           Text = 'Password'
           Width = 320.000000000000000000
           OnClick = ListBoxItem3Click
@@ -401,15 +414,6 @@ inherited MainTabbedForm: TMainTabbedForm
             OnChange = PasswordEditChange
           end
         end
-      end
-      object VersionLabel: TLabel
-        Align = alBottom
-        Height = 21.000000000000000000
-        Position.Y = 478.000000000000000000
-        Text = 'simpleEPG v0.8.2-beta'
-        TextAlign = taCenter
-        Width = 320.000000000000000000
-        Trimming = ttCharacter
       end
     end
   end
