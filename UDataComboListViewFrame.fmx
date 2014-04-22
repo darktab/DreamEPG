@@ -1,7 +1,6 @@
 object DataComboListViewFrame: TDataComboListViewFrame
   Height = 432.000000000000000000
   Width = 289.000000000000000000
-  OnResize = FrameResize
   object TopToolBar: TToolBar
     Height = 40.000000000000000000
     TabOrder = 0

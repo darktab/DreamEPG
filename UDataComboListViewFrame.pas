@@ -8,7 +8,7 @@ uses
   FMX.Types, FMX.Graphics, FMX.Controls, FMX.Forms, FMX.Dialogs, FMX.StdCtrls,
   FMX.ListBox, UDataComboBox, FMX.ListView.Types, FMX.ListView, UDataListView,
   Data.DB, FireDAC.Comp.DataSet, FireDAC.Comp.Client, REST.Response.Adapter,
-  REST.Client, UDetailInitThread, UWorking;
+  REST.Client, UDetailInitThread;
 
 type
   TDataComboListViewFrame = class(TFrame)
@@ -44,7 +44,7 @@ type
 
     fMasterDetailLinkFieldName: String;
 
-    fWorkingForm: TWorkingForm;
+    // fWorkingForm: TWorkingForm;
     fDetailInitThread: TDetailInitThread;
 
     procedure initTopDataComboBox;
@@ -77,14 +77,20 @@ type
 
 implementation
 
+uses
+  UWorking;
 {$R *.fmx}
 
 constructor TDataComboListViewFrame.Create(AOwner: TComponent);
 begin
   // Execute the parent (TObject) constructor first
   inherited; // Call the parent Create method
-  fWorkingForm := TWorkingForm.Create(self);
-  fWorkingForm.Parent := self;
+
+  if not Assigned(WorkingForm) then
+  begin
+    WorkingForm := TWorkingForm.Create(self);
+    WorkingForm.Parent := self;
+  end;
 end;
 
 procedure TDataComboListViewFrame.DoneInitDetail(Sender: TObject);
@@ -97,8 +103,10 @@ begin
     MessageDlg('No Data found!', System.UITypes.TMsgDlgType.mtInformation,
       [System.UITypes.TMsgDlgBtn.mbOK], 0);
   end;
+
   // fDetailInitThread := nil;
-  fWorkingForm.WorkingMsg('', false);
+  WorkingForm.WorkingMsg('Loading ...', false);
+  self.Show;
 end;
 
 // --------------------------------------------------
@@ -106,12 +114,12 @@ end;
 // --------------------------------------------------
 procedure TDataComboListViewFrame.FrameResize(Sender: TObject);
 begin
-  if Assigned(fWorkingForm) then
-  begin
-    FreeAndNil(fWorkingForm);
-    fWorkingForm := TWorkingForm.Create(self);
-    fWorkingForm.Parent := self;
-  end;
+  // if Assigned(WorkingForm) then
+  // begin
+  // FreeAndNil(WorkingForm);
+  // WorkingForm := TWorkingForm.Create(self);
+  // WorkingForm.Parent := self;
+  // end;
 end;
 
 procedure TDataComboListViewFrame.init(lMasterDataSet: TDataSet;
@@ -232,7 +240,7 @@ begin
   fDetailRESTRequest.Params[0].Value := lDefaultServiceReference;
 
   // Call the working spinner
-  fWorkingForm.WorkingMsg('Loading ...', true);
+  WorkingForm.WorkingMsg('Loading ...', true);
   fDetailInitThread := TDetailInitThread.Create(fMasterDataSet,
     fDetailDataStringList, fDetailRESTRequest, DataListView, DoneInitDetail);
   // fDetailInitThread.OnTerminate := DoneInitDetail;

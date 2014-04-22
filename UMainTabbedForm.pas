@@ -13,7 +13,6 @@ uses
   System.Bindings.Expression,
   System.Bindings.Helper,
   UDataListView,
-  UWorking,
   USettings,
   FMX.StdActns, FMX.Objects;
 
@@ -94,7 +93,7 @@ var
 implementation
 
 uses
-  UMainDataModule;
+  UMainDataModule, UWorking;
 
 {$R *.fmx}
 
@@ -340,7 +339,11 @@ begin
   inherited;
   lkeyboard := TVirtualKeyboard.Create(BoxAdressEdit);
   lkeyboard.ExecuteTarget(BoxAdressEdit);
-  BoxAdressEdit.Typing := true;
+  BoxAdressEdit.SetFocus;
+  BoxAdressEdit.SelLength := 0;
+  // BoxAdressEdit.CaretPosition := 0;
+  // BoxAdressEdit.Caret.TemporarilyHidden := False;
+  // BoxAdressEdit.Typing := true;
 end;
 
 procedure TMainTabbedForm.ListBoxItem2Click(Sender: TObject);
