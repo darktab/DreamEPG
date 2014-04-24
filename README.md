@@ -8,16 +8,18 @@ However it should run on Android devices too (not tested).
 
 CJ
 
-- NEW (HEAD, v0.8.1):
+- NEW (HEAD, v0.8.2):
 
-* several robustness tests agains poor network conditions or wrong settings
+* Loading speed optimisations
+* screen rotation blocked to portrait
+* keyboard sometimes doesn't show up on settings -> restart app --> FIXED
+* settings don't scroll up on small screens when typing         --> FIXED
 
 - KNOWN BUGS
 
-* keyboard sometimes doesn't show up on settings -> restart app
+
 * timer deletion doesn't work correctly for more than 1 timer in the list
-* settings don't scroll up on small screens when typing
-* wrong splash screen on iPad in debug mode
+
 
 - TO DO (for v1.0):
 
