@@ -16,6 +16,7 @@ uses
 
 begin
   Application.Initialize;
+  Application.FormFactor.Orientations := [TFormOrientation.soPortrait];
   Application.CreateForm(TMainDataModule, MainDataModule);
   Application.CreateForm(TMainTabbedForm, MainTabbedForm);
   Application.Run;

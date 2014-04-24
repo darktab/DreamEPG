@@ -1,7 +1,12 @@
 inherited MainTabbedForm: TMainTabbedForm
   Caption = 'MainForm1'
   ClientHeight = 548
+  OnCreate = FormCreate
+  OnResize = FormResize
   OnShow = FormShow
+  OnFocusChanged = FormFocusChanged
+  OnVirtualKeyboardShown = FormVirtualKeyboardShown
+  OnVirtualKeyboardHidden = FormVirtualKeyboardHidden
   DesignerMobile = True
   DesignerWidth = 320
   DesignerHeight = 568
@@ -76,7 +81,7 @@ inherited MainTabbedForm: TMainTabbedForm
                 Width = 44.000000000000000000
               end
               inherited TopDataComboBox: TDataComboBox
-                Height = 30.000000000000000000
+                Height = 38.000000000000000000
                 Padding.Top = 10.000000000000000000
                 Margins.Top = 6.000000000000000000
                 Width = 232.000000000000000000
@@ -121,7 +126,7 @@ inherited MainTabbedForm: TMainTabbedForm
                 Width = 44.000000000000000000
               end
               inherited TopDataComboBox: TDataComboBox
-                Height = 30.000000000000000000
+                Height = 38.000000000000000000
                 Margins.Top = 6.000000000000000000
                 Width = 188.000000000000000000
               end
@@ -327,91 +332,96 @@ inherited MainTabbedForm: TMainTabbedForm
         Height = 434.000000000000000000
         TabOrder = 2
         Width = 320.000000000000000000
-        object ListBoxGroupHeader1: TListBoxGroupHeader
-          Align = alMostTop
-          Height = 56.000000000000000000
-          StyleLookup = 'listboxgroupheader'
-          TabOrder = 0
-          Text = 'Decoder Settings'
+        object MainLayout: TLayout
+          Align = alClient
+          Height = 434.000000000000000000
           Width = 320.000000000000000000
-        end
-        object ListBoxItem1: TListBoxItem
-          Align = alTop
-          Selectable = False
-          Height = 44.000000000000000000
-          Position.Y = 56.000000000000000000
-          StyleLookup = 'listboxitemrightdetail'
-          TabOrder = 1
-          Text = 'Name'
-          Width = 320.000000000000000000
-          OnClick = ListBoxItem1Click
-          object BoxAdressEdit: TEdit
-            Touch.InteractiveGestures = [igLongTap, igDoubleTap]
-            Align = alRight
-            StyleLookup = 'transparentedit'
+          object ListBoxGroupHeader1: TListBoxGroupHeader
+            Align = alMostTop
+            Height = 56.000000000000000000
+            StyleLookup = 'listboxgroupheader'
             TabOrder = 0
-            CanParentFocus = True
-            TextAlign = taTrailing
-            Position.X = 120.000000000000000000
-            Position.Y = 8.000000000000000000
-            Width = 200.000000000000000000
-            Height = 29.000000000000000000
-            TextPrompt = 'Enter box name or IP address'
-            KillFocusByReturn = True
-            OnChange = BoxAddressEditChange
+            Text = 'Decoder Settings'
+            Width = 320.000000000000000000
           end
-        end
-        object ListBoxItem2: TListBoxItem
-          Align = alTop
-          Selectable = False
-          Height = 44.000000000000000000
-          Position.Y = 100.000000000000000000
-          StyleLookup = 'listboxitemrightdetail'
-          TabOrder = 2
-          Text = 'User name'
-          Width = 320.000000000000000000
-          OnClick = ListBoxItem2Click
-          object UsernameEdit: TEdit
-            Touch.InteractiveGestures = [igLongTap, igDoubleTap]
-            Align = alRight
-            StyleLookup = 'transparentedit'
-            TabOrder = 0
-            CanParentFocus = True
-            TextAlign = taTrailing
-            Position.X = 120.000000000000000000
-            Position.Y = 8.000000000000000000
-            Width = 200.000000000000000000
-            Height = 29.000000000000000000
-            TextPrompt = 'Enter username'
-            KillFocusByReturn = True
-            OnChange = UsernameEditChange
+          object ListBoxItem1: TListBoxItem
+            Align = alTop
+            Selectable = False
+            Height = 44.000000000000000000
+            Position.Y = 56.000000000000000000
+            StyleLookup = 'listboxitemrightdetail'
+            TabOrder = 1
+            Text = 'Name'
+            Width = 320.000000000000000000
+            OnClick = ListBoxItem1Click
+            object BoxAdressEdit: TEdit
+              Touch.InteractiveGestures = [igLongTap, igDoubleTap]
+              Align = alRight
+              StyleLookup = 'transparentedit'
+              TabOrder = 0
+              CanParentFocus = True
+              TextAlign = taTrailing
+              Position.X = 120.000000000000000000
+              Position.Y = 8.000000000000000000
+              Width = 200.000000000000000000
+              Height = 29.000000000000000000
+              TextPrompt = 'Enter box name or IP address'
+              KillFocusByReturn = True
+              OnChange = BoxAddressEditChange
+            end
           end
-        end
-        object ListBoxItem3: TListBoxItem
-          Align = alTop
-          Selectable = False
-          Height = 44.000000000000000000
-          Position.Y = 144.000000000000000000
-          StyleLookup = 'listboxitemrightdetail'
-          TabOrder = 3
-          Text = 'Password'
-          Width = 320.000000000000000000
-          OnClick = ListBoxItem3Click
-          object PasswordEdit: TEdit
-            Touch.InteractiveGestures = [igLongTap, igDoubleTap]
-            Align = alRight
-            StyleLookup = 'transparentedit'
-            TabOrder = 0
-            CanParentFocus = True
-            Password = True
-            TextAlign = taTrailing
-            Position.X = 120.000000000000000000
-            Position.Y = 8.000000000000000000
-            Width = 200.000000000000000000
-            Height = 29.000000000000000000
-            TextPrompt = 'Enter password if needed'
-            KillFocusByReturn = True
-            OnChange = PasswordEditChange
+          object ListBoxItem2: TListBoxItem
+            Align = alTop
+            Selectable = False
+            Height = 44.000000000000000000
+            Position.Y = 100.000000000000000000
+            StyleLookup = 'listboxitemrightdetail'
+            TabOrder = 2
+            Text = 'User name'
+            Width = 320.000000000000000000
+            OnClick = ListBoxItem2Click
+            object UsernameEdit: TEdit
+              Touch.InteractiveGestures = [igLongTap, igDoubleTap]
+              Align = alRight
+              StyleLookup = 'transparentedit'
+              TabOrder = 0
+              CanParentFocus = True
+              TextAlign = taTrailing
+              Position.X = 120.000000000000000000
+              Position.Y = 8.000000000000000000
+              Width = 200.000000000000000000
+              Height = 29.000000000000000000
+              TextPrompt = 'Enter username'
+              KillFocusByReturn = True
+              OnChange = UsernameEditChange
+            end
+          end
+          object ListBoxItem3: TListBoxItem
+            Align = alTop
+            Selectable = False
+            Height = 44.000000000000000000
+            Position.Y = 144.000000000000000000
+            StyleLookup = 'listboxitemrightdetail'
+            TabOrder = 3
+            Text = 'Password'
+            Width = 320.000000000000000000
+            OnClick = ListBoxItem3Click
+            object PasswordEdit: TEdit
+              Touch.InteractiveGestures = [igLongTap, igDoubleTap]
+              Align = alRight
+              StyleLookup = 'transparentedit'
+              TabOrder = 0
+              CanParentFocus = True
+              Password = True
+              TextAlign = taTrailing
+              Position.X = 120.000000000000000000
+              Position.Y = 8.000000000000000000
+              Width = 200.000000000000000000
+              Height = 29.000000000000000000
+              TextPrompt = 'Enter password if needed'
+              KillFocusByReturn = True
+              OnChange = PasswordEditChange
+            end
           end
         end
       end

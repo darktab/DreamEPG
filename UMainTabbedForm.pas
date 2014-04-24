@@ -14,7 +14,7 @@ uses
   System.Bindings.Helper,
   UDataListView,
   USettings,
-  FMX.StdActns, FMX.Objects;
+  FMX.StdActns, FMX.Objects, System.Math;
 
 type
   TMainTabbedForm = class(TMainForm)
@@ -55,6 +55,7 @@ type
     VersionLabel: TLabel;
     TextEPGInfoBottomRectangle: TRectangle;
     VertScrollBox: TVertScrollBox;
+    MainLayout: TLayout;
     procedure FormShow(Sender: TObject);
     procedure ComboBoxServiceListChange(Sender: TObject);
     procedure DataComboListViewFrameChannelListDataListViewItemClick
@@ -73,13 +74,28 @@ type
     procedure ListBoxItem1Click(Sender: TObject);
     procedure ListBoxItem2Click(Sender: TObject);
     procedure ListBoxItem3Click(Sender: TObject);
+    procedure FormVirtualKeyboardHidden(Sender: TObject;
+      KeyboardVisible: Boolean; const Bounds: TRect);
+    procedure FormVirtualKeyboardShown(Sender: TObject;
+      KeyboardVisible: Boolean; const Bounds: TRect);
+    procedure FormFocusChanged(Sender: TObject);
+    procedure FormCreate(Sender: TObject);
+    procedure FormResize(Sender: TObject);
 
   private
     fSettings: TSettings;
+    FKBBounds: TRectF;
+    fKBOffset: Integer;
+    FNeedOffset: Boolean;
 
     procedure initTimerDataListView;
     procedure initSettings;
     procedure initChannelListView;
+
+    procedure CalcContentBoundsProc(Sender: TObject; var ContentBounds: TRectF);
+    procedure RestorePosition;
+    procedure UpdateKBBounds;
+
     { Private declarations }
   public
     { Public declarations }
@@ -180,13 +196,48 @@ begin
   // initChannelListView();
 end;
 
+procedure TMainTabbedForm.FormCreate(Sender: TObject);
+begin
+  inherited;
+  VertScrollBox.OnCalcContentBounds := CalcContentBoundsProc;
+end;
+
+procedure TMainTabbedForm.CalcContentBoundsProc(Sender: TObject;
+  var ContentBounds: TRectF);
+begin
+  if FNeedOffset and (FKBBounds.Top > 0) then
+  begin
+    ContentBounds.Bottom := Max(ContentBounds.Bottom,
+      2 * ClientHeight - FKBBounds.Top);
+  end;
+end;
+
+procedure TMainTabbedForm.FormFocusChanged(Sender: TObject);
+begin
+  inherited;
+  UpdateKBBounds;
+end;
+
+procedure TMainTabbedForm.FormResize(Sender: TObject);
+begin
+  inherited;
+  if self.Height > self.Width then
+  begin
+    fKBOffset := 50;
+  end
+  else
+  begin
+    fKBOffset := -200;
+  end;
+end;
+
 procedure TMainTabbedForm.FormShow(Sender: TObject);
 var
   lDefaultServiceReference: string;
   lBindingExpression: TBindingExpression;
 begin
   inherited;
-
+  fKBOffset := 50;
   fSettings := TSettings.Create;
   try
     // initialisation des settings
@@ -202,6 +253,59 @@ begin
     // ShowMessage('Please take a moment to fill in these settings!');
   end;
 
+end;
+
+procedure TMainTabbedForm.UpdateKBBounds;
+var
+  LFocused: TControl;
+  LFocusRect: TRectF;
+begin
+  FNeedOffset := False;
+  if Assigned(Focused) then
+  begin
+    LFocused := TControl(Focused.GetObject);
+    LFocusRect := LFocused.AbsoluteRect;
+    LFocusRect.Offset(VertScrollBox.ViewportPosition);
+    if (LFocusRect.IntersectsWith(TRectF.Create(FKBBounds))) and
+      (LFocusRect.Bottom > FKBBounds.Top) then
+    begin
+      FNeedOffset := True;
+      MainLayout.Align := TAlignLayout.alHorizontal;
+      VertScrollBox.RealignContent;
+      Application.ProcessMessages;
+      VertScrollBox.ViewportPosition := PointF(VertScrollBox.ViewportPosition.X,
+        LFocusRect.Bottom - FKBBounds.Top + fKBOffset);
+    end;
+  end;
+  if not FNeedOffset then
+    RestorePosition;
+
+end;
+
+procedure TMainTabbedForm.FormVirtualKeyboardHidden(Sender: TObject;
+  KeyboardVisible: Boolean; const Bounds: TRect);
+begin
+  inherited;
+  FKBBounds.Create(0, 0, 0, 0);
+  FNeedOffset := False;
+  RestorePosition;
+end;
+
+procedure TMainTabbedForm.RestorePosition;
+begin
+  VertScrollBox.ViewportPosition := PointF(VertScrollBox.ViewportPosition.X, 0);
+  MainLayout.Align := TAlignLayout.alClient;
+  VertScrollBox.RealignContent;
+end;
+
+procedure TMainTabbedForm.FormVirtualKeyboardShown(Sender: TObject;
+  KeyboardVisible: Boolean; const Bounds: TRect);
+begin
+  inherited;
+  FKBBounds := TRectF.Create(Bounds);
+  FKBBounds.TopLeft := ScreenToClient(FKBBounds.TopLeft);
+  FKBBounds.BottomRight := ScreenToClient(FKBBounds.BottomRight);
+  UpdateKBBounds;
 end;
 
 procedure TMainTabbedForm.TextEPGBackDataComboListViewFrameDataListViewItemClick
@@ -296,7 +400,7 @@ begin
     MessageDlg('Timer successfully deleted!',
       System.UITypes.TMsgDlgType.mtInformation,
       [System.UITypes.TMsgDlgBtn.mbOK], 0);
-    ACanDelete := true;
+    ACanDelete := True;
   end
   else
   begin
@@ -349,13 +453,13 @@ end;
 procedure TMainTabbedForm.ListBoxItem2Click(Sender: TObject);
 begin
   inherited;
-  UsernameEdit.Caret.Visible := true;
+  UsernameEdit.Caret.Visible := True;
 end;
 
 procedure TMainTabbedForm.ListBoxItem3Click(Sender: TObject);
 begin
   inherited;
-  PasswordEdit.Caret.Visible := true;
+  PasswordEdit.Caret.Visible := True;
 end;
 
 procedure TMainTabbedForm.MainTabControlChange(Sender: TObject);
