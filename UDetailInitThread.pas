@@ -4,7 +4,7 @@ interface
 
 uses
   System.Classes, UDataListView, Data.DB, FireDAC.Comp.DataSet,
-  FireDAC.Comp.Client, REST.Response.Adapter,
+  FireDAC.Comp.Client, REST.Response.Adapter, System.UITypes,
   REST.Client, FMX.Dialogs, SysUtils;
 
 type
@@ -32,6 +32,8 @@ type
 
 implementation
 
+uses UWorking, UMainTabbedForm;
+
 { TDetailInitThread }
 
 destructor TDetailInitThread.Destroy;
@@ -58,23 +60,35 @@ end;
 procedure TDetailInitThread.ToSyncExecute;
 begin
   try
-    fDetailRESTRequest.Execute;
-  except
-    if fMasterDataSet.State = dsBrowse then
-    begin
-      fMasterDataSet.Close;
+    try
+      fDetailRESTRequest.Execute;
+    except
+      if fMasterDataSet.State = dsBrowse then
+      begin
+        fMasterDataSet.Close;
+      end;
+      fDetailRESTRequest.Execute;
     end;
-    fDetailRESTRequest.Execute;
+
+    if assigned(fDetailDataStringList) then
+    begin
+      fDetailDataListView.init(fDetailDataStringList)
+    end
+    else
+    begin
+      fDetailDataListView.init;
+    end;
+    WorkingForm.WorkingMsg('Loading ...', false);
+    MainTabbedForm.Show;
+  except
+    WorkingForm.WorkingMsg('Loading ...', false);
+    MainTabbedForm.Show;
+
+    MessageDlg('No Data found!', System.UITypes.TMsgDlgType.mtInformation,
+      [System.UITypes.TMsgDlgBtn.mbOK], 0);
+
   end;
 
-  if assigned(fDetailDataStringList) then
-  begin
-    fDetailDataListView.init(fDetailDataStringList)
-  end
-  else
-  begin
-    fDetailDataListView.init;
-  end;
 end;
 
 procedure TDetailInitThread.Execute;

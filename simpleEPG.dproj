@@ -333,31 +333,30 @@
                         <RemoteName>Default-Portrait~ipad.png</RemoteName>
                     </Platform>
                 </DeployFile>
-                <DeployFile LocalName="C:\Users\cjacoby\Documents\GitHub\simpleEPG\icons\sEPG1_29x29.png" Configuration="Debug" Class="iPad_Setting29">
-                    <Platform Name="iOSSimulator"/>
+                <DeployFile LocalName="C:\Users\cjacoby\Documents\GitHub\simpleEPG\icons\simpleEPG1_768_1024.png" Configuration="Debug" Class="iPad_Launch768x1024">
+                    <Platform Name="iOSSimulator">
+                        <RemoteName>Default-Portrait~ipad.png</RemoteName>
+                    </Platform>
                 </DeployFile>
                 <DeployFile LocalName="C:\Users\cjacoby\Documents\GitHub\simpleEPG\icons\sEPG1_152x152.png" Configuration="Debug" Class="iPad_AppIcon152">
                     <Platform Name="iOSSimulator"/>
                 </DeployFile>
-                <DeployFile LocalName="C:\Users\cjacoby\Documents\GitHub\simpleEPG\icons\sEPG1_58x58.png" Configuration="Debug" Class="iPad_Setting58">
-                    <Platform Name="iOSSimulator"/>
+                <DeployFile LocalName="$(BDS)\bin\Artwork\iOS\iPad\FM_SpotlightSearchIcon_80x80.png" Configuration="Debug" Class="iPad_SpotLight80">
+                    <Platform Name="iOSDevice"/>
                 </DeployFile>
                 <DeployFile LocalName="iOSDevice\Debug\simpleEPG.info.plist" Configuration="Debug" Class="ProjectiOSDeviceInfoPList">
                     <Platform Name="iOSDevice">
                         <RemoteName>Info.plist</RemoteName>
                     </Platform>
                 </DeployFile>
-                <DeployFile LocalName="$(BDS)\bin\Artwork\iOS\iPad\FM_SpotlightSearchIcon_80x80.png" Configuration="Debug" Class="iPad_SpotLight80">
-                    <Platform Name="iOSDevice"/>
+                <DeployFile LocalName="C:\Users\cjacoby\Documents\GitHub\simpleEPG\icons\simpleEPG1_640x1136.png" Configuration="Debug" Class="iPhone_Launch640x1136">
+                    <Platform Name="iOSSimulator">
+                        <RemoteName>Default-568h@2x.png</RemoteName>
+                    </Platform>
                 </DeployFile>
                 <DeployFile LocalName="C:\Users\cjacoby\Documents\GitHub\simpleEPG\icons\simpleEPG1_2048_1536.png" Configuration="Debug" Class="iPad_Launch2048x1536">
                     <Platform Name="iOSDevice">
                         <RemoteName>Default-Landscape@2x~ipad.png</RemoteName>
-                    </Platform>
-                </DeployFile>
-                <DeployFile LocalName="C:\Users\cjacoby\Documents\GitHub\simpleEPG\icons\simpleEPG1_2048x1496.png" Configuration="Debug" Class="iPad_Launch2048">
-                    <Platform Name="iOSSimulator">
-                        <RemoteName>Default-Landscape@2x.png</RemoteName>
                     </Platform>
                 </DeployFile>
                 <DeployFile LocalName="$(BDS)\bin\Artwork\iOS\iPad\FM_ApplicationIcon_152x152.png" Configuration="Debug" Class="iPad_AppIcon152">
@@ -368,12 +367,16 @@
                         <RemoteName>Default-Landscape@2x~ipad.png</RemoteName>
                     </Platform>
                 </DeployFile>
-                <DeployFile LocalName="C:\Users\cjacoby\Documents\GitHub\simpleEPG\icons\simpleEPG1_1536x2008.png" Configuration="Debug" Class="iPad_Launch1536">
-                    <Platform Name="iOSSimulator">
-                        <RemoteName>Default-Portrait@2x.png</RemoteName>
-                    </Platform>
+                <DeployFile LocalName="C:\Users\cjacoby\Documents\GitHub\simpleEPG\icons\sEPG1_114x114.png" Configuration="Debug" Class="iPhone_AppIcon114">
+                    <Platform Name="iOSSimulator"/>
                 </DeployFile>
                 <DeployFile LocalName="$(BDS)\bin\Artwork\iOS\iPad\FM_SpotlightSearchIcon_80x80.png" Configuration="Debug" Class="iPad_SpotLight80">
+                    <Platform Name="iOSSimulator"/>
+                </DeployFile>
+                <DeployFile LocalName="C:\Users\cjacoby\Documents\GitHub\simpleEPG\icons\sEPG1_72x72.png" Configuration="Debug" Class="iPad_AppIcon72">
+                    <Platform Name="iOSSimulator"/>
+                </DeployFile>
+                <DeployFile LocalName="C:\Users\cjacoby\Documents\GitHub\simpleEPG\icons\sEPG1_100x100.png" Configuration="Debug" Class="iPad_SpotLight100">
                     <Platform Name="iOSSimulator"/>
                 </DeployFile>
                 <DeployFile LocalName="$(BDS)\bin\Artwork\iOS\iPhone\FM_ApplicationIcon_120x120.png" Configuration="Debug" Class="iPhone_AppIcon120">
@@ -382,7 +385,16 @@
                 <DeployFile LocalName="C:\Users\cjacoby\Documents\GitHub\simpleEPG\icons\sEPG1_76x76.png" Configuration="Debug" Class="iPad_AppIcon76">
                     <Platform Name="iOSSimulator"/>
                 </DeployFile>
+                <DeployFile LocalName="C:\Users\cjacoby\Documents\GitHub\simpleEPG\icons\sEPG1_120x120.png" Configuration="Debug" Class="iPhone_AppIcon120">
+                    <Platform Name="iOSSimulator"/>
+                </DeployFile>
                 <DeployFile LocalName="$(BDS)\bin\Artwork\iOS\iPad\FM_ApplicationIcon_152x152.png" Configuration="Debug" Class="iPad_AppIcon152">
+                    <Platform Name="iOSSimulator"/>
+                </DeployFile>
+                <DeployFile LocalName="C:\Users\cjacoby\Documents\GitHub\simpleEPG\icons\sEPG1_80x80.png" Configuration="Debug" Class="iPad_SpotLight80">
+                    <Platform Name="iOSSimulator"/>
+                </DeployFile>
+                <DeployFile LocalName="C:\Users\cjacoby\Documents\GitHub\simpleEPG\icons\sEPG1_144x144.png" Configuration="Debug" Class="iPad_AppIcon144">
                     <Platform Name="iOSSimulator"/>
                 </DeployFile>
                 <DeployFile LocalName="C:\Users\cjacoby\Documents\GitHub\simpleEPG\icons\simpleEPG1_1024_768.png" Configuration="Debug" Class="iPad_Launch1024x768">
@@ -393,13 +405,16 @@
                 <DeployFile LocalName="$(BDS)\bin\Artwork\iOS\iPhone\FM_ApplicationIcon_60x60.png" Configuration="Debug" Class="iPhone_AppIcon60">
                     <Platform Name="iOSDevice"/>
                 </DeployFile>
-                <DeployFile LocalName="C:\Users\cjacoby\Documents\GitHub\simpleEPG\icons\sEPG1_144x144.png" Configuration="Debug" Class="iPad_AppIcon144">
-                    <Platform Name="iOSSimulator"/>
-                </DeployFile>
                 <DeployFile LocalName="C:\Users\cjacoby\Documents\GitHub\simpleEPG\icons\simpleEPG1_1024_768.png" Configuration="Debug" Class="iPad_Launch1024x768">
                     <Platform Name="iOSSimulator">
                         <RemoteName>Default-Landscape~ipad.png</RemoteName>
                     </Platform>
+                </DeployFile>
+                <DeployFile LocalName="C:\Users\cjacoby\Documents\GitHub\simpleEPG\icons\sEPG1_50x50.png" Configuration="Debug" Class="iPad_SpotLight50">
+                    <Platform Name="iOSSimulator"/>
+                </DeployFile>
+                <DeployFile LocalName="C:\Users\cjacoby\Documents\GitHub\simpleEPG\icons\sEPG1_57x57.png" Configuration="Debug" Class="iPhone_AppIcon57">
+                    <Platform Name="iOSSimulator"/>
                 </DeployFile>
                 <DeployFile LocalName="C:\Users\cjacoby\Documents\GitHub\simpleEPG\icons\sEPG1_152x152.png" Configuration="Debug" Class="iPad_AppIcon152">
                     <Platform Name="iOSDevice"/>
@@ -410,11 +425,18 @@
                 <DeployFile LocalName="$(BDS)\bin\Artwork\iOS\iPad\FM_SpotlightSearchIcon_40x40.png" Configuration="Debug" Class="iPad_SpotLight40">
                     <Platform Name="iOSSimulator"/>
                 </DeployFile>
-                <DeployFile LocalName="C:\Users\cjacoby\Documents\GitHub\simpleEPG\icons\sEPG1_57x57.png" Configuration="Debug" Class="iPhone_AppIcon57">
-                    <Platform Name="iOSSimulator"/>
+                <DeployFile LocalName="C:\Users\cjacoby\Documents\GitHub\simpleEPG\icons\simpleEPG1_768_1004.png" Configuration="Debug" Class="iPad_Launch768">
+                    <Platform Name="iOSSimulator">
+                        <RemoteName>Default~ipad.png</RemoteName>
+                    </Platform>
                 </DeployFile>
                 <DeployFile LocalName="$(BDS)\bin\Artwork\iOS\iPhone\FM_SpotlightSearchIcon_40x40.png" Configuration="Debug" Class="iPhone_Spotlight40">
                     <Platform Name="iOSSimulator"/>
+                </DeployFile>
+                <DeployFile LocalName="C:\Users\cjacoby\Documents\GitHub\simpleEPG\icons\simpleEPG1_1536x2048.png" Configuration="Debug" Class="iPad_Launch1536x2048">
+                    <Platform Name="iOSDevice">
+                        <RemoteName>Default-Portrait@2x~ipad.png</RemoteName>
+                    </Platform>
                 </DeployFile>
                 <DeployFile LocalName="C:\Users\cjacoby\Documents\GitHub\simpleEPG\icons\simpleEPG1_768_1024.png" Configuration="Debug" Class="iPad_Launch768x1024">
                     <Platform Name="iOSSimulator">
@@ -424,15 +446,17 @@
                 <DeployFile LocalName="iOSDevice\Debug\simpleEPG" Configuration="Debug" Class="ProjectOutput">
                     <Platform Name="iOSDevice"/>
                 </DeployFile>
-                <DeployFile LocalName="C:\Users\cjacoby\Documents\GitHub\simpleEPG\icons\sEPG1_114x114.png" Configuration="Debug" Class="iPhone_AppIcon114">
-                    <Platform Name="iOSSimulator"/>
-                </DeployFile>
                 <DeployFile LocalName="C:\Users\cjacoby\Documents\GitHub\simpleEPG\icons\sEPG1_120x120.png" Configuration="Debug" Class="iPhone_AppIcon120">
                     <Platform Name="iOSSimulator"/>
                 </DeployFile>
-                <DeployFile LocalName="C:\Users\cjacoby\Documents\GitHub\simpleEPG\icons\simpleEPG1_1536x2048.png" Configuration="Debug" Class="iPad_Launch1536x2048">
-                    <Platform Name="iOSDevice">
-                        <RemoteName>Default-Portrait@2x~ipad.png</RemoteName>
+                <DeployFile LocalName="C:\Users\cjacoby\Documents\GitHub\simpleEPG\icons\simpleEPG1_1024_748.png" Configuration="Debug" Class="iPad_Launch1024">
+                    <Platform Name="iOSSimulator">
+                        <RemoteName>Default-Landscape.png</RemoteName>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="C:\Users\cjacoby\Documents\GitHub\simpleEPG\icons\simpleEPG1_2048_1536.png" Configuration="Debug" Class="iPad_Launch2048x1536">
+                    <Platform Name="iOSSimulator">
+                        <RemoteName>Default-Landscape@2x~ipad.png</RemoteName>
                     </Platform>
                 </DeployFile>
                 <DeployFile LocalName="$(BDS)\bin\Artwork\iOS\iPhone\FM_ApplicationIcon_60x60.png" Configuration="Debug" Class="iPhone_AppIcon60">
@@ -456,14 +480,12 @@
                         <RemoteName>Default-Portrait@2x~ipad.png</RemoteName>
                     </Platform>
                 </DeployFile>
+                <DeployFile LocalName="C:\Users\cjacoby\Documents\GitHub\simpleEPG\icons\sEPG1_40x40.png" Configuration="Debug" Class="iPad_SpotLight40">
+                    <Platform Name="iOSSimulator"/>
+                </DeployFile>
                 <DeployFile LocalName="$(BDS)\bin\Artwork\iOS\iPad\FM_LaunchImagePortrait_768x1024.png" Configuration="Debug" Class="iPad_Launch768x1024">
                     <Platform Name="iOSSimulator">
                         <RemoteName>Default-Portrait~ipad.png</RemoteName>
-                    </Platform>
-                </DeployFile>
-                <DeployFile LocalName="C:\Users\cjacoby\Documents\GitHub\simpleEPG\icons\simpleEPG1_1024_748.png" Configuration="Debug" Class="iPad_Launch1024">
-                    <Platform Name="iOSSimulator">
-                        <RemoteName>Default-Landscape.png</RemoteName>
                     </Platform>
                 </DeployFile>
                 <DeployFile LocalName="$(BDS)\bin\Artwork\iOS\iPhone\FM_SpotlightSearchIcon_40x40.png" Configuration="Debug" Class="iPhone_Spotlight40">
@@ -476,17 +498,10 @@
                     <Platform Name="OSX32"/>
                     <Platform Name="iOSSimulator"/>
                 </DeployFile>
-                <DeployFile LocalName="C:\Users\cjacoby\Documents\GitHub\simpleEPG\icons\simpleEPG1_640x960.png" Configuration="Debug" Class="iPhone_Launch640">
-                    <Platform Name="iOSSimulator">
-                        <RemoteName>Default@2x.png</RemoteName>
-                    </Platform>
+                <DeployFile LocalName="C:\Users\cjacoby\Documents\GitHub\simpleEPG\icons\sEPG1_29x29.png" Configuration="Debug" Class="iPad_Setting29">
+                    <Platform Name="iOSSimulator"/>
                 </DeployFile>
-                <DeployFile LocalName="C:\Users\cjacoby\Documents\GitHub\simpleEPG\icons\simpleEPG1_320x480.png" Configuration="Debug" Class="iPhone_Launch320">
-                    <Platform Name="iOSSimulator">
-                        <RemoteName>Default.png</RemoteName>
-                    </Platform>
-                </DeployFile>
-                <DeployFile LocalName="C:\Users\cjacoby\Documents\GitHub\simpleEPG\icons\sEPG1_72x72.png" Configuration="Debug" Class="iPad_AppIcon72">
+                <DeployFile LocalName="C:\Users\cjacoby\Documents\GitHub\simpleEPG\icons\sEPG1_58x58.png" Configuration="Debug" Class="iPad_Setting58">
                     <Platform Name="iOSSimulator"/>
                 </DeployFile>
                 <DeployFile LocalName="$(BDS)\bin\Artwork\iOS\iPad\FM_LaunchImagePortrait_1536x2048.png" Configuration="Debug" Class="iPad_Launch1536x2048">
@@ -497,6 +512,14 @@
                 <DeployFile LocalName="C:\Users\cjacoby\Documents\GitHub\simpleEPG\icons\sEPG1_120x120.png" Configuration="Debug" Class="iPhone_AppIcon120">
                     <Platform Name="iOSDevice"/>
                 </DeployFile>
+                <DeployFile LocalName="C:\Users\cjacoby\Documents\GitHub\simpleEPG\icons\sEPG1_76x76.png" Configuration="Debug" Class="iPad_AppIcon76">
+                    <Platform Name="iOSSimulator"/>
+                </DeployFile>
+                <DeployFile LocalName="C:\Users\cjacoby\Documents\GitHub\simpleEPG\icons\simpleEPG1_1024_768.png" Configuration="Debug" Class="iPad_Launch1024x768">
+                    <Platform Name="iOSSimulator">
+                        <RemoteName>Default-Landscape~ipad.png</RemoteName>
+                    </Platform>
+                </DeployFile>
                 <DeployFile LocalName="C:\Users\cjacoby\Documents\GitHub\simpleEPG\icons\sEPG1_80x80.png" Configuration="Debug" Class="iPad_SpotLight80">
                     <Platform Name="iOSDevice"/>
                 </DeployFile>
@@ -506,9 +529,14 @@
                 <DeployFile LocalName="C:\Users\cjacoby\Documents\GitHub\simpleEPG\icons\sEPG1_60x60.png" Configuration="Debug" Class="iPhone_AppIcon60">
                     <Platform Name="iOSDevice"/>
                 </DeployFile>
-                <DeployFile LocalName="C:\Users\cjacoby\Documents\GitHub\simpleEPG\icons\simpleEPG1_640x1136.png" Configuration="Debug" Class="iPhone_Launch640x1136">
+                <DeployFile LocalName="C:\Users\cjacoby\Documents\GitHub\simpleEPG\icons\simpleEPG1_1536x2048.png" Configuration="Debug" Class="iPad_Launch1536x2048">
                     <Platform Name="iOSSimulator">
-                        <RemoteName>Default-568h@2x.png</RemoteName>
+                        <RemoteName>Default-Portrait@2x~ipad.png</RemoteName>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="C:\Users\cjacoby\Documents\GitHub\simpleEPG\icons\simpleEPG1_640x960.png" Configuration="Debug" Class="iPhone_Launch640">
+                    <Platform Name="iOSSimulator">
+                        <RemoteName>Default@2x.png</RemoteName>
                     </Platform>
                 </DeployFile>
                 <DeployFile LocalName="$(BDS)\bin\Artwork\iOS\iPad\FM_ApplicationIcon_76x76.png" Configuration="Debug" Class="iPad_AppIcon76">
@@ -537,7 +565,7 @@
                         <RemoteName>Default-Portrait@2x~ipad.png</RemoteName>
                     </Platform>
                 </DeployFile>
-                <DeployFile LocalName="C:\Users\cjacoby\Documents\GitHub\simpleEPG\icons\sEPG1_100x100.png" Configuration="Debug" Class="iPad_SpotLight100">
+                <DeployFile LocalName="C:\Users\cjacoby\Documents\GitHub\simpleEPG\icons\sEPG1_60x60.png" Configuration="Debug" Class="iPhone_AppIcon60">
                     <Platform Name="iOSSimulator"/>
                 </DeployFile>
                 <DeployFile LocalName="$(BDS)\bin\Artwork\iOS\iPad\FM_LaunchImageLandscape_2048x1536.png" Configuration="Debug" Class="iPad_Launch2048x1536">
@@ -563,12 +591,14 @@
                         <RemoteName>Entitlements.plist</RemoteName>
                     </Platform>
                 </DeployFile>
-                <DeployFile LocalName="C:\Users\cjacoby\Documents\GitHub\simpleEPG\icons\sEPG1_50x50.png" Configuration="Debug" Class="iPad_SpotLight50">
-                    <Platform Name="iOSSimulator"/>
-                </DeployFile>
-                <DeployFile LocalName="C:\Users\cjacoby\Documents\GitHub\simpleEPG\icons\simpleEPG1_768_1004.png" Configuration="Debug" Class="iPad_Launch768">
+                <DeployFile LocalName="C:\Users\cjacoby\Documents\GitHub\simpleEPG\icons\simpleEPG1_320x480.png" Configuration="Debug" Class="iPhone_Launch320">
                     <Platform Name="iOSSimulator">
-                        <RemoteName>Default~ipad.png</RemoteName>
+                        <RemoteName>Default.png</RemoteName>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="C:\Users\cjacoby\Documents\GitHub\simpleEPG\icons\simpleEPG1_1536x2008.png" Configuration="Debug" Class="iPad_Launch1536">
+                    <Platform Name="iOSSimulator">
+                        <RemoteName>Default-Portrait@2x.png</RemoteName>
                     </Platform>
                 </DeployFile>
                 <DeployFile LocalName="iOSDevice\Debug\simpleEPG.entitlements" Configuration="Debug" Class="ProjectiOSEntitlements">
@@ -576,9 +606,17 @@
                         <RemoteName>Entitlements.plist</RemoteName>
                     </Platform>
                 </DeployFile>
+                <DeployFile LocalName="C:\Users\cjacoby\Documents\GitHub\simpleEPG\icons\sEPG1_152x152.png" Configuration="Debug" Class="iPad_AppIcon152">
+                    <Platform Name="iOSSimulator"/>
+                </DeployFile>
                 <DeployFile LocalName="iOSDevice\Debug\ResourceRules.plist" Configuration="Debug" Class="ProjectiOSDeviceResourceRules">
                     <Platform Name="iOSDevice">
                         <RemoteName>ResourceRules.plist</RemoteName>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="C:\Users\cjacoby\Documents\GitHub\simpleEPG\icons\simpleEPG1_2048x1496.png" Configuration="Debug" Class="iPad_Launch2048">
+                    <Platform Name="iOSSimulator">
+                        <RemoteName>Default-Landscape@2x.png</RemoteName>
                     </Platform>
                 </DeployFile>
                 <DeployClass Required="true" Name="DependencyPackage">

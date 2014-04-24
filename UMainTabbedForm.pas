@@ -337,10 +337,10 @@ var
   lkeyboard: TVirtualKeyboard;
 begin
   inherited;
-  lkeyboard := TVirtualKeyboard.Create(BoxAdressEdit);
-  lkeyboard.ExecuteTarget(BoxAdressEdit);
-  BoxAdressEdit.SetFocus;
-  BoxAdressEdit.SelLength := 0;
+  // lkeyboard := TVirtualKeyboard.Create(BoxAdressEdit);
+  // lkeyboard.ExecuteTarget(BoxAdressEdit);
+  BoxAdressEdit.BringToFront;
+  // BoxAdressEdit.SelLength := 0;
   // BoxAdressEdit.CaretPosition := 0;
   // BoxAdressEdit.Caret.TemporarilyHidden := False;
   // BoxAdressEdit.Typing := true;
@@ -418,7 +418,6 @@ var
 begin
   inherited;
   ToDetailChangeTabAction.ExecuteTarget(self);
-
   lDetailStringList := TStringList.Create;
 
   lDetailStringList.Add('date');

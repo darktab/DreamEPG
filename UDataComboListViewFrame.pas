@@ -8,7 +8,7 @@ uses
   FMX.Types, FMX.Graphics, FMX.Controls, FMX.Forms, FMX.Dialogs, FMX.StdCtrls,
   FMX.ListBox, UDataComboBox, FMX.ListView.Types, FMX.ListView, UDataListView,
   Data.DB, FireDAC.Comp.DataSet, FireDAC.Comp.Client, REST.Response.Adapter,
-  REST.Client, UDetailInitThread;
+  REST.Client, UDetailInitThread, FMX.Objects;
 
 type
   TDataComboListViewFrame = class(TFrame)
@@ -24,7 +24,7 @@ type
       const AItem: TListViewItem);
     procedure DataListViewButtonClick(const Sender: TObject;
       const AItem: TListViewItem; const AObject: TListItemSimpleControl);
-    procedure DoneInitDetail(Sender: TObject);
+    procedure DoneInitDetail(Sender: TObject); virtual;
     procedure FrameResize(Sender: TObject);
   private
     { Private declarations }
@@ -105,7 +105,8 @@ begin
   end;
 
   // fDetailInitThread := nil;
-  WorkingForm.WorkingMsg('Loading ...', false);
+  // WorkingForm.WorkingMsg('Loading ...', false);
+
   self.Show;
 end;
 
@@ -207,8 +208,8 @@ begin
   end
   else
   begin
-    TopPrevButton.Visible := false;
-    TopNextButton.Visible := false;
+    TopPrevButton.Visible := False;
+    TopNextButton.Visible := False;
   end;
 
 end;
@@ -230,7 +231,7 @@ begin
   if fDetailDataSet.Active then
   begin
     fDetailRESTResponseDataSetAdapter.ClearDataSet;
-    fDetailRESTResponseDataSetAdapter.Active := false;
+    fDetailRESTResponseDataSetAdapter.Active := False;
     fDetailDataSet.Close;
   end;
 
@@ -241,6 +242,7 @@ begin
 
   // Call the working spinner
   WorkingForm.WorkingMsg('Loading ...', true);
+  Application.ProcessMessages;
   fDetailInitThread := TDetailInitThread.Create(fMasterDataSet,
     fDetailDataStringList, fDetailRESTRequest, DataListView, DoneInitDetail);
   // fDetailInitThread.OnTerminate := DoneInitDetail;
@@ -271,7 +273,7 @@ begin
   fMasterDetailLinkFieldName := lMasterDetailLinkFieldName;
 
   initTopDataComboBox;
-  initDataListView;
+  // initDataListView;
 end;
 
 procedure TDataComboListViewFrame.TopDataComboBoxChange(Sender: TObject);

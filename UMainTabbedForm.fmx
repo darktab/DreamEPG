@@ -76,7 +76,7 @@ inherited MainTabbedForm: TMainTabbedForm
                 Width = 44.000000000000000000
               end
               inherited TopDataComboBox: TDataComboBox
-                Height = 38.000000000000000000
+                Height = 30.000000000000000000
                 Padding.Top = 10.000000000000000000
                 Margins.Top = 6.000000000000000000
                 Width = 232.000000000000000000
@@ -121,7 +121,7 @@ inherited MainTabbedForm: TMainTabbedForm
                 Width = 44.000000000000000000
               end
               inherited TopDataComboBox: TDataComboBox
-                Height = 38.000000000000000000
+                Height = 30.000000000000000000
                 Margins.Top = 6.000000000000000000
                 Width = 188.000000000000000000
               end
