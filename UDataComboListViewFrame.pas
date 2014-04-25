@@ -279,6 +279,11 @@ end;
 procedure TDataComboListViewFrame.TopDataComboBoxChange(Sender: TObject);
 begin
   fMasterDataSet.RecNo := TopDataComboBox.ItemIndex + 1;
+
+  TopNextButton.Enabled :=
+    not(TopDataComboBox.ItemIndex = (TopDataComboBox.Items.Count - 1));
+  TopPrevButton.Enabled := not(TopDataComboBox.ItemIndex = 0);
+
   try
     initDataListView;
   except
@@ -291,13 +296,7 @@ procedure TDataComboListViewFrame.TopNextButtonClick(Sender: TObject);
 begin
   if TopDataComboBox.Items.Count > 1 then
   begin
-
-    try
-      TopDataComboBox.ItemIndex := TopDataComboBox.ItemIndex + 1;
-    except
-
-    end;
-
+    TopDataComboBox.ItemIndex := TopDataComboBox.ItemIndex + 1;
   end;
 end;
 
@@ -305,13 +304,7 @@ procedure TDataComboListViewFrame.TopPrevButtonClick(Sender: TObject);
 begin
   if TopDataComboBox.Items.Count > 1 then
   begin
-
-    try
-      TopDataComboBox.ItemIndex := TopDataComboBox.ItemIndex - 1;
-    except
-
-    end;
-
+    TopDataComboBox.ItemIndex := TopDataComboBox.ItemIndex - 1;
   end;
 end;
 
