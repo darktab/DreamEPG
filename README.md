@@ -35,3 +35,8 @@ TO DO (for v1.1):
 * implement progressbar for first EPG event
 * implement Searchbox for channels and EPG events
 
+TO DO (for v2.0):
+-----------------
+
+* Graphical Multi-EPG
+
