@@ -19,6 +19,8 @@ CJ
 
 
 * timer deletion doesn't work correctly for more than 1 timer in the list
+* Switching through channels via the combobox with "^" generates an error 
+  when going back before the first channel (or beyond the last)
 
 
 - TO DO (for v1.0):
