@@ -14,7 +14,8 @@ uses
   System.Bindings.Helper,
   UDataListView,
   USettings,
-  FMX.StdActns, FMX.Objects, System.Math;
+  FMX.StdActns, FMX.Objects, System.Math,
+  DBXJSON;
 
 type
   TMainTabbedForm = class(TMainForm)
@@ -379,6 +380,9 @@ end;
 // ------------------------
 procedure TMainTabbedForm.TimersDataListViewDeletingItem(Sender: TObject;
   AIndex: Integer; var ACanDelete: Boolean);
+var
+  lJSONObject: TJSONObject;
+  lJSONPair: TJSONPair;
 begin
   inherited;
   try
@@ -397,10 +401,22 @@ begin
 
   if MainDataModule.DreamRESTResponseDeleteTimer.StatusCode = 200 then
   begin
-    MessageDlg('Timer successfully deleted!',
-      System.UITypes.TMsgDlgType.mtInformation,
-      [System.UITypes.TMsgDlgBtn.mbOK], 0);
-    ACanDelete := True;
+    lJSONObject := TJSONObject.ParseJSONValue
+      (MainDataModule.DreamRESTResponseDeleteTimer.Content) as TJSONObject;
+    if (lJSONObject.Get(1).JsonValue is TJSONTrue) then
+    begin
+      MessageDlg(lJSONObject.Get(0).JsonValue.Value,
+        System.UITypes.TMsgDlgType.mtInformation,
+        [System.UITypes.TMsgDlgBtn.mbOK], 0);
+      ACanDelete := True;
+    end
+    else
+    begin
+      MessageDlg('Timer could not be deleted!',
+        System.UITypes.TMsgDlgType.mtError,
+        [System.UITypes.TMsgDlgBtn.mbOK], 0);
+      ACanDelete := False;
+    end;
   end
   else
   begin
