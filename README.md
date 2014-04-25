@@ -1,9 +1,9 @@
 simpleEPG
 =========
 
-Dreambox and Vu+ boxes EPG for iOS
+Dreambox and Vu+ boxes EPG for iOS7
 
-This code compiles on Embarcadero Appmethod & Delphi XE5 (FireMonkey) and is primarily destined to run on iOS -
+This code compiles on Embarcadero Appmethod & Delphi XE5/XE6 (FireMonkey) and is primarily destined to run on iOS7 -
 However it should run on Android devices too (not tested).
 
 CJ
