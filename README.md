@@ -8,20 +8,20 @@ However it should run on Android devices too (not tested).
 
 CJ
 
-NEW (HEAD, v0.8.2):
--------------------
+NEW (HEAD, v0.9.0-beta):
+------------------------
 
-* Loading speed optimisations
-* screen rotation blocked to portrait
-* keyboard sometimes doesn't show up on settings -> restart app --> FIXED
-* settings don't scroll up on small screens when typing         --> FIXED
+* timer deletion doesn't work correctly for more than 1 timer in the list --> FIXED
+* Switching through channels via the combobox with "^" generates an error when going back before the first channel (or beyond the last)--> FIXED
+
+* change in channel via combobox now updates the selection on
+  main channel list too
+
 
 KNOWN BUGS
 ----------
 
-* timer deletion doesn't work correctly for more than 1 timer in the list
-* Switching through channels via the combobox with "^" generates an error 
-  when going back before the first channel (or beyond the last)
+* none so far
 
 
 TO DO (for v1.0):

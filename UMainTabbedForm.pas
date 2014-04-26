@@ -82,6 +82,9 @@ type
     procedure FormFocusChanged(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure FormResize(Sender: TObject);
+    procedure TimersDataListViewDeleteItem(Sender: TObject; AIndex: Integer);
+    procedure TextEPGBackDataComboListViewFrameTopDataComboBoxChange
+      (Sender: TObject);
 
   private
     fSettings: TSettings;
@@ -347,6 +350,27 @@ begin
     end;
 end;
 
+// -----------------------------------------------------------
+// Synchronisation entre la chaine sélectionnée
+// et la combobox si on change la sélection dans la combobox
+// ----------------------------------------------------------
+
+procedure TMainTabbedForm.TextEPGBackDataComboListViewFrameTopDataComboBoxChange
+  (Sender: TObject);
+begin
+  inherited;
+  TextEPGBackDataComboListViewFrame.TopDataComboBoxChange(Sender);
+
+  if TextEPGBackDataComboListViewFrame.TopDataComboBox.ItemIndex <>
+    DataComboListViewFrameChannelList.DataListView.Selected.Index then
+  begin
+    DataComboListViewFrameChannelList.DataListView.Selected :=
+      DataComboListViewFrameChannelList.DataListView.Items
+      [TextEPGBackDataComboListViewFrame.TopDataComboBox.ItemIndex];
+  end;
+
+end;
+
 // ------------------------
 // Schedule a recording
 // ------------------------
@@ -378,6 +402,15 @@ end;
 // ------------------------
 // delete a timer
 // ------------------------
+procedure TMainTabbedForm.TimersDataListViewDeleteItem(Sender: TObject;
+  AIndex: Integer);
+begin
+  inherited;
+  // il faut réinitialiser la timerlist pour éviter
+  // des désynchronisations entre la listview et le dataset
+  initTimerDataListView;
+end;
+
 procedure TMainTabbedForm.TimersDataListViewDeletingItem(Sender: TObject;
   AIndex: Integer; var ACanDelete: Boolean);
 var

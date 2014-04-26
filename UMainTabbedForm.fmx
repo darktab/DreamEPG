@@ -81,7 +81,7 @@ inherited MainTabbedForm: TMainTabbedForm
                 Width = 44.000000000000000000
               end
               inherited TopDataComboBox: TDataComboBox
-                Height = 38.000000000000000000
+                Height = 30.000000000000000000
                 Padding.Top = 10.000000000000000000
                 Margins.Top = 6.000000000000000000
                 Width = 232.000000000000000000
@@ -126,9 +126,10 @@ inherited MainTabbedForm: TMainTabbedForm
                 Width = 44.000000000000000000
               end
               inherited TopDataComboBox: TDataComboBox
-                Height = 38.000000000000000000
+                Height = 30.000000000000000000
                 Margins.Top = 6.000000000000000000
                 Width = 188.000000000000000000
+                OnChange = TextEPGBackDataComboListViewFrameTopDataComboBoxChange
               end
               inherited TopBackButton: TButton
                 Action = ToMasterChangeTabAction
@@ -291,6 +292,7 @@ inherited MainTabbedForm: TMainTabbedForm
         ItemAppearanceObjects.ItemObjects.Detail.Visible = True
         ItemAppearanceObjects.ItemObjects.Detail.PlaceOffset.Y = -5.000000000000000000
         OnDeletingItem = TimersDataListViewDeletingItem
+        OnDeleteItem = TimersDataListViewDeleteItem
       end
     end
     object SettingsTabItem: TTabItem
@@ -321,7 +323,7 @@ inherited MainTabbedForm: TMainTabbedForm
         Align = alBottom
         Height = 21.000000000000000000
         Position.Y = 478.000000000000000000
-        Text = 'simpleEPG v0.8.2-beta'
+        Text = 'simpleEPG v0.9.0-beta'
         TextAlign = taCenter
         Width = 320.000000000000000000
         Trimming = ttCharacter
