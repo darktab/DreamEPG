@@ -81,7 +81,7 @@ inherited MainTabbedForm: TMainTabbedForm
                 Width = 44.000000000000000000
               end
               inherited TopDataComboBox: TDataComboBox
-                Height = 30.000000000000000000
+                Height = 38.000000000000000000
                 Padding.Top = 10.000000000000000000
                 Margins.Top = 6.000000000000000000
                 Width = 232.000000000000000000
@@ -126,7 +126,7 @@ inherited MainTabbedForm: TMainTabbedForm
                 Width = 44.000000000000000000
               end
               inherited TopDataComboBox: TDataComboBox
-                Height = 30.000000000000000000
+                Height = 38.000000000000000000
                 Margins.Top = 6.000000000000000000
                 Width = 188.000000000000000000
                 OnChange = TextEPGBackDataComboListViewFrameTopDataComboBoxChange
@@ -281,6 +281,7 @@ inherited MainTabbedForm: TMainTabbedForm
         ItemEditAppearanceClassName = 'TCustomizeItemObjects'
         HeaderAppearanceClassName = 'TListHeaderObjects'
         FooterAppearanceClassName = 'TListHeaderObjects'
+        AllowSelection = False
         Align = alClient
         Height = 455.000000000000000000
         TabOrder = 1
@@ -293,10 +294,12 @@ inherited MainTabbedForm: TMainTabbedForm
         ItemAppearanceObjects.ItemObjects.Detail.PlaceOffset.Y = -5.000000000000000000
         OnDeletingItem = TimersDataListViewDeletingItem
         OnDeleteItem = TimersDataListViewDeleteItem
+        ShowSelection = False
       end
     end
     object SettingsTabItem: TTabItem
       WordWrap = False
+      StyledSettings = [ssFamily, ssStyle, ssFontColor]
       Height = 49.000000000000000000
       IsSelected = True
       Position.X = 214.000000000000000000
@@ -321,9 +324,11 @@ inherited MainTabbedForm: TMainTabbedForm
       end
       object VersionLabel: TLabel
         Align = alBottom
+        Font.Size = 10.000000000000000000
+        StyledSettings = [ssFamily, ssStyle, ssFontColor]
         Height = 21.000000000000000000
         Position.Y = 478.000000000000000000
-        Text = 'simpleEPG v0.9.0-beta'
+        Text = 'simpleEPG v0.9.1-beta'
         TextAlign = taCenter
         Width = 320.000000000000000000
         Trimming = ttCharacter

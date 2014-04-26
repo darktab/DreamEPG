@@ -408,7 +408,14 @@ begin
   inherited;
   // il faut réinitialiser la timerlist pour éviter
   // des désynchronisations entre la listview et le dataset
-  initTimerDataListView;
+  try
+    if AIndex < TimersDataListView.ItemCount then
+    begin
+      initTimerDataListView;
+    end;
+  except
+
+  end;
 end;
 
 procedure TMainTabbedForm.TimersDataListViewDeletingItem(Sender: TObject;
@@ -478,6 +485,7 @@ begin
   try
     TimersDataListView.init(lTimersDetailStringlist);
   except
+    FreeAndNil(lTimersDetailStringlist);
   end;
   FreeAndNil(lTimersDetailStringlist);
 end;
