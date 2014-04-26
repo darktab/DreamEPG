@@ -21,7 +21,7 @@ NEW (HEAD, v0.9.0-beta):
 KNOWN BUGS
 ----------
 
-* none so far
+* argument out of range error when deleting last of more than 1 timers. Timer is still deleted correctly
 
 
 TO DO (for v1.0):
