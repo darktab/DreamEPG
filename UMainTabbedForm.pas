@@ -381,8 +381,12 @@ begin
     MainDataModule.DreamFDMemTableTextEPG.FieldByName('sref').AsString;
   MainDataModule.DreamRESTRequestAddTimer.Params[1].Value :=
     MainDataModule.DreamFDMemTableTextEPG.FieldByName('id').AsString;
-
-  MainDataModule.DreamRESTRequestAddTimer.Execute;
+  try
+    MainDataModule.DreamRESTRequestAddTimer.Execute;
+  except
+    MessageDlg('Can''t find your decoder! Please check your settings!',
+      System.UITypes.TMsgDlgType.mtError, [System.UITypes.TMsgDlgBtn.mbOK], 0);
+  end;
   if MainDataModule.DreamRESTResponseAddTimer.StatusCode = 200 then
   begin
     MessageDlg('Timer successfully scheduled!',
@@ -437,7 +441,13 @@ begin
     MainDataModule.DreamFDMemTableTimerList.FieldByName('begin').AsString;
   MainDataModule.DreamRESTRequestDeleteTimer.Params[2].Value :=
     MainDataModule.DreamFDMemTableTimerList.FieldByName('end').AsString;
-  MainDataModule.DreamRESTRequestDeleteTimer.Execute;
+  try
+    MainDataModule.DreamRESTRequestDeleteTimer.Execute;
+  except
+    MessageDlg('Can''t find your decoder! Please check your settings!',
+      System.UITypes.TMsgDlgType.mtError, [System.UITypes.TMsgDlgBtn.mbOK], 0);
+    exit;
+  end;
 
   if MainDataModule.DreamRESTResponseDeleteTimer.StatusCode = 200 then
   begin

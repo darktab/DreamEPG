@@ -328,7 +328,7 @@ inherited MainTabbedForm: TMainTabbedForm
         StyledSettings = [ssFamily, ssStyle, ssFontColor]
         Height = 21.000000000000000000
         Position.Y = 478.000000000000000000
-        Text = 'simpleEPG v0.9.1-beta'
+        Text = 'simpleEPG v1.0.0-GM1'
         TextAlign = taCenter
         Width = 320.000000000000000000
         Trimming = ttCharacter

@@ -20,7 +20,7 @@ object MainDataModule: TMainDataModule
       end>
     Resource = 'getservices'
     Response = DreamRESTResponseChannelList
-    Timeout = 3000
+    Timeout = 4000
     Left = 328
     Top = 104
   end
@@ -61,7 +61,7 @@ object MainDataModule: TMainDataModule
     Params = <>
     Resource = 'getservices'
     Response = DreamRESTResponseServiceList
-    Timeout = 3000
+    Timeout = 4000
     Left = 72
     Top = 104
   end
@@ -167,6 +167,7 @@ object MainDataModule: TMainDataModule
     Params = <>
     Resource = 'timerlist'
     Response = DreamRESTResponseTimerList
+    Timeout = 5000
     Left = 344
     Top = 459
   end

@@ -8,10 +8,11 @@ However it should run on Android devices too (not tested).
 
 CJ
 
-NEW (HEAD, v0.9.1-beta):
+NEW (HEAD, v0.1.0.0-GM1):
 ------------------------
 
-* argument out of range error when deleting last of more than 1 timers. Timer is still deleted correctly --> FIXED
+* no new stuff - some timeouts are better trapped whith poor
+  connection
 
 KNOWN BUGS
 ----------
