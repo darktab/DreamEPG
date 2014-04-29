@@ -328,7 +328,7 @@ inherited MainTabbedForm: TMainTabbedForm
         StyledSettings = [ssFamily, ssStyle, ssFontColor]
         Height = 21.000000000000000000
         Position.Y = 478.000000000000000000
-        Text = 'simpleEPG v1.0.0-GM1'
+        Text = 'simpleEPG v1.0.0'
         TextAlign = taCenter
         Width = 320.000000000000000000
         Trimming = ttCharacter
@@ -367,6 +367,7 @@ inherited MainTabbedForm: TMainTabbedForm
               StyleLookup = 'transparentedit'
               TabOrder = 0
               CanParentFocus = True
+              KeyboardType = vktURL
               TextAlign = taTrailing
               Position.X = 120.000000000000000000
               Position.Y = 8.000000000000000000
@@ -393,6 +394,7 @@ inherited MainTabbedForm: TMainTabbedForm
               StyleLookup = 'transparentedit'
               TabOrder = 0
               CanParentFocus = True
+              KeyboardType = vktNamePhonePad
               TextAlign = taTrailing
               Position.X = 120.000000000000000000
               Position.Y = 8.000000000000000000
