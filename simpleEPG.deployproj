@@ -335,13 +335,6 @@
             <LocalCommand/>
             <RemoteCommand/>
         </DeployFile>
-        <DeployFile Include="C:\Users\cjacoby\Documents\GitHub\simpleEPG\icons\simpleEPG1_640x960.png" Condition="'$(Config)'=='Release'">
-            <RemoteDir>simpleEPG.app\</RemoteDir>
-            <RemoteName>Default@2x.png</RemoteName>
-            <Operation>1</Operation>
-            <LocalCommand/>
-            <RemoteCommand/>
-        </DeployFile>
         <DeployFile Include="C:\Users\cjacoby\Documents\GitHub\simpleEPG\icons\sEPG1_76x76.png" Condition="'$(Config)'=='Debug'">
             <RemoteDir>simpleEPG.app\</RemoteDir>
             <RemoteName>sEPG1_76x76.png</RemoteName>
@@ -359,6 +352,13 @@
         <DeployFile Include="C:\Users\cjacoby\Documents\GitHub\simpleEPG\icons\simpleEPG1_320x480.png" Condition="'$(Config)'=='Release'">
             <RemoteDir>simpleEPG.app\</RemoteDir>
             <RemoteName>Default.png</RemoteName>
+            <Operation>1</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+        </DeployFile>
+        <DeployFile Include="C:\Users\cjacoby\Documents\GitHub\simpleEPG\icons\simpleEPG1_640x960.png" Condition="'$(Config)'=='Release'">
+            <RemoteDir>simpleEPG.app\</RemoteDir>
+            <RemoteName>Default@2x.png</RemoteName>
             <Operation>1</Operation>
             <LocalCommand/>
             <RemoteCommand/>
@@ -453,6 +453,13 @@
             <LocalCommand/>
             <RemoteCommand/>
         </DeployFile>
+        <DeployFile Include="iOSSimulator\Release\simpleEPG.rsm" Condition="'$(Config)'=='Release'">
+            <RemoteDir>simpleEPG.app\</RemoteDir>
+            <RemoteName>simpleEPG.rsm</RemoteName>
+            <Operation>1</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+        </DeployFile>
         <DeployFile Include="C:\Users\cjacoby\Documents\GitHub\simpleEPG\icons\simpleEPG1_1024_768.png" Condition="'$(Config)'=='Debug'">
             <RemoteDir>simpleEPG.app\</RemoteDir>
             <RemoteName>Default-Landscape~ipad.png</RemoteName>
@@ -530,6 +537,13 @@
             <LocalCommand/>
             <RemoteCommand/>
         </DeployFile>
+        <DeployFile Include="iOSSimulator\Release\simpleEPG.entitlements" Condition="'$(Config)'=='Release'">
+            <RemoteDir>simpleEPG.app\</RemoteDir>
+            <RemoteName>Entitlements.plist</RemoteName>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+        </DeployFile>
         <DeployFile Include="$(BDS)\bin\Artwork\iOS\iPad\FM_LaunchImagePortrait_768x1024.png" Condition="'$(Config)'=='Debug'">
             <RemoteDir>simpleEPG.app\</RemoteDir>
             <RemoteName>Default-Portrait~ipad.png</RemoteName>
@@ -573,6 +587,14 @@
             <LocalCommand/>
             <RemoteCommand/>
         </DeployFile>
+        <DeployFile Include="iOSSimulator\Release\simpleEPG" Condition="'$(Config)'=='Release'">
+            <RemoteDir>simpleEPG.app\</RemoteDir>
+            <RemoteName>simpleEPG</RemoteName>
+            <Operation>1</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Required>True</Required>
+        </DeployFile>
         <DeployFile Include="$(BDS)\bin\Artwork\iOS\iPad\FM_LaunchImageLandscape_2048x1536.png" Condition="'$(Config)'=='Debug'">
             <RemoteDir>simpleEPG.app\</RemoteDir>
             <RemoteName>Default-Landscape@2x~ipad.png</RemoteName>
@@ -591,6 +613,13 @@
             <RemoteDir>simpleEPG.app\</RemoteDir>
             <RemoteName>Entitlements.plist</RemoteName>
             <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+        </DeployFile>
+        <DeployFile Include="iOSSimulator\Release\simpleEPG.info.plist" Condition="'$(Config)'=='Release'">
+            <RemoteDir>simpleEPG.app\</RemoteDir>
+            <RemoteName>Info.plist</RemoteName>
+            <Operation>1</Operation>
             <LocalCommand/>
             <RemoteCommand/>
         </DeployFile>

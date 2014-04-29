@@ -4,10 +4,10 @@
     <Transaction>1899.12.30 00:00:00.000.885,C:\Users\cjacoby\Documents\Appmethod\Projects\UMainForm.fmx=C:\Users\cjacoby\Documents\Appmethod\Projects\Unit1.fmx</Transaction>
     <Transaction>1899.12.30 00:00:00.000.837,C:\Users\cjacoby\Documents\GitHub\simpleEPG\UDetailInitThread.pas=C:\Users\cjacoby\Documents\GitHub\simpleEPG\Unit1.pas</Transaction>
     <Transaction>1899.12.30 00:00:00.000.398,C:\Users\cjacoby\Documents\Appmethod\Projects\simpleEPG\Unit1.fmx=C:\Users\cjacoby\Documents\Appmethod\Projects\simpleEPG\UMainTabbedForm.fmx</Transaction>
-    <Transaction>1899.12.30 00:00:00.000.309,C:\Users\cjacoby\Documents\GitHub\simpleEPG\UThreadSpinner.pas=</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.293,C:\Users\cjacoby\Documents\GitHub\simpleEPG\UThreadSpinner.pas=C:\Users\cjacoby\Documents\GitHub\simpleEPG\Unit1.pas</Transaction>
     <Transaction>1899.12.30 00:00:00.000.564,C:\Users\cjacoby\Documents\GitHub\simpleEPG\UBackDataComboListViewFrame.pas=C:\Users\cjacoby\Documents\GitHub\simpleEPG\Unit1.pas</Transaction>
     <Transaction>1899.12.30 00:00:00.000.885,C:\Users\cjacoby\Documents\Appmethod\Projects\UMainForm.pas=C:\Users\cjacoby\Documents\Appmethod\Projects\Unit1.pas</Transaction>
-    <Transaction>1899.12.30 00:00:00.000.293,C:\Users\cjacoby\Documents\GitHub\simpleEPG\UThreadSpinner.pas=C:\Users\cjacoby\Documents\GitHub\simpleEPG\Unit1.pas</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.309,C:\Users\cjacoby\Documents\GitHub\simpleEPG\UThreadSpinner.pas=</Transaction>
     <Transaction>1899.12.30 00:00:00.000.821,C:\Users\cjacoby\Documents\GitHub\simpleEPG\Unit1.pas=C:\Users\cjacoby\Documents\GitHub\simpleEPG\USettings.pas</Transaction>
     <Transaction>1899.12.30 00:00:00.000.630,=C:\Users\cjacoby\Documents\GitHub\simpleEPG\Unit1.pas</Transaction>
     <Transaction>1899.12.30 00:00:00.000.787,=C:\Users\cjacoby\Documents\GitHub\simpleEPG\Unit1.pas</Transaction>
@@ -34,4 +34,5 @@
     <Transaction>1899.12.30 00:00:00.000.889,C:\Users\cjacoby\Documents\Appmethod\Projects\simpleEPG.dproj=C:\Users\cjacoby\Documents\Appmethod\Projects\simpleEPG.dproj</Transaction>
   </Transactions>
 	<MobileDevice>%iosdevice%32052a07c521a35d1ad41780913f054a32db96a5</MobileDevice>
+	<BT_BuildType>AppStore</BT_BuildType>
 </BorlandProject>
