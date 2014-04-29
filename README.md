@@ -20,11 +20,6 @@ KNOWN BUGS
 * none so far
 
 
-TO DO (for v1.0):
------------------
-
-* cleanups and bugfixes
-
 TO DO (for v1.1):
 -----------------
 
