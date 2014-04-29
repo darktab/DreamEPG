@@ -8,11 +8,11 @@ However it should run on Android devices too (not tested).
 
 CJ
 
-NEW (HEAD, v0.1.0.0-GM1):
+NEW (HEAD, v0.1.0.0):
 ------------------------
 
-* no new stuff - some timeouts are better trapped whith poor
-  connection
+* keyboard types adjusted in settings
+* submitted to Apple
 
 KNOWN BUGS
 ----------
