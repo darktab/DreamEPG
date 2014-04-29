@@ -8,7 +8,7 @@ However it should run on Android devices too (not tested).
 
 CJ
 
-NEW (HEAD, v0.1.0.0):
+NEW (HEAD, v1.0.0):
 ------------------------
 
 * keyboard types adjusted in settings
