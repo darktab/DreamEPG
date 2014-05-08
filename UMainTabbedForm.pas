@@ -580,6 +580,13 @@ begin
       end;
     end;
   end;
+
+  // reload timer list on tabchange
+  if self.MainTabControl.ActiveTab = TimersTabItem then
+  begin
+    initTimerDataListView;
+  end;
+
 end;
 
 procedure TMainTabbedForm.DataComboListViewFrameChannelListDataListViewItemClick
