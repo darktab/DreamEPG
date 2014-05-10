@@ -47,8 +47,6 @@ type
     // fWorkingForm: TWorkingForm;
     fDetailInitThread: TDetailInitThread;
 
-    procedure initTopDataComboBox;
-
   public
     { Public declarations }
     procedure init(lMasterDataSet: TDataSet; lMasterDataFieldName: string;
@@ -67,6 +65,7 @@ type
       lMasterDetailLinkFieldName: String); overload;
     procedure init(lMasterDetailLinkFieldName: String); overload;
     procedure initDataListView;
+    procedure initTopDataComboBox;
     Constructor Create(AOwner: TComponent); override;
 
   published

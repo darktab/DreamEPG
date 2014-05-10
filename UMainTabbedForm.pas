@@ -243,6 +243,9 @@ begin
   inherited;
   fKBOffset := 50;
   fSettings := TSettings.Create;
+  self.TextEPGBackDataComboListViewFrame.DataListView.ItemAppearanceObjects.
+    ItemObjects.Text.Width := Round(0.75 * self.Width);
+
   try
     // initialisation des settings
     initSettings;
@@ -530,6 +533,8 @@ begin
 end;
 
 procedure TMainTabbedForm.MainTabControlChange(Sender: TObject);
+var
+  loldSettings: TSettings;
 begin
   inherited;
   if Assigned(fSettings) then
@@ -552,11 +557,21 @@ begin
     end
     else
     begin
-      // write settings file
-      fSettings.write;
-      // init Data components
-      if (DataComboListViewFrameChannelList.DataListView.ItemCount < 1) then
+      // write settings file if settings have changed
+      loldSettings := TSettings.Create;
+      try
+        loldSettings.read;
+      except
+
+      end;
+
+      if (loldSettings.BoxAddress <> fSettings.BoxAddress) or
+        (loldSettings.Username <> fSettings.Username) or
+        (loldSettings.Password <> fSettings.Password) then
       begin
+        fSettings.write;
+
+        // init Data components
         MainDataModule.DreamRESTClient.BaseURL := 'http://' +
           fSettings.BoxAddress + '/api';
         MainDataModule.DreamHTTPBasicAuthenticator.Username :=
@@ -564,7 +579,13 @@ begin
         MainDataModule.DreamHTTPBasicAuthenticator.Password :=
           fSettings.Password;
         try
+          // reinitialize app completely
+          if (MainTabControl.ActiveTab = TextEPGTabItem) then
+          begin
+            TextEPGTabControl.ActiveTab := TextEPGMasterTabItem
+          end;
           // initialisation de la channel list
+          MainDataModule.DreamFDMemTableServiceList.Close; // mandatory
           initChannelListView;
           // initialisation des timers
           initTimerDataListView;
@@ -576,8 +597,17 @@ begin
             System.UITypes.TMsgDlgType.mtError,
             [System.UITypes.TMsgDlgBtn.mbOK], 0);
         end;
-
+      end
+      else
+      begin
+        // reload EPG if it is shown here
+        if (TextEPGTabControl.ActiveTab = TextEPGDetailTabItem) and
+          (MainTabControl.ActiveTab = TextEPGTabItem) then
+        begin
+          TextEPGBackDataComboListViewFrame.initDataListView;
+        end;
       end;
+      FreeAndNil(loldSettings);
     end;
   end;
 

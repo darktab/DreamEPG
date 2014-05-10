@@ -81,7 +81,7 @@ inherited MainTabbedForm: TMainTabbedForm
                 Width = 44.000000000000000000
               end
               inherited TopDataComboBox: TDataComboBox
-                Height = 30.000000000000000000
+                Height = 38.000000000000000000
                 Padding.Top = 10.000000000000000000
                 Margins.Top = 6.000000000000000000
                 Width = 232.000000000000000000
@@ -371,9 +371,9 @@ inherited MainTabbedForm: TMainTabbedForm
               CanParentFocus = True
               KeyboardType = vktURL
               TextAlign = taTrailing
-              Position.X = 120.000000000000000000
+              Position.X = 112.000000000000000000
               Position.Y = 8.000000000000000000
-              Width = 200.000000000000000000
+              Width = 208.000000000000000000
               Height = 29.000000000000000000
               TextPrompt = 'Enter box name or IP address'
               KillFocusByReturn = True
@@ -398,11 +398,11 @@ inherited MainTabbedForm: TMainTabbedForm
               CanParentFocus = True
               KeyboardType = vktNamePhonePad
               TextAlign = taTrailing
-              Position.X = 120.000000000000000000
+              Position.X = 112.000000000000000000
               Position.Y = 8.000000000000000000
-              Width = 200.000000000000000000
+              Width = 208.000000000000000000
               Height = 29.000000000000000000
-              TextPrompt = 'Enter username'
+              TextPrompt = 'Enter username if needed'
               KillFocusByReturn = True
               OnChange = UsernameEditChange
             end
@@ -425,9 +425,9 @@ inherited MainTabbedForm: TMainTabbedForm
               CanParentFocus = True
               Password = True
               TextAlign = taTrailing
-              Position.X = 120.000000000000000000
+              Position.X = 112.000000000000000000
               Position.Y = 8.000000000000000000
-              Width = 200.000000000000000000
+              Width = 208.000000000000000000
               Height = 29.000000000000000000
               TextPrompt = 'Enter password if needed'
               KillFocusByReturn = True
