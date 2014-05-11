@@ -66,7 +66,7 @@ inherited MainTabbedForm: TMainTabbedForm
           Width = 8.000000000000000000
           inline DataComboListViewFrameChannelList: TDataComboListViewFrame
             Align = alClient
-            Height = 499.000000000000000000
+            Height = 455.000000000000000000
             Width = 320.000000000000000000
             inherited TopToolBar: TToolBar
               Height = 44.000000000000000000
@@ -90,11 +90,25 @@ inherited MainTabbedForm: TMainTabbedForm
             end
             inherited DataListView: TDataListView
               DisableFocusEffect = False
-              Height = 455.000000000000000000
+              Height = 411.000000000000000000
               Width = 320.000000000000000000
               CanSwipeDelete = False
               OnItemClick = DataComboListViewFrameChannelListDataListViewItemClick
               DataFieldName = 'servicename'
+            end
+          end
+          object TextEPGMasterToolBar: TToolBar
+            Height = 44.000000000000000000
+            TabOrder = 1
+            Width = 320.000000000000000000
+            object TextEPGMasterLabel: TLabel
+              Align = alClient
+              Height = 44.000000000000000000
+              StyleLookup = 'toollabel'
+              Text = 'TV Channels'
+              TextAlign = taCenter
+              Width = 320.000000000000000000
+              Trimming = ttCharacter
             end
           end
         end
@@ -110,7 +124,7 @@ inherited MainTabbedForm: TMainTabbedForm
           Width = 8.000000000000000000
           inline TextEPGBackDataComboListViewFrame: TBackDataComboListViewFrame
             Align = alClient
-            Height = 499.000000000000000000
+            Height = 455.000000000000000000
             Width = 320.000000000000000000
             inherited TopToolBar: TToolBar
               Height = 44.000000000000000000
@@ -142,7 +156,7 @@ inherited MainTabbedForm: TMainTabbedForm
               ItemEditAppearanceClassName = 'TCustomizeItemObjects'
               HeaderAppearanceClassName = 'TCustomizeItemObjects'
               FooterAppearanceClassName = 'TCustomizeItemObjects'
-              Height = 455.000000000000000000
+              Height = 411.000000000000000000
               Width = 320.000000000000000000
               ItemAppearanceObjects.ItemObjects.Text.TextVertAlign = taLeading
               ItemAppearanceObjects.ItemObjects.Text.Width = 240.000000000000000000
@@ -167,6 +181,30 @@ inherited MainTabbedForm: TMainTabbedForm
               CanSwipeDelete = False
               OnItemClick = TextEPGBackDataComboListViewFrameDataListViewItemClick
               OnSearchChange = TextEPGBackDataComboListViewFrameDataListViewSearchChange
+            end
+          end
+          object TextEPGDetailTopToolBar: TToolBar
+            Height = 44.000000000000000000
+            TabOrder = 1
+            Width = 320.000000000000000000
+            object TextEPGDetailLabel: TLabel
+              Align = alClient
+              Height = 44.000000000000000000
+              StyleLookup = 'toollabel'
+              Text = 'TV Show Times'
+              TextAlign = taCenter
+              Width = 320.000000000000000000
+              Trimming = ttCharacter
+              object TextEPGDetailSpeedButton: TSpeedButton
+                Align = alRight
+                Height = 44.000000000000000000
+                Position.X = 276.000000000000000000
+                StyleLookup = 'refreshtoolbutton'
+                Text = 'RefreshSpeedButton'
+                Trimming = ttCharacter
+                Width = 44.000000000000000000
+                OnClick = TextEPGDetailSpeedButtonClick
+              end
             end
           end
         end
@@ -276,11 +314,31 @@ inherited MainTabbedForm: TMainTabbedForm
           TextAlign = taCenter
           Width = 320.000000000000000000
           Trimming = ttCharacter
+          object RefreshSpeedButton: TSpeedButton
+            Align = alMostRight
+            Height = 44.000000000000000000
+            Position.X = 276.000000000000000000
+            StyleLookup = 'refreshtoolbutton'
+            Text = 'RefreshSpeedButton'
+            Trimming = ttCharacter
+            Width = 44.000000000000000000
+            OnClick = RefreshSpeedButtonClick
+          end
+          object DeleteSpeedButton: TSpeedButton
+            StaysPressed = True
+            Align = alRight
+            Height = 44.000000000000000000
+            Position.X = 232.000000000000000000
+            StyleLookup = 'trashtoolbutton'
+            Trimming = ttCharacter
+            Width = 44.000000000000000000
+            OnClick = DeleteSpeedButtonClick
+          end
         end
       end
       object TimersDataListView: TDataListView
         ItemAppearanceClassName = 'TCustomizeItemObjects'
-        ItemEditAppearanceClassName = 'TCustomizeItemObjects'
+        ItemEditAppearanceClassName = 'TListItemDeleteAppearance'
         HeaderAppearanceClassName = 'TListHeaderObjects'
         FooterAppearanceClassName = 'TListHeaderObjects'
         AllowSelection = False
@@ -288,14 +346,15 @@ inherited MainTabbedForm: TMainTabbedForm
         Height = 455.000000000000000000
         TabOrder = 1
         Width = 320.000000000000000000
+        ItemAppearance.ItemHeight = 50
+        ItemAppearance.ItemEditHeight = 50
         ItemAppearanceObjects.ItemObjects.Text.TextVertAlign = taLeading
         ItemAppearanceObjects.ItemObjects.Text.PlaceOffset.Y = 5.000000000000000000
-        ItemAppearanceObjects.ItemObjects.Detail.Font.Size = 10.000000000000000000
         ItemAppearanceObjects.ItemObjects.Detail.TextVertAlign = taTrailing
         ItemAppearanceObjects.ItemObjects.Detail.Visible = True
-        ItemAppearanceObjects.ItemObjects.Detail.PlaceOffset.Y = -5.000000000000000000
         OnDeletingItem = TimersDataListViewDeletingItem
         OnDeleteItem = TimersDataListViewDeleteItem
+        OnDeleteChangeVisible = TimersDataListViewDeleteChangeVisible
         ShowSelection = False
       end
     end

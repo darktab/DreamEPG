@@ -57,6 +57,13 @@ type
     TextEPGInfoBottomRectangle: TRectangle;
     VertScrollBox: TVertScrollBox;
     MainLayout: TLayout;
+    RefreshSpeedButton: TSpeedButton;
+    TextEPGDetailTopToolBar: TToolBar;
+    TextEPGDetailLabel: TLabel;
+    TextEPGDetailSpeedButton: TSpeedButton;
+    TextEPGMasterToolBar: TToolBar;
+    TextEPGMasterLabel: TLabel;
+    DeleteSpeedButton: TSpeedButton;
     procedure FormShow(Sender: TObject);
     procedure ComboBoxServiceListChange(Sender: TObject);
     procedure DataComboListViewFrameChannelListDataListViewItemClick
@@ -85,6 +92,11 @@ type
     procedure TimersDataListViewDeleteItem(Sender: TObject; AIndex: Integer);
     procedure TextEPGBackDataComboListViewFrameTopDataComboBoxChange
       (Sender: TObject);
+    procedure TextEPGDetailSpeedButtonClick(Sender: TObject);
+    procedure RefreshSpeedButtonClick(Sender: TObject);
+    procedure DeleteSpeedButtonClick(Sender: TObject);
+    procedure TimersDataListViewDeleteChangeVisible(Sender: TObject;
+      AValue: Boolean);
 
   private
     fSettings: TSettings;
@@ -298,11 +310,29 @@ begin
   RestorePosition;
 end;
 
+// ---------------------
+// Refresh timer list
+// ---------------------
+procedure TMainTabbedForm.RefreshSpeedButtonClick(Sender: TObject);
+begin
+  inherited;
+  initTimerDataListView;
+end;
+
 procedure TMainTabbedForm.RestorePosition;
 begin
   VertScrollBox.ViewportPosition := PointF(VertScrollBox.ViewportPosition.X, 0);
   MainLayout.Align := TAlignLayout.alClient;
   VertScrollBox.RealignContent;
+end;
+
+// --------------------------------
+// toggle timerlist delete buttons
+// --------------------------------
+procedure TMainTabbedForm.DeleteSpeedButtonClick(Sender: TObject);
+begin
+  inherited;
+  TimersDataListView.EditMode := not TimersDataListView.EditMode;
 end;
 
 procedure TMainTabbedForm.FormVirtualKeyboardShown(Sender: TObject;
@@ -375,6 +405,15 @@ begin
 end;
 
 // ------------------------
+// Reload Text EPG
+// ------------------------
+procedure TMainTabbedForm.TextEPGDetailSpeedButtonClick(Sender: TObject);
+begin
+  inherited;
+  TextEPGBackDataComboListViewFrame.initDataListView;
+end;
+
+// ------------------------
 // Schedule a recording
 // ------------------------
 procedure TMainTabbedForm.TextEPGInfoRecordButtonClick(Sender: TObject);
@@ -409,6 +448,23 @@ end;
 // ------------------------
 // delete a timer
 // ------------------------
+procedure TMainTabbedForm.TimersDataListViewDeleteChangeVisible(Sender: TObject;
+  AValue: Boolean);
+begin
+  inherited;
+  if (TimersDataListView.ItemCount = 0) then
+  begin
+    TimersDataListView.EditMode := False;
+    if DeleteSpeedButton.IsPressed then
+    begin
+      DeleteSpeedButton.IsPressed := False;
+    end;
+  end;
+
+  // enable delete button only if more than 1 item in list
+  DeleteSpeedButton.Enabled := (TimersDataListView.ItemCount <> 0);
+end;
+
 procedure TMainTabbedForm.TimersDataListViewDeleteItem(Sender: TObject;
   AIndex: Integer);
 begin
@@ -501,6 +557,9 @@ begin
     FreeAndNil(lTimersDetailStringlist);
   end;
   FreeAndNil(lTimersDetailStringlist);
+
+  // enable delete button only if more than 1 item in list
+  DeleteSpeedButton.Enabled := (TimersDataListView.ItemCount <> 0);
 end;
 
 // ------------------------------------
@@ -601,21 +660,21 @@ begin
       else
       begin
         // reload EPG if it is shown here
-        if (TextEPGTabControl.ActiveTab = TextEPGDetailTabItem) and
-          (MainTabControl.ActiveTab = TextEPGTabItem) then
-        begin
-          TextEPGBackDataComboListViewFrame.initDataListView;
-        end;
+        // if (TextEPGTabControl.ActiveTab = TextEPGDetailTabItem) and
+        // (MainTabControl.ActiveTab = TextEPGTabItem) then
+        // begin
+        // TextEPGBackDataComboListViewFrame.initDataListView;
+        // end;
       end;
       FreeAndNil(loldSettings);
     end;
   end;
 
   // reload timer list on tabchange
-  if self.MainTabControl.ActiveTab = TimersTabItem then
-  begin
-    initTimerDataListView;
-  end;
+  // if self.MainTabControl.ActiveTab = TimersTabItem then
+  // begin
+  // initTimerDataListView;
+  // end;
 
 end;
 
