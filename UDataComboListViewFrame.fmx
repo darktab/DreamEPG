@@ -3,6 +3,7 @@ object DataComboListViewFrame: TDataComboListViewFrame
   Width = 289.000000000000000000
   object TopToolBar: TToolBar
     Height = 40.000000000000000000
+    Position.Y = 44.000000000000000000
     TabOrder = 0
     Width = 289.000000000000000000
     object TopPrevButton: TButton
@@ -39,10 +40,25 @@ object DataComboListViewFrame: TDataComboListViewFrame
     HeaderAppearanceClassName = 'TListHeaderObjects'
     FooterAppearanceClassName = 'TListHeaderObjects'
     Align = alClient
-    Height = 392.000000000000000000
+    Height = 348.000000000000000000
     TabOrder = 1
     Width = 289.000000000000000000
     OnItemClick = DataListViewItemClick
     OnButtonClick = DataListViewButtonClick
+  end
+  object TopMasterToolBar: TToolBar
+    Align = alMostTop
+    Height = 44.000000000000000000
+    TabOrder = 2
+    Width = 289.000000000000000000
+    object TopMasterLabel: TLabel
+      Align = alClient
+      Height = 44.000000000000000000
+      StyleLookup = 'toollabel'
+      Text = 'TV Channels'
+      TextAlign = taCenter
+      Width = 289.000000000000000000
+      Trimming = ttCharacter
+    end
   end
 end

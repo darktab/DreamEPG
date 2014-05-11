@@ -1,17 +1,21 @@
 inherited BackDataComboListViewFrame: TBackDataComboListViewFrame
-  inherited TopToolBar: TToolBar
-    inherited TopPrevButton: TButton
-      Position.X = 80.000000000000000000
-    end
-    inherited TopDataComboBox: TDataComboBox
-      Width = 49.000000000000000000
-    end
-    object TopBackButton: TButton
-      Align = alMostLeft
-      Height = 40.000000000000000000
-      StyleLookup = 'priortoolbutton'
-      TabOrder = 3
-      Width = 80.000000000000000000
+  inherited TopMasterToolBar: TToolBar
+    inherited TopMasterLabel: TLabel
+      object TopBackButton: TButton
+        Align = alMostLeft
+        Height = 44.000000000000000000
+        StyleLookup = 'priortoolbutton'
+        TabOrder = 0
+        Width = 80.000000000000000000
+      end
+      object TopReloadSpeedButton: TSpeedButton
+        Align = alRight
+        Height = 44.000000000000000000
+        Position.X = 209.000000000000000000
+        StyleLookup = 'refreshtoolbutton'
+        Text = 'TopReloadSpeedButton'
+        Width = 80.000000000000000000
+      end
     end
   end
 end

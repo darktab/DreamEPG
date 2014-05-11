@@ -17,6 +17,8 @@ type
     TopNextButton: TButton;
     TopDataComboBox: TDataComboBox;
     DataListView: TDataListView;
+    TopMasterToolBar: TToolBar;
+    TopMasterLabel: TLabel;
     procedure TopPrevButtonClick(Sender: TObject);
     procedure TopNextButtonClick(Sender: TObject);
     procedure TopDataComboBoxChange(Sender: TObject);

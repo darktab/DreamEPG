@@ -58,11 +58,6 @@ type
     VertScrollBox: TVertScrollBox;
     MainLayout: TLayout;
     RefreshSpeedButton: TSpeedButton;
-    TextEPGDetailTopToolBar: TToolBar;
-    TextEPGDetailLabel: TLabel;
-    TextEPGDetailSpeedButton: TSpeedButton;
-    TextEPGMasterToolBar: TToolBar;
-    TextEPGMasterLabel: TLabel;
     DeleteSpeedButton: TSpeedButton;
     procedure FormShow(Sender: TObject);
     procedure ComboBoxServiceListChange(Sender: TObject);
@@ -97,6 +92,8 @@ type
     procedure DeleteSpeedButtonClick(Sender: TObject);
     procedure TimersDataListViewDeleteChangeVisible(Sender: TObject;
       AValue: Boolean);
+    procedure TextEPGBackDataComboListViewFrameTopReloadSpeedButtonClick
+      (Sender: TObject);
 
   private
     fSettings: TSettings;
@@ -402,6 +399,13 @@ begin
       [TextEPGBackDataComboListViewFrame.TopDataComboBox.ItemIndex];
   end;
 
+end;
+
+procedure TMainTabbedForm.
+  TextEPGBackDataComboListViewFrameTopReloadSpeedButtonClick(Sender: TObject);
+begin
+  inherited;
+  TextEPGBackDataComboListViewFrame.initDataListView;
 end;
 
 // ------------------------

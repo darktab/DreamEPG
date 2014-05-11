@@ -32,9 +32,6 @@ Coordinates=464,592,94,33
 [DataComboListViewFrameChannelList.TopDataComboBox]
 Coordinates=10,276,302,105
 
-[TextEPGBackDataComboListViewFrame.TopBackButton]
-Coordinates=806,276,291,51
-
 [TextEPGBackDataComboListViewFrame.TopPrevButton]
 Coordinates=1155,276,289,51
 

@@ -12,6 +12,7 @@ uses
 type
   TBackDataComboListViewFrame = class(TDataComboListViewFrame)
     TopBackButton: TButton;
+    TopReloadSpeedButton: TSpeedButton;
   private
     { Private declarations }
   public

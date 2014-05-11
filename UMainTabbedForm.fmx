@@ -66,7 +66,7 @@ inherited MainTabbedForm: TMainTabbedForm
           Width = 8.000000000000000000
           inline DataComboListViewFrameChannelList: TDataComboListViewFrame
             Align = alClient
-            Height = 455.000000000000000000
+            Height = 499.000000000000000000
             Width = 320.000000000000000000
             inherited TopToolBar: TToolBar
               Height = 44.000000000000000000
@@ -81,7 +81,7 @@ inherited MainTabbedForm: TMainTabbedForm
                 Width = 44.000000000000000000
               end
               inherited TopDataComboBox: TDataComboBox
-                Height = 38.000000000000000000
+                Height = 30.000000000000000000
                 Padding.Top = 10.000000000000000000
                 Margins.Top = 6.000000000000000000
                 Width = 232.000000000000000000
@@ -96,19 +96,11 @@ inherited MainTabbedForm: TMainTabbedForm
               OnItemClick = DataComboListViewFrameChannelListDataListViewItemClick
               DataFieldName = 'servicename'
             end
-          end
-          object TextEPGMasterToolBar: TToolBar
-            Height = 44.000000000000000000
-            TabOrder = 1
-            Width = 320.000000000000000000
-            object TextEPGMasterLabel: TLabel
-              Align = alClient
-              Height = 44.000000000000000000
-              StyleLookup = 'toollabel'
-              Text = 'TV Channels'
-              TextAlign = taCenter
+            inherited TopMasterToolBar: TToolBar
               Width = 320.000000000000000000
-              Trimming = ttCharacter
+              inherited TopMasterLabel: TLabel
+                Width = 320.000000000000000000
+              end
             end
           end
         end
@@ -124,14 +116,13 @@ inherited MainTabbedForm: TMainTabbedForm
           Width = 8.000000000000000000
           inline TextEPGBackDataComboListViewFrame: TBackDataComboListViewFrame
             Align = alClient
-            Height = 455.000000000000000000
+            Height = 499.000000000000000000
             Width = 320.000000000000000000
             inherited TopToolBar: TToolBar
               Height = 44.000000000000000000
               Width = 320.000000000000000000
               inherited TopPrevButton: TButton
                 Height = 44.000000000000000000
-                Position.X = 44.000000000000000000
                 Width = 44.000000000000000000
               end
               inherited TopNextButton: TButton
@@ -140,15 +131,10 @@ inherited MainTabbedForm: TMainTabbedForm
                 Width = 44.000000000000000000
               end
               inherited TopDataComboBox: TDataComboBox
-                Height = 38.000000000000000000
+                Height = 30.000000000000000000
                 Margins.Top = 6.000000000000000000
-                Width = 188.000000000000000000
+                Width = 232.000000000000000000
                 OnChange = TextEPGBackDataComboListViewFrameTopDataComboBoxChange
-              end
-              inherited TopBackButton: TButton
-                Action = ToMasterChangeTabAction
-                Height = 44.000000000000000000
-                Width = 44.000000000000000000
               end
             end
             inherited DataListView: TDataListView
@@ -182,28 +168,20 @@ inherited MainTabbedForm: TMainTabbedForm
               OnItemClick = TextEPGBackDataComboListViewFrameDataListViewItemClick
               OnSearchChange = TextEPGBackDataComboListViewFrameDataListViewSearchChange
             end
-          end
-          object TextEPGDetailTopToolBar: TToolBar
-            Height = 44.000000000000000000
-            TabOrder = 1
-            Width = 320.000000000000000000
-            object TextEPGDetailLabel: TLabel
-              Align = alClient
-              Height = 44.000000000000000000
-              StyleLookup = 'toollabel'
-              Text = 'TV Show Times'
-              TextAlign = taCenter
+            inherited TopMasterToolBar: TToolBar
               Width = 320.000000000000000000
-              Trimming = ttCharacter
-              object TextEPGDetailSpeedButton: TSpeedButton
-                Align = alRight
-                Height = 44.000000000000000000
-                Position.X = 276.000000000000000000
-                StyleLookup = 'refreshtoolbutton'
-                Text = 'RefreshSpeedButton'
-                Trimming = ttCharacter
-                Width = 44.000000000000000000
-                OnClick = TextEPGDetailSpeedButtonClick
+              inherited TopMasterLabel: TLabel
+                Text = 'TV Show Times'
+                Width = 320.000000000000000000
+                inherited TopBackButton: TButton
+                  Action = ToMasterChangeTabAction
+                  Width = 44.000000000000000000
+                end
+                inherited TopReloadSpeedButton: TSpeedButton
+                  Position.X = 276.000000000000000000
+                  Width = 44.000000000000000000
+                  OnClick = TextEPGBackDataComboListViewFrameTopReloadSpeedButtonClick
+                end
               end
             end
           end
