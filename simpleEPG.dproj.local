@@ -3,12 +3,12 @@
 	<Transactions>
     <Transaction>1899.12.30 00:00:00.000.564,C:\Users\cjacoby\Documents\GitHub\simpleEPG\Unit1.fmx=C:\Users\cjacoby\Documents\GitHub\simpleEPG\UBackDataComboListViewFrame.fmx</Transaction>
     <Transaction>1899.12.30 00:00:00.000.837,C:\Users\cjacoby\Documents\GitHub\simpleEPG\Unit1.pas=C:\Users\cjacoby\Documents\GitHub\simpleEPG\UDetailInitThread.pas</Transaction>
-    <Transaction>1899.12.30 00:00:00.000.564,C:\Users\cjacoby\Documents\GitHub\simpleEPG\Unit1.pas=C:\Users\cjacoby\Documents\GitHub\simpleEPG\UBackDataComboListViewFrame.pas</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.293,C:\Users\cjacoby\Documents\GitHub\simpleEPG\Unit1.pas=C:\Users\cjacoby\Documents\GitHub\simpleEPG\UThreadSpinner.pas</Transaction>
     <Transaction>1899.12.30 00:00:00.000.821,C:\Users\cjacoby\Documents\GitHub\simpleEPG\USettings.pas=C:\Users\cjacoby\Documents\GitHub\simpleEPG\Unit1.pas</Transaction>
     <Transaction>1899.12.30 00:00:00.000.398,C:\Users\cjacoby\Documents\Appmethod\Projects\simpleEPG\UMainTabbedForm.fmx=C:\Users\cjacoby\Documents\Appmethod\Projects\simpleEPG\Unit1.fmx</Transaction>
     <Transaction>1899.12.30 00:00:00.000.419,C:\Users\cjacoby\Documents\Appmethod\Projects\simpleEPG\Unit1.dfm=C:\Users\cjacoby\Documents\Appmethod\Projects\simpleEPG\UMainDataModule.dfm</Transaction>
     <Transaction>1899.12.30 00:00:00.000.309,C:\Users\cjacoby\Documents\GitHub\simpleEPG\UThreadSpinner.pas=</Transaction>
-    <Transaction>1899.12.30 00:00:00.000.293,C:\Users\cjacoby\Documents\GitHub\simpleEPG\Unit1.pas=C:\Users\cjacoby\Documents\GitHub\simpleEPG\UThreadSpinner.pas</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.564,C:\Users\cjacoby\Documents\GitHub\simpleEPG\Unit1.pas=C:\Users\cjacoby\Documents\GitHub\simpleEPG\UBackDataComboListViewFrame.pas</Transaction>
     <Transaction>1899.12.30 00:00:00.000.664,=C:\Users\cjacoby\Documents\GitHub\simpleEPG\Unit1.pas</Transaction>
     <Transaction>1899.12.30 00:00:00.000.528,=C:\Users\cjacoby\Documents\GitHub\simpleEPG\Unit1.pas</Transaction>
     <Transaction>1899.12.30 00:00:00.000.503,=C:\Users\cjacoby\Documents\GitHub\simpleEPG\Unit1.pas</Transaction>

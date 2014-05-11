@@ -8,11 +8,12 @@ However it should run on Android devices too (not tested).
 
 CJ
 
-NEW (HEAD, v1.0.0):
+NEW (HEAD, v1.0.1):
 ------------------------
 
-* keyboard types adjusted in settings
-* submitted to Apple
+* bug fixes
+* added a reload button for Text EPG data and timer lists
+* added a delete button for timer lists
 
 KNOWN BUGS
 ----------
