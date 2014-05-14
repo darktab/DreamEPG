@@ -2,7 +2,7 @@
 Coordinates=1085,592,92,33
 
 []
-Coordinates=347,10,92,195
+Coordinates=984,478,105,33
 Visible=True
 
 [TextEPGTabItem]
@@ -47,9 +47,6 @@ Coordinates=1036,559,123,36
 [TextEPGBackButton]
 Coordinates=143,410,115,51
 
-[TimersDataListView]
-Coordinates=464,10,112,177
-
 [TextEPGInfoTabItem]
 Coordinates=10,592,115,33
 
@@ -80,14 +77,8 @@ Coordinates=1457,276,165,36
 [DataComboListViewFrameChannelList.DataListView]
 Coordinates=603,10,270,141
 
-[TimersTopToolBarLabel]
-Coordinates=644,276,132,51
-
 [TextEPGInfoMemo]
 Coordinates=850,410,105,51
-
-[TimersTopToolBar]
-Coordinates=984,478,105,33
 
 [TextEPGDateTimeLabel]
 Coordinates=426,276,130,51

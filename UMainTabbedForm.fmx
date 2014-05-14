@@ -81,7 +81,7 @@ inherited MainTabbedForm: TMainTabbedForm
                 Width = 44.000000000000000000
               end
               inherited TopDataComboBox: TDataComboBox
-                Height = 30.000000000000000000
+                Height = 38.000000000000000000
                 Padding.Top = 10.000000000000000000
                 Margins.Top = 6.000000000000000000
                 Width = 232.000000000000000000
@@ -100,6 +100,9 @@ inherited MainTabbedForm: TMainTabbedForm
               Width = 320.000000000000000000
               inherited TopMasterLabel: TLabel
                 Width = 320.000000000000000000
+                inherited DataAniIndicator: TAniIndicator
+                  Position.X = 270.000000000000000000
+                end
               end
             end
           end
@@ -131,7 +134,7 @@ inherited MainTabbedForm: TMainTabbedForm
                 Width = 44.000000000000000000
               end
               inherited TopDataComboBox: TDataComboBox
-                Height = 30.000000000000000000
+                Height = 38.000000000000000000
                 Margins.Top = 6.000000000000000000
                 Width = 232.000000000000000000
                 OnChange = TextEPGBackDataComboListViewFrameTopDataComboBoxChange
@@ -173,6 +176,9 @@ inherited MainTabbedForm: TMainTabbedForm
               inherited TopMasterLabel: TLabel
                 Text = 'TV Show Times'
                 Width = 320.000000000000000000
+                inherited DataAniIndicator: TAniIndicator
+                  Position.X = 226.000000000000000000
+                end
                 inherited TopBackButton: TButton
                   Action = ToMasterChangeTabAction
                   Width = 44.000000000000000000
@@ -180,7 +186,6 @@ inherited MainTabbedForm: TMainTabbedForm
                 inherited TopReloadSpeedButton: TSpeedButton
                   Position.X = 276.000000000000000000
                   Width = 44.000000000000000000
-                  OnClick = TextEPGBackDataComboListViewFrameTopReloadSpeedButtonClick
                 end
               end
             end
@@ -280,60 +285,33 @@ inherited MainTabbedForm: TMainTabbedForm
       Text = 'Timers'
       Trimming = ttCharacter
       Width = 107.000000000000000000
-      object TimersTopToolBar: TToolBar
-        Height = 44.000000000000000000
-        TabOrder = 0
+      inline TimersDataListViewFrame: TDataListViewFrame
+        Align = alClient
+        Height = 499.000000000000000000
         Width = 320.000000000000000000
-        object TimersTopToolBarLabel: TLabel
-          Align = alClient
-          Height = 44.000000000000000000
-          StyleLookup = 'toollabel'
-          Text = 'Scheduled Timers'
-          TextAlign = taCenter
+        inherited DataListView: TDataListView
+          Height = 455.000000000000000000
           Width = 320.000000000000000000
-          Trimming = ttCharacter
-          object RefreshSpeedButton: TSpeedButton
-            Align = alMostRight
-            Height = 44.000000000000000000
-            Position.X = 276.000000000000000000
-            StyleLookup = 'refreshtoolbutton'
-            Text = 'RefreshSpeedButton'
-            Trimming = ttCharacter
-            Width = 44.000000000000000000
-            OnClick = RefreshSpeedButtonClick
-          end
-          object DeleteSpeedButton: TSpeedButton
-            StaysPressed = True
-            Align = alRight
-            Height = 44.000000000000000000
-            Position.X = 232.000000000000000000
-            StyleLookup = 'trashtoolbutton'
-            Trimming = ttCharacter
-            Width = 44.000000000000000000
-            OnClick = DeleteSpeedButtonClick
+          OnDeletingItem = nil
+          OnDeleteItem = nil
+          OnDeleteChangeVisible = nil
+        end
+        inherited TopToolBar: TToolBar
+          Width = 320.000000000000000000
+          inherited TopToolBarLabel: TLabel
+            Width = 320.000000000000000000
+            inherited RefreshSpeedButton: TSpeedButton
+              Position.X = 276.000000000000000000
+              OnClick = nil
+            end
+            inherited DeleteSpeedButton: TSpeedButton
+              OnClick = nil
+            end
+            inherited DataAniIndicator: TAniIndicator
+              Position.X = 226.000000000000000000
+            end
           end
         end
-      end
-      object TimersDataListView: TDataListView
-        ItemAppearanceClassName = 'TCustomizeItemObjects'
-        ItemEditAppearanceClassName = 'TListItemDeleteAppearance'
-        HeaderAppearanceClassName = 'TListHeaderObjects'
-        FooterAppearanceClassName = 'TListHeaderObjects'
-        AllowSelection = False
-        Align = alClient
-        Height = 455.000000000000000000
-        TabOrder = 1
-        Width = 320.000000000000000000
-        ItemAppearance.ItemHeight = 50
-        ItemAppearance.ItemEditHeight = 50
-        ItemAppearanceObjects.ItemObjects.Text.TextVertAlign = taLeading
-        ItemAppearanceObjects.ItemObjects.Text.PlaceOffset.Y = 5.000000000000000000
-        ItemAppearanceObjects.ItemObjects.Detail.TextVertAlign = taTrailing
-        ItemAppearanceObjects.ItemObjects.Detail.Visible = True
-        OnDeletingItem = TimersDataListViewDeletingItem
-        OnDeleteItem = TimersDataListViewDeleteItem
-        OnDeleteChangeVisible = TimersDataListViewDeleteChangeVisible
-        ShowSelection = False
       end
     end
     object SettingsTabItem: TTabItem
@@ -367,7 +345,7 @@ inherited MainTabbedForm: TMainTabbedForm
         StyledSettings = [ssFamily, ssStyle, ssFontColor]
         Height = 21.000000000000000000
         Position.Y = 478.000000000000000000
-        Text = 'simpleEPG v1.0.1'
+        Text = 'simpleEPG v1.0.2'
         TextAlign = taCenter
         Width = 320.000000000000000000
         Trimming = ttCharacter

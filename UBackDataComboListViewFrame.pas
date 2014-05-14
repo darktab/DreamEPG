@@ -13,6 +13,7 @@ type
   TBackDataComboListViewFrame = class(TDataComboListViewFrame)
     TopBackButton: TButton;
     TopReloadSpeedButton: TSpeedButton;
+    procedure TopReloadSpeedButtonClick(Sender: TObject);
   private
     { Private declarations }
   public
@@ -25,5 +26,12 @@ var
 implementation
 
 {$R *.fmx}
+
+procedure TBackDataComboListViewFrame.TopReloadSpeedButtonClick
+  (Sender: TObject);
+begin
+  inherited;
+  initDataListView;
+end;
 
 end.

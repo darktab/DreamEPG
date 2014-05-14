@@ -5,7 +5,7 @@ interface
 uses
   System.Classes, UDataListView, Data.DB, FireDAC.Comp.DataSet,
   FireDAC.Comp.Client, REST.Response.Adapter, System.UITypes,
-  REST.Client, FMX.Dialogs, SysUtils;
+  REST.Client, FMX.Dialogs, SysUtils, FMX.StdCtrls;
 
 type
   TDetailInitThread = class(TThread)
@@ -18,12 +18,14 @@ type
     fDetailDataListView: TDataListView;
     fDetailDataStringList: TStringList;
 
+    fAniIndicator: TAniIndicator;
+
   protected
     procedure Execute; override;
   public
     property ExceptionMessage: string read fExceptionMessage;
 
-    constructor Create(lMasterDataSet: TDataSet;
+    constructor Create(lAni: TAniIndicator; lMasterDataSet: TDataSet;
       lDetailDataStringList: TStringList; lDetailRESTRequest: TRESTRequest;
       lDetailDataListView: TDataListView; OnTerminate: TNotifyEvent);
     destructor Destroy; override;
@@ -41,11 +43,14 @@ begin
 
 end;
 
-constructor TDetailInitThread.Create(lMasterDataSet: TDataSet;
-  lDetailDataStringList: TStringList; lDetailRESTRequest: TRESTRequest;
-  lDetailDataListView: TDataListView; OnTerminate: TNotifyEvent);
+constructor TDetailInitThread.Create(lAni: TAniIndicator;
+  lMasterDataSet: TDataSet; lDetailDataStringList: TStringList;
+  lDetailRESTRequest: TRESTRequest; lDetailDataListView: TDataListView;
+  OnTerminate: TNotifyEvent);
 begin
   inherited Create(false);
+
+  fAniIndicator := lAni;
   fDetailRESTRequest := lDetailRESTRequest;
   fMasterDataSet := lMasterDataSet;
   fDetailDataStringList := lDetailDataStringList;
@@ -78,10 +83,12 @@ begin
     begin
       fDetailDataListView.init;
     end;
-    WorkingForm.WorkingMsg('Loading ...', false);
+    fAniIndicator.Visible := false;
+    // WorkingForm.WorkingMsg('Loading ...', false);
     MainTabbedForm.Show;
   except
-    WorkingForm.WorkingMsg('Loading ...', false);
+    fAniIndicator.Visible := false;
+    // WorkingForm.WorkingMsg('Loading ...', false);
     MainTabbedForm.Show;
 
     MessageDlg('No Data found!', System.UITypes.TMsgDlgType.mtInformation,

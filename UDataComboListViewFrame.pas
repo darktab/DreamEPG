@@ -19,6 +19,7 @@ type
     DataListView: TDataListView;
     TopMasterToolBar: TToolBar;
     TopMasterLabel: TLabel;
+    DataAniIndicator: TAniIndicator;
     procedure TopPrevButtonClick(Sender: TObject);
     procedure TopNextButtonClick(Sender: TObject);
     procedure TopDataComboBoxChange(Sender: TObject);
@@ -87,11 +88,11 @@ begin
   // Execute the parent (TObject) constructor first
   inherited; // Call the parent Create method
 
-  if not Assigned(WorkingForm) then
-  begin
-    WorkingForm := TWorkingForm.Create(self);
-    WorkingForm.Parent := self;
-  end;
+  // if not Assigned(WorkingForm) then
+  // begin
+  // WorkingForm := TWorkingForm.Create(self);
+  // WorkingForm.Parent := self;
+  // end;
 end;
 
 procedure TDataComboListViewFrame.DoneInitDetail(Sender: TObject);
@@ -209,8 +210,8 @@ begin
   end
   else
   begin
-    TopPrevButton.Visible := False;
-    TopNextButton.Visible := False;
+    TopPrevButton.Visible := false;
+    TopNextButton.Visible := false;
   end;
 
 end;
@@ -232,7 +233,7 @@ begin
   if fDetailDataSet.Active then
   begin
     fDetailRESTResponseDataSetAdapter.ClearDataSet;
-    fDetailRESTResponseDataSetAdapter.Active := False;
+    fDetailRESTResponseDataSetAdapter.Active := false;
     fDetailDataSet.Close;
   end;
 
@@ -242,30 +243,35 @@ begin
   fDetailRESTRequest.Params[0].Value := lDefaultServiceReference;
 
   // Call the working spinner
-  WorkingForm.WorkingMsg('Loading ...', true);
+  DataAniIndicator.Visible := true;
+  DataAniIndicator.Enabled := true;
+  // WorkingForm.WorkingMsg('Loading ...', true);
   Application.ProcessMessages;
-  fDetailInitThread := TDetailInitThread.Create(fMasterDataSet,
-    fDetailDataStringList, fDetailRESTRequest, DataListView, DoneInitDetail);
+  // fDetailInitThread := TDetailInitThread.Create(DataAniIndicator,
+  // fMasterDataSet, fDetailDataStringList, fDetailRESTRequest, DataListView,
+  // DoneInitDetail);
   // fDetailInitThread.OnTerminate := DoneInitDetail;
-  { try
+  try
     fDetailRESTRequest.Execute;
-    except
+  except
     if fMasterDataSet.State = dsBrowse then
     begin
-    fMasterDataSet.Close;
+      fMasterDataSet.Close;
     end;
     fDetailRESTRequest.Execute;
-    end;
+  end;
 
-    if assigned(fDetailDataStringList) then
-    begin
+  if assigned(fDetailDataStringList) then
+  begin
     DataListView.init(fDetailDataStringList);
-    end
-    else
-    begin
+  end
+  else
+  begin
     DataListView.init;
-    end; }
+  end;
 
+  DataAniIndicator.Visible := false;
+  DataAniIndicator.Enabled := false;
 end;
 
 procedure TDataComboListViewFrame.init(lMasterDetailLinkFieldName: String);

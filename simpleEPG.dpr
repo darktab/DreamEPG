@@ -10,7 +10,8 @@ uses
   UDataComboListViewFrame in 'UDataComboListViewFrame.pas' {DataComboListViewFrame: TFrame},
   UBackDataComboListViewFrame in 'UBackDataComboListViewFrame.pas' {BackDataComboListViewFrame: TFrame},
   UDetailInitThread in 'UDetailInitThread.pas',
-  USettings in 'USettings.pas';
+  USettings in 'USettings.pas',
+  UDataListViewFrame in 'UDataListViewFrame.pas' {DataListViewFrame: TFrame};
 
 {$R *.res}
 

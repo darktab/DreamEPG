@@ -59,6 +59,12 @@ object DataComboListViewFrame: TDataComboListViewFrame
       TextAlign = taCenter
       Width = 289.000000000000000000
       Trimming = ttCharacter
+      object DataAniIndicator: TAniIndicator
+        Align = alRight
+        Height = 44.000000000000000000
+        Position.X = 239.000000000000000000
+        Width = 50.000000000000000000
+      end
     end
   end
 end

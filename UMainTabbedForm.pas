@@ -15,7 +15,7 @@ uses
   UDataListView,
   USettings,
   FMX.StdActns, FMX.Objects, System.Math,
-  DBXJSON;
+  DBXJSON, UDataListViewFrame;
 
 type
   TMainTabbedForm = class(TMainForm)
@@ -41,9 +41,6 @@ type
     TextEPGInfoMemo: TMemo;
     TextEPGInfoRecordButton: TButton;
     TextEPGDateTimeLabel: TLabel;
-    TimersTopToolBar: TToolBar;
-    TimersTopToolBarLabel: TLabel;
-    TimersDataListView: TDataListView;
     TopToolBar: TToolBar;
     SettingsTopToolBarLabel: TLabel;
     ListBoxGroupHeader1: TListBoxGroupHeader;
@@ -57,8 +54,7 @@ type
     TextEPGInfoBottomRectangle: TRectangle;
     VertScrollBox: TVertScrollBox;
     MainLayout: TLayout;
-    RefreshSpeedButton: TSpeedButton;
-    DeleteSpeedButton: TSpeedButton;
+    TimersDataListViewFrame: TDataListViewFrame;
     procedure FormShow(Sender: TObject);
     procedure ComboBoxServiceListChange(Sender: TObject);
     procedure DataComboListViewFrameChannelListDataListViewItemClick
@@ -66,8 +62,6 @@ type
     procedure TextEPGBackDataComboListViewFrameDataListViewItemClick
       (const Sender: TObject; const AItem: TListViewItem);
     procedure TextEPGInfoRecordButtonClick(Sender: TObject);
-    procedure TimersDataListViewDeletingItem(Sender: TObject; AIndex: Integer;
-      var ACanDelete: Boolean);
     procedure TextEPGBackDataComboListViewFrameDataListViewSearchChange
       (Sender: TObject);
     procedure BoxAddressEditChange(Sender: TObject);
@@ -84,16 +78,9 @@ type
     procedure FormFocusChanged(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure FormResize(Sender: TObject);
-    procedure TimersDataListViewDeleteItem(Sender: TObject; AIndex: Integer);
     procedure TextEPGBackDataComboListViewFrameTopDataComboBoxChange
       (Sender: TObject);
     procedure TextEPGDetailSpeedButtonClick(Sender: TObject);
-    procedure RefreshSpeedButtonClick(Sender: TObject);
-    procedure DeleteSpeedButtonClick(Sender: TObject);
-    procedure TimersDataListViewDeleteChangeVisible(Sender: TObject;
-      AValue: Boolean);
-    procedure TextEPGBackDataComboListViewFrameTopReloadSpeedButtonClick
-      (Sender: TObject);
 
   private
     fSettings: TSettings;
@@ -101,7 +88,6 @@ type
     fKBOffset: Integer;
     FNeedOffset: Boolean;
 
-    procedure initTimerDataListView;
     procedure initSettings;
     procedure initChannelListView;
 
@@ -261,7 +247,7 @@ begin
     // initialisation de la channel list
     initChannelListView;
     // initialisation des timers
-    initTimerDataListView;
+    TimersDataListViewFrame.initDataListView;
     // show du premier tab
     MainTabControl.ActiveTab := TextEPGTabItem;
 
@@ -307,29 +293,11 @@ begin
   RestorePosition;
 end;
 
-// ---------------------
-// Refresh timer list
-// ---------------------
-procedure TMainTabbedForm.RefreshSpeedButtonClick(Sender: TObject);
-begin
-  inherited;
-  initTimerDataListView;
-end;
-
 procedure TMainTabbedForm.RestorePosition;
 begin
   VertScrollBox.ViewportPosition := PointF(VertScrollBox.ViewportPosition.X, 0);
   MainLayout.Align := TAlignLayout.alClient;
   VertScrollBox.RealignContent;
-end;
-
-// --------------------------------
-// toggle timerlist delete buttons
-// --------------------------------
-procedure TMainTabbedForm.DeleteSpeedButtonClick(Sender: TObject);
-begin
-  inherited;
-  TimersDataListView.EditMode := not TimersDataListView.EditMode;
 end;
 
 procedure TMainTabbedForm.FormVirtualKeyboardShown(Sender: TObject;
@@ -401,13 +369,6 @@ begin
 
 end;
 
-procedure TMainTabbedForm.
-  TextEPGBackDataComboListViewFrameTopReloadSpeedButtonClick(Sender: TObject);
-begin
-  inherited;
-  TextEPGBackDataComboListViewFrame.initDataListView;
-end;
-
 // ------------------------
 // Reload Text EPG
 // ------------------------
@@ -438,7 +399,7 @@ begin
     MessageDlg('Timer successfully scheduled!',
       System.UITypes.TMsgDlgType.mtInformation,
       [System.UITypes.TMsgDlgBtn.mbOK], 0);
-    initTimerDataListView;
+    TimersDataListViewFrame.initDataListView;
   end
   else
   begin
@@ -447,123 +408,6 @@ begin
       System.UITypes.TMsgDlgType.mtError, [System.UITypes.TMsgDlgBtn.mbOK], 0);
   end;
 
-end;
-
-// ------------------------
-// delete a timer
-// ------------------------
-procedure TMainTabbedForm.TimersDataListViewDeleteChangeVisible(Sender: TObject;
-  AValue: Boolean);
-begin
-  inherited;
-  if (TimersDataListView.ItemCount = 0) then
-  begin
-    TimersDataListView.EditMode := False;
-    if DeleteSpeedButton.IsPressed then
-    begin
-      DeleteSpeedButton.IsPressed := False;
-    end;
-  end;
-
-  // enable delete button only if more than 1 item in list
-  DeleteSpeedButton.Enabled := (TimersDataListView.ItemCount <> 0);
-end;
-
-procedure TMainTabbedForm.TimersDataListViewDeleteItem(Sender: TObject;
-  AIndex: Integer);
-begin
-  inherited;
-  // il faut réinitialiser la timerlist pour éviter
-  // des désynchronisations entre la listview et le dataset
-  try
-    if AIndex < TimersDataListView.ItemCount then
-    begin
-      initTimerDataListView;
-    end;
-  except
-
-  end;
-end;
-
-procedure TMainTabbedForm.TimersDataListViewDeletingItem(Sender: TObject;
-  AIndex: Integer; var ACanDelete: Boolean);
-var
-  lJSONObject: TJSONObject;
-  lJSONPair: TJSONPair;
-begin
-  inherited;
-  try
-    MainDataModule.DreamFDMemTableTimerList.RecNo :=
-      TimersDataListView.ItemIndex + 1;
-  except
-
-  end;
-  MainDataModule.DreamRESTRequestDeleteTimer.Params[0].Value :=
-    MainDataModule.DreamFDMemTableTimerList.FieldByName('serviceref').AsString;
-  MainDataModule.DreamRESTRequestDeleteTimer.Params[1].Value :=
-    MainDataModule.DreamFDMemTableTimerList.FieldByName('begin').AsString;
-  MainDataModule.DreamRESTRequestDeleteTimer.Params[2].Value :=
-    MainDataModule.DreamFDMemTableTimerList.FieldByName('end').AsString;
-  try
-    MainDataModule.DreamRESTRequestDeleteTimer.Execute;
-  except
-    MessageDlg('Can''t find your decoder! Please check your settings!',
-      System.UITypes.TMsgDlgType.mtError, [System.UITypes.TMsgDlgBtn.mbOK], 0);
-    exit;
-  end;
-
-  if MainDataModule.DreamRESTResponseDeleteTimer.StatusCode = 200 then
-  begin
-    lJSONObject := TJSONObject.ParseJSONValue
-      (MainDataModule.DreamRESTResponseDeleteTimer.Content) as TJSONObject;
-    if (lJSONObject.Get(1).JsonValue is TJSONTrue) then
-    begin
-      MessageDlg(lJSONObject.Get(0).JsonValue.Value,
-        System.UITypes.TMsgDlgType.mtInformation,
-        [System.UITypes.TMsgDlgBtn.mbOK], 0);
-      ACanDelete := True;
-    end
-    else
-    begin
-      MessageDlg('Timer could not be deleted!',
-        System.UITypes.TMsgDlgType.mtError,
-        [System.UITypes.TMsgDlgBtn.mbOK], 0);
-      ACanDelete := False;
-    end;
-  end
-  else
-  begin
-    MessageDlg('The following error occurred: ' +
-      MainDataModule.DreamRESTResponseAddTimer.StatusText,
-      System.UITypes.TMsgDlgType.mtError, [System.UITypes.TMsgDlgBtn.mbOK], 0);
-    ACanDelete := False;
-  end;
-end;
-
-procedure TMainTabbedForm.initTimerDataListView;
-var
-  lTimersDetailStringlist: TStringList;
-begin
-  // initialisation des timers
-  try
-    MainDataModule.DreamRESTRequestTimerList.Execute;
-  except
-    exit;
-  end;
-  TimersDataListView.DataSet := MainDataModule.DreamFDMemTableTimerList;
-  TimersDataListView.DataFieldName := 'name';
-  lTimersDetailStringlist := TStringList.Create;
-  lTimersDetailStringlist.Add('servicename');
-  lTimersDetailStringlist.Add('realbegin');
-  try
-    TimersDataListView.init(lTimersDetailStringlist);
-  except
-    FreeAndNil(lTimersDetailStringlist);
-  end;
-  FreeAndNil(lTimersDetailStringlist);
-
-  // enable delete button only if more than 1 item in list
-  DeleteSpeedButton.Enabled := (TimersDataListView.ItemCount <> 0);
 end;
 
 // ------------------------------------
@@ -611,7 +455,7 @@ begin
         // initialisation de la channel list
         initChannelListView;
         // initialisation des timers
-        initTimerDataListView;
+        TimersDataListViewFrame.initDataListView;
       except
         MessageDlg('Please take a moment to fill in these settings!',
           System.UITypes.TMsgDlgType.mtInformation,
@@ -651,7 +495,7 @@ begin
           MainDataModule.DreamFDMemTableServiceList.Close; // mandatory
           initChannelListView;
           // initialisation des timers
-          initTimerDataListView;
+          TimersDataListViewFrame.initDataListView;
         except
           MainTabControl.OnChange := nil;
           self.MainTabControl.ActiveTab := SettingsTabItem;

@@ -1,20 +1,24 @@
 inherited BackDataComboListViewFrame: TBackDataComboListViewFrame
   inherited TopMasterToolBar: TToolBar
     inherited TopMasterLabel: TLabel
-      object TopBackButton: TButton
+      object TopBackButton: TButton [0]
         Align = alMostLeft
         Height = 44.000000000000000000
         StyleLookup = 'priortoolbutton'
         TabOrder = 0
         Width = 80.000000000000000000
       end
-      object TopReloadSpeedButton: TSpeedButton
-        Align = alRight
+      object TopReloadSpeedButton: TSpeedButton [1]
+        Align = alMostRight
         Height = 44.000000000000000000
         Position.X = 209.000000000000000000
         StyleLookup = 'refreshtoolbutton'
         Text = 'TopReloadSpeedButton'
         Width = 80.000000000000000000
+        OnClick = TopReloadSpeedButtonClick
+      end
+      inherited DataAniIndicator: TAniIndicator
+        Position.X = 159.000000000000000000
       end
     end
   end
