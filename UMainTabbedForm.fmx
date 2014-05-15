@@ -292,9 +292,6 @@ inherited MainTabbedForm: TMainTabbedForm
         inherited DataListView: TDataListView
           Height = 455.000000000000000000
           Width = 320.000000000000000000
-          OnDeletingItem = nil
-          OnDeleteItem = nil
-          OnDeleteChangeVisible = nil
         end
         inherited TopToolBar: TToolBar
           Width = 320.000000000000000000
@@ -302,10 +299,6 @@ inherited MainTabbedForm: TMainTabbedForm
             Width = 320.000000000000000000
             inherited RefreshSpeedButton: TSpeedButton
               Position.X = 276.000000000000000000
-              OnClick = nil
-            end
-            inherited DeleteSpeedButton: TSpeedButton
-              OnClick = nil
             end
             inherited DataAniIndicator: TAniIndicator
               Position.X = 226.000000000000000000
