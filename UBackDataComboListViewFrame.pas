@@ -18,6 +18,7 @@ type
     { Private declarations }
   public
     { Public declarations }
+    procedure initDataListView; override;
   end;
 
 var
@@ -26,6 +27,13 @@ var
 implementation
 
 {$R *.fmx}
+
+procedure TBackDataComboListViewFrame.initDataListView;
+begin
+  TopReloadSpeedButton.Visible := false;
+  inherited;
+  TopReloadSpeedButton.Visible := true;
+end;
 
 procedure TBackDataComboListViewFrame.TopReloadSpeedButtonClick
   (Sender: TObject);

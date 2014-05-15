@@ -67,7 +67,7 @@ type
       lDetailRESTResponseDataSetAdapter: TRESTResponseDataSetAdapter;
       lMasterDetailLinkFieldName: String); overload;
     procedure init(lMasterDetailLinkFieldName: String); overload;
-    procedure initDataListView;
+    procedure initDataListView;virtual;
     procedure initTopDataComboBox;
     Constructor Create(AOwner: TComponent); override;
 
@@ -243,6 +243,7 @@ begin
   fDetailRESTRequest.Params[0].Value := lDefaultServiceReference;
 
   // Call the working spinner
+  DataListView.Enabled := false;
   DataAniIndicator.Visible := true;
   DataAniIndicator.Enabled := true;
   // WorkingForm.WorkingMsg('Loading ...', true);
@@ -272,6 +273,7 @@ begin
 
   DataAniIndicator.Visible := false;
   DataAniIndicator.Enabled := false;
+  DataListView.Enabled := true;
 end;
 
 procedure TDataComboListViewFrame.init(lMasterDetailLinkFieldName: String);

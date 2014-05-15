@@ -300,6 +300,9 @@ inherited MainTabbedForm: TMainTabbedForm
             inherited RefreshSpeedButton: TSpeedButton
               Position.X = 276.000000000000000000
             end
+            inherited DeleteSpeedButton: TSpeedButton
+              Width = 44.000000000000000000
+            end
             inherited DataAniIndicator: TAniIndicator
               Position.X = 226.000000000000000000
             end

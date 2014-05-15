@@ -6,7 +6,9 @@ uses
   System.SysUtils, System.Types, System.UITypes, System.Classes,
   System.Variants,
   FMX.Types, FMX.Graphics, FMX.Controls, FMX.Forms, FMX.Dialogs, FMX.StdCtrls,
-  FMX.ListView.Types, FMX.ListView, UDataListView, DBXJSON;
+  FMX.ListView.Types, FMX.ListView, UDataListView, DBXJSON, Data.DB,
+  FireDAC.Comp.DataSet, FireDAC.Comp.Client, REST.Response.Adapter,
+  REST.Client;
 
 type
   TDataListViewFrame = class(TFrame)
@@ -24,16 +26,36 @@ type
       var ACanDelete: Boolean);
   private
     { Private declarations }
+    fDataSet: TDataSet;
+    fRESTRequestList: TRESTRequest;
+    fRESTRequestDelete: TRESTRequest;
+    fRESTResponseDelete: TRESTResponse;
+    fRESTResponseAdd: TRESTResponse;
+
+    procedure initDataListView;
   public
     { Public declarations }
-    procedure initDataListView;
+    procedure init(lDataSet: TDataSet; lRESTRequestList: TRESTRequest;
+      lRESTRequestDelete: TRESTRequest; lRESTResponseDelete: TRESTResponse;
+      lRESTResponseAdd: TRESTResponse);
   end;
 
 implementation
 
 {$R *.fmx}
 
-uses UMainDataModule;
+procedure TDataListViewFrame.init(lDataSet: TDataSet;
+  lRESTRequestList: TRESTRequest; lRESTRequestDelete: TRESTRequest;
+  lRESTResponseDelete: TRESTResponse; lRESTResponseAdd: TRESTResponse);
+begin
+  fDataSet := lDataSet;
+  fRESTRequestList := lRESTRequestList;
+  fRESTRequestDelete := lRESTRequestDelete;
+  fRESTResponseDelete := lRESTResponseDelete;
+  fRESTResponseAdd := lRESTResponseAdd;
+
+  initDataListView;
+end;
 
 procedure TDataListViewFrame.DataListViewDeleteChangeVisible(Sender: TObject;
   AValue: Boolean);
@@ -41,9 +63,9 @@ begin
   if (DataListView.ItemCount = 0) then
   begin
     DataListView.EditMode := False;
-    if DeleteSpeedButton.IsPressed then
+    if DeleteSpeedButton.StyleLookup = 'donetoolbutton' then
     begin
-      DeleteSpeedButton.IsPressed := False;
+      DeleteSpeedButton.StyleLookup := 'trashtoolbutton';
     end;
   end;
 
@@ -74,28 +96,26 @@ var
 begin
   inherited;
   try
-    MainDataModule.DreamFDMemTableTimerList.RecNo := DataListView.ItemIndex + 1;
+    fDataSet.RecNo := DataListView.ItemIndex + 1;
   except
 
   end;
-  MainDataModule.DreamRESTRequestDeleteTimer.Params[0].Value :=
-    MainDataModule.DreamFDMemTableTimerList.FieldByName('serviceref').AsString;
-  MainDataModule.DreamRESTRequestDeleteTimer.Params[1].Value :=
-    MainDataModule.DreamFDMemTableTimerList.FieldByName('begin').AsString;
-  MainDataModule.DreamRESTRequestDeleteTimer.Params[2].Value :=
-    MainDataModule.DreamFDMemTableTimerList.FieldByName('end').AsString;
+  fRESTRequestDelete.Params[0].Value :=
+    fDataSet.FieldByName('serviceref').AsString;
+  fRESTRequestDelete.Params[1].Value := fDataSet.FieldByName('begin').AsString;
+  fRESTRequestDelete.Params[2].Value := fDataSet.FieldByName('end').AsString;
   try
-    MainDataModule.DreamRESTRequestDeleteTimer.Execute;
+    fRESTRequestDelete.Execute;
   except
     MessageDlg('Can''t find your decoder! Please check your settings!',
       System.UITypes.TMsgDlgType.mtError, [System.UITypes.TMsgDlgBtn.mbOK], 0);
     exit;
   end;
 
-  if MainDataModule.DreamRESTResponseDeleteTimer.StatusCode = 200 then
+  if fRESTResponseDelete.StatusCode = 200 then
   begin
-    lJSONObject := TJSONObject.ParseJSONValue
-      (MainDataModule.DreamRESTResponseDeleteTimer.Content) as TJSONObject;
+    lJSONObject := TJSONObject.ParseJSONValue(fRESTResponseDelete.Content)
+      as TJSONObject;
     if (lJSONObject.Get(1).JsonValue is TJSONTrue) then
     begin
       MessageDlg(lJSONObject.Get(0).JsonValue.Value,
@@ -113,8 +133,7 @@ begin
   end
   else
   begin
-    MessageDlg('The following error occurred: ' +
-      MainDataModule.DreamRESTResponseAddTimer.StatusText,
+    MessageDlg('The following error occurred: ' + fRESTResponseAdd.StatusText,
       System.UITypes.TMsgDlgType.mtError, [System.UITypes.TMsgDlgBtn.mbOK], 0);
     ACanDelete := False;
   end;
@@ -124,13 +143,18 @@ procedure TDataListViewFrame.initDataListView;
 var
   lTimersDetailStringlist: TStringList;
 begin
+  // spinner on
+  DataListView.Enabled := False;
+  RefreshSpeedButton.Visible := False;
+  DataAniIndicator.Visible := True;
+  DataAniIndicator.Enabled := True;
   // initialisation des timers
   try
-    MainDataModule.DreamRESTRequestTimerList.Execute;
+    fRESTRequestList.Execute;
   except
     exit;
   end;
-  DataListView.DataSet := MainDataModule.DreamFDMemTableTimerList;
+  DataListView.DataSet := fDataSet;
   DataListView.DataFieldName := 'name';
   lTimersDetailStringlist := TStringList.Create;
   lTimersDetailStringlist.Add('servicename');
@@ -141,6 +165,12 @@ begin
     FreeAndNil(lTimersDetailStringlist);
   end;
   FreeAndNil(lTimersDetailStringlist);
+
+  // spinner off
+  DataAniIndicator.Visible := False;
+  DataAniIndicator.Enabled := False;
+  DataListView.Enabled := True;
+  RefreshSpeedButton.Visible := True;
 
   // enable delete button only if more than 1 item in list
   DeleteSpeedButton.Enabled := (DataListView.ItemCount <> 0);
@@ -155,6 +185,16 @@ end;
 procedure TDataListViewFrame.DeleteSpeedButtonClick(Sender: TObject);
 begin
   inherited;
+  if DeleteSpeedButton.StyleLookup = 'trashtoolbutton' then
+  begin
+    DeleteSpeedButton.StyleLookup := 'donetoolbutton';
+    DeleteSpeedButton.Width := 60;
+  end
+  else
+  begin
+    DeleteSpeedButton.StyleLookup := 'trashtoolbutton';
+    DeleteSpeedButton.Width := 44;
+  end;
   DataListView.EditMode := not DataListView.EditMode;
 end;
 

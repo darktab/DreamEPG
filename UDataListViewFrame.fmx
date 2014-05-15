@@ -45,12 +45,12 @@ object DataListViewFrame: TDataListViewFrame
         OnClick = RefreshSpeedButtonClick
       end
       object DeleteSpeedButton: TSpeedButton
-        StaysPressed = True
         Align = alLeft
         Height = 44.000000000000000000
         StyleLookup = 'trashtoolbutton'
+        Text = 'Done'
         Trimming = ttCharacter
-        Width = 44.000000000000000000
+        Width = 81.000000000000000000
         OnClick = DeleteSpeedButtonClick
       end
       object DataAniIndicator: TAniIndicator

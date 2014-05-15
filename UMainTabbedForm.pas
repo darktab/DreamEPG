@@ -90,6 +90,7 @@ type
 
     procedure initSettings;
     procedure initChannelListView;
+    procedure initTimersListView;
 
     procedure CalcContentBoundsProc(Sender: TObject; var ContentBounds: TRectF);
     procedure RestorePosition;
@@ -138,6 +139,16 @@ begin
     MainDataModule.DreamRESTRequestChannelList,
     MainDataModule.DreamRESTResponseDataSetAdapterChannelList,
     'servicereference');
+end;
+
+procedure TMainTabbedForm.initTimersListView;
+begin
+  // initialisation de la timerlist
+  self.TimersDataListViewFrame.init(MainDataModule.DreamFDMemTableTimerList,
+    MainDataModule.DreamRESTRequestTimerList,
+    MainDataModule.DreamRESTRequestDeleteTimer,
+    MainDataModule.DreamRESTResponseDeleteTimer,
+    MainDataModule.DreamRESTResponseAddTimer);
 end;
 
 // -------------------------------
@@ -247,7 +258,7 @@ begin
     // initialisation de la channel list
     initChannelListView;
     // initialisation des timers
-    TimersDataListViewFrame.initDataListView;
+    initTimersListView;
     // show du premier tab
     MainTabControl.ActiveTab := TextEPGTabItem;
 
@@ -399,7 +410,7 @@ begin
     MessageDlg('Timer successfully scheduled!',
       System.UITypes.TMsgDlgType.mtInformation,
       [System.UITypes.TMsgDlgBtn.mbOK], 0);
-    TimersDataListViewFrame.initDataListView;
+    initTimersListView;
   end
   else
   begin
@@ -455,7 +466,7 @@ begin
         // initialisation de la channel list
         initChannelListView;
         // initialisation des timers
-        TimersDataListViewFrame.initDataListView;
+        initTimersListView;
       except
         MessageDlg('Please take a moment to fill in these settings!',
           System.UITypes.TMsgDlgType.mtInformation,
@@ -495,7 +506,7 @@ begin
           MainDataModule.DreamFDMemTableServiceList.Close; // mandatory
           initChannelListView;
           // initialisation des timers
-          TimersDataListViewFrame.initDataListView;
+          initTimersListView;
         except
           MainTabControl.OnChange := nil;
           self.MainTabControl.ActiveTab := SettingsTabItem;
