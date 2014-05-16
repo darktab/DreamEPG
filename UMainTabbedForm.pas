@@ -55,6 +55,7 @@ type
     VertScrollBox: TVertScrollBox;
     MainLayout: TLayout;
     TimersDataListViewFrame: TDataListViewFrame;
+    DataAniIndicator: TAniIndicator;
     procedure FormShow(Sender: TObject);
     procedure ComboBoxServiceListChange(Sender: TObject);
     procedure DataComboListViewFrameChannelListDataListViewItemClick
@@ -68,9 +69,6 @@ type
     procedure UsernameEditChange(Sender: TObject);
     procedure PasswordEditChange(Sender: TObject);
     procedure MainTabControlChange(Sender: TObject);
-    procedure ListBoxItem1Click(Sender: TObject);
-    procedure ListBoxItem2Click(Sender: TObject);
-    procedure ListBoxItem3Click(Sender: TObject);
     procedure FormVirtualKeyboardHidden(Sender: TObject;
       KeyboardVisible: Boolean; const Bounds: TRect);
     procedure FormVirtualKeyboardShown(Sender: TObject;
@@ -95,6 +93,8 @@ type
     procedure CalcContentBoundsProc(Sender: TObject; var ContentBounds: TRectF);
     procedure RestorePosition;
     procedure UpdateKBBounds;
+    procedure startSpinner;
+    procedure stopSpinner;
 
     { Private declarations }
   public
@@ -109,7 +109,7 @@ var
 implementation
 
 uses
-  UMainDataModule, UWorking;
+  UMainDataModule;
 
 {$R *.fmx}
 
@@ -126,6 +126,21 @@ begin
   begin
     FreeAndNil(fSettings);
   end;
+end;
+
+procedure TMainTabbedForm.startSpinner;
+begin
+  // spinner on
+  DataAniIndicator.Visible := True;
+  DataAniIndicator.Enabled := True;
+  Application.ProcessMessages;
+end;
+
+procedure TMainTabbedForm.stopSpinner;
+begin
+  // spinner on
+  DataAniIndicator.Visible := False;
+  DataAniIndicator.Enabled := False;
 end;
 
 procedure TMainTabbedForm.initChannelListView;
@@ -386,7 +401,12 @@ end;
 procedure TMainTabbedForm.TextEPGDetailSpeedButtonClick(Sender: TObject);
 begin
   inherited;
-  TextEPGBackDataComboListViewFrame.initDataListView;
+  try
+    TextEPGBackDataComboListViewFrame.initDataListView;
+  except
+    MessageDlg('Can''t find your decoder! Please check your settings!',
+      System.UITypes.TMsgDlgType.mtError, [System.UITypes.TMsgDlgBtn.mbOK], 0);
+  end;
 end;
 
 // ------------------------
@@ -395,6 +415,9 @@ end;
 procedure TMainTabbedForm.TextEPGInfoRecordButtonClick(Sender: TObject);
 begin
   inherited;
+  // start the spinner
+  startSpinner;
+
   MainDataModule.DreamRESTRequestAddTimer.Params[0].Value :=
     MainDataModule.DreamFDMemTableTextEPG.FieldByName('sref').AsString;
   MainDataModule.DreamRESTRequestAddTimer.Params[1].Value :=
@@ -402,52 +425,37 @@ begin
   try
     MainDataModule.DreamRESTRequestAddTimer.Execute;
   except
+
+    // spinner off
+    stopSpinner;
+
     MessageDlg('Can''t find your decoder! Please check your settings!',
       System.UITypes.TMsgDlgType.mtError, [System.UITypes.TMsgDlgBtn.mbOK], 0);
   end;
   if MainDataModule.DreamRESTResponseAddTimer.StatusCode = 200 then
   begin
+    // spinner off
+    stopSpinner;
     MessageDlg('Timer successfully scheduled!',
       System.UITypes.TMsgDlgType.mtInformation,
       [System.UITypes.TMsgDlgBtn.mbOK], 0);
-    initTimersListView;
+    try
+      initTimersListView;
+    except
+      MessageDlg('Can''t find your decoder! Please check your settings!',
+        System.UITypes.TMsgDlgType.mtError,
+        [System.UITypes.TMsgDlgBtn.mbOK], 0);
+    end;
   end
   else
   begin
+    // spinner off
+    stopSpinner;
     MessageDlg('The following error occurred: ' +
       MainDataModule.DreamRESTResponseAddTimer.StatusText,
       System.UITypes.TMsgDlgType.mtError, [System.UITypes.TMsgDlgBtn.mbOK], 0);
   end;
 
-end;
-
-// ------------------------------------
-// Set focus on edit box on item click
-// ------------------------------------
-procedure TMainTabbedForm.ListBoxItem1Click(Sender: TObject);
-var
-  lkeyboard: TVirtualKeyboard;
-begin
-  inherited;
-  // lkeyboard := TVirtualKeyboard.Create(BoxAdressEdit);
-  // lkeyboard.ExecuteTarget(BoxAdressEdit);
-  BoxAdressEdit.BringToFront;
-  // BoxAdressEdit.SelLength := 0;
-  // BoxAdressEdit.CaretPosition := 0;
-  // BoxAdressEdit.Caret.TemporarilyHidden := False;
-  // BoxAdressEdit.Typing := true;
-end;
-
-procedure TMainTabbedForm.ListBoxItem2Click(Sender: TObject);
-begin
-  inherited;
-  UsernameEdit.Caret.Visible := True;
-end;
-
-procedure TMainTabbedForm.ListBoxItem3Click(Sender: TObject);
-begin
-  inherited;
-  PasswordEdit.Caret.Visible := True;
 end;
 
 procedure TMainTabbedForm.MainTabControlChange(Sender: TObject);
@@ -496,6 +504,9 @@ begin
           fSettings.Username;
         MainDataModule.DreamHTTPBasicAuthenticator.Password :=
           fSettings.Password;
+      end;
+      if DataComboListViewFrameChannelList.DataListView.ItemCount = 0 then
+      begin
         try
           // reinitialize app completely
           if (MainTabControl.ActiveTab = TextEPGTabItem) then
@@ -515,16 +526,8 @@ begin
             System.UITypes.TMsgDlgType.mtError,
             [System.UITypes.TMsgDlgBtn.mbOK], 0);
         end;
-      end
-      else
-      begin
-        // reload EPG if it is shown here
-        // if (TextEPGTabControl.ActiveTab = TextEPGDetailTabItem) and
-        // (MainTabControl.ActiveTab = TextEPGTabItem) then
-        // begin
-        // TextEPGBackDataComboListViewFrame.initDataListView;
-        // end;
       end;
+
       FreeAndNil(loldSettings);
     end;
   end;
@@ -550,13 +553,19 @@ begin
   lDetailStringList.Add('begin');
   lDetailStringList.Add('end');
 
-  self.TextEPGBackDataComboListViewFrame.init
-    (MainDataModule.DreamFDMemTableChannelList, 'servicename',
-    MainDataModule.DreamRESTRequestChannelList,
-    MainDataModule.DreamRESTResponseDataSetAdapterChannelList,
-    MainDataModule.DreamFDMemTableTextEPG, 'title', lDetailStringList,
-    MainDataModule.DreamRESTRequestTextEPG,
-    MainDataModule.DreamRESTResponseDataSetAdapterTextEPG, 'servicereference');
+  try
+    self.TextEPGBackDataComboListViewFrame.init
+      (MainDataModule.DreamFDMemTableChannelList, 'servicename',
+      MainDataModule.DreamRESTRequestChannelList,
+      MainDataModule.DreamRESTResponseDataSetAdapterChannelList,
+      MainDataModule.DreamFDMemTableTextEPG, 'title', lDetailStringList,
+      MainDataModule.DreamRESTRequestTextEPG,
+      MainDataModule.DreamRESTResponseDataSetAdapterTextEPG,
+      'servicereference');
+  except
+    MessageDlg('Can''t find your decoder! Please check your settings!',
+      System.UITypes.TMsgDlgType.mtError, [System.UITypes.TMsgDlgBtn.mbOK], 0);
+  end;
 
   FreeAndNil(lDetailStringList);
 

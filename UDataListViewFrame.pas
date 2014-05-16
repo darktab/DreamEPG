@@ -33,6 +33,8 @@ type
     fRESTResponseAdd: TRESTResponse;
 
     procedure initDataListView;
+    procedure startSpinner;
+    procedure stopSpinner;
   public
     { Public declarations }
     procedure init(lDataSet: TDataSet; lRESTRequestList: TRESTRequest;
@@ -57,6 +59,25 @@ begin
   initDataListView;
 end;
 
+procedure TDataListViewFrame.stopSpinner;
+begin
+  // spinner off
+  DataAniIndicator.Visible := False;
+  DataAniIndicator.Enabled := False;
+  DataListView.Enabled := True;
+  RefreshSpeedButton.Visible := True;
+end;
+
+procedure TDataListViewFrame.startSpinner;
+begin
+  // spinner on
+  DataListView.Enabled := False;
+  RefreshSpeedButton.Visible := False;
+  DataAniIndicator.Visible := True;
+  DataAniIndicator.Enabled := True;
+  Application.ProcessMessages;
+end;
+
 procedure TDataListViewFrame.DataListViewDeleteChangeVisible(Sender: TObject;
   AValue: Boolean);
 begin
@@ -71,6 +92,9 @@ begin
 
   // enable delete button only if more than 1 item in list
   DeleteSpeedButton.Enabled := (DataListView.ItemCount <> 0);
+
+  // Stop the spinner
+  stopSpinner;
 end;
 
 procedure TDataListViewFrame.DataListViewDeleteItem(Sender: TObject;
@@ -100,6 +124,10 @@ begin
   except
 
   end;
+
+  // start the spinner
+  startSpinner;
+
   fRESTRequestDelete.Params[0].Value :=
     fDataSet.FieldByName('serviceref').AsString;
   fRESTRequestDelete.Params[1].Value := fDataSet.FieldByName('begin').AsString;
@@ -107,8 +135,12 @@ begin
   try
     fRESTRequestDelete.Execute;
   except
+    // stop the spinner
+    stopSpinner;
+
     MessageDlg('Can''t find your decoder! Please check your settings!',
       System.UITypes.TMsgDlgType.mtError, [System.UITypes.TMsgDlgBtn.mbOK], 0);
+
     exit;
   end;
 
@@ -118,6 +150,9 @@ begin
       as TJSONObject;
     if (lJSONObject.Get(1).JsonValue is TJSONTrue) then
     begin
+      // stop the spinner
+      stopSpinner;
+
       MessageDlg(lJSONObject.Get(0).JsonValue.Value,
         System.UITypes.TMsgDlgType.mtInformation,
         [System.UITypes.TMsgDlgBtn.mbOK], 0);
@@ -125,6 +160,9 @@ begin
     end
     else
     begin
+      // stop the spinner
+      stopSpinner;
+
       MessageDlg('Timer could not be deleted!',
         System.UITypes.TMsgDlgType.mtError,
         [System.UITypes.TMsgDlgBtn.mbOK], 0);
@@ -133,6 +171,9 @@ begin
   end
   else
   begin
+    // stop the spinner
+    stopSpinner;
+
     MessageDlg('The following error occurred: ' + fRESTResponseAdd.StatusText,
       System.UITypes.TMsgDlgType.mtError, [System.UITypes.TMsgDlgBtn.mbOK], 0);
     ACanDelete := False;
@@ -143,11 +184,8 @@ procedure TDataListViewFrame.initDataListView;
 var
   lTimersDetailStringlist: TStringList;
 begin
-  // spinner on
-  DataListView.Enabled := False;
-  RefreshSpeedButton.Visible := False;
-  DataAniIndicator.Visible := True;
-  DataAniIndicator.Enabled := True;
+  // start the spinner
+  startSpinner;
   // initialisation des timers
   try
     fRESTRequestList.Execute;
@@ -166,11 +204,8 @@ begin
   end;
   FreeAndNil(lTimersDetailStringlist);
 
-  // spinner off
-  DataAniIndicator.Visible := False;
-  DataAniIndicator.Enabled := False;
-  DataListView.Enabled := True;
-  RefreshSpeedButton.Visible := True;
+  // stop the spinner
+  stopSpinner;
 
   // enable delete button only if more than 1 item in list
   DeleteSpeedButton.Enabled := (DataListView.ItemCount <> 0);

@@ -81,7 +81,7 @@ inherited MainTabbedForm: TMainTabbedForm
                 Width = 44.000000000000000000
               end
               inherited TopDataComboBox: TDataComboBox
-                Height = 38.000000000000000000
+                Height = 30.000000000000000000
                 Padding.Top = 10.000000000000000000
                 Margins.Top = 6.000000000000000000
                 Width = 232.000000000000000000
@@ -231,6 +231,12 @@ inherited MainTabbedForm: TMainTabbedForm
                 Trimming = ttCharacter
                 Width = 44.000000000000000000
               end
+              object DataAniIndicator: TAniIndicator
+                Align = alRight
+                Height = 44.000000000000000000
+                Position.X = 270.000000000000000000
+                Width = 50.000000000000000000
+              end
             end
           end
           object TextEPGInfoLabel: TLabel
@@ -373,7 +379,6 @@ inherited MainTabbedForm: TMainTabbedForm
             TabOrder = 1
             Text = 'Name'
             Width = 320.000000000000000000
-            OnClick = ListBoxItem1Click
             object BoxAdressEdit: TEdit
               Touch.InteractiveGestures = [igLongTap, igDoubleTap]
               Align = alRight
@@ -400,7 +405,6 @@ inherited MainTabbedForm: TMainTabbedForm
             TabOrder = 2
             Text = 'User name'
             Width = 320.000000000000000000
-            OnClick = ListBoxItem2Click
             object UsernameEdit: TEdit
               Touch.InteractiveGestures = [igLongTap, igDoubleTap]
               Align = alRight
@@ -427,7 +431,6 @@ inherited MainTabbedForm: TMainTabbedForm
             TabOrder = 3
             Text = 'Password'
             Width = 320.000000000000000000
-            OnClick = ListBoxItem3Click
             object PasswordEdit: TEdit
               Touch.InteractiveGestures = [igLongTap, igDoubleTap]
               Align = alRight
