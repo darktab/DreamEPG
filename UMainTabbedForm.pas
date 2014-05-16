@@ -56,6 +56,8 @@ type
     MainLayout: TLayout;
     TimersDataListViewFrame: TDataListViewFrame;
     DataAniIndicator: TAniIndicator;
+    RecordingsTabItem: TTabItem;
+    RecordingsDataListViewFrame: TDataListViewFrame;
     procedure FormShow(Sender: TObject);
     procedure ComboBoxServiceListChange(Sender: TObject);
     procedure DataComboListViewFrameChannelListDataListViewItemClick
@@ -89,6 +91,7 @@ type
     procedure initSettings;
     procedure initChannelListView;
     procedure initTimersListView;
+    procedure initRecordingListView;
 
     procedure CalcContentBoundsProc(Sender: TObject; var ContentBounds: TRectF);
     procedure RestorePosition;
@@ -157,13 +160,40 @@ begin
 end;
 
 procedure TMainTabbedForm.initTimersListView;
+var
+  lTimersDetailStringlist: TStringList;
 begin
+  lTimersDetailStringlist := TStringList.Create;
+  lTimersDetailStringlist.Add('servicename');
+  lTimersDetailStringlist.Add('realbegin');
   // initialisation de la timerlist
   self.TimersDataListViewFrame.init(MainDataModule.DreamFDMemTableTimerList,
     MainDataModule.DreamRESTRequestTimerList,
     MainDataModule.DreamRESTRequestDeleteTimer,
-    MainDataModule.DreamRESTResponseDeleteTimer,
-    MainDataModule.DreamRESTResponseAddTimer);
+    MainDataModule.DreamRESTResponseDeleteTimer, 'name',
+    lTimersDetailStringlist);
+
+  FreeAndNil(lTimersDetailStringlist);
+
+end;
+
+procedure TMainTabbedForm.initRecordingListView;
+var
+  lRecordingsDetailStringlist: TStringList;
+begin
+  lRecordingsDetailStringlist := TStringList.Create;
+  lRecordingsDetailStringlist.Add('servicename');
+  lRecordingsDetailStringlist.Add('begintime');
+
+  // initialisation de la recordinf
+  self.RecordingsDataListViewFrame.init
+    (MainDataModule.DreamFDMemTableRecordingList,
+    MainDataModule.DreamRESTRequestRecordingList,
+    MainDataModule.DreamRESTRequestDeleteRecording,
+    MainDataModule.DreamRESTResponseDeleteRecording, 'eventname',
+    lRecordingsDetailStringlist);
+
+  FreeAndNil(lRecordingsDetailStringlist);
 end;
 
 // -------------------------------
@@ -274,6 +304,8 @@ begin
     initChannelListView;
     // initialisation des timers
     initTimersListView;
+    // initialisation des recordings
+    initRecordingListView;
     // show du premier tab
     MainTabControl.ActiveTab := TextEPGTabItem;
 
@@ -475,6 +507,8 @@ begin
         initChannelListView;
         // initialisation des timers
         initTimersListView;
+        // initialisation des recordings
+        initRecordingListView
       except
         MessageDlg('Please take a moment to fill in these settings!',
           System.UITypes.TMsgDlgType.mtInformation,
@@ -518,6 +552,8 @@ begin
           initChannelListView;
           // initialisation des timers
           initTimersListView;
+          // initialisation des recordings
+          initRecordingListView;
         except
           MainTabControl.OnChange := nil;
           self.MainTabControl.ActiveTab := SettingsTabItem;

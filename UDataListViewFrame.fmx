@@ -14,9 +14,10 @@ object DataListViewFrame: TDataListViewFrame
     ItemAppearance.ItemHeight = 50
     ItemAppearance.ItemEditHeight = 50
     ItemAppearanceObjects.ItemObjects.Text.TextVertAlign = taLeading
-    ItemAppearanceObjects.ItemObjects.Text.PlaceOffset.Y = 5.000000000000000000
+    ItemAppearanceObjects.ItemObjects.Text.PlaceOffset.Y = 3.000000000000000000
     ItemAppearanceObjects.ItemObjects.Detail.TextVertAlign = taTrailing
     ItemAppearanceObjects.ItemObjects.Detail.Visible = True
+    ItemAppearanceObjects.ItemObjects.Detail.PlaceOffset.Y = -3.000000000000000000
     OnDeletingItem = DataListViewDeletingItem
     OnDeleteItem = DataListViewDeleteItem
     OnDeleteChangeVisible = DataListViewDeleteChangeVisible

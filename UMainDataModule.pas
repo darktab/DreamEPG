@@ -34,6 +34,12 @@ type
     DreamFDMemTableTimerList: TFDMemTable;
     DreamRESTRequestDeleteTimer: TRESTRequest;
     DreamRESTResponseDeleteTimer: TRESTResponse;
+    DreamRESTRequestRecordingList: TRESTRequest;
+    DreamRESTResponseRecordingList: TRESTResponse;
+    DreamRESTResponseDataSetAdapterRecordingList: TRESTResponseDataSetAdapter;
+    DreamFDMemTableRecordingList: TFDMemTable;
+    DreamRESTRequestDeleteRecording: TRESTRequest;
+    DreamRESTResponseDeleteRecording: TRESTResponse;
     procedure DreamRESTResponseDataSetAdapterChannelListBeforeOpenDataSet
       (Sender: TObject);
     procedure DreamRESTResponseDataSetAdapterServiceListBeforeOpenDataSet
@@ -41,6 +47,8 @@ type
     procedure DreamRESTResponseDataSetAdapterTextEPGBeforeOpenDataSet
       (Sender: TObject);
     procedure DreamRESTResponseDataSetAdapterTimerListBeforeOpenDataSet
+      (Sender: TObject);
+    procedure DreamRESTResponseDataSetAdapterRecordingListBeforeOpenDataSet
       (Sender: TObject);
   private
     { Private declarations }
@@ -61,6 +69,13 @@ procedure TMainDataModule.
   DreamRESTResponseDataSetAdapterChannelListBeforeOpenDataSet(Sender: TObject);
 begin
   self.DreamFDMemTableChannelList.CreateDataSet;
+end;
+
+procedure TMainDataModule.
+  DreamRESTResponseDataSetAdapterRecordingListBeforeOpenDataSet
+  (Sender: TObject);
+begin
+  self.DreamFDMemTableRecordingList.CreateDataSet;
 end;
 
 procedure TMainDataModule.

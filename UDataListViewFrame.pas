@@ -30,7 +30,9 @@ type
     fRESTRequestList: TRESTRequest;
     fRESTRequestDelete: TRESTRequest;
     fRESTResponseDelete: TRESTResponse;
-    fRESTResponseAdd: TRESTResponse;
+
+    fDetailStringlist: TStringList;
+    fDataFieldName: String;
 
     procedure initDataListView;
     procedure startSpinner;
@@ -39,7 +41,7 @@ type
     { Public declarations }
     procedure init(lDataSet: TDataSet; lRESTRequestList: TRESTRequest;
       lRESTRequestDelete: TRESTRequest; lRESTResponseDelete: TRESTResponse;
-      lRESTResponseAdd: TRESTResponse);
+      lDataFieldName: String; lDetailStringlist: TStringList);
   end;
 
 implementation
@@ -48,13 +50,16 @@ implementation
 
 procedure TDataListViewFrame.init(lDataSet: TDataSet;
   lRESTRequestList: TRESTRequest; lRESTRequestDelete: TRESTRequest;
-  lRESTResponseDelete: TRESTResponse; lRESTResponseAdd: TRESTResponse);
+  lRESTResponseDelete: TRESTResponse; lDataFieldName: String;
+  lDetailStringlist: TStringList);
 begin
   fDataSet := lDataSet;
   fRESTRequestList := lRESTRequestList;
   fRESTRequestDelete := lRESTRequestDelete;
   fRESTResponseDelete := lRESTResponseDelete;
-  fRESTResponseAdd := lRESTResponseAdd;
+
+  fDataFieldName := lDataFieldName;
+  fDetailStringlist := lDetailStringlist;
 
   initDataListView;
 end;
@@ -130,15 +135,20 @@ begin
 
   fRESTRequestDelete.Params[0].Value :=
     fDataSet.FieldByName('serviceref').AsString;
-  fRESTRequestDelete.Params[1].Value := fDataSet.FieldByName('begin').AsString;
-  fRESTRequestDelete.Params[2].Value := fDataSet.FieldByName('end').AsString;
+
+  if (fRESTRequestDelete.Params.Count = 3) then
+  begin
+    fRESTRequestDelete.Params[1].Value := fDataSet.FieldByName('begin')
+      .AsString;
+    fRESTRequestDelete.Params[2].Value := fDataSet.FieldByName('end').AsString;
+  end;
   try
     fRESTRequestDelete.Execute;
   except
     // stop the spinner
     stopSpinner;
 
-    MessageDlg('Can''t find your decoder! Please check your settings!',
+    MessageDlg('Event could not be deleted!!',
       System.UITypes.TMsgDlgType.mtError, [System.UITypes.TMsgDlgBtn.mbOK], 0);
 
     exit;
@@ -163,7 +173,7 @@ begin
       // stop the spinner
       stopSpinner;
 
-      MessageDlg('Timer could not be deleted!',
+      MessageDlg('Event could not be deleted!',
         System.UITypes.TMsgDlgType.mtError,
         [System.UITypes.TMsgDlgBtn.mbOK], 0);
       ACanDelete := False;
@@ -174,15 +184,14 @@ begin
     // stop the spinner
     stopSpinner;
 
-    MessageDlg('The following error occurred: ' + fRESTResponseAdd.StatusText,
-      System.UITypes.TMsgDlgType.mtError, [System.UITypes.TMsgDlgBtn.mbOK], 0);
+    MessageDlg('The following error occurred: ' +
+      fRESTResponseDelete.StatusText, System.UITypes.TMsgDlgType.mtError,
+      [System.UITypes.TMsgDlgBtn.mbOK], 0);
     ACanDelete := False;
   end;
 end;
 
 procedure TDataListViewFrame.initDataListView;
-var
-  lTimersDetailStringlist: TStringList;
 begin
   // start the spinner
   startSpinner;
@@ -193,16 +202,13 @@ begin
     exit;
   end;
   DataListView.DataSet := fDataSet;
-  DataListView.DataFieldName := 'name';
-  lTimersDetailStringlist := TStringList.Create;
-  lTimersDetailStringlist.Add('servicename');
-  lTimersDetailStringlist.Add('realbegin');
+  DataListView.DataFieldName := fDataFieldName;
+
   try
-    DataListView.init(lTimersDetailStringlist);
+    DataListView.init(fDetailStringlist);
   except
-    FreeAndNil(lTimersDetailStringlist);
+    FreeAndNil(fDetailStringlist);
   end;
-  FreeAndNil(lTimersDetailStringlist);
 
   // stop the spinner
   stopSpinner;

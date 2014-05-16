@@ -18,7 +18,7 @@ inherited MainTabbedForm: TMainTabbedForm
     FullSize = True
     Height = 548.000000000000000000
     TabHeight = 49.000000000000000000
-    TabIndex = 3
+    TabIndex = 4
     TabOrder = 0
     TabPosition = tpBottom
     Width = 320.000000000000000000
@@ -44,7 +44,7 @@ inherited MainTabbedForm: TMainTabbedForm
       TabOrder = 1
       Text = 'Text EPG'
       Trimming = ttCharacter
-      Width = 107.000000000000000000
+      Width = 80.000000000000000000
       object TextEPGTabControl: TTabControl
         Align = alClient
         FullSize = True
@@ -81,7 +81,7 @@ inherited MainTabbedForm: TMainTabbedForm
                 Width = 44.000000000000000000
               end
               inherited TopDataComboBox: TDataComboBox
-                Height = 30.000000000000000000
+                Height = 38.000000000000000000
                 Padding.Top = 10.000000000000000000
                 Margins.Top = 6.000000000000000000
                 Width = 232.000000000000000000
@@ -290,7 +290,7 @@ inherited MainTabbedForm: TMainTabbedForm
       TabOrder = 2
       Text = 'Timers'
       Trimming = ttCharacter
-      Width = 107.000000000000000000
+      Width = 80.000000000000000000
       inline TimersDataListViewFrame: TDataListViewFrame
         Align = alClient
         Height = 499.000000000000000000
@@ -316,17 +316,53 @@ inherited MainTabbedForm: TMainTabbedForm
         end
       end
     end
+    object RecordingsTabItem: TTabItem
+      WordWrap = False
+      Height = 49.000000000000000000
+      IsSelected = False
+      Position.X = 160.000000000000000000
+      StyleLookup = 'tabitemfavorites'
+      TabOrder = 4
+      Text = 'Recordings'
+      Trimming = ttCharacter
+      Width = 80.000000000000000000
+      inline RecordingsDataListViewFrame: TDataListViewFrame
+        Align = alClient
+        Height = 499.000000000000000000
+        Width = 320.000000000000000000
+        inherited DataListView: TDataListView
+          Height = 455.000000000000000000
+          Width = 320.000000000000000000
+        end
+        inherited TopToolBar: TToolBar
+          Width = 320.000000000000000000
+          inherited TopToolBarLabel: TLabel
+            Text = 'Movies'
+            Width = 320.000000000000000000
+            inherited RefreshSpeedButton: TSpeedButton
+              Position.X = 276.000000000000000000
+            end
+            inherited DeleteSpeedButton: TSpeedButton
+              Width = 44.000000000000000000
+            end
+            inherited DataAniIndicator: TAniIndicator
+              Position.X = 226.000000000000000000
+            end
+          end
+        end
+      end
+    end
     object SettingsTabItem: TTabItem
       WordWrap = False
       StyledSettings = [ssFamily, ssStyle, ssFontColor]
       Height = 49.000000000000000000
       IsSelected = True
-      Position.X = 214.000000000000000000
+      Position.X = 240.000000000000000000
       StyleLookup = 'tabitemmostviewed'
       TabOrder = 3
       Text = 'Settings'
       Trimming = ttCharacter
-      Width = 106.000000000000000000
+      Width = 80.000000000000000000
       object TopToolBar: TToolBar
         Height = 44.000000000000000000
         TabOrder = 0
@@ -347,7 +383,7 @@ inherited MainTabbedForm: TMainTabbedForm
         StyledSettings = [ssFamily, ssStyle, ssFontColor]
         Height = 21.000000000000000000
         Position.Y = 478.000000000000000000
-        Text = 'simpleEPG v1.0.2'
+        Text = 'simpleEPG v1.1.0'
         TextAlign = taCenter
         Width = 320.000000000000000000
         Trimming = ttCharacter

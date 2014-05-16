@@ -1,6 +1,6 @@
 object MainDataModule: TMainDataModule
   OldCreateOrder = False
-  Height = 538
+  Height = 665
   Width = 749
   object DreamRESTClient: TRESTClient
     Authenticator = DreamHTTPBasicAuthenticator
@@ -168,11 +168,11 @@ object MainDataModule: TMainDataModule
     Resource = 'timerlist'
     Response = DreamRESTResponseTimerList
     Timeout = 5000
-    Left = 344
+    Left = 400
     Top = 459
   end
   object DreamRESTResponseTimerList: TRESTResponse
-    Left = 336
+    Left = 384
     Top = 404
   end
   object DreamRESTResponseDataSetAdapterTimerList: TRESTResponseDataSetAdapter
@@ -182,7 +182,7 @@ object MainDataModule: TMainDataModule
     Response = DreamRESTResponseTimerList
     OnBeforeOpenDataSet = DreamRESTResponseDataSetAdapterTimerListBeforeOpenDataSet
     RootElement = 'timers'
-    Left = 496
+    Left = 576
     Top = 396
   end
   object DreamFDMemTableTimerList: TFDMemTable
@@ -356,7 +356,7 @@ object MainDataModule: TMainDataModule
     UpdateOptions.AssignedValues = [uvCheckRequired]
     UpdateOptions.CheckRequired = False
     StoreDefs = True
-    Left = 496
+    Left = 584
     Top = 460
   end
   object DreamRESTRequestDeleteTimer: TRESTRequest
@@ -374,11 +374,62 @@ object MainDataModule: TMainDataModule
     Resource = 'timerdelete'
     Response = DreamRESTResponseDeleteTimer
     Timeout = 5000
-    Left = 197
+    Left = 237
     Top = 392
   end
   object DreamRESTResponseDeleteTimer: TRESTResponse
-    Left = 197
+    Left = 245
     Top = 456
+  end
+  object DreamRESTRequestRecordingList: TRESTRequest
+    Client = DreamRESTClient
+    Params = <>
+    Resource = 'movielist'
+    Response = DreamRESTResponseRecordingList
+    Timeout = 5000
+    Left = 320
+    Top = 595
+  end
+  object DreamRESTResponseRecordingList: TRESTResponse
+    Left = 320
+    Top = 540
+  end
+  object DreamRESTResponseDataSetAdapterRecordingList: TRESTResponseDataSetAdapter
+    Dataset = DreamFDMemTableRecordingList
+    FieldDefs = <>
+    Response = DreamRESTResponseRecordingList
+    OnBeforeOpenDataSet = DreamRESTResponseDataSetAdapterRecordingListBeforeOpenDataSet
+    RootElement = 'movies'
+    Left = 560
+    Top = 540
+  end
+  object DreamFDMemTableRecordingList: TFDMemTable
+    FieldDefs = <>
+    IndexDefs = <>
+    FetchOptions.AssignedValues = [evMode]
+    FetchOptions.Mode = fmAll
+    ResourceOptions.AssignedValues = [rvSilentMode]
+    ResourceOptions.SilentMode = True
+    UpdateOptions.AssignedValues = [uvCheckRequired]
+    UpdateOptions.CheckRequired = False
+    StoreDefs = True
+    Left = 568
+    Top = 604
+  end
+  object DreamRESTRequestDeleteRecording: TRESTRequest
+    Client = DreamRESTClient
+    Params = <
+      item
+        name = 'sRef'
+      end>
+    Resource = 'moviedelete'
+    Response = DreamRESTResponseDeleteRecording
+    Timeout = 5000
+    Left = 101
+    Top = 528
+  end
+  object DreamRESTResponseDeleteRecording: TRESTResponse
+    Left = 109
+    Top = 592
   end
 end
