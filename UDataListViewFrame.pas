@@ -133,8 +133,12 @@ begin
   // start the spinner
   startSpinner;
 
-  fRESTRequestDelete.Params[0].Value :=
-    fDataSet.FieldByName('serviceref').AsString;
+  // ShowMessage(UTF8ToWideString(fDataSet.FieldByName('serviceref').AsString));
+  // Exit;
+  // fRESTRequestDelete.Params[0].Value := UTF8EncodeToShortString
+  // (fDataSet.FieldByName('serviceref').AsString);
+  fRESTRequestDelete.Params[0].Value := UTF8EncodeToShortString
+    (fDataSet.FieldByName('serviceref').AsString);
 
   if (fRESTRequestDelete.Params.Count = 3) then
   begin
@@ -148,10 +152,9 @@ begin
     // stop the spinner
     stopSpinner;
 
-    MessageDlg('Event could not be deleted!!',
-      System.UITypes.TMsgDlgType.mtError, [System.UITypes.TMsgDlgBtn.mbOK], 0);
-
-    exit;
+    MessageDlg('Event could not be deleted!' + CHR(13) +
+      'Please delete on decoder!', System.UITypes.TMsgDlgType.mtError,
+      [System.UITypes.TMsgDlgBtn.mbOK], 0);
   end;
 
   if fRESTResponseDelete.StatusCode = 200 then
@@ -184,9 +187,9 @@ begin
     // stop the spinner
     stopSpinner;
 
-    MessageDlg('The following error occurred: ' +
-      fRESTResponseDelete.StatusText, System.UITypes.TMsgDlgType.mtError,
-      [System.UITypes.TMsgDlgBtn.mbOK], 0);
+    // MessageDlg('The following error occurred: ' +
+    // fRESTResponseDelete.StatusText, System.UITypes.TMsgDlgType.mtError,
+    // [System.UITypes.TMsgDlgBtn.mbOK], 0);
     ACanDelete := False;
   end;
 end;
@@ -199,7 +202,7 @@ begin
   try
     fRESTRequestList.Execute;
   except
-    exit;
+    Exit;
   end;
   DataListView.DataSet := fDataSet;
   DataListView.DataFieldName := fDataFieldName;
