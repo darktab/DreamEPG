@@ -49,6 +49,8 @@ type
 
     // fWorkingForm: TWorkingForm;
     fDetailInitThread: TDetailInitThread;
+    procedure stopSpinner;
+    procedure startSpinner;
 
   public
     { Public declarations }
@@ -67,7 +69,7 @@ type
       lDetailRESTResponseDataSetAdapter: TRESTResponseDataSetAdapter;
       lMasterDetailLinkFieldName: String); overload;
     procedure init(lMasterDetailLinkFieldName: String); overload;
-    procedure initDataListView;virtual;
+    procedure initDataListView; virtual;
     procedure initTopDataComboBox;
     Constructor Create(AOwner: TComponent); override;
 
@@ -93,6 +95,21 @@ begin
   // WorkingForm := TWorkingForm.Create(self);
   // WorkingForm.Parent := self;
   // end;
+end;
+
+procedure TDataComboListViewFrame.startSpinner;
+begin
+  // Call the working spinner
+  DataListView.Enabled := false;
+  DataAniIndicator.Visible := true;
+  DataAniIndicator.Enabled := true;
+end;
+
+procedure TDataComboListViewFrame.stopSpinner;
+begin
+  DataAniIndicator.Visible := false;
+  DataAniIndicator.Enabled := false;
+  DataListView.Enabled := true;
 end;
 
 procedure TDataComboListViewFrame.DoneInitDetail(Sender: TObject);
@@ -242,10 +259,8 @@ begin
   // sRef parameter
   fDetailRESTRequest.Params[0].Value := lDefaultServiceReference;
 
-  // Call the working spinner
-  DataListView.Enabled := false;
-  DataAniIndicator.Visible := true;
-  DataAniIndicator.Enabled := true;
+  // start the spinner
+  startSpinner;
   // WorkingForm.WorkingMsg('Loading ...', true);
   Application.ProcessMessages;
   // fDetailInitThread := TDetailInitThread.Create(DataAniIndicator,
@@ -253,27 +268,36 @@ begin
   // DoneInitDetail);
   // fDetailInitThread.OnTerminate := DoneInitDetail;
   try
-    fDetailRESTRequest.Execute;
-  except
-    if fMasterDataSet.State = dsBrowse then
-    begin
-      fMasterDataSet.Close;
+    try
+      fDetailRESTRequest.Execute;
+    except
+      if fMasterDataSet.State = dsBrowse then
+      begin
+        fMasterDataSet.Close;
+      end;
+      fDetailRESTRequest.Execute;
     end;
-    fDetailRESTRequest.Execute;
-  end;
 
-  if assigned(fDetailDataStringList) then
-  begin
-    DataListView.init(fDetailDataStringList);
-  end
-  else
-  begin
-    DataListView.init;
-  end;
+    if assigned(fDetailDataStringList) then
+    begin
+      DataListView.init(fDetailDataStringList);
+    end
+    else
+    begin
+      DataListView.init;
+    end;
+  except
 
-  DataAniIndicator.Visible := false;
-  DataAniIndicator.Enabled := false;
-  DataListView.Enabled := true;
+    // stop the spinner
+    stopSpinner;
+
+    MessageDlg('No Data found!', System.UITypes.TMsgDlgType.mtInformation,
+      [System.UITypes.TMsgDlgBtn.mbOK], 0);
+
+  end;
+  // stop the spinner
+  stopSpinner;
+
 end;
 
 procedure TDataComboListViewFrame.init(lMasterDetailLinkFieldName: String);
