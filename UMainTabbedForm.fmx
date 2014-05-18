@@ -322,7 +322,7 @@ inherited MainTabbedForm: TMainTabbedForm
       IsSelected = False
       Position.X = 160.000000000000000000
       StyleLookup = 'tabitemfavorites'
-      TabOrder = 4
+      TabOrder = 3
       Text = 'Recordings'
       Trimming = ttCharacter
       Width = 80.000000000000000000
@@ -359,7 +359,7 @@ inherited MainTabbedForm: TMainTabbedForm
       IsSelected = True
       Position.X = 240.000000000000000000
       StyleLookup = 'tabitemmostviewed'
-      TabOrder = 3
+      TabOrder = 4
       Text = 'Settings'
       Trimming = ttCharacter
       Width = 80.000000000000000000
