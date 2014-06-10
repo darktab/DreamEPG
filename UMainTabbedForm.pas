@@ -15,7 +15,7 @@ uses
   UDataListView,
   USettings,
   FMX.StdActns, FMX.Objects, System.Math,
-  DBXJSON, UDataListViewFrame;
+  DBXJSON, UDataListViewFrame, UDataDetailFrame;
 
 type
   TMainTabbedForm = class(TMainForm)
@@ -33,14 +33,7 @@ type
     ToDetailChangeTabAction: TChangeTabAction;
     ToMasterChangeTabAction: TChangeTabAction;
     TextEPGInfoTabItem: TTabItem;
-    TextEPGInfoToolBar: TToolBar;
-    TextEPGBackButton: TButton;
-    TextEPGTitleLabel: TLabel;
     ToInfoChangeTabAction: TChangeTabAction;
-    TextEPGInfoLabel: TLabel;
-    TextEPGInfoMemo: TMemo;
-    TextEPGInfoRecordButton: TButton;
-    TextEPGDateTimeLabel: TLabel;
     TopToolBar: TToolBar;
     SettingsTopToolBarLabel: TLabel;
     ListBoxGroupHeader1: TListBoxGroupHeader;
@@ -51,20 +44,18 @@ type
     ListBoxItem3: TListBoxItem;
     PasswordEdit: TEdit;
     VersionLabel: TLabel;
-    TextEPGInfoBottomRectangle: TRectangle;
     VertScrollBox: TVertScrollBox;
     MainLayout: TLayout;
     TimersDataListViewFrame: TDataListViewFrame;
-    DataAniIndicator: TAniIndicator;
     RecordingsTabItem: TTabItem;
     RecordingsDataListViewFrame: TDataListViewFrame;
+    TextEPGDataDetailFrame: TDataDetailFrame;
     procedure FormShow(Sender: TObject);
     procedure ComboBoxServiceListChange(Sender: TObject);
     procedure DataComboListViewFrameChannelListDataListViewItemClick
       (const Sender: TObject; const AItem: TListViewItem);
     procedure TextEPGBackDataComboListViewFrameDataListViewItemClick
       (const Sender: TObject; const AItem: TListViewItem);
-    procedure TextEPGInfoRecordButtonClick(Sender: TObject);
     procedure TextEPGBackDataComboListViewFrameDataListViewSearchChange
       (Sender: TObject);
     procedure BoxAddressEditChange(Sender: TObject);
@@ -81,6 +72,8 @@ type
     procedure TextEPGBackDataComboListViewFrameTopDataComboBoxChange
       (Sender: TObject);
     procedure TextEPGDetailSpeedButtonClick(Sender: TObject);
+    procedure TextEPGDataDetailFrameTextEPGInfoRecordButtonClick
+      (Sender: TObject);
 
   private
     fSettings: TSettings;
@@ -96,8 +89,6 @@ type
     procedure CalcContentBoundsProc(Sender: TObject; var ContentBounds: TRectF);
     procedure RestorePosition;
     procedure UpdateKBBounds;
-    procedure startSpinner;
-    procedure stopSpinner;
 
     { Private declarations }
   public
@@ -129,21 +120,6 @@ begin
   begin
     FreeAndNil(fSettings);
   end;
-end;
-
-procedure TMainTabbedForm.startSpinner;
-begin
-  // spinner on
-  DataAniIndicator.Visible := True;
-  DataAniIndicator.Enabled := True;
-  Application.ProcessMessages;
-end;
-
-procedure TMainTabbedForm.stopSpinner;
-begin
-  // spinner on
-  DataAniIndicator.Visible := False;
-  DataAniIndicator.Enabled := False;
 end;
 
 procedure TMainTabbedForm.initChannelListView;
@@ -373,16 +349,9 @@ procedure TMainTabbedForm.TextEPGBackDataComboListViewFrameDataListViewItemClick
 begin
   inherited;
   TextEPGBackDataComboListViewFrame.DataListViewItemClick(Sender, AItem);
-  TextEPGTitleLabel.Text := MainDataModule.DreamFDMemTableTextEPG.FieldByName
-    ('sname').AsString;
-  TextEPGInfoLabel.Text := MainDataModule.DreamFDMemTableTextEPG.FieldByName
-    ('title').AsString;
-  TextEPGDateTimeLabel.Text := MainDataModule.DreamFDMemTableTextEPG.FieldByName
-    ('date').AsString + ': ' + MainDataModule.DreamFDMemTableTextEPG.FieldByName
-    ('begin').AsString + ' - ' + MainDataModule.DreamFDMemTableTextEPG.
-    FieldByName('end').AsString;;
-  TextEPGInfoMemo.Text := MainDataModule.DreamFDMemTableTextEPG.FieldByName
-    ('longdesc').AsString;
+  TextEPGDataDetailFrame.init(MainDataModule.DreamFDMemTableTextEPG,
+    MainDataModule.DreamRESTRequestAddTimer,
+    MainDataModule.DreamRESTResponseAddTimer);
   ToInfoChangeTabAction.ExecuteTarget(self);
 end;
 
@@ -444,47 +413,16 @@ end;
 // ------------------------
 // Schedule a recording
 // ------------------------
-procedure TMainTabbedForm.TextEPGInfoRecordButtonClick(Sender: TObject);
+procedure TMainTabbedForm.TextEPGDataDetailFrameTextEPGInfoRecordButtonClick
+  (Sender: TObject);
 begin
   inherited;
-  // start the spinner
-  startSpinner;
+  TextEPGDataDetailFrame.TextEPGInfoRecordButtonClick(Sender);
 
-  MainDataModule.DreamRESTRequestAddTimer.Params[0].Value :=
-    MainDataModule.DreamFDMemTableTextEPG.FieldByName('sref').AsString;
-  MainDataModule.DreamRESTRequestAddTimer.Params[1].Value :=
-    MainDataModule.DreamFDMemTableTextEPG.FieldByName('id').AsString;
   try
-    MainDataModule.DreamRESTRequestAddTimer.Execute;
+    initTimersListView;
   except
-
-    // spinner off
-    stopSpinner;
-
     MessageDlg('Can''t find your decoder! Please check your settings!',
-      System.UITypes.TMsgDlgType.mtError, [System.UITypes.TMsgDlgBtn.mbOK], 0);
-  end;
-  if MainDataModule.DreamRESTResponseAddTimer.StatusCode = 200 then
-  begin
-    // spinner off
-    stopSpinner;
-    MessageDlg('Timer successfully scheduled!',
-      System.UITypes.TMsgDlgType.mtInformation,
-      [System.UITypes.TMsgDlgBtn.mbOK], 0);
-    try
-      initTimersListView;
-    except
-      MessageDlg('Can''t find your decoder! Please check your settings!',
-        System.UITypes.TMsgDlgType.mtError,
-        [System.UITypes.TMsgDlgBtn.mbOK], 0);
-    end;
-  end
-  else
-  begin
-    // spinner off
-    stopSpinner;
-    MessageDlg('The following error occurred: ' +
-      MainDataModule.DreamRESTResponseAddTimer.StatusText,
       System.UITypes.TMsgDlgType.mtError, [System.UITypes.TMsgDlgBtn.mbOK], 0);
   end;
 

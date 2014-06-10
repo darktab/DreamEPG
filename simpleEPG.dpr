@@ -11,7 +11,8 @@ uses
   UBackDataComboListViewFrame in 'UBackDataComboListViewFrame.pas' {BackDataComboListViewFrame: TFrame},
   UDetailInitThread in 'UDetailInitThread.pas',
   USettings in 'USettings.pas',
-  UDataListViewFrame in 'UDataListViewFrame.pas' {DataListViewFrame: TFrame};
+  UDataListViewFrame in 'UDataListViewFrame.pas' {DataListViewFrame: TFrame},
+  UDataDetailFrame in 'UDataDetailFrame.pas' {DataDetailFrame: TFrame};
 
 {$R *.res}
 

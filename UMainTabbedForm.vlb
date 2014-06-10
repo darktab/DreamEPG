@@ -2,7 +2,7 @@
 Coordinates=1085,592,92,33
 
 []
-Coordinates=984,478,105,33
+Coordinates=582,592,115,33
 Visible=True
 
 [TextEPGTabItem]
@@ -19,9 +19,6 @@ Coordinates=339,410,281,51
 
 [ToInfoChangeTabAction]
 Coordinates=896,426,154,36
-
-[TextEPGInfoToolBar]
-Coordinates=582,592,115,33
 
 [ToMasterChangeTabAction]
 Coordinates=1055,452,171,36
@@ -44,17 +41,11 @@ Coordinates=357,478,139,51
 [TextEPGActionList]
 Coordinates=1036,559,123,36
 
-[TextEPGBackButton]
-Coordinates=143,410,115,51
-
 [TextEPGInfoTabItem]
 Coordinates=10,592,115,33
 
 [DataComboListViewFrameChannelList]
 Coordinates=951,546,203,33
-
-[TextEPGInfoRecordButton]
-Coordinates=674,410,144,51
 
 [TopToolBar]
 Coordinates=859,546,72,33
@@ -77,17 +68,8 @@ Coordinates=1457,276,165,36
 [DataComboListViewFrameChannelList.DataListView]
 Coordinates=603,10,270,141
 
-[TextEPGInfoMemo]
-Coordinates=850,410,105,51
-
-[TextEPGDateTimeLabel]
-Coordinates=426,276,130,51
-
 [TextEPGBackDataComboListViewFrame.TopDataComboBox]
 Coordinates=928,10,311,105
-
-[TextEPGInfoLabel]
-Coordinates=983,410,103,51
 
 [DataComboListViewFrameChannelList.TopNextButton]
 Coordinates=1113,410,281,51
@@ -97,9 +79,6 @@ Coordinates=10,10,279,213
 
 [TextEPGTabControl]
 Coordinates=844,478,112,33
-
-[TextEPGTitleLabel]
-Coordinates=10,410,105,51
 
 [DataComboListViewFrameChannelList.TopToolBar]
 Coordinates=527,478,264,33
