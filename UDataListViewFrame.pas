@@ -24,6 +24,8 @@ type
     procedure DataListViewDeleteItem(Sender: TObject; AIndex: Integer);
     procedure DataListViewDeletingItem(Sender: TObject; AIndex: Integer;
       var ACanDelete: Boolean);
+    procedure DataListViewItemClick(const Sender: TObject;
+      const AItem: TListViewItem);
   private
     { Private declarations }
     fDataSet: TDataSet;
@@ -192,6 +194,12 @@ begin
     // [System.UITypes.TMsgDlgBtn.mbOK], 0);
     ACanDelete := False;
   end;
+end;
+
+procedure TDataListViewFrame.DataListViewItemClick(const Sender: TObject;
+  const AItem: TListViewItem);
+begin
+  // placeholder
 end;
 
 procedure TDataListViewFrame.initDataListView;

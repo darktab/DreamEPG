@@ -18,6 +18,7 @@ object DataListViewFrame: TDataListViewFrame
     ItemAppearanceObjects.ItemObjects.Detail.TextVertAlign = taTrailing
     ItemAppearanceObjects.ItemObjects.Detail.Visible = True
     ItemAppearanceObjects.ItemObjects.Detail.PlaceOffset.Y = -3.000000000000000000
+    OnItemClick = DataListViewItemClick
     OnDeletingItem = DataListViewDeletingItem
     OnDeleteItem = DataListViewDeleteItem
     OnDeleteChangeVisible = DataListViewDeleteChangeVisible

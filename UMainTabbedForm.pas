@@ -50,6 +50,13 @@ type
     RecordingsTabItem: TTabItem;
     RecordingsDataListViewFrame: TDataListViewFrame;
     TextEPGDataDetailFrame: TDataDetailFrame;
+    RecordingsTabControl: TTabControl;
+    RecordingsMasterTabItem: TTabItem;
+    RecordingsDetailTabItem: TTabItem;
+    RecordingsDataDetailFrame: TDataDetailFrame;
+    RecordingsActionList: TActionList;
+    ToRecordingsDetailChangeTabAction: TChangeTabAction;
+    ToRecordingsMasterChangeTabAction: TChangeTabAction;
     procedure FormShow(Sender: TObject);
     procedure ComboBoxServiceListChange(Sender: TObject);
     procedure DataComboListViewFrameChannelListDataListViewItemClick
@@ -74,6 +81,8 @@ type
     procedure TextEPGDetailSpeedButtonClick(Sender: TObject);
     procedure TextEPGDataDetailFrameTextEPGInfoRecordButtonClick
       (Sender: TObject);
+    procedure RecordingsDataListViewFrameDataListViewItemClick
+      (const Sender: TObject; const AItem: TListViewItem);
 
   private
     fSettings: TSettings;
@@ -272,6 +281,8 @@ begin
   fSettings := TSettings.Create;
   self.TextEPGBackDataComboListViewFrame.DataListView.ItemAppearanceObjects.
     ItemObjects.Text.Width := Round(0.75 * self.Width);
+  self.RecordingsDataListViewFrame.DataListView.ItemAppearanceObjects.
+    ItemObjects.Text.Width := Round(0.75 * self.Width);
 
   try
     // initialisation des settings
@@ -325,6 +336,18 @@ begin
   FKBBounds.Create(0, 0, 0, 0);
   FNeedOffset := False;
   RestorePosition;
+end;
+
+procedure TMainTabbedForm.RecordingsDataListViewFrameDataListViewItemClick
+  (const Sender: TObject; const AItem: TListViewItem);
+begin
+  inherited;
+  // toto
+  RecordingsDataListViewFrame.DataListViewItemClick(Sender, AItem);
+  RecordingsDataDetailFrame.init(MainDataModule.DreamFDMemTableRecordingList,
+    MainDataModule.DreamRESTRequestDeleteRecording,
+    MainDataModule.DreamRESTResponseDeleteRecording);
+  ToRecordingsDetailChangeTabAction.ExecuteTarget(self);
 end;
 
 procedure TMainTabbedForm.RestorePosition;
