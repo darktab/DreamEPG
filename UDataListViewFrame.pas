@@ -199,7 +199,7 @@ end;
 procedure TDataListViewFrame.DataListViewItemClick(const Sender: TObject;
   const AItem: TListViewItem);
 begin
-  // placeholder
+  fDataSet.RecNo := DataListView.ItemIndex + 1;
 end;
 
 procedure TDataListViewFrame.initDataListView;
