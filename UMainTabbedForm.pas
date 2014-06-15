@@ -340,13 +340,27 @@ end;
 
 procedure TMainTabbedForm.RecordingsDataListViewFrameDataListViewItemClick
   (const Sender: TObject; const AItem: TListViewItem);
+var
+  lDetailDataSetConfigList: TStringList;
 begin
   inherited;
   // toto
   RecordingsDataListViewFrame.DataListViewItemClick(Sender, AItem);
+  lDetailDataSetConfigList := TStringList.Create;
+
+  // infos à afficher
+  lDetailDataSetConfigList.Add('servicename');
+  lDetailDataSetConfigList.Add('eventname');
+  lDetailDataSetConfigList.Add('begintime');
+  lDetailDataSetConfigList.Add('length');
+  lDetailDataSetConfigList.Add('filesize');
+  lDetailDataSetConfigList.Add('descriptionExtended');
+
   RecordingsDataDetailFrame.init(MainDataModule.DreamFDMemTableRecordingList,
     MainDataModule.DreamRESTRequestDeleteRecording,
-    MainDataModule.DreamRESTResponseDeleteRecording);
+    MainDataModule.DreamRESTResponseDeleteRecording, lDetailDataSetConfigList);
+
+  FreeAndNil(lDetailDataSetConfigList);
   ToRecordingsDetailChangeTabAction.ExecuteTarget(self);
 end;
 
@@ -369,12 +383,26 @@ end;
 
 procedure TMainTabbedForm.TextEPGBackDataComboListViewFrameDataListViewItemClick
   (const Sender: TObject; const AItem: TListViewItem);
+var
+  lDetailDataSetConfigList: TStringList;
 begin
   inherited;
   TextEPGBackDataComboListViewFrame.DataListViewItemClick(Sender, AItem);
+  lDetailDataSetConfigList := TStringList.Create;
+
+  // infos à afficher
+  lDetailDataSetConfigList.Add('sname');
+  lDetailDataSetConfigList.Add('title');
+  lDetailDataSetConfigList.Add('date');
+  lDetailDataSetConfigList.Add('begin');
+  lDetailDataSetConfigList.Add('end');
+  lDetailDataSetConfigList.Add('longdesc');
+
   TextEPGDataDetailFrame.init(MainDataModule.DreamFDMemTableTextEPG,
     MainDataModule.DreamRESTRequestAddTimer,
-    MainDataModule.DreamRESTResponseAddTimer);
+    MainDataModule.DreamRESTResponseAddTimer, lDetailDataSetConfigList);
+
+  FreeAndNil(lDetailDataSetConfigList);
   ToInfoChangeTabAction.ExecuteTarget(self);
 end;
 

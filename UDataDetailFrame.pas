@@ -27,6 +27,7 @@ type
     fDataSet: TDataSet;
     fRESTRequestAddTimer: TRESTRequest;
     fRESTResponseAddTimer: TRESTResponse;
+    fDetailDataSetConfigList: TStringList;
 
     procedure startSpinner;
     procedure stopSpinner;
@@ -34,7 +35,8 @@ type
     { Public declarations }
     procedure init(lDetailDataSet: TDataSet;
       lDetailRESTRequestAddTimer: TRESTRequest;
-      lDetailRESTResponseAddTimer: TRESTResponse);
+      lDetailRESTResponseAddTimer: TRESTResponse;
+      lDetailDataSetConfigList: TStringList);
   end;
 
 implementation
@@ -43,18 +45,24 @@ implementation
 
 procedure TDataDetailFrame.init(lDetailDataSet: TDataSet;
   lDetailRESTRequestAddTimer: TRESTRequest;
-  lDetailRESTResponseAddTimer: TRESTResponse);
+  lDetailRESTResponseAddTimer: TRESTResponse;
+  lDetailDataSetConfigList: TStringList);
 begin
   fDataSet := lDetailDataSet;
   fRESTRequestAddTimer := lDetailRESTRequestAddTimer;
   fRESTResponseAddTimer := lDetailRESTResponseAddTimer;
+  fDetailDataSetConfigList := lDetailDataSetConfigList;
 
-  TextEPGTitleLabel.Text := fDataSet.FieldByName('sname').AsString;
-  TextEPGInfoLabel.Text := fDataSet.FieldByName('title').AsString;
-  TextEPGDateTimeLabel.Text := fDataSet.FieldByName('date').AsString + ': ' +
-    fDataSet.FieldByName('begin').AsString + ' - ' + fDataSet.FieldByName('end')
+  TextEPGTitleLabel.Text := fDataSet.FieldByName(lDetailDataSetConfigList[0]
+    ).AsString;
+  TextEPGInfoLabel.Text := fDataSet.FieldByName(lDetailDataSetConfigList[1]
+    ).AsString;
+  TextEPGDateTimeLabel.Text := fDataSet.FieldByName(lDetailDataSetConfigList[2])
+    .AsString + ': ' + fDataSet.FieldByName(lDetailDataSetConfigList[3])
+    .AsString + ' - ' + fDataSet.FieldByName(lDetailDataSetConfigList[4])
     .AsString;;
-  TextEPGInfoMemo.Text := fDataSet.FieldByName('longdesc').AsString;
+  TextEPGInfoMemo.Text := fDataSet.FieldByName(lDetailDataSetConfigList[5]
+    ).AsString;
 end;
 
 procedure TDataDetailFrame.startSpinner;
