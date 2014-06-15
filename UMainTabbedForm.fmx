@@ -313,7 +313,7 @@ inherited MainTabbedForm: TMainTabbedForm
               Width = 320.000000000000000000
               ItemAppearanceObjects.ItemObjects.TextButton.Width = 30.000000000000000000
               ItemAppearanceObjects.ItemObjects.TextButton.Visible = True
-              ItemAppearanceObjects.ItemObjects.TextButton.Text = 'i / d'
+              ItemAppearanceObjects.ItemObjects.TextButton.Text = 'i'
               OnItemClick = RecordingsDataListViewFrameDataListViewItemClick
               ShowSelection = True
             end
@@ -360,12 +360,13 @@ inherited MainTabbedForm: TMainTabbedForm
               Width = 320.000000000000000000
             end
             inherited TextEPGInfoMemo: TMemo
-              Height = 310.000000000000000000
+              Height = 354.000000000000000000
               Width = 320.000000000000000000
             end
             inherited TextEPGInfoRecordButton: TButton
               Position.Y = 428.000000000000000000
               Text = 'Delete'
+              Visible = False
               Width = 320.000000000000000000
             end
             inherited TextEPGInfoToolBar: TToolBar

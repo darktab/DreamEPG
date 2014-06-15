@@ -4,7 +4,7 @@ interface
 
 uses
   System.SysUtils, System.Types, System.UITypes, System.Classes,
-  System.Variants,
+  System.Variants, System.Math,
   FMX.Types, FMX.Graphics, FMX.Controls, FMX.Forms, FMX.Dialogs, FMX.StdCtrls,
   FMX.Layouts, FMX.Memo, FMX.Objects, Data.DB, FireDAC.Comp.DataSet,
   FireDAC.Comp.Client, REST.Response.Adapter,
@@ -57,10 +57,22 @@ begin
     ).AsString;
   TextEPGInfoLabel.Text := fDataSet.FieldByName(lDetailDataSetConfigList[1]
     ).AsString;
-  TextEPGDateTimeLabel.Text := fDataSet.FieldByName(lDetailDataSetConfigList[2])
-    .AsString + ': ' + fDataSet.FieldByName(lDetailDataSetConfigList[3])
-    .AsString + ' - ' + fDataSet.FieldByName(lDetailDataSetConfigList[4])
-    .AsString;;
+  if lDetailDataSetConfigList[4] = 'filesize' then
+  begin
+    TextEPGDateTimeLabel.Text := fDataSet.FieldByName
+      (lDetailDataSetConfigList[2]).AsString + ' - ' +
+      fDataSet.FieldByName(lDetailDataSetConfigList[3]).AsString + ' min:s' +
+      ' - ' + FloatToStr
+      (RoundTo(StrToInt64(fDataSet.FieldByName(lDetailDataSetConfigList[4])
+      .AsString) / 1024 / 1024 / 1024, -2)) + ' GB';
+  end
+  else
+  begin
+    TextEPGDateTimeLabel.Text := fDataSet.FieldByName
+      (lDetailDataSetConfigList[2]).AsString + ': ' +
+      fDataSet.FieldByName(lDetailDataSetConfigList[3]).AsString + ' - ' +
+      fDataSet.FieldByName(lDetailDataSetConfigList[4]).AsString
+  end;
   TextEPGInfoMemo.Text := fDataSet.FieldByName(lDetailDataSetConfigList[5]
     ).AsString;
 end;
