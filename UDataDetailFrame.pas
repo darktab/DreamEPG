@@ -73,8 +73,9 @@ begin
       fDataSet.FieldByName(lDetailDataSetConfigList[3]).AsString + ' - ' +
       fDataSet.FieldByName(lDetailDataSetConfigList[4]).AsString
   end;
-  TextEPGInfoMemo.Text := fDataSet.FieldByName(lDetailDataSetConfigList[5]
-    ).AsString;
+
+  TextEPGInfoMemo.Lines.Append(fDataSet.FieldByName(lDetailDataSetConfigList[5])
+    .AsString);
 end;
 
 procedure TDataDetailFrame.startSpinner;
