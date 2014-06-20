@@ -4,7 +4,7 @@ interface
 
 uses
   System.Classes, System.SysUtils, Data.DBXJSONReflect, FMX.Dialogs,
-  System.IOUtils, Data.DBXJSON;
+  System.IOUtils, Data.DBXJSON, System.JSON;
 
 type
   TSettings = class(TObject)
