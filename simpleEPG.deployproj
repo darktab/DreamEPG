@@ -5,14 +5,6 @@
     </ProjectExtensions>
     <ItemGroup Condition="'$(Platform)'=='Android'"/>
     <ItemGroup Condition="'$(Platform)'=='iOSDevice'">
-        <DeployFile Include="$(BDS)\bin\Artwork\iOS\iPhone\FM_ApplicationIcon_120x120.png" Condition="'$(Config)'=='Debug'">
-            <RemoteDir>simpleEPG.app\</RemoteDir>
-            <RemoteName>FM_ApplicationIcon_120x120.png</RemoteName>
-            <Operation>0</Operation>
-            <LocalCommand/>
-            <RemoteCommand/>
-            <Overwrite>True</Overwrite>
-        </DeployFile>
         <DeployFile Include="C:\Users\cjacoby\Documents\GitHub\simpleEPG\icons\sEPG1_40x40.png" Condition="'$(Config)'=='Debug'">
             <RemoteDir>simpleEPG.app\</RemoteDir>
             <RemoteName>sEPG1_40x40.png</RemoteName>
@@ -61,14 +53,6 @@
             <RemoteCommand/>
             <Overwrite>True</Overwrite>
         </DeployFile>
-        <DeployFile Include="$(BDS)\bin\Artwork\iOS\iPad\FM_SpotlightSearchIcon_80x80.png" Condition="'$(Config)'=='Debug'">
-            <RemoteDir>simpleEPG.app\</RemoteDir>
-            <RemoteName>FM_SpotlightSearchIcon_80x80.png</RemoteName>
-            <Operation>0</Operation>
-            <LocalCommand/>
-            <RemoteCommand/>
-            <Overwrite>True</Overwrite>
-        </DeployFile>
         <DeployFile Include="C:\Users\cjacoby\Documents\GitHub\simpleEPG\icons\sEPG1_58x58.png" Condition="'$(Config)'=='Debug'">
             <RemoteDir>simpleEPG.app\</RemoteDir>
             <RemoteName>sEPG1_58x58.png</RemoteName>
@@ -80,14 +64,6 @@
         <DeployFile Include="C:\Users\cjacoby\Documents\GitHub\simpleEPG\icons\simpleEPG1_2048_1536.png" Condition="'$(Config)'=='Debug'">
             <RemoteDir>simpleEPG.app\</RemoteDir>
             <RemoteName>Default-Landscape@2x~ipad.png</RemoteName>
-            <Operation>0</Operation>
-            <LocalCommand/>
-            <RemoteCommand/>
-            <Overwrite>True</Overwrite>
-        </DeployFile>
-        <DeployFile Include="$(BDS)\bin\Artwork\iOS\iPad\FM_ApplicationIcon_152x152.png" Condition="'$(Config)'=='Debug'">
-            <RemoteDir>simpleEPG.app\</RemoteDir>
-            <RemoteName>FM_ApplicationIcon_152x152.png</RemoteName>
             <Operation>0</Operation>
             <LocalCommand/>
             <RemoteCommand/>
@@ -117,18 +93,18 @@
             <RemoteCommand/>
             <Overwrite>True</Overwrite>
         </DeployFile>
-        <DeployFile Include="C:\Users\cjacoby\Documents\GitHub\simpleEPG\icons\sEPG1_100x100.png" Condition="'$(Config)'=='Debug'">
-            <RemoteDir>simpleEPG.app\</RemoteDir>
-            <RemoteName>sEPG1_100x100.png</RemoteName>
-            <Operation>0</Operation>
-            <LocalCommand/>
-            <RemoteCommand/>
-            <Overwrite>True</Overwrite>
-        </DeployFile>
         <DeployFile Include="C:\Users\cjacoby\Documents\GitHub\simpleEPG\icons\simpleEPG1_640x1136.png" Condition="'$(Config)'=='Debug'">
             <RemoteDir>simpleEPG.app\</RemoteDir>
             <RemoteName>Default-568h@2x.png</RemoteName>
             <Operation>1</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="C:\Users\cjacoby\Documents\GitHub\simpleEPG\icons\sEPG1_100x100.png" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>simpleEPG.app\</RemoteDir>
+            <RemoteName>sEPG1_100x100.png</RemoteName>
+            <Operation>0</Operation>
             <LocalCommand/>
             <RemoteCommand/>
             <Overwrite>True</Overwrite>
@@ -144,14 +120,6 @@
         <DeployFile Include="C:\Users\cjacoby\Documents\GitHub\simpleEPG\icons\simpleEPG1_1024_768.png" Condition="'$(Config)'=='Debug'">
             <RemoteDir>simpleEPG.app\</RemoteDir>
             <RemoteName>Default-Landscape~ipad.png</RemoteName>
-            <Operation>0</Operation>
-            <LocalCommand/>
-            <RemoteCommand/>
-            <Overwrite>True</Overwrite>
-        </DeployFile>
-        <DeployFile Include="$(BDS)\bin\Artwork\iOS\iPhone\FM_ApplicationIcon_60x60.png" Condition="'$(Config)'=='Debug'">
-            <RemoteDir>simpleEPG.app\</RemoteDir>
-            <RemoteName>FM_ApplicationIcon_60x60.png</RemoteName>
             <Operation>0</Operation>
             <LocalCommand/>
             <RemoteCommand/>
@@ -223,14 +191,6 @@
             <RemoteCommand/>
             <Overwrite>True</Overwrite>
         </DeployFile>
-        <DeployFile Include="$(BDS)\bin\Artwork\iOS\iPhone\FM_SpotlightSearchIcon_40x40.png" Condition="'$(Config)'=='Debug'">
-            <RemoteDir>simpleEPG.app\</RemoteDir>
-            <RemoteName>FM_SpotlightSearchIcon_40x40.png</RemoteName>
-            <Operation>0</Operation>
-            <LocalCommand/>
-            <RemoteCommand/>
-            <Overwrite>True</Overwrite>
-        </DeployFile>
         <DeployFile Include="C:\Users\cjacoby\Documents\GitHub\simpleEPG\icons\sEPG1_120x120.png" Condition="'$(Config)'=='Debug'">
             <RemoteDir>simpleEPG.app\</RemoteDir>
             <RemoteName>sEPG1_120x120.png</RemoteName>
@@ -267,14 +227,6 @@
             <RemoteDir>simpleEPG.app\</RemoteDir>
             <RemoteName>Default@2x.png</RemoteName>
             <Operation>1</Operation>
-            <LocalCommand/>
-            <RemoteCommand/>
-            <Overwrite>True</Overwrite>
-        </DeployFile>
-        <DeployFile Include="$(BDS)\bin\Artwork\iOS\iPad\FM_ApplicationIcon_76x76.png" Condition="'$(Config)'=='Debug'">
-            <RemoteDir>simpleEPG.app\</RemoteDir>
-            <RemoteName>FM_ApplicationIcon_76x76.png</RemoteName>
-            <Operation>0</Operation>
             <LocalCommand/>
             <RemoteCommand/>
             <Overwrite>True</Overwrite>
@@ -444,17 +396,17 @@
             <RemoteCommand/>
             <Overwrite>True</Overwrite>
         </DeployFile>
-        <DeployFile Include="C:\Users\cjacoby\Documents\GitHub\simpleEPG\icons\sEPG1_76x76.png" Condition="'$(Config)'=='Debug'">
+        <DeployFile Include="$(BDS)\bin\Artwork\iOS\iPad\FM_ApplicationIcon_152x152.png" Condition="'$(Config)'=='Debug'">
             <RemoteDir>simpleEPG.app\</RemoteDir>
-            <RemoteName>sEPG1_76x76.png</RemoteName>
+            <RemoteName>FM_ApplicationIcon_152x152.png</RemoteName>
             <Operation>0</Operation>
             <LocalCommand/>
             <RemoteCommand/>
             <Overwrite>True</Overwrite>
         </DeployFile>
-        <DeployFile Include="$(BDS)\bin\Artwork\iOS\iPad\FM_ApplicationIcon_152x152.png" Condition="'$(Config)'=='Debug'">
+        <DeployFile Include="C:\Users\cjacoby\Documents\GitHub\simpleEPG\icons\sEPG1_76x76.png" Condition="'$(Config)'=='Debug'">
             <RemoteDir>simpleEPG.app\</RemoteDir>
-            <RemoteName>FM_ApplicationIcon_152x152.png</RemoteName>
+            <RemoteName>sEPG1_76x76.png</RemoteName>
             <Operation>0</Operation>
             <LocalCommand/>
             <RemoteCommand/>
@@ -484,14 +436,6 @@
             <RemoteCommand/>
             <Overwrite>True</Overwrite>
         </DeployFile>
-        <DeployFile Include="C:\Users\cjacoby\Documents\GitHub\simpleEPG\icons\simpleEPG1_1024_768.png" Condition="'$(Config)'=='Debug'">
-            <RemoteDir>simpleEPG.app\</RemoteDir>
-            <RemoteName>Default-Landscape~ipad.png</RemoteName>
-            <Operation>0</Operation>
-            <LocalCommand/>
-            <RemoteCommand/>
-            <Overwrite>True</Overwrite>
-        </DeployFile>
         <DeployFile Include="iOSSimulator\Release\simpleEPG" Condition="'$(Config)'=='Release'">
             <RemoteDir>simpleEPG.app\</RemoteDir>
             <RemoteName>simpleEPG</RemoteName>
@@ -500,6 +444,14 @@
             <RemoteCommand/>
             <Overwrite>True</Overwrite>
             <Required>True</Required>
+        </DeployFile>
+        <DeployFile Include="C:\Users\cjacoby\Documents\GitHub\simpleEPG\icons\simpleEPG1_1024_768.png" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>simpleEPG.app\</RemoteDir>
+            <RemoteName>Default-Landscape~ipad.png</RemoteName>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
         </DeployFile>
         <DeployFile Include="C:\Users\cjacoby\Documents\GitHub\simpleEPG\icons\sEPG1_50x50.png" Condition="'$(Config)'=='Debug'">
             <RemoteDir>simpleEPG.app\</RemoteDir>
@@ -521,6 +473,14 @@
             <RemoteDir>simpleEPG.app\</RemoteDir>
             <RemoteName>sEPG1_80x80.png</RemoteName>
             <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="iOSSimulator\Debug\simpleEPG.rsm" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>simpleEPG.app\</RemoteDir>
+            <RemoteName>simpleEPG.rsm</RemoteName>
+            <Operation>1</Operation>
             <LocalCommand/>
             <RemoteCommand/>
             <Overwrite>True</Overwrite>
@@ -621,6 +581,14 @@
             <RemoteCommand/>
             <Overwrite>True</Overwrite>
         </DeployFile>
+        <DeployFile Include="C:\Users\cjacoby\Documents\GitHub\simpleEPG\icons\sEPG1_29x29.png" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>simpleEPG.app\</RemoteDir>
+            <RemoteName>sEPG1_29x29.png</RemoteName>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
         <DeployFile Include="iOSSimulator\Debug\simpleEPG" Condition="'$(Config)'=='Debug'">
             <RemoteDir>simpleEPG.app\</RemoteDir>
             <RemoteName>simpleEPG</RemoteName>
@@ -641,14 +609,6 @@
         <DeployFile Include="iOSSimulator\Release\simpleEPG.entitlements" Condition="'$(Config)'=='Release'">
             <RemoteDir>simpleEPG.app\</RemoteDir>
             <RemoteName>Entitlements.plist</RemoteName>
-            <Operation>0</Operation>
-            <LocalCommand/>
-            <RemoteCommand/>
-            <Overwrite>True</Overwrite>
-        </DeployFile>
-        <DeployFile Include="C:\Users\cjacoby\Documents\GitHub\simpleEPG\icons\sEPG1_29x29.png" Condition="'$(Config)'=='Debug'">
-            <RemoteDir>simpleEPG.app\</RemoteDir>
-            <RemoteName>sEPG1_29x29.png</RemoteName>
             <Operation>0</Operation>
             <LocalCommand/>
             <RemoteCommand/>
@@ -678,14 +638,6 @@
             <RemoteCommand/>
             <Overwrite>True</Overwrite>
         </DeployFile>
-        <DeployFile Include="iOSSimulator\Release\simpleEPG.rsm" Condition="'$(Config)'=='Release'">
-            <RemoteDir>simpleEPG.app\</RemoteDir>
-            <RemoteName>simpleEPG.rsm</RemoteName>
-            <Operation>1</Operation>
-            <LocalCommand/>
-            <RemoteCommand/>
-            <Overwrite>True</Overwrite>
-        </DeployFile>
         <DeployFile Include="$(BDS)\bin\Artwork\iOS\iPad\FM_LaunchImageLandscape_1024x768.png" Condition="'$(Config)'=='Debug'">
             <RemoteDir>simpleEPG.app\</RemoteDir>
             <RemoteName>Default-Landscape~ipad.png</RemoteName>
@@ -706,14 +658,6 @@
             <RemoteDir>simpleEPG.app\</RemoteDir>
             <RemoteName>Default-Landscape@2x~ipad.png</RemoteName>
             <Operation>0</Operation>
-            <LocalCommand/>
-            <RemoteCommand/>
-            <Overwrite>True</Overwrite>
-        </DeployFile>
-        <DeployFile Include="iOSSimulator\Debug\simpleEPG.rsm" Condition="'$(Config)'=='Debug'">
-            <RemoteDir>simpleEPG.app\</RemoteDir>
-            <RemoteName>simpleEPG.rsm</RemoteName>
-            <Operation>1</Operation>
             <LocalCommand/>
             <RemoteCommand/>
             <Overwrite>True</Overwrite>

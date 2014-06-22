@@ -574,6 +574,8 @@ begin
   ToDetailChangeTabAction.ExecuteTarget(self);
   lDetailStringList := TStringList.Create;
 
+  self.DataComboListViewFrameChannelList.DataListViewItemClick(Sender, AItem);
+
   lDetailStringList.Add('date');
   lDetailStringList.Add('begin');
   lDetailStringList.Add('end');
