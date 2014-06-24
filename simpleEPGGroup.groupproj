@@ -3,6 +3,9 @@
         <ProjectGuid>{FD181C2B-27F3-470A-A548-E0EA30FD3158}</ProjectGuid>
     </PropertyGroup>
     <ItemGroup>
+        <Projects Include="C:\Program Files (x86)\Steema Software\TeeChart Standard 2014 Source Code\Sources\FMX\FMXTee920.dproj">
+            <Dependencies/>
+        </Projects>
         <Projects Include="..\CommonVCL\CommonVCL.dproj">
             <Dependencies/>
         </Projects>
@@ -17,6 +20,15 @@
             <Default.Personality/>
         </BorlandProject>
     </ProjectExtensions>
+    <Target Name="FMXTee920">
+        <MSBuild Projects="C:\Program Files (x86)\Steema Software\TeeChart Standard 2014 Source Code\Sources\FMX\FMXTee920.dproj"/>
+    </Target>
+    <Target Name="FMXTee920:Clean">
+        <MSBuild Projects="C:\Program Files (x86)\Steema Software\TeeChart Standard 2014 Source Code\Sources\FMX\FMXTee920.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="FMXTee920:Make">
+        <MSBuild Projects="C:\Program Files (x86)\Steema Software\TeeChart Standard 2014 Source Code\Sources\FMX\FMXTee920.dproj" Targets="Make"/>
+    </Target>
     <Target Name="CommonVCL">
         <MSBuild Projects="..\CommonVCL\CommonVCL.dproj"/>
     </Target>
@@ -36,13 +48,13 @@
         <MSBuild Projects="simpleEPG.dproj" Targets="Make"/>
     </Target>
     <Target Name="Build">
-        <CallTarget Targets="CommonVCL;simpleEPG"/>
+        <CallTarget Targets="FMXTee920;CommonVCL;simpleEPG"/>
     </Target>
     <Target Name="Clean">
-        <CallTarget Targets="CommonVCL:Clean;simpleEPG:Clean"/>
+        <CallTarget Targets="FMXTee920:Clean;CommonVCL:Clean;simpleEPG:Clean"/>
     </Target>
     <Target Name="Make">
-        <CallTarget Targets="CommonVCL:Make;simpleEPG:Make"/>
+        <CallTarget Targets="FMXTee920:Make;CommonVCL:Make;simpleEPG:Make"/>
     </Target>
     <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
 </Project>

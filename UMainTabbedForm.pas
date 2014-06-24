@@ -15,7 +15,7 @@ uses
   UDataListView,
   USettings,
   FMX.StdActns, FMX.Objects, System.Math,
-  DBXJSON, UDataListViewFrame, UDataDetailFrame;
+  DBXJSON, UDataListViewFrame, UDataDetailFrame, FMXTee.Chart, UMultiEPGFrame;
 
 type
   TMainTabbedForm = class(TMainForm)
@@ -57,6 +57,9 @@ type
     RecordingsActionList: TActionList;
     ToRecordingsDetailChangeTabAction: TChangeTabAction;
     ToRecordingsMasterChangeTabAction: TChangeTabAction;
+    MultiEPGTopToolBar: TToolBar;
+    MultiEPGTopLabel: TLabel;
+    MultiEPGFrame: TMultiEPGFrame;
     procedure FormShow(Sender: TObject);
     procedure ComboBoxServiceListChange(Sender: TObject);
     procedure DataComboListViewFrameChannelListDataListViewItemClick
