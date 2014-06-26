@@ -15,7 +15,7 @@ uses
   UDataListView,
   USettings,
   FMX.StdActns, FMX.Objects, System.Math,
-  DBXJSON, UDataListViewFrame, UDataDetailFrame, FMXTee.Chart, UMultiEPGFrame;
+  DBXJSON, UDataListViewFrame, UDataDetailFrame, UMultiEPGFrame;
 
 type
   TMainTabbedForm = class(TMainForm)
@@ -95,6 +95,7 @@ type
     procedure initChannelListView;
     procedure initTimersListView;
     procedure initRecordingListView;
+    procedure initMultiEPGView;
 
     procedure CalcContentBoundsProc(Sender: TObject; var ContentBounds: TRectF);
     procedure RestorePosition;
@@ -130,6 +131,12 @@ begin
   begin
     FreeAndNil(fSettings);
   end;
+end;
+
+// initialisation du Multi EPG
+procedure TMainTabbedForm.initMultiEPGView;
+begin
+  self.MultiEPGFrame.init;
 end;
 
 procedure TMainTabbedForm.initChannelListView;
@@ -288,6 +295,8 @@ begin
   try
     // initialisation des settings
     initSettings;
+    // initialisation MultiEPG
+    initMultiEPGView;
     // initialisation de la channel list
     initChannelListView;
     // initialisation des timers
