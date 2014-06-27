@@ -31,8 +31,16 @@ inherited MainTabbedForm: TMainTabbedForm
       StyleLookup = 'tabitembookmarks'
       TabOrder = 0
       Text = 'Multi EPG'
-      Visible = False
-      Width = 69.000000000000000000
+      Width = 64.000000000000000000
+      inline MultiEPGFrame: TMultiEPGFrame
+        Align = Client
+        Height = 499.000000000000000000
+        Width = 320.000000000000000000
+        TabOrder = 0
+        inherited MultiEPGTopToolBar: TToolBar
+          Width = 320.000000000000000000
+        end
+      end
     end
     object TextEPGTabItem: TTabItem
       CustomIcon = <
@@ -45,7 +53,7 @@ inherited MainTabbedForm: TMainTabbedForm
       StyleLookup = 'tabitembookmarks'
       TabOrder = 0
       Text = 'Text EPG'
-      Width = 80.000000000000000000
+      Width = 64.000000000000000000
       object TextEPGTabControl: TTabControl
         Align = Client
         FullSize = True
@@ -82,7 +90,7 @@ inherited MainTabbedForm: TMainTabbedForm
                 Width = 44.000000000000000000
               end
               inherited TopDataComboBox: TDataComboBox
-                Height = 38.000000000000000000
+                Height = 30.000000000000000000
                 Padding.Top = 10.000000000000000000
                 Margins.Top = 6.000000000000000000
                 Width = 232.000000000000000000
@@ -255,7 +263,7 @@ inherited MainTabbedForm: TMainTabbedForm
       StyleLookup = 'tabitemrecent'
       TabOrder = 0
       Text = 'Timers'
-      Width = 80.000000000000000000
+      Width = 64.000000000000000000
       inline TimersDataListViewFrame: TDataListViewFrame
         Align = Client
         Height = 499.000000000000000000
@@ -293,7 +301,7 @@ inherited MainTabbedForm: TMainTabbedForm
       StyleLookup = 'tabitemfavorites'
       TabOrder = 0
       Text = 'Recordings'
-      Width = 80.000000000000000000
+      Width = 64.000000000000000000
       object RecordingsTabControl: TTabControl
         Align = Client
         FullSize = True
@@ -406,7 +414,7 @@ inherited MainTabbedForm: TMainTabbedForm
       StyleLookup = 'tabitemmostviewed'
       TabOrder = 0
       Text = 'Settings'
-      Width = 80.000000000000000000
+      Width = 64.000000000000000000
       object TopToolBar: TToolBar
         Height = 44.000000000000000000
         TabOrder = 0

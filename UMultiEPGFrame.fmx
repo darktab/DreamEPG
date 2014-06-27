@@ -1,0 +1,18 @@
+object MultiEPGFrame: TMultiEPGFrame
+  Height = 384.000000000000000000
+  Width = 294.000000000000000000
+  TabOrder = 0
+  object MultiEPGTopToolBar: TToolBar
+    Height = 44.000000000000000000
+    TabOrder = 0
+    Width = 294.000000000000000000
+    object MultiEPGTopLabel: TLabel
+      Align = Center
+      Height = 44.000000000000000000
+      StyleLookup = 'toollabel'
+      TextSettings.HorzAlign = Center
+      Text = 'Multi EPG'
+      Width = 320.000000000000000000
+    end
+  end
+end

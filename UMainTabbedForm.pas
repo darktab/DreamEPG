@@ -15,7 +15,7 @@ uses
   UDataListView,
   USettings,
   FMX.StdActns, FMX.Objects, System.Math,
-  DBXJSON, UDataListViewFrame, UDataDetailFrame;
+  DBXJSON, UDataListViewFrame, UDataDetailFrame, UMultiEPGFrame;
 
 type
   TMainTabbedForm = class(TMainForm)
@@ -57,6 +57,7 @@ type
     RecordingsActionList: TActionList;
     ToRecordingsDetailChangeTabAction: TChangeTabAction;
     ToRecordingsMasterChangeTabAction: TChangeTabAction;
+    MultiEPGFrame: TMultiEPGFrame;
     procedure FormShow(Sender: TObject);
     procedure ComboBoxServiceListChange(Sender: TObject);
     procedure DataComboListViewFrameChannelListDataListViewItemClick
@@ -94,6 +95,7 @@ type
     procedure initChannelListView;
     procedure initTimersListView;
     procedure initRecordingListView;
+    procedure initMultiEPGView;
 
     procedure CalcContentBoundsProc(Sender: TObject; var ContentBounds: TRectF);
     procedure RestorePosition;
@@ -129,6 +131,11 @@ begin
   begin
     FreeAndNil(fSettings);
   end;
+end;
+
+procedure TMainTabbedForm.initMultiEPGView;
+begin
+  self.MultiEPGFrame.init;
 end;
 
 procedure TMainTabbedForm.initChannelListView;
@@ -287,6 +294,8 @@ begin
   try
     // initialisation des settings
     initSettings;
+    // init multi EPG
+    initMultiEPGView;
     // initialisation de la channel list
     initChannelListView;
     // initialisation des timers
