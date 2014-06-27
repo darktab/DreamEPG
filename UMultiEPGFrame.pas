@@ -20,7 +20,6 @@ type
 
   public
     { Public declarations }
-    procedure init;
     Constructor Create(AOwner: TComponent); override;
   end;
 
@@ -33,10 +32,6 @@ begin
   // Execute the parent (TObject) constructor first
   inherited; // Call the parent Create method
 
-end;
-
-procedure TMultiEPGFrame.init;
-begin
   fChart := TChart.Create(self);
   fChart.Parent := self;
   fChart.Align := TAlignLayout.Client;
