@@ -57,6 +57,8 @@ type
     RecordingsActionList: TActionList;
     ToRecordingsDetailChangeTabAction: TChangeTabAction;
     ToRecordingsMasterChangeTabAction: TChangeTabAction;
+    MultiEPGTopToolBar: TToolBar;
+    MultiEPGTopLabel: TLabel;
     MultiEPGFrame: TMultiEPGFrame;
     procedure FormShow(Sender: TObject);
     procedure ComboBoxServiceListChange(Sender: TObject);
