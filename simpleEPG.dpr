@@ -12,8 +12,7 @@ uses
   UDetailInitThread in 'UDetailInitThread.pas',
   USettings in 'USettings.pas',
   UDataListViewFrame in 'UDataListViewFrame.pas' {DataListViewFrame: TFrame},
-  UDataDetailFrame in 'UDataDetailFrame.pas' {DataDetailFrame: TFrame},
-  UMultiEPGFrame in 'UMultiEPGFrame.pas' {MultiEPGFrame: TFrame};
+  UDataDetailFrame in 'UDataDetailFrame.pas' {DataDetailFrame: TFrame};
 
 {$R *.res}
 

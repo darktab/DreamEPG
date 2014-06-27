@@ -1,5 +1,0 @@
-object MultiEPGFrame: TMultiEPGFrame
-  Height = 384.000000000000000000
-  Width = 294.000000000000000000
-  TabOrder = 0
-end

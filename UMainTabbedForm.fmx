@@ -31,26 +31,8 @@ inherited MainTabbedForm: TMainTabbedForm
       StyleLookup = 'tabitembookmarks'
       TabOrder = 0
       Text = 'Multi EPG'
-      Width = 64.000000000000000000
-      object MultiEPGTopToolBar: TToolBar
-        Height = 44.000000000000000000
-        TabOrder = 0
-        Width = 320.000000000000000000
-        object MultiEPGTopLabel: TLabel
-          Align = Center
-          Height = 44.000000000000000000
-          StyleLookup = 'toollabel'
-          TextSettings.HorzAlign = Center
-          Text = 'Multi EPG'
-          Width = 320.000000000000000000
-        end
-      end
-      inline MultiEPGFrame: TMultiEPGFrame
-        Align = Client
-        Height = 455.000000000000000000
-        Width = 320.000000000000000000
-        TabOrder = 1
-      end
+      Visible = False
+      Width = 69.000000000000000000
     end
     object TextEPGTabItem: TTabItem
       CustomIcon = <
@@ -63,7 +45,7 @@ inherited MainTabbedForm: TMainTabbedForm
       StyleLookup = 'tabitembookmarks'
       TabOrder = 0
       Text = 'Text EPG'
-      Width = 64.000000000000000000
+      Width = 80.000000000000000000
       object TextEPGTabControl: TTabControl
         Align = Client
         FullSize = True
@@ -100,7 +82,7 @@ inherited MainTabbedForm: TMainTabbedForm
                 Width = 44.000000000000000000
               end
               inherited TopDataComboBox: TDataComboBox
-                Height = 30.000000000000000000
+                Height = 38.000000000000000000
                 Padding.Top = 10.000000000000000000
                 Margins.Top = 6.000000000000000000
                 Width = 232.000000000000000000
@@ -273,7 +255,7 @@ inherited MainTabbedForm: TMainTabbedForm
       StyleLookup = 'tabitemrecent'
       TabOrder = 0
       Text = 'Timers'
-      Width = 64.000000000000000000
+      Width = 80.000000000000000000
       inline TimersDataListViewFrame: TDataListViewFrame
         Align = Client
         Height = 499.000000000000000000
@@ -311,7 +293,7 @@ inherited MainTabbedForm: TMainTabbedForm
       StyleLookup = 'tabitemfavorites'
       TabOrder = 0
       Text = 'Recordings'
-      Width = 64.000000000000000000
+      Width = 80.000000000000000000
       object RecordingsTabControl: TTabControl
         Align = Client
         FullSize = True
@@ -343,7 +325,6 @@ inherited MainTabbedForm: TMainTabbedForm
               ItemAppearanceObjects.ItemObjects.TextButton.Visible = True
               ItemAppearanceObjects.ItemObjects.TextButton.Text = 'i'
               OnItemClick = RecordingsDataListViewFrameDataListViewItemClick
-              AutoTapScroll = True
               ShowSelection = True
             end
             inherited TopToolBar: TToolBar
@@ -425,7 +406,7 @@ inherited MainTabbedForm: TMainTabbedForm
       StyleLookup = 'tabitemmostviewed'
       TabOrder = 0
       Text = 'Settings'
-      Width = 64.000000000000000000
+      Width = 80.000000000000000000
       object TopToolBar: TToolBar
         Height = 44.000000000000000000
         TabOrder = 0
