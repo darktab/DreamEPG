@@ -6,7 +6,7 @@ uses
   System.SysUtils, System.Types, System.UITypes, System.Classes,
   System.Variants,
   FMX.Types, FMX.Graphics, FMX.Controls, FMX.Forms, FMX.Dialogs, FMX.StdCtrls,
-  FMXTee.Chart, FMXTee.Series.Gantt, FMXTee.Procs;
+  FMXTee.Chart, FMXTee.Series.Gantt, FMXTee.Procs, FMXTee.Series;
 
 type
   TMultiEPGFrame = class(TFrame)
@@ -17,7 +17,7 @@ type
     fChart: TChart;
     fGanttSeries1: TGanttSeries;
     fGanttSeries2: TGanttSeries;
-    // fLine :
+    fLineSeries: TLineSeries;
 
   public
     { Public declarations }
@@ -53,8 +53,30 @@ begin
   fChart.MarginRight := 0;
   fChart.MarginBottom := 0;
 
+  fChart.Legend.Visible := false;
+  fChart.Border.Visible := false;
+
+  fChart.Color := TAlphaColorRec.White;
+
+  fChart.LeftAxis.Inverted := true;
+  fChart.LeftAxis.TickOnLabelsOnly := true;
+
+  fChart.LeftAxis.Automatic := false;
+  fChart.LeftAxis.Minimum := -0.5;
+  fChart.LeftAxis.Maximum := 5;
+
+  fChart.BottomAxis.Automatic := false;
+  fChart.BottomAxis.Minimum := 0;
+  fChart.BottomAxis.Maximum := 50;
+
+  fChart.AllowZoom := false;
+  fChart.Panning.Active := true;
+  fChart.AllowPanning := TPanningMode.pmBoth;
+
   fGanttSeries1 := TGanttSeries.Create(self);
   fGanttSeries2 := TGanttSeries.Create(self);
+  fLineSeries := TLineSeries.Create(self);
+
   fGanttSeries1.AddGanttColor(0, 0, 0, 'TF1 HD', TAlphaColorRec.Honeydew);
   fGanttSeries1.AddGanttColor(0, 0, 1, 'RTL HD', TAlphaColorRec.Honeydew);
   fGanttSeries1.AddGanttColor(0, 0, 2, 'VOX', TAlphaColorRec.Honeydew);
@@ -91,30 +113,19 @@ begin
   fGanttSeries2.AddGanttColor(20, 30, 6, 'blim', TAlphaColorRec.Honeydew);
   fGanttSeries2.AddGanttColor(30, 60, 6, 'blim', TAlphaColorRec.Honeydew);
 
+  // fLineSeries.AddX(5, '', TAlphaColorRec.Darksalmon);
+  // fLineSeries.AddX(5, '', TAlphaColorRec.Darksalmon);
+  fLineSeries.AddXY(5, fChart.LeftAxis.Minimum, '', TAlphaColorRec.Darksalmon);
+  fLineSeries.AddXY(5, fChart.LeftAxis.Maximum, '', TAlphaColorRec.Darksalmon);
+  fLineSeries.LinePen.Width := 2;
+
   fGanttSeries1.Pointer.VertSize := 20;
   fGanttSeries2.Pointer.VertSize := 20;
   fChart.AddSeries(fGanttSeries1);
   fChart.AddSeries(fGanttSeries2);
+  fChart.AddSeries(fLineSeries);
 
-  fChart.Legend.Visible := false;
-  fChart.Border.Visible := false;
 
-  fChart.Color := TAlphaColorRec.White;
-
-  fChart.LeftAxis.Inverted := true;
-  fChart.LeftAxis.TickOnLabelsOnly := true;
-
-  fChart.LeftAxis.Automatic := false;
-  fChart.LeftAxis.Minimum := -0.5;
-  fChart.LeftAxis.Maximum := 5;
-
-  fChart.BottomAxis.Automatic := false;
-  fChart.BottomAxis.Minimum := 0;
-  fChart.BottomAxis.Maximum := 50;
-
-  fChart.AllowZoom := false;
-  fChart.Panning.Active := true;
-  fChart.AllowPanning := TPanningMode.pmBoth;
 
   // fChart.BottomAxis.Minimum := 0;
   // fChart.BottomAxis.Maximum := 10;
