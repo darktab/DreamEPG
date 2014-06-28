@@ -42,7 +42,10 @@ begin
   fChart.Align := TAlignLayout.Client;
 
   fChart.View3D := false;
-  fChart.BottomAxis.Visible := false;
+  fChart.BottomAxis.Visible := true;
+  fChart.BottomAxis.OtherSide := true;
+  // fChart.TopAxis.
+  // fChart.TopAxis.Visible := true;
   fChart.Frame.Visible := false;
   fChart.Width := self.Width;
   fChart.Height := self.Height;
@@ -95,8 +98,8 @@ begin
 
   fChart.Color := TAlphaColorRec.White;
 
-  fChart.LeftAxis.Inverted := True;
-  fChart.LeftAxis.TickOnLabelsOnly := True;
+  fChart.LeftAxis.Inverted := true;
+  fChart.LeftAxis.TickOnLabelsOnly := true;
 
   fChart.LeftAxis.Automatic := false;
   fChart.LeftAxis.Minimum := -0.5;
@@ -107,7 +110,7 @@ begin
   fChart.BottomAxis.Maximum := 50;
 
   fChart.AllowZoom := false;
-  fChart.Panning.Active := True;
+  fChart.Panning.Active := true;
   fChart.AllowPanning := TPanningMode.pmBoth;
 
   // fChart.BottomAxis.Minimum := 0;
@@ -120,8 +123,8 @@ begin
 
   // fGanttSeries1.Marks.Visible := True;
   // fGanttSeries1.Marks.Transparent := True;
-  fGanttSeries2.Marks.Visible := True;
-  fGanttSeries2.Marks.Transparent := True;
+  fGanttSeries2.Marks.Visible := true;
+  fGanttSeries2.Marks.Transparent := true;
 
 end;
 
