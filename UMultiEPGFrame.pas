@@ -17,6 +17,7 @@ type
     fChart: TChart;
     fGanttSeries1: TGanttSeries;
     fGanttSeries2: TGanttSeries;
+    // fLine :
 
   public
     { Public declarations }
@@ -49,6 +50,8 @@ begin
   fChart.Frame.Visible := false;
   fChart.Width := self.Width;
   fChart.Height := self.Height;
+  fChart.MarginRight := 0;
+  fChart.MarginBottom := 0;
 
   fGanttSeries1 := TGanttSeries.Create(self);
   fGanttSeries2 := TGanttSeries.Create(self);
