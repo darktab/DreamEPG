@@ -6,19 +6,22 @@ uses
   System.SysUtils, System.Types, System.UITypes, System.Classes,
   System.Variants,
   FMX.Types, FMX.Graphics, FMX.Controls, FMX.Forms, FMX.Dialogs, FMX.StdCtrls,
-  FMXTee.Chart, FMXTee.Series.Gantt, FMXTee.Procs, FMXTee.Series;
+  FMXTee.Chart, FMXTee.Series.Gantt, FMXTee.Procs, FMXTee.Series, FMX.Gestures;
 
 type
   TMultiEPGFrame = class(TFrame)
     MultiEPGTopToolBar: TToolBar;
     MultiEPGTopLabel: TLabel;
+    PanningGestureManager: TGestureManager;
+    procedure FrameGesture(Sender: TObject; const EventInfo: TGestureEventInfo;
+      var Handled: Boolean);
   private
     { Private declarations }
     fChart: TChart;
     fGanttSeries1: TGanttSeries;
     fGanttSeries2: TGanttSeries;
     fLineSeries: TLineSeries;
-
+    fLastPosition: TPointF;
   public
     { Public declarations }
     procedure init;
@@ -34,6 +37,60 @@ begin
   // Execute the parent (TObject) constructor first
   inherited; // Call the parent Create method
 
+end;
+
+procedure TMultiEPGFrame.FrameGesture(Sender: TObject;
+  const EventInfo: TGestureEventInfo; var Handled: Boolean);
+var
+  lGlobalWidth: Double;
+  lLocalWidth: Double;
+  lGlobalHeight: Double;
+  lLocalHeight: Double;
+begin
+  if EventInfo.GestureID = igiPan then
+  begin
+    lGlobalWidth := self.Width;
+    lGlobalHeight := self.Height;
+
+    lLocalWidth := fChart.BottomAxis.Maximum - fChart.BottomAxis.Minimum;
+    lLocalHeight := fChart.LeftAxis.Maximum - fChart.LeftAxis.Minimum;
+
+    if fLastPosition.X < EventInfo.Location.X then
+    begin
+      fChart.BottomAxis.Minimum := fChart.BottomAxis.Minimum -
+        ((EventInfo.Location.X) / lGlobalWidth);
+
+      fChart.BottomAxis.Maximum := fChart.BottomAxis.Maximum -
+        ((EventInfo.Location.X) / lGlobalWidth);
+    end
+    else
+    begin
+      fChart.BottomAxis.Minimum := fChart.BottomAxis.Minimum +
+        ((EventInfo.Location.X) / lGlobalWidth);
+
+      fChart.BottomAxis.Maximum := fChart.BottomAxis.Maximum +
+        ((EventInfo.Location.X) / lGlobalWidth);
+    end;
+
+    { if fLastPosition.Y < EventInfo.Location.Y then
+      begin
+      fChart.LeftAxis.Minimum := fChart.LeftAxis.Minimum -
+      ((EventInfo.Location.Y) / lGlobalHeight);
+
+      fChart.LeftAxis.Maximum := fChart.LeftAxis.Maximum -
+      ((EventInfo.Location.Y) / lGlobalHeight);
+      end
+      else
+      begin
+      fChart.LeftAxis.Minimum := fChart.LeftAxis.Minimum +
+      ((EventInfo.Location.Y) / lGlobalHeight);
+
+      fChart.LeftAxis.Maximum := fChart.LeftAxis.Maximum +
+      ((EventInfo.Location.Y) / lGlobalHeight);
+      end; }
+
+    fLastPosition := EventInfo.Location;
+  end;
 end;
 
 procedure TMultiEPGFrame.init;
@@ -70,8 +127,8 @@ begin
   fChart.BottomAxis.Maximum := 50;
 
   fChart.AllowZoom := false;
-  fChart.Panning.Active := true;
-  fChart.AllowPanning := TPanningMode.pmBoth;
+  // fChart.Panning.Active := true;
+  // fChart.AllowPanning := TPanningMode.pmBoth;
 
   fGanttSeries1 := TGanttSeries.Create(self);
   fGanttSeries2 := TGanttSeries.Create(self);
