@@ -15,6 +15,11 @@ type
     PanningGestureManager: TGestureManager;
     procedure FrameGesture(Sender: TObject; const EventInfo: TGestureEventInfo;
       var Handled: Boolean);
+    procedure FrameMouseDown(Sender: TObject; Button: TMouseButton;
+      Shift: TShiftState; X, Y: Single);
+    procedure FrameMouseUp(Sender: TObject; Button: TMouseButton;
+      Shift: TShiftState; X, Y: Single);
+
   private
     { Private declarations }
     fChart: TChart;
@@ -49,48 +54,35 @@ var
 begin
   if EventInfo.GestureID = igiPan then
   begin
-    lGlobalWidth := self.Width;
-    lGlobalHeight := self.Height;
+
+    lGlobalWidth := fChart.BottomAxis.IAxisSize;
+    lGlobalHeight := fChart.LeftAxis.IAxisSize;
 
     lLocalWidth := fChart.BottomAxis.Maximum - fChart.BottomAxis.Minimum;
     lLocalHeight := fChart.LeftAxis.Maximum - fChart.LeftAxis.Minimum;
 
-    if fLastPosition.X < EventInfo.Location.X then
-    begin
-      fChart.BottomAxis.Minimum := fChart.BottomAxis.Minimum -
-        ((EventInfo.Location.X) / lGlobalWidth);
+    fChart.BottomAxis.Scroll(((fLastPosition.X - EventInfo.Location.X) /
+      lGlobalWidth) * lLocalWidth, True);
 
-      fChart.BottomAxis.Maximum := fChart.BottomAxis.Maximum -
-        ((EventInfo.Location.X) / lGlobalWidth);
-    end
-    else
-    begin
-      fChart.BottomAxis.Minimum := fChart.BottomAxis.Minimum +
-        ((EventInfo.Location.X) / lGlobalWidth);
-
-      fChart.BottomAxis.Maximum := fChart.BottomAxis.Maximum +
-        ((EventInfo.Location.X) / lGlobalWidth);
-    end;
-
-    { if fLastPosition.Y < EventInfo.Location.Y then
-      begin
-      fChart.LeftAxis.Minimum := fChart.LeftAxis.Minimum -
-      ((EventInfo.Location.Y) / lGlobalHeight);
-
-      fChart.LeftAxis.Maximum := fChart.LeftAxis.Maximum -
-      ((EventInfo.Location.Y) / lGlobalHeight);
-      end
-      else
-      begin
-      fChart.LeftAxis.Minimum := fChart.LeftAxis.Minimum +
-      ((EventInfo.Location.Y) / lGlobalHeight);
-
-      fChart.LeftAxis.Maximum := fChart.LeftAxis.Maximum +
-      ((EventInfo.Location.Y) / lGlobalHeight);
-      end; }
+    fChart.LeftAxis.Scroll(((fLastPosition.Y - EventInfo.Location.Y) /
+      lGlobalHeight) * lLocalHeight, True);
 
     fLastPosition := EventInfo.Location;
   end;
+end;
+
+procedure TMultiEPGFrame.FrameMouseDown(Sender: TObject; Button: TMouseButton;
+  Shift: TShiftState; X, Y: Single);
+begin
+  fLastPosition.X := X;
+  fLastPosition.Y := Y;
+end;
+
+procedure TMultiEPGFrame.FrameMouseUp(Sender: TObject; Button: TMouseButton;
+  Shift: TShiftState; X, Y: Single);
+begin
+  fLastPosition.X := X;
+  fLastPosition.Y := Y;
 end;
 
 procedure TMultiEPGFrame.init;
@@ -99,34 +91,34 @@ begin
   fChart.Parent := self;
   fChart.Align := TAlignLayout.Client;
 
-  fChart.View3D := false;
-  fChart.BottomAxis.Visible := true;
-  fChart.BottomAxis.OtherSide := true;
+  fChart.View3D := False;
+  fChart.BottomAxis.Visible := True;
+  fChart.BottomAxis.OtherSide := True;
   // fChart.TopAxis.
   // fChart.TopAxis.Visible := true;
-  fChart.Frame.Visible := false;
+  fChart.Frame.Visible := False;
   fChart.Width := self.Width;
   fChart.Height := self.Height;
   fChart.MarginRight := 0;
   fChart.MarginBottom := 0;
 
-  fChart.Legend.Visible := false;
-  fChart.Border.Visible := false;
+  fChart.Legend.Visible := False;
+  fChart.Border.Visible := False;
 
   fChart.Color := TAlphaColorRec.White;
 
-  fChart.LeftAxis.Inverted := true;
-  fChart.LeftAxis.TickOnLabelsOnly := true;
+  fChart.LeftAxis.Inverted := True;
+  fChart.LeftAxis.TickOnLabelsOnly := True;
 
-  fChart.LeftAxis.Automatic := false;
+  fChart.LeftAxis.Automatic := False;
   fChart.LeftAxis.Minimum := -0.5;
   fChart.LeftAxis.Maximum := 5;
 
-  fChart.BottomAxis.Automatic := false;
+  fChart.BottomAxis.Automatic := False;
   fChart.BottomAxis.Minimum := 0;
   fChart.BottomAxis.Maximum := 50;
 
-  fChart.AllowZoom := false;
+  fChart.AllowZoom := False;
   // fChart.Panning.Active := true;
   // fChart.AllowPanning := TPanningMode.pmBoth;
 
@@ -173,7 +165,8 @@ begin
   // fLineSeries.AddX(5, '', TAlphaColorRec.Darksalmon);
   // fLineSeries.AddX(5, '', TAlphaColorRec.Darksalmon);
   fLineSeries.AddXY(5, fChart.LeftAxis.Minimum, '', TAlphaColorRec.Darksalmon);
-  fLineSeries.AddXY(5, fChart.LeftAxis.Maximum, '', TAlphaColorRec.Darksalmon);
+  fLineSeries.AddXY(5, fChart.LeftAxis.Maximum + 0.5, '',
+    TAlphaColorRec.Darksalmon);
   fLineSeries.LinePen.Width := 2;
 
   fGanttSeries1.Pointer.VertSize := 20;
@@ -194,8 +187,9 @@ begin
 
   // fGanttSeries1.Marks.Visible := True;
   // fGanttSeries1.Marks.Transparent := True;
-  fGanttSeries2.Marks.Visible := true;
-  fGanttSeries2.Marks.Transparent := true;
+  fGanttSeries2.Marks.Visible := True;
+  fGanttSeries2.Marks.Transparent := True;
+  fGanttSeries2.Marks.Clip := True;
 
 end;
 

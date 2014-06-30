@@ -5,6 +5,8 @@ object MultiEPGFrame: TMultiEPGFrame
   Height = 384.000000000000000000
   Width = 294.000000000000000000
   TabOrder = 0
+  OnMouseDown = FrameMouseDown
+  OnMouseUp = FrameMouseUp
   object MultiEPGTopToolBar: TToolBar
     Height = 44.000000000000000000
     TabOrder = 0
