@@ -52,8 +52,8 @@ var
   lGlobalHeight: Double;
   lLocalHeight: Double;
 begin
-  if EventInfo.GestureID = igiPan then
-  begin
+  { if EventInfo.GestureID = igiPan then
+    begin
 
     lGlobalWidth := fChart.BottomAxis.IAxisSize;
     lGlobalHeight := fChart.LeftAxis.IAxisSize;
@@ -62,13 +62,13 @@ begin
     lLocalHeight := fChart.LeftAxis.Maximum - fChart.LeftAxis.Minimum;
 
     fChart.BottomAxis.Scroll(((fLastPosition.X - EventInfo.Location.X) /
-      lGlobalWidth) * lLocalWidth, True);
+    lGlobalWidth) * lLocalWidth, True);
 
     fChart.LeftAxis.Scroll(((fLastPosition.Y - EventInfo.Location.Y) /
-      lGlobalHeight) * lLocalHeight, True);
+    lGlobalHeight) * lLocalHeight, True);
 
     fLastPosition := EventInfo.Location;
-  end;
+    end; }
 end;
 
 procedure TMultiEPGFrame.FrameMouseDown(Sender: TObject; Button: TMouseButton;
@@ -119,8 +119,9 @@ begin
   fChart.BottomAxis.Maximum := 50;
 
   fChart.AllowZoom := False;
-  // fChart.Panning.Active := true;
-  // fChart.AllowPanning := TPanningMode.pmBoth;
+  // fChart.Panning.Active := True;
+  fChart.AllowPanning := TPanningMode.pmBoth;
+  fChart.ScrollMouseButton := TMouseButton.mbLeft;
 
   fGanttSeries1 := TGanttSeries.Create(self);
   fGanttSeries2 := TGanttSeries.Create(self);
