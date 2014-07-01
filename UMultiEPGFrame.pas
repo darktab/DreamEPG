@@ -12,13 +12,8 @@ type
   TMultiEPGFrame = class(TFrame)
     MultiEPGTopToolBar: TToolBar;
     MultiEPGTopLabel: TLabel;
-    PanningGestureManager: TGestureManager;
-    procedure FrameGesture(Sender: TObject; const EventInfo: TGestureEventInfo;
-      var Handled: Boolean);
-    procedure FrameMouseDown(Sender: TObject; Button: TMouseButton;
-      Shift: TShiftState; X, Y: Single);
-    procedure FrameMouseUp(Sender: TObject; Button: TMouseButton;
-      Shift: TShiftState; X, Y: Single);
+
+    procedure ChartScroll(Sender: TObject);
 
   private
     { Private declarations }
@@ -44,45 +39,31 @@ begin
 
 end;
 
-procedure TMultiEPGFrame.FrameGesture(Sender: TObject;
-  const EventInfo: TGestureEventInfo; var Handled: Boolean);
-var
-  lGlobalWidth: Double;
-  lLocalWidth: Double;
-  lGlobalHeight: Double;
-  lLocalHeight: Double;
+procedure TMultiEPGFrame.ChartScroll(Sender: TObject);
 begin
-  { if EventInfo.GestureID = igiPan then
-    begin
+  if (fChart.BottomAxis.Minimum < 0) then
+  begin
+    fChart.BottomAxis.Minimum := 0;
+    fChart.BottomAxis.Maximum := fChart.BottomAxis.Minimum + 50;
+  end;
+  if (fChart.BottomAxis.Maximum > 70) then
+  begin
+    fChart.BottomAxis.Minimum := 20;
+    fChart.BottomAxis.Maximum := 70;
+  end;
 
-    lGlobalWidth := fChart.BottomAxis.IAxisSize;
-    lGlobalHeight := fChart.LeftAxis.IAxisSize;
+  if (fChart.LeftAxis.Minimum < -0.5) then
+  begin
+    fChart.LeftAxis.Minimum := -0.5;
+    fChart.LeftAxis.Maximum := 5;
+  end;
 
-    lLocalWidth := fChart.BottomAxis.Maximum - fChart.BottomAxis.Minimum;
-    lLocalHeight := fChart.LeftAxis.Maximum - fChart.LeftAxis.Minimum;
+  if (fChart.LeftAxis.Maximum > 6.5) then
+  begin
+    fChart.LeftAxis.Minimum := 2;
+    fChart.LeftAxis.Maximum := 6.5;
+  end;
 
-    fChart.BottomAxis.Scroll(((fLastPosition.X - EventInfo.Location.X) /
-    lGlobalWidth) * lLocalWidth, True);
-
-    fChart.LeftAxis.Scroll(((fLastPosition.Y - EventInfo.Location.Y) /
-    lGlobalHeight) * lLocalHeight, True);
-
-    fLastPosition := EventInfo.Location;
-    end; }
-end;
-
-procedure TMultiEPGFrame.FrameMouseDown(Sender: TObject; Button: TMouseButton;
-  Shift: TShiftState; X, Y: Single);
-begin
-  fLastPosition.X := X;
-  fLastPosition.Y := Y;
-end;
-
-procedure TMultiEPGFrame.FrameMouseUp(Sender: TObject; Button: TMouseButton;
-  Shift: TShiftState; X, Y: Single);
-begin
-  fLastPosition.X := X;
-  fLastPosition.Y := Y;
 end;
 
 procedure TMultiEPGFrame.init;
@@ -94,8 +75,7 @@ begin
   fChart.View3D := False;
   fChart.BottomAxis.Visible := True;
   fChart.BottomAxis.OtherSide := True;
-  // fChart.TopAxis.
-  // fChart.TopAxis.Visible := true;
+
   fChart.Frame.Visible := False;
   fChart.Width := self.Width;
   fChart.Height := self.Height;
@@ -118,10 +98,14 @@ begin
   fChart.BottomAxis.Minimum := 0;
   fChart.BottomAxis.Maximum := 50;
 
+  fChart.LeftAxis.MinorTicks.Visible := False;
+  fChart.BottomAxis.MinorTicks.Visible := False;
+
   fChart.AllowZoom := False;
   // fChart.Panning.Active := True;
   fChart.AllowPanning := TPanningMode.pmBoth;
   fChart.ScrollMouseButton := TMouseButton.mbLeft;
+  fChart.OnScroll := self.ChartScroll;
 
   fGanttSeries1 := TGanttSeries.Create(self);
   fGanttSeries2 := TGanttSeries.Create(self);
@@ -163,11 +147,8 @@ begin
   fGanttSeries2.AddGanttColor(20, 30, 6, 'blim', TAlphaColorRec.Honeydew);
   fGanttSeries2.AddGanttColor(30, 60, 6, 'blim', TAlphaColorRec.Honeydew);
 
-  // fLineSeries.AddX(5, '', TAlphaColorRec.Darksalmon);
-  // fLineSeries.AddX(5, '', TAlphaColorRec.Darksalmon);
   fLineSeries.AddXY(5, fChart.LeftAxis.Minimum, '', TAlphaColorRec.Darksalmon);
-  fLineSeries.AddXY(5, fChart.LeftAxis.Maximum + 0.5, '',
-    TAlphaColorRec.Darksalmon);
+  fLineSeries.AddXY(5, 6.5, '', TAlphaColorRec.Darksalmon);
   fLineSeries.LinePen.Width := 2;
 
   fGanttSeries1.Pointer.VertSize := 20;
@@ -176,18 +157,6 @@ begin
   fChart.AddSeries(fGanttSeries2);
   fChart.AddSeries(fLineSeries);
 
-
-
-  // fChart.BottomAxis.Minimum := 0;
-  // fChart.BottomAxis.Maximum := 10;
-  // fChart.LeftAxis.Minimum := 0;
-  // fChart.LeftAxis.Maximum := 2;
-
-  // fGanttSeries1.Transparency := 50;
-  // fGanttSeries2.Transparency := 50;
-
-  // fGanttSeries1.Marks.Visible := True;
-  // fGanttSeries1.Marks.Transparent := True;
   fGanttSeries2.Marks.Visible := True;
   fGanttSeries2.Marks.Transparent := True;
   fGanttSeries2.Marks.Clip := True;
