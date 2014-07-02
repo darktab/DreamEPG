@@ -1,5 +1,5 @@
 unit UMainTabbedForm;
-
+
 interface
 
 uses
@@ -294,10 +294,10 @@ begin
   try
     // initialisation des settings
     initSettings;
-    // init multi EPG
-    initMultiEPGView;
     // initialisation de la channel list
     initChannelListView;
+    // init multi EPG
+    initMultiEPGView;
     // initialisation des timers
     initTimersListView;
     // initialisation des recordings
@@ -608,3 +608,4 @@ begin
 end;
 
 end.
+

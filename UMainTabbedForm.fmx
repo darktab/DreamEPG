@@ -33,6 +33,7 @@ inherited MainTabbedForm: TMainTabbedForm
       Text = 'Multi EPG'
       Width = 64.000000000000000000
       inline MultiEPGFrame: TMultiEPGFrame
+        Touch.InteractiveGestures = [Pan]
         Align = Client
         Height = 499.000000000000000000
         Width = 320.000000000000000000
@@ -90,7 +91,7 @@ inherited MainTabbedForm: TMainTabbedForm
                 Width = 44.000000000000000000
               end
               inherited TopDataComboBox: TDataComboBox
-                Height = 30.000000000000000000
+                Height = 38.000000000000000000
                 Padding.Top = 10.000000000000000000
                 Margins.Top = 6.000000000000000000
                 Width = 232.000000000000000000
