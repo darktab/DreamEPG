@@ -235,17 +235,11 @@ end;
 
 procedure TDataComboListViewFrame.initDataListView;
 var
-  Field: TField;
   lDefaultServiceReference: String;
 begin
-  for Field in fMasterDataSet.Fields do
-  begin
-    if Field.FieldName = fMasterDetailLinkFieldName then
-    begin
-      lDefaultServiceReference := fMasterDataSet.FieldByName
-        (Field.FieldName).AsString;
-    end;
-  end;
+
+  lDefaultServiceReference := fMasterDataSet.FieldByName
+    (fMasterDetailLinkFieldName).AsString;
 
   if fDetailDataSet.Active then
   begin

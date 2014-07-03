@@ -1,13 +1,14 @@
 object DataComboListViewFrame: TDataComboListViewFrame
   Height = 432.000000000000000000
   Width = 289.000000000000000000
+  TabOrder = 0
   object TopToolBar: TToolBar
     Height = 40.000000000000000000
     Position.Y = 44.000000000000000000
     TabOrder = 0
     Width = 289.000000000000000000
     object TopPrevButton: TButton
-      Align = alLeft
+      Align = Left
       Height = 40.000000000000000000
       StyleLookup = 'arrowuptoolbutton'
       TabOrder = 0
@@ -16,7 +17,7 @@ object DataComboListViewFrame: TDataComboListViewFrame
       OnClick = TopPrevButtonClick
     end
     object TopNextButton: TButton
-      Align = alRight
+      Align = Right
       Height = 40.000000000000000000
       Position.X = 209.000000000000000000
       StyleLookup = 'arrowdowntoolbutton'
@@ -26,7 +27,7 @@ object DataComboListViewFrame: TDataComboListViewFrame
       OnClick = TopNextButtonClick
     end
     object TopDataComboBox: TDataComboBox
-      Align = alClient
+      Align = Client
       DisableFocusEffect = False
       Height = 40.000000000000000000
       TabOrder = 2
@@ -39,7 +40,7 @@ object DataComboListViewFrame: TDataComboListViewFrame
     ItemEditAppearanceClassName = 'TListItemShowCheckAppearance'
     HeaderAppearanceClassName = 'TListHeaderObjects'
     FooterAppearanceClassName = 'TListHeaderObjects'
-    Align = alClient
+    Align = Client
     Height = 348.000000000000000000
     TabOrder = 1
     Width = 289.000000000000000000
@@ -47,20 +48,19 @@ object DataComboListViewFrame: TDataComboListViewFrame
     OnButtonClick = DataListViewButtonClick
   end
   object TopMasterToolBar: TToolBar
-    Align = alMostTop
+    Align = MostTop
     Height = 44.000000000000000000
     TabOrder = 2
     Width = 289.000000000000000000
     object TopMasterLabel: TLabel
-      Align = alClient
+      Align = Client
       Height = 44.000000000000000000
       StyleLookup = 'toollabel'
+      TextSettings.HorzAlign = Center
       Text = 'TV Channels'
-      TextAlign = taCenter
       Width = 289.000000000000000000
-      Trimming = ttCharacter
       object DataAniIndicator: TAniIndicator
-        Align = alRight
+        Align = Right
         Height = 44.000000000000000000
         Position.X = 239.000000000000000000
         Width = 50.000000000000000000

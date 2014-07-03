@@ -7,7 +7,7 @@ uses
   System.Variants,
   FMX.Types, FMX.Graphics, FMX.Controls, FMX.Forms, FMX.Dialogs, FMX.StdCtrls,
   FMXTee.Chart, FMXTee.Series.Gantt, FMXTee.Procs, FMXTee.Series, FMX.Gestures,
-  UMainDataModule, StrUtils;
+  UMainDataModule, StrUtils, Data.DB, DateUtils;
 
 type
   TMultiEPGFrame = class(TFrame)
@@ -50,17 +50,17 @@ end;
 
 procedure TMultiEPGFrame.ChartScroll(Sender: TObject);
 begin
-  if (fChart.BottomAxis.Minimum < fGanttSeriesGuidesMin) then
-  begin
+  { if (fChart.BottomAxis.Minimum < fGanttSeriesGuidesMin) then
+    begin
     fChart.BottomAxis.Minimum := fGanttSeriesGuidesMin;
     fChart.BottomAxis.Maximum := fChart.BottomAxis.Minimum +
-      fGanttSeriesGuidesMax;
-  end;
-  if (fChart.BottomAxis.Maximum > 70) then
-  begin
+    fGanttSeriesGuidesMax;
+    end;
+    if (fChart.BottomAxis.Maximum > 70) then
+    begin
     fChart.BottomAxis.Minimum := 20;
     fChart.BottomAxis.Maximum := 70;
-  end;
+    end; }
 
   if (fChart.LeftAxis.Minimum < fGanttSeriesChannelsMin) then
   begin
@@ -79,6 +79,8 @@ end;
 procedure TMultiEPGFrame.init;
 var
   lChNumber: Integer;
+  lShowCount: Integer;
+  lDefaultServiceReference: String;
 begin
   fChart := TChart.Create(self);
   fChart.Parent := self;
@@ -123,13 +125,66 @@ begin
   lChNumber := 0;
   while not MainDataModule.DreamFDMemTableChannelList.EOF do
   begin
-    fGanttSeriesChannels.AddGanttColor(0, 0, lChNumber,
+    fGanttSeriesChannels.AddGanttColor(now, now, lChNumber,
       AnsiLeftStr(MainDataModule.DreamFDMemTableChannelList.FieldByName
       ('servicename').AsString, 8), TAlphaColorRec.Honeydew);
 
+    lDefaultServiceReference := MainDataModule.DreamFDMemTableChannelList.
+      FieldByName('servicereference').AsString;
+
+    if MainDataModule.DreamFDMemTableTextEPG.Active then
+    begin
+      MainDataModule.DreamRESTResponseDataSetAdapterTextEPG.ClearDataSet;
+
+      MainDataModule.DreamRESTResponseDataSetAdapterTextEPG.Active := False;
+      MainDataModule.DreamFDMemTableTextEPG.Close;
+    end;
+
+    MainDataModule.DreamRESTResponseDataSetAdapterTextEPG.FieldDefs.Clear;
+
+    // sRef parameter
+    MainDataModule.DreamRESTRequestTextEPG.Params[0].Value :=
+      lDefaultServiceReference;
+
+    try
+      try
+        MainDataModule.DreamRESTRequestTextEPG.Execute;
+      except
+        if MainDataModule.DreamFDMemTableTextEPG.State = dsBrowse then
+        begin
+          MainDataModule.DreamFDMemTableTextEPG.Close;
+        end;
+        MainDataModule.DreamRESTRequestTextEPG.Execute;
+      end;
+      lShowCount := 0;
+      while not MainDataModule.DreamFDMemTableTextEPG.EOF do
+      begin
+        fGanttSeriesGuides.AddGanttColor
+          (UnixToDateTime(MainDataModule.DreamFDMemTableTextEPG.FieldByName
+          ('begin_timestamp').AsInteger),
+          UnixToDateTime(MainDataModule.DreamFDMemTableTextEPG.FieldByName
+          ('begin_timestamp').AsInteger + MainDataModule.DreamFDMemTableTextEPG.
+          FieldByName('duration_sec').AsInteger), lChNumber,
+          AnsiLeftStr(MainDataModule.DreamFDMemTableTextEPG.FieldByName('title')
+          .AsString, 10), TAlphaColorRec.Honeydew);
+
+        inc(lShowCount);
+        if lShowCount = 10 then
+          Break;
+
+        MainDataModule.DreamFDMemTableTextEPG.Next;
+      end;
+
+    except
+
+    end;
+
     inc(lChNumber);
+    if lChNumber = 10 then
+      Break;
     MainDataModule.DreamFDMemTableChannelList.Next;
   end;
+
   fChannelNumber := MainDataModule.DreamFDMemTableChannelList.RecordCount;
 
   fGanttSeriesChannelsMin := -0.5;
@@ -139,46 +194,20 @@ begin
   fChart.LeftAxis.Minimum := fGanttSeriesChannelsMin;
   fChart.LeftAxis.Maximum := fGanttSeriesChannelsMax;
 
-  fGanttSeriesGuidesMin := 0;
-  fGanttSeriesGuidesMax := 50;
+  // fGanttSeriesGuidesMin := 0;
+  // fGanttSeriesGuidesMax := 50;
 
-  fChart.BottomAxis.Automatic := False;
-  fChart.BottomAxis.Minimum := fGanttSeriesGuidesMin;
-  fChart.BottomAxis.Maximum := fGanttSeriesGuidesMax;
+  // fChart.BottomAxis.Automatic := False;
+  // fChart.BottomAxis.Minimum := fGanttSeriesGuidesMin;
+  // fChart.BottomAxis.Maximum := fGanttSeriesGuidesMax;
 
-  fGanttSeriesGuides.AddGanttColor(0, 20, 0, 'test', TAlphaColorRec.Beige);
-  fGanttSeriesGuides.AddGanttColor(20, 30, 0, 'blim', TAlphaColorRec.Honeydew);
-  fGanttSeriesGuides.AddGanttColor(30, 60, 0, 'blim', TAlphaColorRec.Honeydew);
+  { fGanttSeriesGuides.AddGanttColor(0, 20, 0, 'test', TAlphaColorRec.Beige);
+    fGanttSeriesGuides.AddGanttColor(20, 30, 0, 'blim', TAlphaColorRec.Honeydew); }
 
-  fGanttSeriesGuides.AddGanttColor(0, 10, 1, 'blam', TAlphaColorRec.Beige);
-  fGanttSeriesGuides.AddGanttColor(10, 30, 1, 'blom', TAlphaColorRec.Honeydew);
-  fGanttSeriesGuides.AddGanttColor(30, 70, 1, 'blom', TAlphaColorRec.Honeydew);
-
-  fGanttSeriesGuides.AddGanttColor(0, 20, 2, 'test', TAlphaColorRec.Beige);
-  fGanttSeriesGuides.AddGanttColor(20, 30, 2, 'blim', TAlphaColorRec.Honeydew);
-  fGanttSeriesGuides.AddGanttColor(30, 60, 2, 'blim', TAlphaColorRec.Honeydew);
-
-  fGanttSeriesGuides.AddGanttColor(0, 20, 3, 'test', TAlphaColorRec.Beige);
-  fGanttSeriesGuides.AddGanttColor(20, 30, 3, 'blim', TAlphaColorRec.Honeydew);
-  fGanttSeriesGuides.AddGanttColor(30, 60, 3, 'blim', TAlphaColorRec.Honeydew);
-
-  fGanttSeriesGuides.AddGanttColor(0, 10, 4, 'blam', TAlphaColorRec.Beige);
-  fGanttSeriesGuides.AddGanttColor(10, 30, 4, 'blom', TAlphaColorRec.Honeydew);
-  fGanttSeriesGuides.AddGanttColor(30, 70, 4, 'blom', TAlphaColorRec.Honeydew);
-
-  fGanttSeriesGuides.AddGanttColor(0, 20, 5, 'test', TAlphaColorRec.Beige);
-  fGanttSeriesGuides.AddGanttColor(20, 30, 5, 'blim', TAlphaColorRec.Honeydew);
-  fGanttSeriesGuides.AddGanttColor(30, 60, 5, 'blim', TAlphaColorRec.Honeydew);
-
-  fGanttSeriesGuides.AddGanttColor(0, 20, 6, 'test', TAlphaColorRec.Beige);
-  fGanttSeriesGuides.AddGanttColor(20, 30, 6, 'blim', TAlphaColorRec.Honeydew);
-  fGanttSeriesGuides.AddGanttColor(30, 60, 6, 'blim', TAlphaColorRec.Honeydew);
-
-  fLineSeriesNow.AddXY(5, fGanttSeriesChannelsMin, '',
-    TAlphaColorRec.Darksalmon);
-  fLineSeriesNow.AddXY(5, fChannelNumber + 1.5, '',
-    TAlphaColorRec.Darksalmon);
-  fLineSeriesNow.LinePen.Width := 2;
+  // fLineSeriesNow.AddXY(5, fGanttSeriesChannelsMin, '',
+  // TAlphaColorRec.Darksalmon);
+  // fLineSeriesNow.AddXY(5, fChannelNumber + 1.5, '', TAlphaColorRec.Darksalmon);
+  // fLineSeriesNow.LinePen.Width := 2;
 
   fGanttSeriesChannels.Pointer.VertSize := 20;
   fGanttSeriesGuides.Pointer.VertSize := 20;
