@@ -81,6 +81,9 @@ var
   lChNumber: Integer;
   lShowCount: Integer;
   lDefaultServiceReference: String;
+  lShowColor: Integer;
+  lMarkLength: Integer;
+  lShowTitle: String;
 begin
   fChart := TChart.Create(self);
   fChart.Parent := self;
@@ -95,6 +98,11 @@ begin
   fChart.Height := self.Height;
   fChart.MarginRight := 0;
   fChart.MarginBottom := 0;
+  fChart.MarginLeft := 0;
+  fChart.MarginTop := 1;
+  fChart.LeftAxis.LabelsSize := 80;
+
+  lMarkLength := 10;
 
   fChart.Legend.Visible := False;
   fChart.Border.Visible := False;
@@ -111,6 +119,22 @@ begin
   fChart.AllowPanning := TPanningMode.pmBoth;
   fChart.ScrollMouseButton := TMouseButton.mbLeft;
   fChart.OnScroll := self.ChartScroll;
+
+  fChannelNumber := MainDataModule.DreamFDMemTableChannelList.RecordCount;
+
+  fGanttSeriesChannelsMin := -0.5;
+  fGanttSeriesChannelsMax := 5;
+
+  fChart.LeftAxis.Automatic := False;
+  fChart.LeftAxis.Minimum := fGanttSeriesChannelsMin;
+  fChart.LeftAxis.Maximum := fGanttSeriesChannelsMax;
+
+  fGanttSeriesGuidesMin := now;
+  fGanttSeriesGuidesMax := IncMinute(fGanttSeriesGuidesMin, 120);
+
+  fChart.BottomAxis.Automatic := False;
+  fChart.BottomAxis.Maximum := fGanttSeriesGuidesMax;
+  fChart.BottomAxis.Minimum := fGanttSeriesGuidesMin;
 
   fGanttSeriesChannels := TGanttSeries.Create(self);
   fGanttSeriesGuides := TGanttSeries.Create(self);
@@ -147,36 +171,85 @@ begin
       lDefaultServiceReference;
 
     try
-      try
-        MainDataModule.DreamRESTRequestTextEPG.Execute;
-      except
-        if MainDataModule.DreamFDMemTableTextEPG.State = dsBrowse then
-        begin
-          MainDataModule.DreamFDMemTableTextEPG.Close;
-        end;
-        MainDataModule.DreamRESTRequestTextEPG.Execute;
-      end;
-      lShowCount := 0;
-      while not MainDataModule.DreamFDMemTableTextEPG.EOF do
+      MainDataModule.DreamRESTRequestTextEPG.Execute;
+    except
+      if MainDataModule.DreamFDMemTableTextEPG.State = dsBrowse then
       begin
+        MainDataModule.DreamFDMemTableTextEPG.Close;
+      end;
+      MainDataModule.DreamRESTRequestTextEPG.Execute;
+    end;
+    lShowCount := 0;
+    while not MainDataModule.DreamFDMemTableTextEPG.EOF do
+    begin
+      if lShowCount = 0 then
+      begin
+        lShowColor := TAlphaColorRec.Beige;
+      end
+      else
+      begin
+        lShowColor := TAlphaColorRec.Honeydew;
+      end;
+      try
+        // readjust minimum on the fly
+        if (lChNumber = 0) and (lShowCount = 0) then
+        begin
+          fGanttSeriesGuidesMin :=
+            UnixToDateTime(MainDataModule.DreamFDMemTableTextEPG.FieldByName
+            ('begin_timestamp').AsInteger, False);
+          fChart.BottomAxis.Minimum := fGanttSeriesGuidesMin;
+          fGanttSeriesGuidesMax := IncMinute(fGanttSeriesGuidesMin, 120);
+          fChart.BottomAxis.Maximum := fGanttSeriesGuidesMax;
+        end;
+
+        lMarkLength := Trunc(MainDataModule.DreamFDMemTableTextEPG.FieldByName
+          ('duration_sec').AsFloat / 400) - 1;
+        if lMarkLength < 0 then
+        begin
+          lMarkLength := 0;
+        end;
+
+        if lMarkLength = 0 then
+        begin
+          lShowTitle := ' '
+        end
+        else
+        begin
+          lShowTitle :=
+            AnsiLeftStr(MainDataModule.DreamFDMemTableTextEPG.FieldByName
+            ('title').AsString, lMarkLength);
+          if (Length(lShowTitle) <
+            Length(MainDataModule.DreamFDMemTableTextEPG.FieldByName('title')
+            .AsString)) then
+          begin
+            lShowTitle := lShowTitle + ' ...';
+            if lShowTitle = ' ...' then
+              lShowTitle := ' ';
+          end;
+
+        end;
+
         fGanttSeriesGuides.AddGanttColor
           (UnixToDateTime(MainDataModule.DreamFDMemTableTextEPG.FieldByName
-          ('begin_timestamp').AsInteger),
+          ('begin_timestamp').AsInteger, False),
           UnixToDateTime(MainDataModule.DreamFDMemTableTextEPG.FieldByName
           ('begin_timestamp').AsInteger + MainDataModule.DreamFDMemTableTextEPG.
-          FieldByName('duration_sec').AsInteger), lChNumber,
-          AnsiLeftStr(MainDataModule.DreamFDMemTableTextEPG.FieldByName('title')
-          .AsString, 10), TAlphaColorRec.Honeydew);
+          FieldByName('duration_sec').AsInteger, False), lChNumber, lShowTitle,
+          lShowColor);
 
+      except
         inc(lShowCount);
         if lShowCount = 10 then
           Break;
 
         MainDataModule.DreamFDMemTableTextEPG.Next;
+
       end;
+      inc(lShowCount);
+      if lShowCount = 10 then
+        Break;
 
-    except
-
+      MainDataModule.DreamFDMemTableTextEPG.Next;
     end;
 
     inc(lChNumber);
@@ -185,29 +258,14 @@ begin
     MainDataModule.DreamFDMemTableChannelList.Next;
   end;
 
-  fChannelNumber := MainDataModule.DreamFDMemTableChannelList.RecordCount;
-
-  fGanttSeriesChannelsMin := -0.5;
-  fGanttSeriesChannelsMax := 5;
-
-  fChart.LeftAxis.Automatic := False;
-  fChart.LeftAxis.Minimum := fGanttSeriesChannelsMin;
-  fChart.LeftAxis.Maximum := fGanttSeriesChannelsMax;
-
-  // fGanttSeriesGuidesMin := 0;
-  // fGanttSeriesGuidesMax := 50;
-
-  // fChart.BottomAxis.Automatic := False;
-  // fChart.BottomAxis.Minimum := fGanttSeriesGuidesMin;
-  // fChart.BottomAxis.Maximum := fGanttSeriesGuidesMax;
-
   { fGanttSeriesGuides.AddGanttColor(0, 20, 0, 'test', TAlphaColorRec.Beige);
     fGanttSeriesGuides.AddGanttColor(20, 30, 0, 'blim', TAlphaColorRec.Honeydew); }
 
-  // fLineSeriesNow.AddXY(5, fGanttSeriesChannelsMin, '',
-  // TAlphaColorRec.Darksalmon);
-  // fLineSeriesNow.AddXY(5, fChannelNumber + 1.5, '', TAlphaColorRec.Darksalmon);
-  // fLineSeriesNow.LinePen.Width := 2;
+  fLineSeriesNow.AddXY(now, fGanttSeriesChannelsMin, '',
+    TAlphaColorRec.Darksalmon);
+  fLineSeriesNow.AddXY(now, fChannelNumber + 1.5, '',
+    TAlphaColorRec.Darksalmon);
+  fLineSeriesNow.LinePen.Width := 2;
 
   fGanttSeriesChannels.Pointer.VertSize := 20;
   fGanttSeriesGuides.Pointer.VertSize := 20;
