@@ -1,37 +1,41 @@
 object DataComboListViewFrame: TDataComboListViewFrame
-  Height = 432.000000000000000000
-  Width = 289.000000000000000000
-  TabOrder = 0
+  Size.Width = 289.000000000000000000
+  Size.Height = 432.000000000000000000
+  Size.PlatformDefault = False
   object TopToolBar: TToolBar
-    Height = 40.000000000000000000
     Position.Y = 44.000000000000000000
+    Size.Width = 289.000000000000000000
+    Size.Height = 40.000000000000000000
+    Size.PlatformDefault = False
     TabOrder = 0
-    Width = 289.000000000000000000
     object TopPrevButton: TButton
       Align = Left
-      Height = 40.000000000000000000
+      Size.Width = 80.000000000000000000
+      Size.Height = 40.000000000000000000
+      Size.PlatformDefault = False
       StyleLookup = 'arrowuptoolbutton'
       TabOrder = 0
       Text = 'TopPrevButton'
-      Width = 80.000000000000000000
       OnClick = TopPrevButtonClick
     end
     object TopNextButton: TButton
       Align = Right
-      Height = 40.000000000000000000
       Position.X = 209.000000000000000000
+      Size.Width = 80.000000000000000000
+      Size.Height = 40.000000000000000000
+      Size.PlatformDefault = False
       StyleLookup = 'arrowdowntoolbutton'
       TabOrder = 1
       Text = 'TopNextButton'
-      Width = 80.000000000000000000
       OnClick = TopNextButtonClick
     end
     object TopDataComboBox: TDataComboBox
       Align = Client
       DisableFocusEffect = False
-      Height = 40.000000000000000000
+      Size.Width = 129.000000000000000000
+      Size.Height = 40.000000000000000000
+      Size.PlatformDefault = False
       TabOrder = 2
-      Width = 129.000000000000000000
       OnChange = TopDataComboBoxChange
     end
   end
@@ -41,29 +45,33 @@ object DataComboListViewFrame: TDataComboListViewFrame
     HeaderAppearanceClassName = 'TListHeaderObjects'
     FooterAppearanceClassName = 'TListHeaderObjects'
     Align = Client
-    Height = 348.000000000000000000
+    Size.Width = 289.000000000000000000
+    Size.Height = 348.000000000000000000
+    Size.PlatformDefault = False
     TabOrder = 1
-    Width = 289.000000000000000000
     OnItemClick = DataListViewItemClick
     OnButtonClick = DataListViewButtonClick
   end
   object TopMasterToolBar: TToolBar
     Align = MostTop
-    Height = 44.000000000000000000
+    Size.Width = 289.000000000000000000
+    Size.Height = 44.000000000000000000
+    Size.PlatformDefault = False
     TabOrder = 2
-    Width = 289.000000000000000000
     object TopMasterLabel: TLabel
       Align = Client
-      Height = 44.000000000000000000
+      Size.Width = 289.000000000000000000
+      Size.Height = 44.000000000000000000
+      Size.PlatformDefault = False
       StyleLookup = 'toollabel'
       TextSettings.HorzAlign = Center
       Text = 'TV Channels'
-      Width = 289.000000000000000000
       object DataAniIndicator: TAniIndicator
         Align = Right
-        Height = 44.000000000000000000
         Position.X = 239.000000000000000000
-        Width = 50.000000000000000000
+        Size.Width = 50.000000000000000000
+        Size.Height = 44.000000000000000000
+        Size.PlatformDefault = False
       end
     end
   end

@@ -1334,7 +1334,7 @@
                 <Platform value="Android">True</Platform>
                 <Platform value="iOSDevice32">True</Platform>
                 <Platform value="iOSDevice64">True</Platform>
-                <Platform value="iOSSimulator" ActiveMobileDevice="iPad">True</Platform>
+                <Platform value="iOSSimulator" ActiveMobileDevice="%iossimulator%797D8B20-FEBD-4F5E-AC1B-63071B01C153">True</Platform>
                 <Platform value="OSX32">False</Platform>
                 <Platform value="Win32">False</Platform>
                 <Platform value="Win64">False</Platform>

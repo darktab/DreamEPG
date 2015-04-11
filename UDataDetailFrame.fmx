@@ -1,79 +1,87 @@
 object DataDetailFrame: TDataDetailFrame
-  Height = 485.000000000000000000
-  Width = 343.000000000000000000
+  Size.Width = 343.000000000000000000
+  Size.Height = 485.000000000000000000
+  Size.PlatformDefault = False
   object TextEPGDateTimeLabel: TLabel
-    Align = alTop
-    Height = 21.000000000000000000
+    Align = Top
     Position.Y = 97.000000000000000000
+    Size.Width = 343.000000000000000000
+    Size.Height = 21.000000000000000000
+    Size.PlatformDefault = False
     Text = 'TextEPGDateTimeLabel'
-    Width = 343.000000000000000000
-    Trimming = ttCharacter
   end
   object TextEPGInfoBottomRectangle: TRectangle
-    Align = alBottom
-    Fill.Kind = bkNone
-    Height = 27.000000000000000000
+    Align = Bottom
+    Fill.Kind = None
     Position.Y = 458.000000000000000000
-    Stroke.Kind = bkNone
-    Width = 343.000000000000000000
+    Size.Width = 343.000000000000000000
+    Size.Height = 27.000000000000000000
+    Size.PlatformDefault = False
+    Stroke.Kind = None
   end
   object TextEPGInfoLabel: TLabel
-    Align = alTop
-    Font.Style = [fsBold]
-    StyledSettings = [ssFamily, ssSize, ssFontColor]
-    Height = 53.000000000000000000
+    Align = Top
+    StyledSettings = [Family, Size, FontColor]
     Position.Y = 44.000000000000000000
+    Size.Width = 343.000000000000000000
+    Size.Height = 53.000000000000000000
+    Size.PlatformDefault = False
+    TextSettings.Font.Style = [fsBold]
     Text = 'TextEPGInfoLabel'
-    Width = 343.000000000000000000
-    Trimming = ttCharacter
   end
   object TextEPGInfoMemo: TMemo
-    Touch.InteractiveGestures = [igPan, igLongTap, igDoubleTap]
-    Align = alClient
-    Height = 296.000000000000000000
-    TabOrder = 3
-    Width = 343.000000000000000000
-    CanFocus = False
+    Touch.InteractiveGestures = [Pan, LongTap, DoubleTap]
+    DataDetectorTypes = []
     ReadOnly = True
-    WordWrap = True
+    TextSettings.WordWrap = True
+    Align = Client
+    CanFocus = False
+    Size.Width = 343.000000000000000000
+    Size.Height = 296.000000000000000000
+    Size.PlatformDefault = False
+    TabOrder = 3
+    Viewport.Width = 343.000000000000000000
+    Viewport.Height = 296.000000000000000000
   end
   object TextEPGInfoRecordButton: TButton
-    Align = alBottom
-    Height = 44.000000000000000000
+    Align = Bottom
     Position.Y = 414.000000000000000000
+    Size.Width = 343.000000000000000000
+    Size.Height = 44.000000000000000000
+    Size.PlatformDefault = False
     StyleLookup = 'listitemdeletebutton'
     TabOrder = 4
     Text = 'Record'
-    Trimming = ttCharacter
-    Width = 343.000000000000000000
   end
   object TextEPGInfoToolBar: TToolBar
-    Height = 44.000000000000000000
+    Size.Width = 343.000000000000000000
+    Size.Height = 44.000000000000000000
+    Size.PlatformDefault = False
     TabOrder = 5
-    Width = 343.000000000000000000
     object TextEPGTitleLabel: TLabel
-      Align = alClient
-      Font.Style = [fsBold]
-      StyledSettings = [ssFamily, ssSize, ssFontColor]
-      Height = 44.000000000000000000
+      Align = Client
+      StyledSettings = [Family, Size, FontColor]
+      Size.Width = 343.000000000000000000
+      Size.Height = 44.000000000000000000
+      Size.PlatformDefault = False
       StyleLookup = 'toollabel'
+      TextSettings.Font.Style = [fsBold]
+      TextSettings.HorzAlign = Center
       Text = 'Info'
-      TextAlign = taCenter
-      Width = 343.000000000000000000
-      Trimming = ttCharacter
       object TextEPGBackButton: TButton
-        Align = alLeft
-        Height = 44.000000000000000000
+        Align = Left
+        Size.Width = 44.000000000000000000
+        Size.Height = 44.000000000000000000
+        Size.PlatformDefault = False
         StyleLookup = 'priortoolbutton'
         TabOrder = 0
-        Trimming = ttCharacter
-        Width = 44.000000000000000000
       end
       object DataAniIndicator: TAniIndicator
-        Align = alRight
-        Height = 44.000000000000000000
+        Align = Right
         Position.X = 293.000000000000000000
-        Width = 50.000000000000000000
+        Size.Width = 50.000000000000000000
+        Size.Height = 44.000000000000000000
+        Size.PlatformDefault = False
       end
     end
   end

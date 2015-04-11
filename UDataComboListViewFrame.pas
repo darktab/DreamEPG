@@ -8,7 +8,7 @@ uses
   FMX.Types, FMX.Graphics, FMX.Controls, FMX.Forms, FMX.Dialogs, FMX.StdCtrls,
   FMX.ListBox, UDataComboBox, FMX.ListView.Types, FMX.ListView, UDataListView,
   Data.DB, FireDAC.Comp.DataSet, FireDAC.Comp.Client, REST.Response.Adapter,
-  REST.Client, UDetailInitThread, FMX.Objects;
+  REST.Client, UDetailInitThread, FMX.Objects, FMX.Controls.Presentation;
 
 type
   TDataComboListViewFrame = class(TFrame)

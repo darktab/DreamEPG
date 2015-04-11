@@ -1,7 +1,7 @@
 object DataListViewFrame: TDataListViewFrame
-  Height = 395.000000000000000000
-  Width = 293.000000000000000000
-  TabOrder = 0
+  Size.Width = 293.000000000000000000
+  Size.Height = 395.000000000000000000
+  Size.PlatformDefault = False
   object DataListView: TDataListView
     ItemAppearanceClassName = 'TCustomizeItemObjects'
     ItemEditAppearanceClassName = 'TListItemDeleteAppearance'
@@ -9,9 +9,10 @@ object DataListViewFrame: TDataListViewFrame
     FooterAppearanceClassName = 'TListHeaderObjects'
     AllowSelection = False
     Align = Client
-    Height = 351.000000000000000000
+    Size.Width = 293.000000000000000000
+    Size.Height = 351.000000000000000000
+    Size.PlatformDefault = False
     TabOrder = 0
-    Width = 293.000000000000000000
     ItemAppearance.ItemHeight = 50
     ItemAppearance.ItemEditHeight = 50
     ItemAppearanceObjects.ItemObjects.Text.TextVertAlign = Leading
@@ -26,38 +27,43 @@ object DataListViewFrame: TDataListViewFrame
     ShowSelection = False
   end
   object TopToolBar: TToolBar
-    Height = 44.000000000000000000
+    Size.Width = 293.000000000000000000
+    Size.Height = 44.000000000000000000
+    Size.PlatformDefault = False
     TabOrder = 1
-    Width = 293.000000000000000000
     object TopToolBarLabel: TLabel
       Align = Client
-      Height = 44.000000000000000000
+      Size.Width = 293.000000000000000000
+      Size.Height = 44.000000000000000000
+      Size.PlatformDefault = False
       StyleLookup = 'toollabel'
       TextSettings.HorzAlign = Center
       Text = 'Scheduled Timers'
-      Width = 293.000000000000000000
       object RefreshSpeedButton: TSpeedButton
         Align = MostRight
-        Height = 44.000000000000000000
         Position.X = 249.000000000000000000
+        Size.Width = 44.000000000000000000
+        Size.Height = 44.000000000000000000
+        Size.PlatformDefault = False
         StyleLookup = 'refreshtoolbutton'
         Text = 'RefreshSpeedButton'
-        Width = 44.000000000000000000
         OnClick = RefreshSpeedButtonClick
       end
       object DeleteSpeedButton: TSpeedButton
         Align = Left
-        Height = 44.000000000000000000
+        Size.Width = 81.000000000000000000
+        Size.Height = 44.000000000000000000
+        Size.PlatformDefault = False
         StyleLookup = 'trashtoolbutton'
         Text = 'Done'
-        Width = 81.000000000000000000
         OnClick = DeleteSpeedButtonClick
       end
       object DataAniIndicator: TAniIndicator
         Align = Right
-        Height = 44.000000000000000000
         Position.X = 199.000000000000000000
-        Width = 50.000000000000000000
+        Size.Width = 50.000000000000000000
+        Size.Height = 44.000000000000000000
+        Size.PlatformDefault = False
       end
     end
   end

@@ -1,6 +1,6 @@
 inherited BackDataComboListViewFrame: TBackDataComboListViewFrame
   inherited DataListView: TDataListView
-    Height = 328.000000000000000000
+    Size.Height = 328.000000000000000000
   end
   inherited TopMasterToolBar: TToolBar
     inherited TopMasterLabel: TLabel
@@ -8,28 +8,31 @@ inherited BackDataComboListViewFrame: TBackDataComboListViewFrame
         Position.X = 159.000000000000000000
       end
       object TopBackButton: TButton
-        Align = alMostLeft
-        Height = 44.000000000000000000
+        Align = MostLeft
+        Size.Width = 80.000000000000000000
+        Size.Height = 44.000000000000000000
+        Size.PlatformDefault = False
         StyleLookup = 'priortoolbutton'
         TabOrder = 1
-        Width = 80.000000000000000000
       end
       object TopReloadSpeedButton: TSpeedButton
-        Align = alMostRight
-        Height = 44.000000000000000000
+        Align = MostRight
         Position.X = 209.000000000000000000
+        Size.Width = 80.000000000000000000
+        Size.Height = 44.000000000000000000
+        Size.PlatformDefault = False
         StyleLookup = 'refreshtoolbutton'
         Text = 'TopReloadSpeedButton'
-        Width = 80.000000000000000000
         OnClick = TopReloadSpeedButtonClick
       end
     end
   end
   object TVShowProgressBar: TProgressBar
-    Align = alTop
-    Height = 20.000000000000000000
-    Orientation = orHorizontal
+    Align = Top
+    Orientation = Horizontal
     Position.Y = 84.000000000000000000
-    Width = 289.000000000000000000
+    Size.Width = 289.000000000000000000
+    Size.Height = 20.000000000000000000
+    Size.PlatformDefault = False
   end
 end

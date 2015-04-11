@@ -8,7 +8,7 @@ uses
   FMX.Types, FMX.Graphics, FMX.Controls, FMX.Forms, FMX.Dialogs, FMX.StdCtrls,
   FMX.Layouts, FMX.Memo, FMX.Objects, Data.DB, FireDAC.Comp.DataSet,
   FireDAC.Comp.Client, REST.Response.Adapter,
-  REST.Client;
+  REST.Client, FMX.ScrollBox, FMX.Controls.Presentation;
 
 type
   TDataDetailFrame = class(TFrame)

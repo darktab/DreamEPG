@@ -43,6 +43,6 @@
     <Transaction>1899.12.30 00:00:00.000.889,C:\Users\cjacoby\Documents\Appmethod\Projects\simpleEPG.dproj=C:\Users\cjacoby\Documents\Appmethod\Projects\simpleEPG.dproj</Transaction>
     <Transaction>2015.04.11 19:47:17.022,C:\Users\cjacoby\Documents\GitHub\simpleEPG\UMultiEPGFrame.pas=</Transaction>
   </Transactions>
-	<MobileDevice>%iosdevice%32052a07c521a35d1ad41780913f054a32db96a5</MobileDevice>
+	<MobileDevice>%iossimulator%797D8B20-FEBD-4F5E-AC1B-63071B01C153-iOSSimulator</MobileDevice>
 	<BT_BuildType>AppStore</BT_BuildType>
 </BorlandProject>
