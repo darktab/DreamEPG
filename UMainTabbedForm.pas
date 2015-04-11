@@ -7,7 +7,8 @@ uses
   System.Variants,
   FMX.Types, FMX.Graphics, FMX.Controls, FMX.Forms, FMX.Dialogs, FMX.StdCtrls,
   UMainForm, FMX.TabControl, FMX.Layouts, FMX.Memo, FMX.ListView.Types,
-  FMX.ListView, FMX.Edit, Data.DB, FMX.ListBox, UDataComboListViewFrame,
+  FMX.ListView, FMX.Edit, Data.DB, FMX.ListBox, FMX.Searchbox,
+  UDataComboListViewFrame,
   UBackDataComboListViewFrame, System.Actions, FMX.ActnList, FireDAC.UI.Intf,
   FireDAC.FMXUI.Wait, FireDAC.Stan.Intf, FireDAC.Comp.UI,
   System.Bindings.Expression,
@@ -15,12 +16,12 @@ uses
   UDataListView,
   USettings,
   FMX.StdActns, FMX.Objects, System.Math,
-  DBXJSON, UDataListViewFrame, UDataDetailFrame, UMultiEPGFrame;
+  DBXJSON, UDataListViewFrame, UDataDetailFrame,
+  FMX.Controls.Presentation;
 
 type
   TMainTabbedForm = class(TMainForm)
     MainTabControl: TTabControl;
-    MultiEPGTabItem: TTabItem;
     TextEPGTabItem: TTabItem;
     TimersTabItem: TTabItem;
     SettingsTabItem: TTabItem;
@@ -57,7 +58,6 @@ type
     RecordingsActionList: TActionList;
     ToRecordingsDetailChangeTabAction: TChangeTabAction;
     ToRecordingsMasterChangeTabAction: TChangeTabAction;
-    MultiEPGFrame: TMultiEPGFrame;
     procedure FormShow(Sender: TObject);
     procedure ComboBoxServiceListChange(Sender: TObject);
     procedure DataComboListViewFrameChannelListDataListViewItemClick
@@ -95,7 +95,6 @@ type
     procedure initChannelListView;
     procedure initTimersListView;
     procedure initRecordingListView;
-    procedure initMultiEPGView;
 
     procedure CalcContentBoundsProc(Sender: TObject; var ContentBounds: TRectF);
     procedure RestorePosition;
@@ -131,11 +130,6 @@ begin
   begin
     FreeAndNil(fSettings);
   end;
-end;
-
-procedure TMainTabbedForm.initMultiEPGView;
-begin
-  self.MultiEPGFrame.init;
 end;
 
 procedure TMainTabbedForm.initChannelListView;
@@ -296,8 +290,6 @@ begin
     initSettings;
     // initialisation de la channel list
     initChannelListView;
-    // init multi EPG
-    initMultiEPGView;
     // initialisation des timers
     initTimersListView;
     // initialisation des recordings
@@ -422,7 +414,7 @@ procedure TMainTabbedForm.
   TextEPGBackDataComboListViewFrameDataListViewSearchChange(Sender: TObject);
 var
   I: Integer;
-  SearchBox: TSearchBox;
+  Searchbox: TSearchBox;
   List: TListView;
 begin
   inherited;
@@ -430,7 +422,7 @@ begin
   for I := 0 to List.Controls.Count - 1 do
     if List.Controls[I].ClassType = TSearchBox then
     begin
-      SearchBox := TSearchBox(List.Controls[I]);
+      Searchbox := TSearchBox(List.Controls[I]);
       Break;
     end;
 end;

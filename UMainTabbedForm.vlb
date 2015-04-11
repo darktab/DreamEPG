@@ -2,7 +2,7 @@
 Coordinates=1085,592,92,33
 
 []
-Coordinates=582,592,115,33
+Coordinates=836,592,99,33
 Visible=True
 
 [TextEPGTabItem]
@@ -10,9 +10,6 @@ Coordinates=962,592,96,33
 
 [TimersTabItem]
 Coordinates=725,592,87,33
-
-[MultiEPGTabItem]
-Coordinates=836,592,99,33
 
 [DataComboListViewFrameChannelList.TopPrevButton]
 Coordinates=339,410,281,51

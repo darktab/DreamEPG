@@ -6,110 +6,89 @@ inherited MainTabbedForm: TMainTabbedForm
   OnFocusChanged = FormFocusChanged
   OnVirtualKeyboardShown = FormVirtualKeyboardShown
   OnVirtualKeyboardHidden = FormVirtualKeyboardHidden
-  DesignerMobile = True
-  DesignerWidth = 320
-  DesignerHeight = 568
-  DesignerDeviceName = 'iPhone5'
-  DesignerOrientation = 0
-  DesignerOSVersion = '7'
+  DesignerMasterStyle = 2
   object MainTabControl: TTabControl
     Align = Client
     FullSize = True
-    Height = 548.000000000000000000
+    Size.Width = 320.000000000000000000
+    Size.Height = 548.000000000000000000
+    Size.PlatformDefault = False
     TabHeight = 49.000000000000000000
-    TabIndex = 4
+    TabIndex = 3
     TabOrder = 0
     TabPosition = Bottom
-    Width = 320.000000000000000000
     OnChange = MainTabControlChange
-    object MultiEPGTabItem: TTabItem
-      CustomIcon = <
-        item
-        end>
-      Height = 49.000000000000000000
-      IsSelected = False
-      StyleLookup = 'tabitembookmarks'
-      TabOrder = 0
-      Text = 'Multi EPG'
-      Width = 64.000000000000000000
-      inline MultiEPGFrame: TMultiEPGFrame
-        Touch.InteractiveGestures = [Pan]
-        Align = Client
-        Height = 499.000000000000000000
-        Width = 320.000000000000000000
-        TabOrder = 0
-        inherited MultiEPGTopToolBar: TToolBar
-          Width = 320.000000000000000000
-        end
-      end
-    end
     object TextEPGTabItem: TTabItem
       CustomIcon = <
         item
         end>
       TextSettings.Font.Size = 10.000000000000000000
       StyledSettings = [Family, Style, FontColor]
-      Height = 49.000000000000000000
       IsSelected = False
+      Size.Width = 80.000000000000000000
+      Size.Height = 49.000000000000000000
+      Size.PlatformDefault = False
       StyleLookup = 'tabitembookmarks'
       TabOrder = 0
       Text = 'Text EPG'
-      Width = 64.000000000000000000
       object TextEPGTabControl: TTabControl
         Align = Client
         FullSize = True
-        Height = 499.000000000000000000
+        Size.Width = 320.000000000000000000
+        Size.Height = 499.000000000000000000
+        Size.PlatformDefault = False
         TabHeight = 49.000000000000000000
         TabIndex = 0
         TabOrder = 0
         TabPosition = None
-        Width = 320.000000000000000000
         object TextEPGMasterTabItem: TTabItem
           CustomIcon = <
             item
             end>
-          Height = 8.000000000000000000
           IsSelected = True
+          Size.Width = 8.000000000000000000
+          Size.Height = 8.000000000000000000
+          Size.PlatformDefault = False
           TabOrder = 0
           Text = 'TextEPGMasterTabItem'
-          Width = 8.000000000000000000
           inline DataComboListViewFrameChannelList: TDataComboListViewFrame
             Align = Client
-            Height = 499.000000000000000000
-            Width = 320.000000000000000000
+            Size.Width = 320.000000000000000000
+            Size.Height = 499.000000000000000000
+            Size.PlatformDefault = False
             TabOrder = 0
             inherited TopToolBar: TToolBar
-              Height = 44.000000000000000000
-              Width = 320.000000000000000000
+              Size.Width = 320.000000000000000000
+              Size.Height = 44.000000000000000000
               inherited TopPrevButton: TButton
-                Height = 44.000000000000000000
-                Width = 44.000000000000000000
+                Size.Width = 44.000000000000000000
+                Size.Height = 44.000000000000000000
               end
               inherited TopNextButton: TButton
-                Height = 44.000000000000000000
                 Position.X = 276.000000000000000000
-                Width = 44.000000000000000000
+                Size.Width = 44.000000000000000000
+                Size.Height = 44.000000000000000000
               end
               inherited TopDataComboBox: TDataComboBox
-                Height = 38.000000000000000000
                 Padding.Top = 10.000000000000000000
                 Margins.Top = 6.000000000000000000
-                Width = 232.000000000000000000
+                Size.Width = 232.000000000000000000
+                Size.Height = 30.000000000000000000
                 DataFieldName = 'servicename'
               end
             end
             inherited DataListView: TDataListView
               DisableFocusEffect = False
-              Height = 411.000000000000000000
-              Width = 320.000000000000000000
+              Size.Width = 320.000000000000000000
+              Size.Height = 411.000000000000000000
               CanSwipeDelete = False
               OnItemClick = DataComboListViewFrameChannelListDataListViewItemClick
               DataFieldName = 'servicename'
             end
             inherited TopMasterToolBar: TToolBar
-              Width = 320.000000000000000000
+              Size.Width = 320.000000000000000000
               inherited TopMasterLabel: TLabel
-                Width = 320.000000000000000000
+                Size.Width = 320.000000000000000000
                 inherited DataAniIndicator: TAniIndicator
                   Position.X = 270.000000000000000000
                 end
@@ -121,32 +100,34 @@ inherited MainTabbedForm: TMainTabbedForm
           CustomIcon = <
             item
             end>
-          Height = 8.000000000000000000
           IsSelected = False
+          Size.Width = 8.000000000000000000
+          Size.Height = 8.000000000000000000
+          Size.PlatformDefault = False
           TabOrder = 0
           Text = 'TextEPGDetailTabItem'
-          Width = 8.000000000000000000
           inline TextEPGBackDataComboListViewFrame: TBackDataComboListViewFrame
             Align = Client
-            Height = 499.000000000000000000
-            Width = 320.000000000000000000
+            Size.Width = 320.000000000000000000
+            Size.Height = 499.000000000000000000
+            Size.PlatformDefault = False
             TabOrder = 0
             inherited TopToolBar: TToolBar
-              Height = 44.000000000000000000
-              Width = 320.000000000000000000
+              Size.Width = 320.000000000000000000
+              Size.Height = 44.000000000000000000
               inherited TopPrevButton: TButton
-                Height = 44.000000000000000000
-                Width = 44.000000000000000000
+                Size.Width = 44.000000000000000000
+                Size.Height = 44.000000000000000000
               end
               inherited TopNextButton: TButton
-                Height = 44.000000000000000000
                 Position.X = 276.000000000000000000
-                Width = 44.000000000000000000
+                Size.Width = 44.000000000000000000
+                Size.Height = 44.000000000000000000
               end
               inherited TopDataComboBox: TDataComboBox
-                Height = 38.000000000000000000
                 Margins.Top = 6.000000000000000000
-                Width = 232.000000000000000000
+                Size.Width = 232.000000000000000000
+                Size.Height = 38.000000000000000000
                 OnChange = TextEPGBackDataComboListViewFrameTopDataComboBoxChange
               end
             end
@@ -155,8 +136,8 @@ inherited MainTabbedForm: TMainTabbedForm
               ItemEditAppearanceClassName = 'TCustomizeItemObjects'
               HeaderAppearanceClassName = 'TCustomizeItemObjects'
               FooterAppearanceClassName = 'TCustomizeItemObjects'
-              Height = 391.000000000000000000
-              Width = 320.000000000000000000
+              Size.Width = 320.000000000000000000
+              Size.Height = 391.000000000000000000
               ItemAppearanceObjects.ItemObjects.Text.TextVertAlign = Leading
               ItemAppearanceObjects.ItemObjects.Text.Width = 240.000000000000000000
               ItemAppearanceObjects.ItemObjects.Text.PlaceOffset.Y = 5.000000000000000000
@@ -182,26 +163,26 @@ inherited MainTabbedForm: TMainTabbedForm
               OnSearchChange = TextEPGBackDataComboListViewFrameDataListViewSearchChange
             end
             inherited TopMasterToolBar: TToolBar
-              Width = 320.000000000000000000
+              Size.Width = 320.000000000000000000
               inherited TopMasterLabel: TLabel
+                Size.Width = 320.000000000000000000
                 Text = 'TV Show Times'
-                Width = 320.000000000000000000
                 inherited DataAniIndicator: TAniIndicator
                   Position.X = 226.000000000000000000
                 end
                 inherited TopBackButton: TButton
                   Action = ToMasterChangeTabAction
-                  Width = 44.000000000000000000
+                  Size.Width = 44.000000000000000000
                 end
                 inherited TopReloadSpeedButton: TSpeedButton
                   Position.X = 276.000000000000000000
-                  Width = 44.000000000000000000
+                  Size.Width = 44.000000000000000000
                 end
               end
             end
             inherited TVShowProgressBar: TProgressBar
               Position.Y = 88.000000000000000000
-              Width = 320.000000000000000000
+              Size.Width = 320.000000000000000000
             end
           end
         end
@@ -209,38 +190,42 @@ inherited MainTabbedForm: TMainTabbedForm
           CustomIcon = <
             item
             end>
-          Height = 8.000000000000000000
           IsSelected = False
+          Size.Width = 8.000000000000000000
+          Size.Height = 8.000000000000000000
+          Size.PlatformDefault = False
           TabOrder = 0
-          Width = 8.000000000000000000
           inline TextEPGDataDetailFrame: TDataDetailFrame
             Align = Client
-            Height = 499.000000000000000000
-            Width = 320.000000000000000000
+            Size.Width = 320.000000000000000000
+            Size.Height = 499.000000000000000000
+            Size.PlatformDefault = False
             TabOrder = 0
             inherited TextEPGDateTimeLabel: TLabel
-              Width = 320.000000000000000000
+              Size.Width = 320.000000000000000000
             end
             inherited TextEPGInfoBottomRectangle: TRectangle
               Position.Y = 472.000000000000000000
-              Width = 320.000000000000000000
+              Size.Width = 320.000000000000000000
             end
             inherited TextEPGInfoLabel: TLabel
-              Width = 320.000000000000000000
+              Size.Width = 320.000000000000000000
             end
             inherited TextEPGInfoMemo: TMemo
-              Height = 310.000000000000000000
-              Width = 320.000000000000000000
+              Size.Width = 320.000000000000000000
+              Size.Height = 310.000000000000000000
+              Viewport.Width = 320.000000000000000000
+              Viewport.Height = 310.000000000000000000
             end
             inherited TextEPGInfoRecordButton: TButton
               Position.Y = 428.000000000000000000
-              Width = 320.000000000000000000
+              Size.Width = 320.000000000000000000
               OnClick = TextEPGDataDetailFrameTextEPGInfoRecordButtonClick
             end
             inherited TextEPGInfoToolBar: TToolBar
-              Width = 320.000000000000000000
+              Size.Width = 320.000000000000000000
               inherited TextEPGTitleLabel: TLabel
-                Width = 320.000000000000000000
+                Size.Width = 320.000000000000000000
                 inherited TextEPGBackButton: TButton
                   Action = ToDetailChangeTabAction
                 end
@@ -259,30 +244,32 @@ inherited MainTabbedForm: TMainTabbedForm
         end>
       TextSettings.Font.Size = 10.000000000000000000
       StyledSettings = [Family, Style, FontColor]
-      Height = 49.000000000000000000
       IsSelected = False
+      Size.Width = 80.000000000000000000
+      Size.Height = 49.000000000000000000
+      Size.PlatformDefault = False
       StyleLookup = 'tabitemrecent'
       TabOrder = 0
       Text = 'Timers'
-      Width = 64.000000000000000000
       inline TimersDataListViewFrame: TDataListViewFrame
         Align = Client
-        Height = 499.000000000000000000
-        Width = 320.000000000000000000
+        Size.Width = 320.000000000000000000
+        Size.Height = 499.000000000000000000
+        Size.PlatformDefault = False
         TabOrder = 0
         inherited DataListView: TDataListView
-          Height = 455.000000000000000000
-          Width = 320.000000000000000000
+          Size.Width = 320.000000000000000000
+          Size.Height = 455.000000000000000000
         end
         inherited TopToolBar: TToolBar
-          Width = 320.000000000000000000
+          Size.Width = 320.000000000000000000
           inherited TopToolBarLabel: TLabel
-            Width = 320.000000000000000000
+            Size.Width = 320.000000000000000000
             inherited RefreshSpeedButton: TSpeedButton
               Position.X = 276.000000000000000000
             end
             inherited DeleteSpeedButton: TSpeedButton
-              Width = 44.000000000000000000
+              Size.Width = 44.000000000000000000
             end
             inherited DataAniIndicator: TAniIndicator
               Position.X = 226.000000000000000000
@@ -297,39 +284,43 @@ inherited MainTabbedForm: TMainTabbedForm
         end>
       TextSettings.Font.Size = 10.000000000000000000
       StyledSettings = [Family, Style, FontColor]
-      Height = 49.000000000000000000
       IsSelected = False
+      Size.Width = 80.000000000000000000
+      Size.Height = 49.000000000000000000
+      Size.PlatformDefault = False
       StyleLookup = 'tabitemfavorites'
       TabOrder = 0
       Text = 'Recordings'
-      Width = 64.000000000000000000
       object RecordingsTabControl: TTabControl
         Align = Client
         FullSize = True
-        Height = 499.000000000000000000
+        Size.Width = 320.000000000000000000
+        Size.Height = 499.000000000000000000
+        Size.PlatformDefault = False
         TabHeight = 49.000000000000000000
         TabIndex = 0
         TabOrder = 0
         TabPosition = None
-        Width = 320.000000000000000000
         object RecordingsMasterTabItem: TTabItem
           CustomIcon = <
             item
             end>
-          Height = 8.000000000000000000
           IsSelected = True
+          Size.Width = 8.000000000000000000
+          Size.Height = 8.000000000000000000
+          Size.PlatformDefault = False
           TabOrder = 0
           Text = 'RecordingsMasterTabItem'
-          Width = 8.000000000000000000
           inline RecordingsDataListViewFrame: TDataListViewFrame
             Align = Client
-            Height = 499.000000000000000000
-            Width = 320.000000000000000000
+            Size.Width = 320.000000000000000000
+            Size.Height = 499.000000000000000000
+            Size.PlatformDefault = False
             TabOrder = 0
             inherited DataListView: TDataListView
               AllowSelection = True
-              Height = 455.000000000000000000
-              Width = 320.000000000000000000
+              Size.Width = 320.000000000000000000
+              Size.Height = 455.000000000000000000
               ItemAppearanceObjects.ItemObjects.TextButton.Width = 30.000000000000000000
               ItemAppearanceObjects.ItemObjects.TextButton.Visible = True
               ItemAppearanceObjects.ItemObjects.TextButton.Text = 'i'
@@ -337,15 +328,15 @@ inherited MainTabbedForm: TMainTabbedForm
               ShowSelection = True
             end
             inherited TopToolBar: TToolBar
-              Width = 320.000000000000000000
+              Size.Width = 320.000000000000000000
               inherited TopToolBarLabel: TLabel
+                Size.Width = 320.000000000000000000
                 Text = 'Movies'
-                Width = 320.000000000000000000
                 inherited RefreshSpeedButton: TSpeedButton
                   Position.X = 276.000000000000000000
                 end
                 inherited DeleteSpeedButton: TSpeedButton
-                  Width = 44.000000000000000000
+                  Size.Width = 44.000000000000000000
                 end
                 inherited DataAniIndicator: TAniIndicator
                   Position.X = 226.000000000000000000
@@ -358,40 +349,44 @@ inherited MainTabbedForm: TMainTabbedForm
           CustomIcon = <
             item
             end>
-          Height = 8.000000000000000000
           IsSelected = False
+          Size.Width = 8.000000000000000000
+          Size.Height = 8.000000000000000000
+          Size.PlatformDefault = False
           TabOrder = 0
           Text = 'RecordingsDetailTabItem'
-          Width = 8.000000000000000000
           inline RecordingsDataDetailFrame: TDataDetailFrame
             Align = Client
-            Height = 499.000000000000000000
-            Width = 320.000000000000000000
+            Size.Width = 320.000000000000000000
+            Size.Height = 499.000000000000000000
+            Size.PlatformDefault = False
             TabOrder = 0
             inherited TextEPGDateTimeLabel: TLabel
-              Width = 320.000000000000000000
+              Size.Width = 320.000000000000000000
             end
             inherited TextEPGInfoBottomRectangle: TRectangle
               Position.Y = 472.000000000000000000
-              Width = 320.000000000000000000
+              Size.Width = 320.000000000000000000
             end
             inherited TextEPGInfoLabel: TLabel
-              Width = 320.000000000000000000
+              Size.Width = 320.000000000000000000
             end
             inherited TextEPGInfoMemo: TMemo
-              Height = 354.000000000000000000
-              Width = 320.000000000000000000
+              Size.Width = 320.000000000000000000
+              Size.Height = 354.000000000000000000
+              Viewport.Width = 320.000000000000000000
+              Viewport.Height = 354.000000000000000000
             end
             inherited TextEPGInfoRecordButton: TButton
               Position.Y = 428.000000000000000000
+              Size.Width = 320.000000000000000000
               Text = 'Delete'
               Visible = False
-              Width = 320.000000000000000000
             end
             inherited TextEPGInfoToolBar: TToolBar
-              Width = 320.000000000000000000
+              Size.Width = 320.000000000000000000
               inherited TextEPGTitleLabel: TLabel
-                Width = 320.000000000000000000
+                Size.Width = 320.000000000000000000
                 inherited TextEPGBackButton: TButton
                   Action = ToRecordingsMasterChangeTabAction
                 end
@@ -410,61 +405,71 @@ inherited MainTabbedForm: TMainTabbedForm
         end>
       TextSettings.Font.Size = 10.000000000000000000
       StyledSettings = [Family, Style, FontColor]
-      Height = 49.000000000000000000
       IsSelected = True
+      Size.Width = 80.000000000000000000
+      Size.Height = 49.000000000000000000
+      Size.PlatformDefault = False
       StyleLookup = 'tabitemmostviewed'
       TabOrder = 0
       Text = 'Settings'
-      Width = 64.000000000000000000
       object TopToolBar: TToolBar
-        Height = 44.000000000000000000
+        Size.Width = 320.000000000000000000
+        Size.Height = 44.000000000000000000
+        Size.PlatformDefault = False
         TabOrder = 0
-        Width = 320.000000000000000000
         object SettingsTopToolBarLabel: TLabel
           Align = Client
-          Height = 44.000000000000000000
+          Size.Width = 320.000000000000000000
+          Size.Height = 44.000000000000000000
+          Size.PlatformDefault = False
           StyleLookup = 'toollabel'
           TextSettings.HorzAlign = Center
           Text = 'Settings'
-          Width = 320.000000000000000000
         end
       end
       object VersionLabel: TLabel
         Align = Bottom
         StyledSettings = [Family, Style, FontColor]
-        Height = 21.000000000000000000
         Position.Y = 478.000000000000000000
+        Size.Width = 320.000000000000000000
+        Size.Height = 21.000000000000000000
+        Size.PlatformDefault = False
         TextSettings.Font.Size = 10.000000000000000000
         TextSettings.HorzAlign = Center
         Text = 'simpleEPG version 1.2.0'
-        Width = 320.000000000000000000
       end
       object VertScrollBox: TVertScrollBox
         Align = Client
         DragMode = dmAutomatic
-        Height = 434.000000000000000000
+        Size.Width = 320.000000000000000000
+        Size.Height = 434.000000000000000000
+        Size.PlatformDefault = False
         TabOrder = 2
-        Width = 320.000000000000000000
+        Viewport.Width = 320.000000000000000000
+        Viewport.Height = 434.000000000000000000
         object MainLayout: TLayout
           Align = Client
-          Height = 434.000000000000000000
-          Width = 320.000000000000000000
+          Size.Width = 320.000000000000000000
+          Size.Height = 434.000000000000000000
+          Size.PlatformDefault = False
           TabOrder = 0
           object ListBoxGroupHeader1: TListBoxGroupHeader
-            Height = 56.000000000000000000
+            Size.Width = 320.000000000000000000
+            Size.Height = 56.000000000000000000
+            Size.PlatformDefault = False
             StyleLookup = 'listboxgroupheader'
             TabOrder = 0
             Text = 'Decoder Settings'
-            Width = 320.000000000000000000
           end
           object ListBoxItem1: TListBoxItem
             Selectable = False
-            Height = 44.000000000000000000
             Position.Y = 56.000000000000000000
+            Size.Width = 320.000000000000000000
+            Size.Height = 44.000000000000000000
+            Size.PlatformDefault = False
             StyleLookup = 'listboxitemrightdetail'
             TabOrder = 1
             Text = 'Name'
-            Width = 320.000000000000000000
             object BoxAdressEdit: TEdit
               Touch.InteractiveGestures = [LongTap, DoubleTap]
               Align = Right
@@ -475,8 +480,9 @@ inherited MainTabbedForm: TMainTabbedForm
               TextSettings.HorzAlign = Trailing
               Position.X = 112.000000000000000000
               Position.Y = 8.000000000000000000
-              Width = 208.000000000000000000
-              Height = 29.000000000000000000
+              Size.Width = 208.000000000000000000
+              Size.Height = 29.000000000000000000
+              Size.PlatformDefault = False
               TextPrompt = 'Enter box name or IP address'
               KillFocusByReturn = True
               OnChange = BoxAddressEditChange
@@ -484,12 +490,13 @@ inherited MainTabbedForm: TMainTabbedForm
           end
           object ListBoxItem2: TListBoxItem
             Selectable = False
-            Height = 44.000000000000000000
             Position.Y = 100.000000000000000000
+            Size.Width = 320.000000000000000000
+            Size.Height = 44.000000000000000000
+            Size.PlatformDefault = False
             StyleLookup = 'listboxitemrightdetail'
             TabOrder = 2
             Text = 'User name'
-            Width = 320.000000000000000000
             object UsernameEdit: TEdit
               Touch.InteractiveGestures = [LongTap, DoubleTap]
               Align = Right
@@ -500,8 +507,9 @@ inherited MainTabbedForm: TMainTabbedForm
               TextSettings.HorzAlign = Trailing
               Position.X = 112.000000000000000000
               Position.Y = 8.000000000000000000
-              Width = 208.000000000000000000
-              Height = 29.000000000000000000
+              Size.Width = 208.000000000000000000
+              Size.Height = 29.000000000000000000
+              Size.PlatformDefault = False
               TextPrompt = 'Enter username if needed'
               KillFocusByReturn = True
               OnChange = UsernameEditChange
@@ -509,12 +517,13 @@ inherited MainTabbedForm: TMainTabbedForm
           end
           object ListBoxItem3: TListBoxItem
             Selectable = False
-            Height = 44.000000000000000000
             Position.Y = 144.000000000000000000
+            Size.Width = 320.000000000000000000
+            Size.Height = 44.000000000000000000
+            Size.PlatformDefault = False
             StyleLookup = 'listboxitemrightdetail'
             TabOrder = 3
             Text = 'Password'
-            Width = 320.000000000000000000
             object PasswordEdit: TEdit
               Touch.InteractiveGestures = [LongTap, DoubleTap]
               Align = Right
@@ -525,8 +534,9 @@ inherited MainTabbedForm: TMainTabbedForm
               TextSettings.HorzAlign = Trailing
               Position.X = 112.000000000000000000
               Position.Y = 8.000000000000000000
-              Width = 208.000000000000000000
-              Height = 29.000000000000000000
+              Size.Width = 208.000000000000000000
+              Size.Height = 29.000000000000000000
+              Size.PlatformDefault = False
               TextPrompt = 'Enter password if needed'
               KillFocusByReturn = True
               OnChange = PasswordEditChange
